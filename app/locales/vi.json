@@ -1,0 +1,28 @@
+{
+  "common": {
+    "error_network": "Không kết nối được máy chủ. Vui lòng thử lại."
+  },
+  "validation": {
+    "required": "Vui lòng nhập thông tin này",
+    "max_length": "Tối đa {{max}} ký tự"
+  },
+  "auth": {
+    "login": {
+      "title": "Đăng nhập",
+      "description": "Đăng nhập vào hệ thống SPECOM HRM",
+      "username": "Tên đăng nhập",
+      "username_placeholder": "Nhập tên đăng nhập",
+      "password": "Mật khẩu",
+      "password_placeholder": "Nhập mật khẩu",
+      "show_password": "Hiện mật khẩu",
+      "hide_password": "Ẩn mật khẩu",
+      "submit": "Đăng nhập",
+      "submitting": "Đang đăng nhập..."
+    },
+    "logout": "Đăng xuất"
+  },
+  "dashboard": {
+    "welcome": "Xin chào, {{name}}",
+    "roles": "Vai trò"
+  }
+}
