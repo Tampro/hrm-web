@@ -38,6 +38,14 @@ export const commonHelper = {
     return unit ? `${amount} ${unit}` : amount
   },
 
+  /** Locale-aware percentage of a 0–100 value (e.g. 20 → 20%), '-' when missing */
+  formatPercent: (value: number | null | undefined) => {
+    if (value === null || value === undefined || Number.isNaN(value)) return '-'
+    return new Intl.NumberFormat(commonHelper.getLocale(), { style: 'percent', maximumFractionDigits: 2 }).format(
+      value / 100
+    )
+  },
+
   /** Value from the URL when it is one of the enum values, otherwise the fallback */
   toEnumValue: <T extends string>(value: string | null | undefined, values: readonly T[], fallback: T): T =>
     values.includes(value as T) ? (value as T) : fallback

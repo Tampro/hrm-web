@@ -2,9 +2,12 @@ import type { TFunction } from 'i18next'
 import { z } from 'zod'
 
 import { EBillingCycle } from '~/shared/enums/company.enum'
+import { ECouponCodeGeneration, ECouponType } from '~/shared/enums/coupon.enum'
 import {
   ECompanyFilterFormKey,
   ECompanyFormKey,
+  ECouponFilterFormKey,
+  ECouponFormKey,
   EDecisionFormKey,
   ELoginFormKey,
   EPlanFormKey,
@@ -161,3 +164,60 @@ export const getDecisionSchema = (t?: TFunction) =>
   })
 
 export type TDecisionSchema = z.infer<ReturnType<typeof getDecisionSchema>>
+
+// Spec: GET /saas/admin/coupons — keyword (name or code), type, dateFrom/dateTo (creation days, inclusive)
+export const getCouponFilterSchema = (t?: TFunction) =>
+  z
+    .object({
+      [ECouponFilterFormKey.Keyword]: z.string().trim().max(255, maxLength(255, t)),
+      [ECouponFilterFormKey.Type]: z.enum(ECouponType),
+      [ECouponFilterFormKey.DateFrom]: z.string(),
+      [ECouponFilterFormKey.DateTo]: z.string()
+    })
+    .refine((v) => !v.dateFrom || !v.dateTo || v.dateFrom <= v.dateTo, {
+      path: [ECouponFilterFormKey.DateTo],
+      message: t?.('validation.date_range')
+    })
+
+export type TCouponFilterSchema = z.infer<ReturnType<typeof getCouponFilterSchema>>
+
+// Spec: CouponForm (hrm-be CouponDtos.java) — name ≤100, discountValue ≥0 (PERCENTAGE ≤100: SAAS_012),
+// code [A-Z0-9_-]+ ≤50 required for MANUAL (SAAS_021), spends ≥0 with min ≤ max (SAAS_020), limits @Min(1),
+// expiryDate optional (last valid day)
+export const getCouponSchema = (t?: TFunction) =>
+  z
+    .object({
+      [ECouponFormKey.Name]: requiredText(100, t),
+      [ECouponFormKey.Type]: z.enum([ECouponType.Percentage, ECouponType.Flat]),
+      [ECouponFormKey.DiscountValue]: numberText(t, { required: true }),
+      [ECouponFormKey.CodeGeneration]: z.enum(ECouponCodeGeneration),
+      [ECouponFormKey.Code]: z
+        .string()
+        .trim()
+        .max(50, maxLength(50, t))
+        .refine((v) => v === '' || /^[A-Z0-9_-]+$/.test(v), { message: t?.('validation.coupon_code') }),
+      [ECouponFormKey.MinimumSpend]: numberText(t),
+      [ECouponFormKey.MaximumSpend]: numberText(t),
+      [ECouponFormKey.UseLimitTotal]: numberText(t, { min: 1, integer: true }),
+      [ECouponFormKey.UseLimitPerCompany]: numberText(t, { min: 1, integer: true }),
+      [ECouponFormKey.ExpiryDate]: z.string()
+    })
+    .refine((v) => v.type !== ECouponType.Percentage || v.discountValue === '' || Number(v.discountValue) <= 100, {
+      path: [ECouponFormKey.DiscountValue],
+      message: t?.('validation.percentage_max')
+    })
+    .refine((v) => v.codeGeneration !== ECouponCodeGeneration.Manual || v.code !== '', {
+      path: [ECouponFormKey.Code],
+      message: required(t)
+    })
+    .refine(
+      (v) =>
+        v.minimumSpend === '' ||
+        v.maximumSpend === '' ||
+        Number.isNaN(Number(v.minimumSpend)) ||
+        Number.isNaN(Number(v.maximumSpend)) ||
+        Number(v.minimumSpend) <= Number(v.maximumSpend),
+      { path: [ECouponFormKey.MaximumSpend], message: t?.('validation.min_max_spend') }
+    )
+
+export type TCouponSchema = z.infer<ReturnType<typeof getCouponSchema>>

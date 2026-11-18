@@ -13,6 +13,10 @@ export default [
         index('routes/dashboard/plans/index.tsx'),
         route(BASE_ROUTES.PLAN_REQUESTS, 'routes/dashboard/plans/requests/index.tsx'),
         route(BASE_ROUTES.PLAN_ORDERS, 'routes/dashboard/plans/orders/index.tsx')
+      ]),
+      route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.COUPONS}`, 'routes/dashboard/coupons/layout.tsx', [
+        index('routes/dashboard/coupons/index.tsx'),
+        route(':id', 'routes/dashboard/coupons/coupon-detail/index.tsx')
       ])
     ])
   ])

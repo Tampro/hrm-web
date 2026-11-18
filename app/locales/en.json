@@ -27,7 +27,10 @@
     "number": "Enter a number",
     "integer": "Enter a whole number",
     "min_value": "Minimum is {{min}}",
-    "plan_code": "Start with an uppercase letter; uppercase letters, digits and underscores only"
+    "plan_code": "Start with an uppercase letter; uppercase letters, digits and underscores only",
+    "coupon_code": "Uppercase letters, digits, underscores and hyphens only",
+    "percentage_max": "A percentage discount is at most 100",
+    "min_max_spend": "Maximum spend must be greater than or equal to the minimum spend"
   },
   "auth": {
     "login": {
@@ -52,7 +55,8 @@
     "dashboard": "Dashboard",
     "companies": "Companies",
     "toggle": "Toggle menu",
-    "plans": "Plans"
+    "plans": "Plans",
+    "coupons": "Coupons"
   },
   "table": {
     "rows_per_page": "Rows per page",
@@ -76,7 +80,10 @@
     "REJECTED": "Rejected",
     "CANCELLED": "Cancelled",
     "BANK_TRANSFER": "Bank transfer",
-    "MANUAL": "Manual"
+    "MANUAL": "Manual",
+    "PERCENTAGE": "Percentage",
+    "FLAT": "Flat amount",
+    "AUTO": "Auto generated"
   },
   "company": {
     "title": "Companies",
@@ -328,6 +335,87 @@
       "account_number": "Account number",
       "account_name": "Account name",
       "transfer_content": "Transfer content"
+    }
+  },
+  "coupon": {
+    "title": "Coupons",
+    "subtitle": "Create and manage discount coupons for companies' plan orders",
+    "add": "Add coupon",
+    "empty": "No coupons yet",
+    "not_found": "Coupon not found",
+    "back": "Back to coupons",
+    "type_all": "All types",
+    "no_expiry": "No expiry",
+    "no_limit": "No limit",
+    "tab": {
+      "all": "All",
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "filter": {
+      "keyword": "Keyword",
+      "keyword_placeholder": "Name or code"
+    },
+    "field": {
+      "name": "Coupon name",
+      "code": "Code",
+      "code_generation": "Code generation",
+      "type": "Discount type",
+      "discount": "Discount",
+      "discount_value": "Discount value",
+      "minimum_spend": "Minimum spend",
+      "maximum_spend": "Maximum spend",
+      "coupon_limit": "Coupon limit",
+      "user_limit": "Uses per company",
+      "times_used": "Times used",
+      "expiry_date": "Expiry date",
+      "status": "Status",
+      "active_for": "Active: {{name}}",
+      "created_at": "Created at"
+    },
+    "action": {
+      "edit_named": "Edit {{name}}",
+      "delete_named": "Delete {{name}}"
+    },
+    "form": {
+      "create_title": "Add coupon",
+      "create_description": "Companies can apply this coupon when they order a plan.",
+      "edit_title": "Edit coupon",
+      "edit_description": "Every field is replaced; an empty limit means unlimited.",
+      "manual": "Manual entry",
+      "auto": "Auto generate",
+      "auto_hint": "An 8-character code is generated when you save.",
+      "code_hint": "For example SUMMER25. Uppercase letters, digits, _ and -.",
+      "percent_hint": "From 0 to 100 (%)",
+      "optional_hint": "Leave empty for no limit.",
+      "unlimited_hint": "Empty means unlimited.",
+      "expiry_hint": "Last day the coupon is valid. Leave empty for no expiry.",
+      "create_submit": "Create coupon"
+    },
+    "delete": {
+      "title": "Delete coupon?",
+      "description": "Deleting {{name}} ({{code}}): orders that used it keep their discount, and the code can be reused."
+    },
+    "toast": {
+      "created": "Coupon {{code}} created",
+      "updated": "Coupon updated",
+      "deleted": "Coupon deleted",
+      "enabled": "Coupon activated",
+      "disabled": "Coupon deactivated"
+    },
+    "detail": {
+      "summary": "Coupon summary",
+      "information": "Coupon information",
+      "usage_history": "Usage history",
+      "usage_hint": "Newest first. Uses count pending and approved orders.",
+      "usage_empty": "The coupon has not been used yet"
+    },
+    "usage": {
+      "company": "Company",
+      "order": "Order",
+      "order_amount": "Order amount",
+      "discount_applied": "Discount applied",
+      "used_at": "Used at"
     }
   }
 }

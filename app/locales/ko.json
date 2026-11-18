@@ -27,7 +27,10 @@
     "number": "숫자를 입력하세요",
     "integer": "정수를 입력하세요",
     "min_value": "최솟값은 {{min}}입니다",
-    "plan_code": "영문 대문자로 시작하며 영문 대문자, 숫자, 밑줄만 사용할 수 있습니다"
+    "plan_code": "영문 대문자로 시작하며 영문 대문자, 숫자, 밑줄만 사용할 수 있습니다",
+    "coupon_code": "영문 대문자, 숫자, 밑줄, 하이픈만 사용할 수 있습니다",
+    "percentage_max": "정률 할인은 최대 100입니다",
+    "min_max_spend": "최대 사용 금액은 최소 사용 금액 이상이어야 합니다"
   },
   "auth": {
     "login": {
@@ -52,7 +55,8 @@
     "dashboard": "대시보드",
     "companies": "회사",
     "toggle": "메뉴 접기/펼치기",
-    "plans": "요금제"
+    "plans": "요금제",
+    "coupons": "쿠폰"
   },
   "table": {
     "rows_per_page": "페이지당 행 수",
@@ -76,7 +80,10 @@
     "REJECTED": "거절",
     "CANCELLED": "취소",
     "BANK_TRANSFER": "계좌이체",
-    "MANUAL": "수동"
+    "MANUAL": "수동",
+    "PERCENTAGE": "정률",
+    "FLAT": "정액",
+    "AUTO": "자동 생성"
   },
   "company": {
     "title": "회사 관리",
@@ -328,6 +335,87 @@
       "account_number": "계좌번호",
       "account_name": "예금주",
       "transfer_content": "이체 내용"
+    }
+  },
+  "coupon": {
+    "title": "쿠폰",
+    "subtitle": "회사의 요금제 주문에 사용할 할인 쿠폰을 생성하고 관리합니다",
+    "add": "쿠폰 추가",
+    "empty": "등록된 쿠폰이 없습니다",
+    "not_found": "쿠폰을 찾을 수 없습니다",
+    "back": "쿠폰 목록으로",
+    "type_all": "전체 유형",
+    "no_expiry": "만료 없음",
+    "no_limit": "제한 없음",
+    "tab": {
+      "all": "전체",
+      "active": "활성",
+      "inactive": "비활성"
+    },
+    "filter": {
+      "keyword": "검색어",
+      "keyword_placeholder": "이름 또는 코드"
+    },
+    "field": {
+      "name": "쿠폰명",
+      "code": "코드",
+      "code_generation": "코드 생성 방식",
+      "type": "할인 유형",
+      "discount": "할인",
+      "discount_value": "할인 값",
+      "minimum_spend": "최소 사용 금액",
+      "maximum_spend": "최대 사용 금액",
+      "coupon_limit": "총 사용 한도",
+      "user_limit": "회사별 사용 한도",
+      "times_used": "사용 횟수",
+      "expiry_date": "만료일",
+      "status": "상태",
+      "active_for": "활성: {{name}}",
+      "created_at": "생성일"
+    },
+    "action": {
+      "edit_named": "{{name}} 수정",
+      "delete_named": "{{name}} 삭제"
+    },
+    "form": {
+      "create_title": "쿠폰 추가",
+      "create_description": "회사가 요금제를 주문할 때 이 쿠폰을 적용할 수 있습니다.",
+      "edit_title": "쿠폰 수정",
+      "edit_description": "모든 항목이 교체됩니다. 한도를 비우면 무제한입니다.",
+      "manual": "직접 입력",
+      "auto": "자동 생성",
+      "auto_hint": "저장 시 8자리 코드가 생성됩니다.",
+      "code_hint": "예: SUMMER25. 영문 대문자, 숫자, _ 와 - 사용.",
+      "percent_hint": "0~100 (%)",
+      "optional_hint": "제한이 없으면 비워 두세요.",
+      "unlimited_hint": "비워 두면 무제한입니다.",
+      "expiry_hint": "쿠폰이 유효한 마지막 날입니다. 만료가 없으면 비워 두세요.",
+      "create_submit": "쿠폰 생성"
+    },
+    "delete": {
+      "title": "쿠폰을 삭제할까요?",
+      "description": "{{name}} ({{code}})을(를) 삭제하면: 이미 사용한 주문은 할인이 유지되며, 코드는 다시 사용할 수 있습니다."
+    },
+    "toast": {
+      "created": "쿠폰 {{code}}을(를) 생성했습니다",
+      "updated": "쿠폰을 수정했습니다",
+      "deleted": "쿠폰을 삭제했습니다",
+      "enabled": "쿠폰을 활성화했습니다",
+      "disabled": "쿠폰을 비활성화했습니다"
+    },
+    "detail": {
+      "summary": "쿠폰 요약",
+      "information": "쿠폰 정보",
+      "usage_history": "사용 내역",
+      "usage_hint": "최신순. 사용 횟수는 대기 및 승인된 주문을 포함합니다.",
+      "usage_empty": "아직 사용되지 않은 쿠폰입니다"
+    },
+    "usage": {
+      "company": "회사",
+      "order": "주문",
+      "order_amount": "주문 금액",
+      "discount_applied": "할인 금액",
+      "used_at": "사용 일시"
     }
   }
 }
