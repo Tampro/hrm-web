@@ -1,10 +1,27 @@
 {
   "common": {
-    "error_network": "서버에 연결할 수 없습니다. 다시 시도해 주세요."
+    "error_network": "서버에 연결할 수 없습니다. 다시 시도해 주세요.",
+    "select_date": "날짜 선택",
+    "clear": "지우기",
+    "actions": "작업",
+    "cancel": "취소",
+    "confirm": "확인",
+    "save": "저장",
+    "saving": "저장 중...",
+    "search": "검색",
+    "copy": "복사",
+    "copied": "복사했습니다",
+    "copy_failed": "복사하지 못했습니다. 직접 복사해 주세요",
+    "no_permission": "이 페이지에 접근할 권한이 없습니다."
   },
   "validation": {
     "required": "필수 입력 항목입니다",
-    "max_length": "최대 {{max}}자까지 입력할 수 있습니다"
+    "max_length": "최대 {{max}}자까지 입력할 수 있습니다",
+    "email": "이메일 형식이 올바르지 않습니다",
+    "date_range": "종료일은 시작일과 같거나 이후여야 합니다",
+    "company_code": "영문 대문자, 숫자, 밑줄만 사용할 수 있습니다",
+    "min_length": "최소 {{min}}자 이상 입력하세요",
+    "username": "영문, 숫자, . _ - 만 사용할 수 있습니다"
   },
   "auth": {
     "login": {
@@ -24,5 +41,134 @@
   "dashboard": {
     "welcome": "안녕하세요, {{name}}님",
     "roles": "역할"
+  },
+  "sidebar": {
+    "dashboard": "대시보드",
+    "companies": "회사",
+    "toggle": "메뉴 접기/펼치기"
+  },
+  "table": {
+    "rows_per_page": "페이지당 행 수",
+    "pagination": "페이지 이동",
+    "previous": "이전 페이지",
+    "next": "다음 페이지",
+    "showing": "{{count}} / {{total}} 표시",
+    "empty": "데이터가 없습니다"
+  },
+  "enum": {
+    "ACTIVE": "활성",
+    "SUSPENDED": "정지",
+    "NONE": "요금제 없음",
+    "TRIAL": "체험",
+    "EXPIRED": "만료",
+    "LOCKED": "잠김"
+  },
+  "company": {
+    "title": "회사 관리",
+    "subtitle": "플랫폼에 등록된 회사를 조회하고 관리합니다",
+    "empty": "등록된 회사가 없습니다",
+    "empty_filtered": "필터와 일치하는 회사가 없습니다",
+    "tab": {
+      "all": "전체",
+      "active": "활성",
+      "inactive": "비활성"
+    },
+    "filter": {
+      "keyword": "검색어",
+      "keyword_placeholder": "이름, 코드 또는 이메일",
+      "created_from": "생성 시작일",
+      "created_to": "생성 종료일",
+      "clear": "필터 초기화",
+      "applied": "필터 {{count}}개 적용됨"
+    },
+    "field": {
+      "code": "회사 코드",
+      "name": "회사명",
+      "email": "이메일",
+      "status": "상태",
+      "plan": "요금제",
+      "subscription": "구독",
+      "plan_expires_at": "요금제 만료일",
+      "users": "계정 수 / 한도",
+      "created_at": "생성일",
+      "enable_login": "로그인 허용",
+      "admin_username": "관리자 아이디",
+      "admin_full_name": "관리자 이름",
+      "admin_email": "관리자 이메일"
+    },
+    "action": {
+      "menu": "{{name}} 작업",
+      "info": "회사 정보",
+      "edit": "수정",
+      "upgrade": "요금제 변경",
+      "reset_password": "비밀번호 재설정",
+      "disable_login": "로그인 차단",
+      "enable_login": "로그인 허용",
+      "delete": "삭제"
+    },
+    "create": {
+      "button": "회사 추가",
+      "title": "회사 추가",
+      "description": "기본 역할, 기본 요금제, 첫 관리자와 함께 회사를 생성합니다.",
+      "code_hint": "영문 대문자, 숫자, 밑줄. 생성 후 변경할 수 없습니다.",
+      "enable_login_hint": "끄면 회사가 정지 상태로 생성됩니다.",
+      "admin_section": "첫 관리자",
+      "submit": "회사 생성"
+    },
+    "temp_password": {
+      "title": "관리자 임시 비밀번호",
+      "description": "이 비밀번호는 한 번만 표시됩니다. 관리자에게 전달하세요. 첫 로그인 시 변경해야 합니다.",
+      "password": "임시 비밀번호",
+      "done": "저장했습니다"
+    },
+    "edit": {
+      "title": "회사 수정",
+      "description": "회사 코드는 변경할 수 없습니다."
+    },
+    "info": {
+      "title": "회사 정보",
+      "administrators": "관리자",
+      "no_administrators": "관리자가 없습니다"
+    },
+    "reset_password": {
+      "title": "비밀번호 재설정",
+      "description": "{{name}} 계정의 새 비밀번호를 설정합니다. 해당 계정의 세션은 종료됩니다.",
+      "account": "계정",
+      "default_admin": "대표 관리자 (기본값)",
+      "account_hint": "기본값: 첫 번째 활성 관리자",
+      "new_password": "새 비밀번호"
+    },
+    "upgrade": {
+      "title": "요금제 변경",
+      "description": "{{name}}의 현재 요금제: {{plan}}. 새 요금제는 지금부터 한 결제 주기 동안 적용됩니다.",
+      "monthly": "월간",
+      "yearly": "연간",
+      "plan": "요금제",
+      "no_plans": "사용 가능한 요금제가 없습니다",
+      "no_price": "이 주기의 가격이 없습니다",
+      "per_month": "{{price}} / 월",
+      "per_year": "{{price}} / 년",
+      "max_users": "최대 {{value}}개 계정",
+      "submit": "변경"
+    },
+    "status": {
+      "disable_title": "회사 로그인을 차단할까요?",
+      "disable_description": "{{name}}의 모든 사용자가 로그인할 수 없으며, 열린 세션은 30초 이내에 거부됩니다.",
+      "enable_title": "회사 로그인을 허용할까요?",
+      "enable_description": "{{name}}의 계정이 다시 로그인할 수 있습니다."
+    },
+    "delete": {
+      "title": "회사를 삭제할까요?",
+      "description": "{{name}}을(를) 삭제하면 모든 계정이 비활성화되고 대기 중인 주문이 취소되며 코드가 해제됩니다. 앱에서 되돌릴 수 없습니다."
+    },
+    "toast": {
+      "created": "회사를 생성했습니다",
+      "updated": "회사를 수정했습니다",
+      "deleted": "회사를 삭제했습니다",
+      "login_enabled": "로그인을 허용했습니다",
+      "login_disabled": "로그인을 차단했습니다",
+      "plan_upgraded": "요금제를 변경했습니다",
+      "password_reset": "{{username}}의 비밀번호를 재설정했습니다"
+    }
   }
 }

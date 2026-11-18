@@ -1,12 +1,20 @@
 import { reactRouter } from '@react-router/dev/vite'
 import tailwindcss from '@tailwindcss/vite'
-import { defineConfig, loadEnv } from 'vite'
+import { defineConfig, loadEnv, type ProxyOptions } from 'vite'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd(), '')
   // Local only (dev server + `npm run preview`): forward /api to the backend so the browser stays same-origin.
   // Deployed builds are served by Nginx, which does its own proxying.
-  const proxy = { '/api': { target: env.VITE_PROXY_TARGET || 'http://localhost:8081', changeOrigin: true } }
+  // The Origin header is dropped: browser → proxy is same-origin, proxy → backend is server-to-server. Otherwise
+  // the backend CORS list (HRM_CORS_ORIGINS, default only :5173) rejects `vite preview` on :4173 with 403.
+  const proxy: Record<string, ProxyOptions> = {
+    '/api': {
+      target: env.VITE_PROXY_TARGET || 'http://localhost:8081',
+      changeOrigin: true,
+      configure: (proxyServer) => proxyServer.on('proxyReq', (proxyReq) => proxyReq.removeHeader('origin'))
+    }
+  }
   return {
     plugins: [tailwindcss(), reactRouter()],
     resolve: { tsconfigPaths: true },

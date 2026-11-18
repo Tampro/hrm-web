@@ -1,10 +1,27 @@
 {
   "common": {
-    "error_network": "Cannot reach the server. Please try again."
+    "error_network": "Cannot reach the server. Please try again.",
+    "select_date": "Pick a date",
+    "clear": "Clear",
+    "actions": "Actions",
+    "cancel": "Cancel",
+    "confirm": "Confirm",
+    "save": "Save",
+    "saving": "Saving...",
+    "search": "Search",
+    "copy": "Copy",
+    "copied": "Copied",
+    "copy_failed": "Could not copy, please copy it manually",
+    "no_permission": "You do not have access to this page."
   },
   "validation": {
     "required": "This field is required",
-    "max_length": "At most {{max}} characters"
+    "max_length": "At most {{max}} characters",
+    "email": "Invalid email",
+    "date_range": "End date must be on or after the start date",
+    "company_code": "Uppercase letters, digits and underscores only",
+    "min_length": "At least {{min}} characters",
+    "username": "Letters, digits and . _ - only"
   },
   "auth": {
     "login": {
@@ -24,5 +41,134 @@
   "dashboard": {
     "welcome": "Hello, {{name}}",
     "roles": "Roles"
+  },
+  "sidebar": {
+    "dashboard": "Dashboard",
+    "companies": "Companies",
+    "toggle": "Toggle menu"
+  },
+  "table": {
+    "rows_per_page": "Rows per page",
+    "pagination": "Pagination",
+    "previous": "Previous page",
+    "next": "Next page",
+    "showing": "Showing {{count}} / {{total}}",
+    "empty": "No data"
+  },
+  "enum": {
+    "ACTIVE": "Active",
+    "SUSPENDED": "Suspended",
+    "NONE": "No plan",
+    "TRIAL": "Trial",
+    "EXPIRED": "Expired",
+    "LOCKED": "Locked"
+  },
+  "company": {
+    "title": "Companies",
+    "subtitle": "View and manage the companies registered on the platform",
+    "empty": "No companies yet",
+    "empty_filtered": "No companies match the filters",
+    "tab": {
+      "all": "All",
+      "active": "Active",
+      "inactive": "Inactive"
+    },
+    "filter": {
+      "keyword": "Keyword",
+      "keyword_placeholder": "Name, code or email",
+      "created_from": "Created from",
+      "created_to": "Created to",
+      "clear": "Clear filters",
+      "applied": "{{count}} filters applied"
+    },
+    "field": {
+      "code": "Code",
+      "name": "Company name",
+      "email": "Email",
+      "status": "Status",
+      "plan": "Plan",
+      "subscription": "Subscription",
+      "plan_expires_at": "Plan expires",
+      "users": "Accounts / limit",
+      "created_at": "Created at",
+      "enable_login": "Enable login",
+      "admin_username": "Admin username",
+      "admin_full_name": "Admin full name",
+      "admin_email": "Admin email"
+    },
+    "action": {
+      "menu": "Actions for {{name}}",
+      "info": "Company info",
+      "edit": "Edit",
+      "upgrade": "Upgrade plan",
+      "reset_password": "Reset password",
+      "disable_login": "Disable login",
+      "enable_login": "Enable login",
+      "delete": "Delete"
+    },
+    "create": {
+      "button": "Add company",
+      "title": "Add company",
+      "description": "Creates the company with its default roles, the default plan and the first administrator.",
+      "code_hint": "Uppercase letters, digits, underscores; cannot be changed later.",
+      "enable_login_hint": "When off, the company is created suspended.",
+      "admin_section": "First administrator",
+      "submit": "Create company"
+    },
+    "temp_password": {
+      "title": "Administrator's temporary password",
+      "description": "This password is shown only once. Send it to the administrator; they must change it at first login.",
+      "password": "Temporary password",
+      "done": "I have saved it"
+    },
+    "edit": {
+      "title": "Edit company",
+      "description": "The company code cannot be changed."
+    },
+    "info": {
+      "title": "Company info",
+      "administrators": "Administrators",
+      "no_administrators": "No administrators"
+    },
+    "reset_password": {
+      "title": "Reset password",
+      "description": "Set a new password for an account of {{name}}. That account's sessions are ended.",
+      "account": "Account",
+      "default_admin": "Main administrator (default)",
+      "account_hint": "Default: the first active administrator.",
+      "new_password": "New password"
+    },
+    "upgrade": {
+      "title": "Upgrade plan",
+      "description": "{{name}} is on {{plan}}. The new plan starts now for one billing cycle.",
+      "monthly": "Monthly",
+      "yearly": "Yearly",
+      "plan": "Plan",
+      "no_plans": "No enabled plans",
+      "no_price": "No price for this cycle",
+      "per_month": "{{price}} / month",
+      "per_year": "{{price}} / year",
+      "max_users": "Up to {{value}} accounts",
+      "submit": "Upgrade"
+    },
+    "status": {
+      "disable_title": "Disable login for this company?",
+      "disable_description": "Nobody in {{name}} can log in; open sessions are rejected within 30 seconds.",
+      "enable_title": "Enable login for this company?",
+      "enable_description": "Accounts of {{name}} can log in again."
+    },
+    "delete": {
+      "title": "Delete company?",
+      "description": "Deleting {{name}} disables every account, cancels pending orders and frees the code. This cannot be undone in the app."
+    },
+    "toast": {
+      "created": "Company created",
+      "updated": "Company updated",
+      "deleted": "Company deleted",
+      "login_enabled": "Login enabled",
+      "login_disabled": "Login disabled",
+      "plan_upgraded": "Plan upgraded",
+      "password_reset": "Password reset for {{username}}"
+    }
   }
 }

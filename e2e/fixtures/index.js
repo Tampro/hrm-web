@@ -3,11 +3,13 @@
 import { test as base, expect } from '@playwright/test'
 
 import { LoginPage } from '../auth/login.page.js'
+import { CompaniesPage } from '../companies/companies.page.js'
 import { mockApi } from '../utils/mock-api.js'
 
 /**
  * @typedef {Object} HrmFixtures
  * @property {LoginPage} loginPage
+ * @property {CompaniesPage} companiesPage
  * @property {ReturnType<typeof mockApi>} api  Helpers to stub backend responses (register before page.goto)
  */
 
@@ -15,6 +17,9 @@ import { mockApi } from '../utils/mock-api.js'
 export const test = base.extend({
   loginPage: async ({ page }, use) => {
     await use(new LoginPage(page))
+  },
+  companiesPage: async ({ page }, use) => {
+    await use(new CompaniesPage(page))
   },
   api: async ({ page }, use) => {
     await use(mockApi(page))
