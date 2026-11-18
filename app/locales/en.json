@@ -33,7 +33,12 @@
     "coupon_code": "Uppercase letters, digits, underscores and hyphens only",
     "percentage_max": "A percentage discount is at most 100",
     "min_max_spend": "Maximum spend must be greater than or equal to the minimum spend",
-    "currency_code": "An ISO 4217 code of exactly 3 uppercase letters, e.g. USD"
+    "currency_code": "An ISO 4217 code of exactly 3 uppercase letters, e.g. USD",
+    "url": "Must start with http:// or https://",
+    "theme_color": "Pick a preset or a #RRGGBB colour",
+    "separators_differ": "The thousands separator must differ from the decimal separator",
+    "max_value": "Maximum is {{max}}",
+    "pick_one": "Pick at least one"
   },
   "auth": {
     "login": {
@@ -61,7 +66,8 @@
     "plans": "Plans",
     "coupons": "Coupons",
     "currencies": "Currencies",
-    "referral": "Referral"
+    "referral": "Referral",
+    "settings": "System settings"
   },
   "table": {
     "rows_per_page": "Rows per page",
@@ -88,7 +94,27 @@
     "MANUAL": "Manual",
     "PERCENTAGE": "Percentage",
     "FLAT": "Flat amount",
-    "AUTO": "Auto generated"
+    "AUTO": "Auto generated",
+    "MONDAY": "Monday",
+    "TUESDAY": "Tuesday",
+    "WEDNESDAY": "Wednesday",
+    "THURSDAY": "Thursday",
+    "FRIDAY": "Friday",
+    "SATURDAY": "Saturday",
+    "SUNDAY": "Sunday",
+    "INSET": "Inset",
+    "FLOATING": "Floating",
+    "MINIMAL": "Minimal",
+    "PLAIN": "Plain",
+    "COLORED": "Colored",
+    "GRADIENT": "Gradient",
+    "LTR": "Left to right",
+    "RTL": "Right to left",
+    "LIGHT": "Light",
+    "DARK": "Dark",
+    "SYSTEM": "System",
+    "BEFORE": "Before the amount",
+    "AFTER": "After the amount"
   },
   "company": {
     "title": "Companies",
@@ -535,6 +561,161 @@
       "updated_at": "Last updated: {{date}}",
       "save": "Save settings",
       "saved": "Settings saved"
+    }
+  },
+  "settings": {
+    "title": "System settings",
+    "subtitle": "Platform-wide configuration",
+    "menu": "Settings sections",
+    "save": "Save changes",
+    "saved": "Settings saved",
+    "section": {
+      "system": "System",
+      "brand": "Brand",
+      "currency": "Currency format",
+      "email": "Email",
+      "payment": "Payment",
+      "storage": "Storage",
+      "seo": "SEO",
+      "recaptcha": "reCAPTCHA",
+      "cookie": "Cookie"
+    },
+    "language": {
+      "vi": "Tiếng Việt",
+      "en": "English",
+      "ko": "한국어"
+    },
+    "system": {
+      "description": "Language, date and time formats, time zone and sign-up options.",
+      "default_language": "Default language",
+      "default_timezone": "Default time zone",
+      "date_format": "Date format",
+      "time_format": "Time format",
+      "time_24h": "24-hour",
+      "time_12h": "12-hour",
+      "time_24h_seconds": "24-hour with seconds",
+      "calendar_start_day": "Calendar start day",
+      "email_verification": "Email verification",
+      "email_verification_hint": "New users must verify their email before they can log in.",
+      "landing_page": "Landing page",
+      "landing_page_hint": "Show the public landing page.",
+      "user_registration": "User registration",
+      "user_registration_hint": "New companies can sign up by themselves.",
+      "terms_url": "Terms and conditions URL"
+    },
+    "brand": {
+      "description": "Logos, display name and theme. Saved only for now; not applied to the interface yet.",
+      "logos": "Logos",
+      "logo_dark": "Logo (dark mode)",
+      "logo_light": "Logo (light mode)",
+      "favicon": "Favicon",
+      "url_hint": "URL of a file in the media library.",
+      "text": "Text",
+      "title_text": "Title text",
+      "footer_text": "Footer text",
+      "theme": "Theme",
+      "theme_color": "Theme colour",
+      "theme_mode": "Theme mode",
+      "sidebar_variant": "Sidebar variant",
+      "sidebar_style": "Sidebar style",
+      "layout_direction": "Layout direction",
+      "not_applied_yet": "Theme options are saved and will be applied in a later update.",
+      "color": {
+        "blue": "Blue",
+        "green": "Green",
+        "purple": "Purple",
+        "orange": "Orange",
+        "red": "Red",
+        "teal": "Teal"
+      }
+    },
+    "currency": {
+      "description": "How amounts are displayed across the platform.",
+      "preview": "Preview",
+      "default_currency": "Default currency: {{code}}.",
+      "change_default": "Change the default currency",
+      "decimal_places": "Decimal places",
+      "symbol_position": "Symbol position",
+      "decimal_separator": "Decimal separator",
+      "thousands_separator": "Thousands separator",
+      "show_decimals": "Show decimals",
+      "add_space": "Add space",
+      "add_space_hint": "Between the amount and the currency symbol.",
+      "separator": {
+        "DOT": "Dot (.)",
+        "COMMA": "Comma (,)",
+        "SPACE": "Space",
+        "NONE": "None"
+      }
+    },
+    "email": {
+      "description": "The SMTP server used to send system emails.",
+      "host": "SMTP host",
+      "port": "Port",
+      "username": "SMTP username",
+      "password": "SMTP password",
+      "password_set": "A password is stored. Leave empty to keep it.",
+      "password_not_set": "No password stored.",
+      "remove_password": "Remove the stored password",
+      "encryption": "Encryption",
+      "encryption_option": {
+        "NONE": "None",
+        "SSL": "SSL",
+        "TLS": "TLS"
+      },
+      "from_address": "From address",
+      "from_name": "From name",
+      "send_test": "Send test email",
+      "test_title": "Send a test email",
+      "test_description": "Sends a real email with the saved settings. Save your changes first.",
+      "test_to": "Send to",
+      "test_sent": "Test email sent"
+    },
+    "payment": {
+      "bank_transfer": "Bank transfer",
+      "description": "Transfer details shown with every pending plan order.",
+      "enabled": "Allow bank transfer payments",
+      "details": "Additional instructions",
+      "fallback_hint": "Empty account fields use the values configured on the server."
+    },
+    "storage": {
+      "description": "Allowed file types and maximum upload size. Applied within a minute.",
+      "allowed_types": "Allowed file types",
+      "allowed_types_hint": "Only types whose content the system can verify.",
+      "max_upload_size": "Max upload size (KB)",
+      "max_upload_size_hint": "For example 10240 KB = 10 MB."
+    },
+    "seo": {
+      "description": "What search engines and shared links show for the public pages.",
+      "meta_keywords": "Meta keywords",
+      "meta_keywords_hint": "Comma separated.",
+      "meta_description": "Meta description",
+      "meta_image_url": "Meta image URL"
+    },
+    "recaptcha": {
+      "description": "Bot protection for the login.",
+      "locked_warning": "reCAPTCHA cannot be enabled yet: once enabled, the server requires a reCAPTCHA token on login, which the login screen does not send yet, so nobody could log in. You can still save the keys for later.",
+      "enabled": "Enable reCAPTCHA",
+      "enabled_hint": "Enabling needs a secret.",
+      "version": "Version",
+      "site_key": "Site key",
+      "secret": "Secret",
+      "secret_set": "A secret is stored. Leave empty to keep it.",
+      "secret_not_set": "No secret stored."
+    },
+    "cookie": {
+      "description": "The cookie banner on the public pages.",
+      "enable_logging": "Log cookie consent",
+      "enable_logging_hint": "Store visitors' cookie consent choices.",
+      "banner": "Cookie banner",
+      "cookie_title": "Title",
+      "cookie_description": "Description",
+      "strictly": "Strictly necessary cookies",
+      "strictly_title": "Title",
+      "strictly_description": "Description",
+      "contact": "Contact",
+      "contact_description": "Contact text",
+      "contact_url": "Contact URL"
     }
   }
 }

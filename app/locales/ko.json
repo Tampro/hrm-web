@@ -33,7 +33,12 @@
     "coupon_code": "영문 대문자, 숫자, 밑줄, 하이픈만 사용할 수 있습니다",
     "percentage_max": "정률 할인은 최대 100입니다",
     "min_max_spend": "최대 사용 금액은 최소 사용 금액 이상이어야 합니다",
-    "currency_code": "영문 대문자 3자리 ISO 4217 코드입니다 (예: USD)"
+    "currency_code": "영문 대문자 3자리 ISO 4217 코드입니다 (예: USD)",
+    "url": "http:// 또는 https://로 시작해야 합니다",
+    "theme_color": "기본 색상 또는 #RRGGBB 색상을 선택하세요",
+    "separators_differ": "천 단위 구분 기호는 소수점 기호와 달라야 합니다",
+    "max_value": "최댓값은 {{max}}입니다",
+    "pick_one": "하나 이상 선택하세요"
   },
   "auth": {
     "login": {
@@ -61,7 +66,8 @@
     "plans": "요금제",
     "coupons": "쿠폰",
     "currencies": "통화",
-    "referral": "추천"
+    "referral": "추천",
+    "settings": "시스템 설정"
   },
   "table": {
     "rows_per_page": "페이지당 행 수",
@@ -88,7 +94,27 @@
     "MANUAL": "수동",
     "PERCENTAGE": "정률",
     "FLAT": "정액",
-    "AUTO": "자동 생성"
+    "AUTO": "자동 생성",
+    "MONDAY": "월요일",
+    "TUESDAY": "화요일",
+    "WEDNESDAY": "수요일",
+    "THURSDAY": "목요일",
+    "FRIDAY": "금요일",
+    "SATURDAY": "토요일",
+    "SUNDAY": "일요일",
+    "INSET": "인셋",
+    "FLOATING": "플로팅",
+    "MINIMAL": "최소",
+    "PLAIN": "기본",
+    "COLORED": "색상",
+    "GRADIENT": "그라데이션",
+    "LTR": "왼쪽에서 오른쪽",
+    "RTL": "오른쪽에서 왼쪽",
+    "LIGHT": "라이트",
+    "DARK": "다크",
+    "SYSTEM": "시스템 설정",
+    "BEFORE": "금액 앞",
+    "AFTER": "금액 뒤"
   },
   "company": {
     "title": "회사 관리",
@@ -535,6 +561,161 @@
       "updated_at": "최종 수정: {{date}}",
       "save": "설정 저장",
       "saved": "설정을 저장했습니다"
+    }
+  },
+  "settings": {
+    "title": "시스템 설정",
+    "subtitle": "플랫폼 전체 설정",
+    "menu": "설정 항목",
+    "save": "변경 사항 저장",
+    "saved": "설정을 저장했습니다",
+    "section": {
+      "system": "시스템",
+      "brand": "브랜드",
+      "currency": "통화 형식",
+      "email": "이메일",
+      "payment": "결제",
+      "storage": "저장소",
+      "seo": "SEO",
+      "recaptcha": "reCAPTCHA",
+      "cookie": "쿠키"
+    },
+    "language": {
+      "vi": "Tiếng Việt",
+      "en": "English",
+      "ko": "한국어"
+    },
+    "system": {
+      "description": "언어, 날짜·시간 형식, 시간대, 가입 옵션을 설정합니다.",
+      "default_language": "기본 언어",
+      "default_timezone": "기본 시간대",
+      "date_format": "날짜 형식",
+      "time_format": "시간 형식",
+      "time_24h": "24시간",
+      "time_12h": "12시간",
+      "time_24h_seconds": "24시간, 초 포함",
+      "calendar_start_day": "주 시작 요일",
+      "email_verification": "이메일 인증",
+      "email_verification_hint": "신규 사용자는 로그인 전에 이메일을 인증해야 합니다.",
+      "landing_page": "랜딩 페이지",
+      "landing_page_hint": "공개 랜딩 페이지를 표시합니다.",
+      "user_registration": "사용자 가입",
+      "user_registration_hint": "새 회사가 직접 가입할 수 있습니다.",
+      "terms_url": "이용약관 URL"
+    },
+    "brand": {
+      "description": "로고, 표시 이름, 테마. 현재는 저장만 되며 화면에는 아직 적용되지 않습니다.",
+      "logos": "로고",
+      "logo_dark": "로고 (다크 모드)",
+      "logo_light": "로고 (라이트 모드)",
+      "favicon": "파비콘",
+      "url_hint": "미디어 라이브러리 파일의 URL입니다.",
+      "text": "텍스트",
+      "title_text": "표시 이름",
+      "footer_text": "푸터 텍스트",
+      "theme": "테마",
+      "theme_color": "테마 색상",
+      "theme_mode": "테마 모드",
+      "sidebar_variant": "사이드바 형태",
+      "sidebar_style": "사이드바 스타일",
+      "layout_direction": "레이아웃 방향",
+      "not_applied_yet": "테마 옵션은 저장되며 이후 업데이트에서 적용됩니다.",
+      "color": {
+        "blue": "파랑",
+        "green": "초록",
+        "purple": "보라",
+        "orange": "주황",
+        "red": "빨강",
+        "teal": "청록"
+      }
+    },
+    "currency": {
+      "description": "플랫폼 전체의 금액 표시 방식입니다.",
+      "preview": "미리보기",
+      "default_currency": "기본 통화: {{code}}.",
+      "change_default": "기본 통화 변경",
+      "decimal_places": "소수 자릿수",
+      "symbol_position": "기호 위치",
+      "decimal_separator": "소수점 기호",
+      "thousands_separator": "천 단위 구분 기호",
+      "show_decimals": "소수 표시",
+      "add_space": "공백 추가",
+      "add_space_hint": "금액과 통화 기호 사이.",
+      "separator": {
+        "DOT": "마침표 (.)",
+        "COMMA": "쉼표 (,)",
+        "SPACE": "공백",
+        "NONE": "없음"
+      }
+    },
+    "email": {
+      "description": "시스템 이메일 발송에 사용하는 SMTP 서버입니다.",
+      "host": "SMTP 호스트",
+      "port": "포트",
+      "username": "SMTP 사용자명",
+      "password": "SMTP 비밀번호",
+      "password_set": "저장된 비밀번호가 있습니다. 비워 두면 유지됩니다.",
+      "password_not_set": "저장된 비밀번호가 없습니다.",
+      "remove_password": "저장된 비밀번호 삭제",
+      "encryption": "암호화",
+      "encryption_option": {
+        "NONE": "없음",
+        "SSL": "SSL",
+        "TLS": "TLS"
+      },
+      "from_address": "보내는 주소",
+      "from_name": "보내는 사람 이름",
+      "send_test": "테스트 메일 발송",
+      "test_title": "테스트 메일 발송",
+      "test_description": "저장된 설정으로 실제 메일을 보냅니다. 먼저 변경 사항을 저장하세요.",
+      "test_to": "받는 사람",
+      "test_sent": "테스트 메일을 보냈습니다"
+    },
+    "payment": {
+      "bank_transfer": "계좌이체",
+      "description": "대기 중인 모든 요금제 주문에 표시되는 이체 정보입니다.",
+      "enabled": "계좌이체 결제 허용",
+      "details": "추가 안내",
+      "fallback_hint": "비어 있는 계좌 항목은 서버에 설정된 값을 사용합니다."
+    },
+    "storage": {
+      "description": "업로드 허용 파일 형식과 최대 크기입니다. 1분 이내에 적용됩니다.",
+      "allowed_types": "허용 파일 형식",
+      "allowed_types_hint": "시스템이 내용을 검증할 수 있는 형식만 가능합니다.",
+      "max_upload_size": "최대 업로드 크기 (KB)",
+      "max_upload_size_hint": "예: 10240 KB = 10 MB."
+    },
+    "seo": {
+      "description": "검색 엔진과 공유 링크에 표시되는 공개 페이지 정보입니다.",
+      "meta_keywords": "메타 키워드",
+      "meta_keywords_hint": "쉼표로 구분합니다.",
+      "meta_description": "메타 설명",
+      "meta_image_url": "메타 이미지 URL"
+    },
+    "recaptcha": {
+      "description": "로그인 봇 방지.",
+      "locked_warning": "아직 reCAPTCHA를 켤 수 없습니다: 켜면 서버가 로그인 시 reCAPTCHA 토큰을 요구하지만 로그인 화면이 아직 보내지 않아 아무도 로그인할 수 없습니다. 키는 나중을 위해 저장할 수 있습니다.",
+      "enabled": "reCAPTCHA 사용",
+      "enabled_hint": "켜려면 시크릿이 필요합니다.",
+      "version": "버전",
+      "site_key": "사이트 키",
+      "secret": "시크릿",
+      "secret_set": "저장된 시크릿이 있습니다. 비워 두면 유지됩니다.",
+      "secret_not_set": "저장된 시크릿이 없습니다."
+    },
+    "cookie": {
+      "description": "공개 페이지의 쿠키 배너입니다.",
+      "enable_logging": "쿠키 동의 기록",
+      "enable_logging_hint": "방문자의 쿠키 동의 선택을 저장합니다.",
+      "banner": "쿠키 배너",
+      "cookie_title": "제목",
+      "cookie_description": "내용",
+      "strictly": "필수 쿠키",
+      "strictly_title": "제목",
+      "strictly_description": "내용",
+      "contact": "문의",
+      "contact_description": "문의 안내",
+      "contact_url": "문의 URL"
     }
   }
 }

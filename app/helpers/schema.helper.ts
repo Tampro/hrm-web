@@ -19,12 +19,13 @@ import {
   EUpgradePlanFormKey
 } from '~/shared/enums/form.enum'
 
-const required = (t?: TFunction) => t?.('validation.required')
-const maxLength = (max: number, t?: TFunction) => t?.('validation.max_length', { max })
+export const required = (t?: TFunction) => t?.('validation.required')
+export const maxLength = (max: number, t?: TFunction) => t?.('validation.max_length', { max })
 
-const requiredText = (max: number, t?: TFunction) => z.string().trim().min(1, required(t)).max(max, maxLength(max, t))
+export const requiredText = (max: number, t?: TFunction) =>
+  z.string().trim().min(1, required(t)).max(max, maxLength(max, t))
 
-const requiredEmail = (max: number, t?: TFunction) => requiredText(max, t).pipe(z.email(t?.('validation.email')))
+export const requiredEmail = (max: number, t?: TFunction) => requiredText(max, t).pipe(z.email(t?.('validation.email')))
 
 // Spec: LoginForm — username ≤ 100, password ≤ 128, both required
 export const getLoginSchema = (t?: TFunction) =>
@@ -101,7 +102,7 @@ export type TUpgradePlanSchema = z.infer<ReturnType<typeof getUpgradePlanSchema>
  * Number typed in a text input. Empty = not set (allowed unless `required`).
  * `integer` rejects decimals; `min` is inclusive (backend @Min / @DecimalMin).
  */
-const numberText = (t: TFunction | undefined, { required: isRequired = false, min = 0, integer = false } = {}) =>
+export const numberText = (t: TFunction | undefined, { required: isRequired = false, min = 0, integer = false } = {}) =>
   z
     .string()
     .trim()

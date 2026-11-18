@@ -33,7 +33,12 @@
     "coupon_code": "Chỉ gồm chữ in hoa, số, dấu gạch dưới và gạch ngang",
     "percentage_max": "Giảm theo phần trăm tối đa 100",
     "min_max_spend": "Mức chi tiêu tối đa phải lớn hơn hoặc bằng mức tối thiểu",
-    "currency_code": "Mã ISO 4217 gồm đúng 3 chữ in hoa, ví dụ USD"
+    "currency_code": "Mã ISO 4217 gồm đúng 3 chữ in hoa, ví dụ USD",
+    "url": "Phải là địa chỉ bắt đầu bằng http:// hoặc https://",
+    "theme_color": "Chọn màu có sẵn hoặc mã màu #RRGGBB",
+    "separators_differ": "Dấu phân cách hàng nghìn phải khác dấu thập phân",
+    "max_value": "Giá trị tối đa là {{max}}",
+    "pick_one": "Chọn ít nhất một mục"
   },
   "auth": {
     "login": {
@@ -61,7 +66,8 @@
     "plans": "Gói dịch vụ",
     "coupons": "Mã giảm giá",
     "currencies": "Tiền tệ",
-    "referral": "Giới thiệu"
+    "referral": "Giới thiệu",
+    "settings": "Cài đặt hệ thống"
   },
   "table": {
     "rows_per_page": "Số dòng mỗi trang",
@@ -88,7 +94,27 @@
     "MANUAL": "Thủ công",
     "PERCENTAGE": "Phần trăm",
     "FLAT": "Số tiền cố định",
-    "AUTO": "Tự sinh"
+    "AUTO": "Tự sinh",
+    "MONDAY": "Thứ Hai",
+    "TUESDAY": "Thứ Ba",
+    "WEDNESDAY": "Thứ Tư",
+    "THURSDAY": "Thứ Năm",
+    "FRIDAY": "Thứ Sáu",
+    "SATURDAY": "Thứ Bảy",
+    "SUNDAY": "Chủ Nhật",
+    "INSET": "Lồng vào nội dung",
+    "FLOATING": "Nổi",
+    "MINIMAL": "Thu gọn",
+    "PLAIN": "Đơn giản",
+    "COLORED": "Có màu",
+    "GRADIENT": "Chuyển màu",
+    "LTR": "Trái sang phải",
+    "RTL": "Phải sang trái",
+    "LIGHT": "Sáng",
+    "DARK": "Tối",
+    "SYSTEM": "Theo hệ điều hành",
+    "BEFORE": "Trước số tiền",
+    "AFTER": "Sau số tiền"
   },
   "company": {
     "title": "Quản lý công ty",
@@ -535,6 +561,161 @@
       "updated_at": "Cập nhật lần cuối: {{date}}",
       "save": "Lưu cài đặt",
       "saved": "Đã lưu cài đặt"
+    }
+  },
+  "settings": {
+    "title": "Cài đặt hệ thống",
+    "subtitle": "Cấu hình chung cho toàn nền tảng",
+    "menu": "Các mục cài đặt",
+    "save": "Lưu thay đổi",
+    "saved": "Đã lưu cài đặt",
+    "section": {
+      "system": "Hệ thống",
+      "brand": "Thương hiệu",
+      "currency": "Định dạng tiền tệ",
+      "email": "Email",
+      "payment": "Thanh toán",
+      "storage": "Lưu trữ",
+      "seo": "SEO",
+      "recaptcha": "reCAPTCHA",
+      "cookie": "Cookie"
+    },
+    "language": {
+      "vi": "Tiếng Việt",
+      "en": "English",
+      "ko": "한국어"
+    },
+    "system": {
+      "description": "Ngôn ngữ, định dạng ngày giờ, múi giờ và các tuỳ chọn đăng ký.",
+      "default_language": "Ngôn ngữ mặc định",
+      "default_timezone": "Múi giờ mặc định",
+      "date_format": "Định dạng ngày",
+      "time_format": "Định dạng giờ",
+      "time_24h": "24 giờ",
+      "time_12h": "12 giờ",
+      "time_24h_seconds": "24 giờ, có giây",
+      "calendar_start_day": "Ngày bắt đầu tuần",
+      "email_verification": "Xác thực email",
+      "email_verification_hint": "Người dùng mới phải xác thực email trước khi đăng nhập.",
+      "landing_page": "Trang giới thiệu",
+      "landing_page_hint": "Hiển thị trang giới thiệu công khai.",
+      "user_registration": "Cho phép tự đăng ký",
+      "user_registration_hint": "Công ty mới có thể tự đăng ký tài khoản.",
+      "terms_url": "Đường dẫn điều khoản sử dụng"
+    },
+    "brand": {
+      "description": "Logo, tên hiển thị và giao diện. Hiện chỉ lưu lại, chưa áp dụng vào giao diện.",
+      "logos": "Logo",
+      "logo_dark": "Logo (nền tối)",
+      "logo_light": "Logo (nền sáng)",
+      "favicon": "Favicon",
+      "url_hint": "Đường dẫn tới tệp trong thư viện media.",
+      "text": "Văn bản",
+      "title_text": "Tên hiển thị",
+      "footer_text": "Chân trang",
+      "theme": "Giao diện",
+      "theme_color": "Màu chủ đạo",
+      "theme_mode": "Chế độ sáng/tối",
+      "sidebar_variant": "Kiểu thanh bên",
+      "sidebar_style": "Phong cách thanh bên",
+      "layout_direction": "Hướng bố cục",
+      "not_applied_yet": "Các tuỳ chọn giao diện được lưu lại và sẽ được áp dụng ở bản cập nhật sau.",
+      "color": {
+        "blue": "Xanh dương",
+        "green": "Xanh lá",
+        "purple": "Tím",
+        "orange": "Cam",
+        "red": "Đỏ",
+        "teal": "Xanh ngọc"
+      }
+    },
+    "currency": {
+      "description": "Cách hiển thị số tiền trên toàn hệ thống.",
+      "preview": "Xem trước",
+      "default_currency": "Tiền tệ mặc định: {{code}}.",
+      "change_default": "Đổi tiền tệ mặc định",
+      "decimal_places": "Số chữ số thập phân",
+      "symbol_position": "Vị trí ký hiệu",
+      "decimal_separator": "Dấu thập phân",
+      "thousands_separator": "Dấu phân cách hàng nghìn",
+      "show_decimals": "Hiển thị phần thập phân",
+      "add_space": "Thêm khoảng trắng",
+      "add_space_hint": "Giữa số tiền và ký hiệu tiền tệ.",
+      "separator": {
+        "DOT": "Dấu chấm (.)",
+        "COMMA": "Dấu phẩy (,)",
+        "SPACE": "Khoảng trắng",
+        "NONE": "Không có"
+      }
+    },
+    "email": {
+      "description": "Máy chủ SMTP dùng để gửi email của hệ thống.",
+      "host": "Máy chủ SMTP",
+      "port": "Cổng",
+      "username": "Tên đăng nhập SMTP",
+      "password": "Mật khẩu SMTP",
+      "password_set": "Đã lưu mật khẩu. Để trống để giữ nguyên.",
+      "password_not_set": "Chưa có mật khẩu.",
+      "remove_password": "Xoá mật khẩu đã lưu",
+      "encryption": "Mã hoá",
+      "encryption_option": {
+        "NONE": "Không mã hoá",
+        "SSL": "SSL",
+        "TLS": "TLS"
+      },
+      "from_address": "Địa chỉ gửi",
+      "from_name": "Tên người gửi",
+      "send_test": "Gửi email thử",
+      "test_title": "Gửi email thử",
+      "test_description": "Gửi một email thật bằng cài đặt đã lưu. Hãy lưu thay đổi trước khi thử.",
+      "test_to": "Gửi tới",
+      "test_sent": "Đã gửi email thử"
+    },
+    "payment": {
+      "bank_transfer": "Chuyển khoản ngân hàng",
+      "description": "Thông tin chuyển khoản hiển thị cho mọi đơn mua gói đang chờ.",
+      "enabled": "Cho phép thanh toán chuyển khoản",
+      "details": "Hướng dẫn thêm",
+      "fallback_hint": "Các ô tài khoản để trống sẽ dùng giá trị cấu hình trên máy chủ."
+    },
+    "storage": {
+      "description": "Loại tệp và dung lượng tối đa khi tải lên. Áp dụng trong vòng một phút.",
+      "allowed_types": "Loại tệp được phép",
+      "allowed_types_hint": "Chỉ các loại tệp hệ thống kiểm tra được nội dung.",
+      "max_upload_size": "Dung lượng tối đa (KB)",
+      "max_upload_size_hint": "Ví dụ 10240 KB = 10 MB."
+    },
+    "seo": {
+      "description": "Thông tin hiển thị khi chia sẻ hoặc tìm kiếm trang công khai.",
+      "meta_keywords": "Từ khoá",
+      "meta_keywords_hint": "Cách nhau bằng dấu phẩy.",
+      "meta_description": "Mô tả",
+      "meta_image_url": "Ảnh chia sẻ (URL)"
+    },
+    "recaptcha": {
+      "description": "Chống bot cho đăng nhập.",
+      "locked_warning": "Chưa thể bật reCAPTCHA: khi bật, máy chủ yêu cầu mã reCAPTCHA ở màn đăng nhập nhưng màn đăng nhập chưa hỗ trợ, nên mọi người sẽ không đăng nhập được. Bạn vẫn có thể lưu khoá để dùng sau.",
+      "enabled": "Bật reCAPTCHA",
+      "enabled_hint": "Bật cần có secret.",
+      "version": "Phiên bản",
+      "site_key": "Site key",
+      "secret": "Secret",
+      "secret_set": "Đã lưu secret. Để trống để giữ nguyên.",
+      "secret_not_set": "Chưa có secret."
+    },
+    "cookie": {
+      "description": "Nội dung thông báo cookie trên trang công khai.",
+      "enable_logging": "Ghi nhận lựa chọn cookie",
+      "enable_logging_hint": "Lưu lại lựa chọn đồng ý cookie của người truy cập.",
+      "banner": "Thông báo cookie",
+      "cookie_title": "Tiêu đề",
+      "cookie_description": "Nội dung",
+      "strictly": "Cookie bắt buộc",
+      "strictly_title": "Tiêu đề",
+      "strictly_description": "Nội dung",
+      "contact": "Liên hệ",
+      "contact_description": "Nội dung liên hệ",
+      "contact_url": "Đường dẫn liên hệ"
     }
   }
 }

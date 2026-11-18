@@ -1,5 +1,5 @@
 import type { TFunction } from 'i18next'
-import { Building2, Coins, Gift, LayoutDashboard, Package, TicketPercent } from 'lucide-react'
+import { Building2, Coins, Gift, LayoutDashboard, Package, Settings, TicketPercent } from 'lucide-react'
 
 import { commonHelper } from '~/helpers/common.helper'
 import { dateHelper } from '~/helpers/date.helper'
@@ -8,6 +8,18 @@ import { EBillingCycle, ECompanyStatus } from '~/shared/enums/company.enum'
 import { ECouponCodeGeneration, ECouponStatusTab, ECouponType } from '~/shared/enums/coupon.enum'
 import { EPayoutStatus } from '~/shared/enums/referral.enum'
 import { ESaasRequestStatus } from '~/shared/enums/saas.enum'
+import {
+  ELayoutDirection,
+  EMailEncryption,
+  ENumberSeparator,
+  ERecaptchaVersion,
+  ESettingsSection,
+  ESidebarStyle,
+  ESidebarVariant,
+  ESymbolPosition,
+  EThemeMode,
+  EWeekDay
+} from '~/shared/enums/settings.enum'
 import type { IInfoRow, ISidebarItem, ITabItem, ITabOption } from '~/shared/models/common.model'
 import type { ICompanyInfo, ICompanyStatusCounts } from '~/shared/models/company.model'
 import type { ICoupon, ICouponStatusCounts } from '~/shared/models/coupon.model'
@@ -27,7 +39,8 @@ export const DATA = {
     { label: t('sidebar.plans'), route: ROUTES.PLANS, icon: Package, superAdminOnly: true },
     { label: t('sidebar.coupons'), route: ROUTES.COUPONS, icon: TicketPercent, superAdminOnly: true },
     { label: t('sidebar.currencies'), route: ROUTES.CURRENCIES, icon: Coins, superAdminOnly: true },
-    { label: t('sidebar.referral'), route: ROUTES.REFERRAL, icon: Gift, superAdminOnly: true }
+    { label: t('sidebar.referral'), route: ROUTES.REFERRAL, icon: Gift, superAdminOnly: true },
+    { label: t('sidebar.settings'), route: ROUTES.SETTINGS, icon: Settings, superAdminOnly: true }
   ],
 
   // Spec: status-counts {all, active, inactive}; tabs All / Active / Inactive (manual 3.2.1)
@@ -257,5 +270,76 @@ export const DATA = {
       label: t('referral.referred.total_commission'),
       value: commonHelper.formatMoney(summary?.totalCommission, currency)
     }
+  ],
+
+  // Settings menu: only sections with a backend API
+  GET_SETTINGS_SECTIONS: (t: TFunction): ITabItem[] =>
+    Object.values(ESettingsSection).map((section) => ({
+      label: t(`settings.section.${section}`),
+      route: ROUTES.SETTINGS_SECTION(section)
+    })),
+
+  // Spec: SystemSettings patterns
+  GET_LANGUAGE_OPTIONS: (t: TFunction): ITabOption[] => [
+    { label: t('settings.language.vi'), value: 'vi' },
+    { label: t('settings.language.en'), value: 'en' },
+    { label: t('settings.language.ko'), value: 'ko' }
+  ],
+
+  /** Java patterns sent to the BE (Spec: SystemSettings.dateFormat) */
+  GET_DATE_FORMAT_OPTIONS: (): ITabOption[] =>
+    ['dd/MM/yyyy', 'MM/dd/yyyy', 'yyyy-MM-dd', 'dd-MM-yyyy', 'dd.MM.yyyy'].map((value) => ({ label: value, value })),
+
+  GET_TIME_FORMAT_OPTIONS: (t: TFunction): ITabOption[] => [
+    { label: `HH:mm (${t('settings.system.time_24h')})`, value: 'HH:mm' },
+    { label: `hh:mm a (${t('settings.system.time_12h')})`, value: 'hh:mm a' },
+    { label: `HH:mm:ss (${t('settings.system.time_24h_seconds')})`, value: 'HH:mm:ss' }
+  ],
+
+  GET_WEEK_DAY_OPTIONS: (t: TFunction): ITabOption[] =>
+    Object.values(EWeekDay).map((day) => ({ label: t(`enum.${day}`), value: day })),
+
+  /** IANA zones from the browser (Spec: SETTINGS_001 when the BE does not know the zone) */
+  GET_TIMEZONE_OPTIONS: (current?: string): ITabOption[] => {
+    const zones = typeof Intl.supportedValuesOf === 'function' ? Intl.supportedValuesOf('timeZone') : []
+    const all = current && !zones.includes(current) ? [current, ...zones] : zones
+    return all.map((zone) => ({ label: zone, value: zone }))
+  },
+
+  // Spec: BrandSettings.themeColor presets
+  GET_THEME_COLOR_OPTIONS: (t: TFunction): ITabOption[] =>
+    ['blue', 'green', 'purple', 'orange', 'red', 'teal'].map((color) => ({
+      label: t(`settings.brand.color.${color}`),
+      value: color
+    })),
+
+  GET_SIDEBAR_VARIANT_OPTIONS: (t: TFunction): ITabOption[] =>
+    Object.values(ESidebarVariant).map((v) => ({ label: t(`enum.${v}`), value: v })),
+
+  GET_SIDEBAR_STYLE_OPTIONS: (t: TFunction): ITabOption[] =>
+    Object.values(ESidebarStyle).map((v) => ({ label: t(`enum.${v}`), value: v })),
+
+  GET_LAYOUT_DIRECTION_OPTIONS: (t: TFunction): ITabOption[] =>
+    Object.values(ELayoutDirection).map((v) => ({ label: t(`enum.${v}`), value: v })),
+
+  GET_THEME_MODE_OPTIONS: (t: TFunction): ITabOption[] =>
+    Object.values(EThemeMode).map((v) => ({ label: t(`enum.${v}`), value: v })),
+
+  // Spec: CurrencyFormatSettings
+  GET_DECIMAL_PLACES_OPTIONS: (): ITabOption[] => [0, 1, 2, 3, 4].map((n) => ({ label: String(n), value: String(n) })),
+
+  GET_SYMBOL_POSITION_OPTIONS: (t: TFunction): ITabOption[] =>
+    Object.values(ESymbolPosition).map((v) => ({ label: t(`enum.${v}`), value: v })),
+
+  GET_SEPARATOR_OPTIONS: (t: TFunction): ITabOption[] =>
+    Object.values(ENumberSeparator).map((v) => ({ label: t(`settings.currency.separator.${v}`), value: v })),
+
+  // Spec: EmailSettingsForm.encryption, RecaptchaSettingsForm.version
+  GET_MAIL_ENCRYPTION_OPTIONS: (t: TFunction): ITabOption[] =>
+    Object.values(EMailEncryption).map((v) => ({ label: t(`settings.email.encryption_option.${v}`), value: v })),
+
+  GET_RECAPTCHA_VERSION_OPTIONS: (): ITabOption[] => [
+    { label: 'reCAPTCHA v2', value: ERecaptchaVersion.V2 },
+    { label: 'reCAPTCHA v3', value: ERecaptchaVersion.V3 }
   ]
 }
