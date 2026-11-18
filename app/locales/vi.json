@@ -14,7 +14,9 @@
     "copy_failed": "Không sao chép được, hãy chép thủ công",
     "no_permission": "Bạn không có quyền truy cập trang này.",
     "edit": "Sửa",
-    "delete": "Xoá"
+    "delete": "Xoá",
+    "yes": "Có",
+    "no": "Không"
   },
   "validation": {
     "required": "Vui lòng nhập thông tin này",
@@ -30,7 +32,8 @@
     "plan_code": "Bắt đầu bằng chữ in hoa; chỉ gồm chữ in hoa, số và dấu gạch dưới",
     "coupon_code": "Chỉ gồm chữ in hoa, số, dấu gạch dưới và gạch ngang",
     "percentage_max": "Giảm theo phần trăm tối đa 100",
-    "min_max_spend": "Mức chi tiêu tối đa phải lớn hơn hoặc bằng mức tối thiểu"
+    "min_max_spend": "Mức chi tiêu tối đa phải lớn hơn hoặc bằng mức tối thiểu",
+    "currency_code": "Mã ISO 4217 gồm đúng 3 chữ in hoa, ví dụ USD"
   },
   "auth": {
     "login": {
@@ -56,7 +59,8 @@
     "companies": "Công ty",
     "toggle": "Ẩn/hiện menu",
     "plans": "Gói dịch vụ",
-    "coupons": "Mã giảm giá"
+    "coupons": "Mã giảm giá",
+    "currencies": "Tiền tệ"
   },
   "table": {
     "rows_per_page": "Số dòng mỗi trang",
@@ -416,6 +420,51 @@
       "order_amount": "Giá trị đơn",
       "discount_applied": "Đã giảm",
       "used_at": "Thời điểm dùng"
+    }
+  },
+  "currency": {
+    "title": "Tiền tệ",
+    "subtitle": "Quản lý các loại tiền tệ dùng trên hệ thống",
+    "add": "Thêm tiền tệ",
+    "empty": "Chưa có tiền tệ nào",
+    "keyword_placeholder": "Tên, mã hoặc ký hiệu",
+    "default_cannot_delete": "Không thể xoá tiền tệ mặc định",
+    "field": {
+      "name": "Tên tiền tệ",
+      "code": "Mã tiền tệ",
+      "symbol": "Ký hiệu",
+      "description": "Mô tả",
+      "default": "Mặc định",
+      "set_default": "Đặt làm tiền tệ mặc định",
+      "created_at": "Ngày tạo",
+      "updated_at": "Cập nhật lần cuối"
+    },
+    "action": {
+      "view_named": "Xem {{name}}",
+      "edit_named": "Sửa {{name}}",
+      "delete_named": "Xoá {{name}}"
+    },
+    "form": {
+      "create_title": "Thêm tiền tệ",
+      "create_description": "Tiền tệ đầu tiên được tạo sẽ tự động là mặc định.",
+      "edit_title": "Sửa tiền tệ",
+      "edit_description": "Mọi trường được thay thế; ký hiệu hoặc mô tả để trống sẽ bị xoá.",
+      "code_hint": "Mã ISO 4217, ví dụ USD, EUR, VND.",
+      "default_hint": "Giá trên hệ thống hiển thị theo tiền tệ mặc định; tiền tệ mặc định hiện tại sẽ bỏ cờ.",
+      "is_default_hint": "Đây là tiền tệ mặc định. Muốn đổi, hãy đặt một tiền tệ khác làm mặc định.",
+      "create_submit": "Tạo tiền tệ"
+    },
+    "detail": {
+      "title": "Thông tin tiền tệ"
+    },
+    "delete": {
+      "title": "Xoá tiền tệ?",
+      "description": "Xoá vĩnh viễn {{name}} ({{code}}). Không thể hoàn tác."
+    },
+    "toast": {
+      "created": "Đã tạo tiền tệ",
+      "updated": "Đã cập nhật tiền tệ",
+      "deleted": "Đã xoá tiền tệ"
     }
   }
 }

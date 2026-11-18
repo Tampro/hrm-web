@@ -6,12 +6,11 @@ import { Skeleton } from '~/components/ui/skeleton'
 import { useMeApi } from '~/hooks/apis/use-auth-api'
 import { PageLayout } from '~/layouts/page.layout'
 
-export function meta() {
-  return [{ title: 'Coupons · SPECOM HRM' }]
-}
-
-// Manual 3.2.4 Coupons (Super Admin). Spec: every /saas/admin/coupons endpoint requires superAdmin; the FE only hides.
-export default function CouponsLayout() {
+/**
+ * Route layout for super-admin-only sections (Spec: MeDto.superAdmin). UX only: the backend checks every call;
+ * children (and their queries) don't render for other users.
+ */
+export default function SuperAdminLayout() {
   const { t } = useTranslation()
   const { data: me, isLoading } = useMeApi()
 

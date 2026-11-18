@@ -1,5 +1,5 @@
 import type { TFunction } from 'i18next'
-import { Building2, LayoutDashboard, Package, TicketPercent } from 'lucide-react'
+import { Building2, Coins, LayoutDashboard, Package, TicketPercent } from 'lucide-react'
 
 import { commonHelper } from '~/helpers/common.helper'
 import { dateHelper } from '~/helpers/date.helper'
@@ -23,7 +23,8 @@ export const DATA = {
     { label: t('sidebar.dashboard'), route: ROUTES.DASHBOARD, icon: LayoutDashboard },
     { label: t('sidebar.companies'), route: ROUTES.COMPANIES, icon: Building2, superAdminOnly: true },
     { label: t('sidebar.plans'), route: ROUTES.PLANS, icon: Package, superAdminOnly: true },
-    { label: t('sidebar.coupons'), route: ROUTES.COUPONS, icon: TicketPercent, superAdminOnly: true }
+    { label: t('sidebar.coupons'), route: ROUTES.COUPONS, icon: TicketPercent, superAdminOnly: true },
+    { label: t('sidebar.currencies'), route: ROUTES.CURRENCIES, icon: Coins, superAdminOnly: true }
   ],
 
   // Spec: status-counts {all, active, inactive}; tabs All / Active / Inactive (manual 3.2.1)
@@ -184,5 +185,16 @@ export const DATA = {
 
   /** Spend bounds: null = no bound */
   FORMAT_OPTIONAL_MONEY: (t: TFunction, value: number | null | undefined, currency?: ICurrency) =>
-    value === null || value === undefined ? t('coupon.no_limit') : commonHelper.formatMoney(value, currency)
+    value === null || value === undefined ? t('coupon.no_limit') : commonHelper.formatMoney(value, currency),
+
+  // Manual 3.2.5 View: currency information. Spec: CurrencyDto
+  GET_CURRENCY_DETAIL_ROWS: (t: TFunction, currency: ICurrency | undefined): IInfoRow[] => [
+    { label: t('currency.field.name'), value: currency?.name || '-' },
+    { label: t('currency.field.code'), value: currency?.code || '-' },
+    { label: t('currency.field.symbol'), value: currency?.symbol || '-' },
+    { label: t('currency.field.description'), value: currency?.description || '-' },
+    { label: t('currency.field.default'), value: t(currency?.defaultCurrency ? 'common.yes' : 'common.no') },
+    { label: t('currency.field.created_at'), value: dateHelper.formatDateTime(currency?.createdDate) },
+    { label: t('currency.field.updated_at'), value: dateHelper.formatDateTime(currency?.updatedDate) }
+  ]
 }

@@ -3,6 +3,7 @@
 // Writes data: creates one company E2E_<timestamp>, changes it, then deletes it (soft delete). Local backend only.
 // Spec sources: IAM Swagger + hrm-be CompanyController / CompanyDtos.java.
 import { expect, test } from '../fixtures/index.js'
+import { waitForListResponse } from '../utils/wait-for.js'
 import { getSuperAdmin, MISSING_SUPERADMIN } from '../utils/credentials.js'
 
 test.skip(!getSuperAdmin(), MISSING_SUPERADMIN)
@@ -27,7 +28,7 @@ const nextList = (page) =>
  * @param {string} keyword
  */
 const searchFor = async (companiesPage, keyword) => {
-  const list = nextList(companiesPage.page)
+  const list = waitForListResponse(companiesPage.page, '/api/v1/iam/companies', { keyword })
   await companiesPage.keyword.fill(keyword)
   await companiesPage.searchButton.click()
   return (await list).json()

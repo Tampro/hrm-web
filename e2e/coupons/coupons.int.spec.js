@@ -4,6 +4,7 @@
 // the code is freed). No order uses it, so no company is affected.
 import { expect, test } from '../fixtures/index.js'
 import { getSuperAdmin, MISSING_SUPERADMIN } from '../utils/credentials.js'
+import { waitForListResponse } from '../utils/wait-for.js'
 
 test.skip(!getSuperAdmin(), MISSING_SUPERADMIN)
 test.describe.configure({ mode: 'serial' })
@@ -26,7 +27,7 @@ const nextCall = (page, method, path) =>
  * @param {string} keyword
  */
 const searchFor = async (couponsPage, keyword) => {
-  const list = nextCall(couponsPage.page, 'GET', /\/api\/v1\/saas\/admin\/coupons$/)
+  const list = waitForListResponse(couponsPage.page, '/api/v1/saas/admin/coupons', { keyword })
   await couponsPage.keyword.fill(keyword)
   await couponsPage.searchButton.click()
   return (await (await list).json()).data
