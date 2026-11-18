@@ -2,7 +2,6 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { createDetailApiHook, createListApiHook } from '~/hooks/use-query-api'
 import { CompanyService } from '~/services/company.service'
-import { PlanService } from '~/services/plan.service'
 import { QUERY_KEY } from '~/shared/constants/query-key.constant'
 import type { ICompanyListParams } from '~/shared/models/company.model'
 
@@ -21,13 +20,8 @@ export const useGetCompanyStatusCountsApi = (
     enabled
   })
 
-export const useGetAdminPlansApi = (enabled: boolean) =>
-  useQuery({
-    queryKey: [QUERY_KEY.PLAN.GET_ADMIN_LIST],
-    queryFn: PlanService.GetAdminList,
-    select: (res) => res?.data ?? [],
-    enabled
-  })
+/** Plan picker of the Upgrade plan dialog — same query as the Plans page (shared cache) */
+export { useGetAdminPlanListApi as useGetAdminPlansApi } from '~/hooks/apis/use-plan-api'
 
 /** Refresh everything a company write can change (list, tab counts, info panel) */
 export const useInvalidateCompanies = () => {

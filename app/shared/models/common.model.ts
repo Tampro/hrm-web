@@ -38,6 +38,13 @@ export interface ITabOption<T extends string = string> {
   disabled?: boolean
 }
 
+/** Tabs that are separate routes */
+export interface ITabItem {
+  label: string
+  route: string
+  count?: number
+}
+
 export interface IInfoRow {
   label: string
   value: ReactNode

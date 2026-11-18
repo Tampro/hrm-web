@@ -8,7 +8,12 @@ export default [
   layout('layouts/private.layout.tsx', [
     layout('layouts/dashboard.layout.tsx', [
       route(BASE_ROUTES.DASHBOARD, 'routes/dashboard/index.tsx'),
-      route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.COMPANIES}`, 'routes/dashboard/companies/index.tsx')
+      route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.COMPANIES}`, 'routes/dashboard/companies/index.tsx'),
+      route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.PLANS}`, 'routes/dashboard/plans/layout.tsx', [
+        index('routes/dashboard/plans/index.tsx'),
+        route(BASE_ROUTES.PLAN_REQUESTS, 'routes/dashboard/plans/requests/index.tsx'),
+        route(BASE_ROUTES.PLAN_ORDERS, 'routes/dashboard/plans/orders/index.tsx')
+      ])
     ])
   ])
 ] satisfies RouteConfig

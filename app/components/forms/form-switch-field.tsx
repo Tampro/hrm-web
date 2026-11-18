@@ -9,21 +9,22 @@ interface IProps<T extends FieldValues> {
   name: FieldPath<T>
   label: ReactNode
   description?: ReactNode
+  disabled?: boolean
 }
 
 /** RHF boolean switch with label + description */
-export function FormSwitchField<T extends FieldValues>({ control, name, label, description }: IProps<T>) {
+export function FormSwitchField<T extends FieldValues>({ control, name, label, description, disabled }: IProps<T>) {
   return (
     <Controller
       name={name}
       control={control}
       render={({ field }) => (
-        <Field orientation='horizontal'>
+        <Field orientation='horizontal' data-disabled={disabled || undefined}>
           <FieldContent>
             <FieldLabel htmlFor={field.name}>{label}</FieldLabel>
             {description && <FieldDescription>{description}</FieldDescription>}
           </FieldContent>
-          <Switch id={field.name} checked={!!field.value} onCheckedChange={field.onChange} />
+          <Switch id={field.name} checked={!!field.value} onCheckedChange={field.onChange} disabled={disabled} />
         </Field>
       )}
     />

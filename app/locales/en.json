@@ -12,7 +12,9 @@
     "copy": "Copy",
     "copied": "Copied",
     "copy_failed": "Could not copy, please copy it manually",
-    "no_permission": "You do not have access to this page."
+    "no_permission": "You do not have access to this page.",
+    "edit": "Edit",
+    "delete": "Delete"
   },
   "validation": {
     "required": "This field is required",
@@ -21,7 +23,11 @@
     "date_range": "End date must be on or after the start date",
     "company_code": "Uppercase letters, digits and underscores only",
     "min_length": "At least {{min}} characters",
-    "username": "Letters, digits and . _ - only"
+    "username": "Letters, digits and . _ - only",
+    "number": "Enter a number",
+    "integer": "Enter a whole number",
+    "min_value": "Minimum is {{min}}",
+    "plan_code": "Start with an uppercase letter; uppercase letters, digits and underscores only"
   },
   "auth": {
     "login": {
@@ -45,7 +51,8 @@
   "sidebar": {
     "dashboard": "Dashboard",
     "companies": "Companies",
-    "toggle": "Toggle menu"
+    "toggle": "Toggle menu",
+    "plans": "Plans"
   },
   "table": {
     "rows_per_page": "Rows per page",
@@ -61,7 +68,15 @@
     "NONE": "No plan",
     "TRIAL": "Trial",
     "EXPIRED": "Expired",
-    "LOCKED": "Locked"
+    "LOCKED": "Locked",
+    "MONTHLY": "Monthly",
+    "YEARLY": "Yearly",
+    "PENDING": "Pending",
+    "APPROVED": "Approved",
+    "REJECTED": "Rejected",
+    "CANCELLED": "Cancelled",
+    "BANK_TRANSFER": "Bank transfer",
+    "MANUAL": "Manual"
   },
   "company": {
     "title": "Companies",
@@ -169,6 +184,150 @@
       "login_disabled": "Login disabled",
       "plan_upgraded": "Plan upgraded",
       "password_reset": "Password reset for {{username}}"
+    }
+  },
+  "plan": {
+    "title": "Plans",
+    "subtitle": "Manage plans, plan requests and companies' orders",
+    "section": {
+      "plans": "Plans",
+      "requests": "Plan requests",
+      "orders": "Plan orders"
+    },
+    "add": "Add plan",
+    "empty": "No plans yet",
+    "default": "Default",
+    "unlimited": "Unlimited",
+    "per_month": "month",
+    "per_year": "year",
+    "no_yearly_price": "No yearly price",
+    "trial_days": "{{count}}-day trial",
+    "included": "What's included",
+    "features": "Features",
+    "enabled": "on",
+    "disabled": "off",
+    "default_cannot_disable": "The default plan cannot be made inactive",
+    "default_cannot_delete": "The default plan cannot be deleted",
+    "field": {
+      "code": "Plan code",
+      "name": "Plan name",
+      "description": "Description",
+      "monthly_price": "Monthly price",
+      "yearly_price": "Yearly price",
+      "max_users": "Max accounts",
+      "max_employees": "Max employees",
+      "storage_limit_gb": "Storage (GB)",
+      "enable_trial": "Enable trial",
+      "trial_days": "Trial days",
+      "ai_integration": "AI integration",
+      "enabled": "Active",
+      "enabled_for": "Active: {{name}}",
+      "default_plan": "Default plan"
+    },
+    "form": {
+      "create_title": "Add plan",
+      "create_description": "Create a subscription plan for companies.",
+      "edit_title": "Edit plan",
+      "edit_description": "Every field is replaced; an empty limit means unlimited. New limits apply to every company on the plan.",
+      "code_hint": "For example STARTER. Starts with an uppercase letter.",
+      "yearly_hint": "Leave empty if the plan has no yearly billing.",
+      "limits_section": "Usage limits",
+      "limits_hint": "Empty means unlimited.",
+      "trial_hint": "Applies when the plan is given as the default to a new company.",
+      "settings_section": "Settings",
+      "enabled_hint": "Inactive plans are not offered; companies already on one keep it until it ends.",
+      "default_hint": "Making it the default removes the default flag from the current default plan.",
+      "is_default_hint": "This is the default plan. To change it, make another plan the default.",
+      "create_submit": "Create plan"
+    },
+    "delete": {
+      "title": "Delete plan?",
+      "description": "Deleting {{name}} moves companies on it to the default plan or expires them."
+    },
+    "toast": {
+      "created": "Plan created",
+      "updated": "Plan updated",
+      "deleted": "Plan deleted",
+      "enabled": "Plan activated",
+      "disabled": "Plan deactivated"
+    }
+  },
+  "saas": {
+    "tab": {
+      "all": "All",
+      "pending": "Pending",
+      "approved": "Approved",
+      "rejected": "Rejected",
+      "cancelled": "Cancelled"
+    },
+    "filter": {
+      "keyword": "Keyword",
+      "request_keyword_placeholder": "Company or plan name",
+      "order_keyword_placeholder": "Order number or company",
+      "date_from": "Date from",
+      "date_to": "Date to"
+    },
+    "field": {
+      "company": "Company",
+      "plan": "Plan",
+      "duration": "Duration",
+      "message": "Message",
+      "status": "Status",
+      "request_date": "Request date"
+    },
+    "action": {
+      "approve": "Approve",
+      "reject": "Reject",
+      "approve_named": "Approve {{name}}",
+      "reject_named": "Reject {{name}}"
+    },
+    "decision": {
+      "approve_title": "Approve {{name}}?",
+      "reject_title": "Reject {{name}}?",
+      "approve_description": "The plan is activated for the company for one billing cycle (extended if it is already on this plan).",
+      "reject_description": "The company sees the reason you enter below.",
+      "notes": "Note",
+      "reason": "Reason",
+      "notes_hint": "Optional, up to 500 characters. Shown to the company."
+    },
+    "empty_filtered": "Nothing matches the filters",
+    "request_empty": "No plan requests yet",
+    "toast": {
+      "approved": "Approved",
+      "rejected": "Rejected"
+    }
+  },
+  "order": {
+    "empty": "No orders yet",
+    "field": {
+      "order_number": "Order number",
+      "company": "Company",
+      "company_email": "Company email",
+      "plan": "Plan",
+      "billing_cycle": "Billing cycle",
+      "original_price": "Original price",
+      "coupon": "Coupon",
+      "discount": "Discount",
+      "final_price": "Final price",
+      "payment_method": "Payment method",
+      "payment_reference": "Payment reference",
+      "status": "Status",
+      "order_date": "Order date",
+      "processed_at": "Processed at",
+      "notes": "Notes"
+    },
+    "action": {
+      "view_named": "View order {{number}}"
+    },
+    "detail": {
+      "title": "Order details"
+    },
+    "bank": {
+      "title": "Bank transfer",
+      "bank_name": "Bank",
+      "account_number": "Account number",
+      "account_name": "Account name",
+      "transfer_content": "Transfer content"
     }
   }
 }

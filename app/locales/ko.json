@@ -12,7 +12,9 @@
     "copy": "복사",
     "copied": "복사했습니다",
     "copy_failed": "복사하지 못했습니다. 직접 복사해 주세요",
-    "no_permission": "이 페이지에 접근할 권한이 없습니다."
+    "no_permission": "이 페이지에 접근할 권한이 없습니다.",
+    "edit": "수정",
+    "delete": "삭제"
   },
   "validation": {
     "required": "필수 입력 항목입니다",
@@ -21,7 +23,11 @@
     "date_range": "종료일은 시작일과 같거나 이후여야 합니다",
     "company_code": "영문 대문자, 숫자, 밑줄만 사용할 수 있습니다",
     "min_length": "최소 {{min}}자 이상 입력하세요",
-    "username": "영문, 숫자, . _ - 만 사용할 수 있습니다"
+    "username": "영문, 숫자, . _ - 만 사용할 수 있습니다",
+    "number": "숫자를 입력하세요",
+    "integer": "정수를 입력하세요",
+    "min_value": "최솟값은 {{min}}입니다",
+    "plan_code": "영문 대문자로 시작하며 영문 대문자, 숫자, 밑줄만 사용할 수 있습니다"
   },
   "auth": {
     "login": {
@@ -45,7 +51,8 @@
   "sidebar": {
     "dashboard": "대시보드",
     "companies": "회사",
-    "toggle": "메뉴 접기/펼치기"
+    "toggle": "메뉴 접기/펼치기",
+    "plans": "요금제"
   },
   "table": {
     "rows_per_page": "페이지당 행 수",
@@ -61,7 +68,15 @@
     "NONE": "요금제 없음",
     "TRIAL": "체험",
     "EXPIRED": "만료",
-    "LOCKED": "잠김"
+    "LOCKED": "잠김",
+    "MONTHLY": "월간",
+    "YEARLY": "연간",
+    "PENDING": "대기",
+    "APPROVED": "승인",
+    "REJECTED": "거절",
+    "CANCELLED": "취소",
+    "BANK_TRANSFER": "계좌이체",
+    "MANUAL": "수동"
   },
   "company": {
     "title": "회사 관리",
@@ -169,6 +184,150 @@
       "login_disabled": "로그인을 차단했습니다",
       "plan_upgraded": "요금제를 변경했습니다",
       "password_reset": "{{username}}의 비밀번호를 재설정했습니다"
+    }
+  },
+  "plan": {
+    "title": "요금제",
+    "subtitle": "요금제, 요금제 요청, 회사 주문을 관리합니다",
+    "section": {
+      "plans": "요금제",
+      "requests": "요금제 요청",
+      "orders": "주문"
+    },
+    "add": "요금제 추가",
+    "empty": "등록된 요금제가 없습니다",
+    "default": "기본",
+    "unlimited": "무제한",
+    "per_month": "월",
+    "per_year": "년",
+    "no_yearly_price": "연간 가격 없음",
+    "trial_days": "{{count}}일 체험",
+    "included": "포함 항목",
+    "features": "기능",
+    "enabled": "사용",
+    "disabled": "미사용",
+    "default_cannot_disable": "기본 요금제는 비활성화할 수 없습니다",
+    "default_cannot_delete": "기본 요금제는 삭제할 수 없습니다",
+    "field": {
+      "code": "요금제 코드",
+      "name": "요금제명",
+      "description": "설명",
+      "monthly_price": "월간 가격",
+      "yearly_price": "연간 가격",
+      "max_users": "최대 계정 수",
+      "max_employees": "최대 직원 수",
+      "storage_limit_gb": "저장 용량 (GB)",
+      "enable_trial": "체험 허용",
+      "trial_days": "체험 일수",
+      "ai_integration": "AI 연동",
+      "enabled": "활성",
+      "enabled_for": "활성: {{name}}",
+      "default_plan": "기본 요금제"
+    },
+    "form": {
+      "create_title": "요금제 추가",
+      "create_description": "회사에 제공할 요금제를 생성합니다.",
+      "edit_title": "요금제 수정",
+      "edit_description": "모든 항목이 교체됩니다. 한도를 비우면 무제한입니다. 새 한도는 해당 요금제를 쓰는 모든 회사에 적용됩니다.",
+      "code_hint": "예: STARTER. 영문 대문자로 시작합니다.",
+      "yearly_hint": "연간 결제가 없으면 비워 두세요.",
+      "limits_section": "사용 한도",
+      "limits_hint": "비워 두면 무제한입니다.",
+      "trial_hint": "새 회사에 기본 요금제로 부여될 때 적용됩니다.",
+      "settings_section": "설정",
+      "enabled_hint": "비활성 요금제는 판매되지 않으며, 이미 사용 중인 회사는 만료 시까지 유지합니다.",
+      "default_hint": "기본으로 설정하면 현재 기본 요금제의 기본 표시가 해제됩니다.",
+      "is_default_hint": "현재 기본 요금제입니다. 변경하려면 다른 요금제를 기본으로 설정하세요.",
+      "create_submit": "요금제 생성"
+    },
+    "delete": {
+      "title": "요금제를 삭제할까요?",
+      "description": "{{name}}을(를) 삭제하면 이 요금제를 쓰는 회사는 기본 요금제로 전환되거나 만료됩니다."
+    },
+    "toast": {
+      "created": "요금제를 생성했습니다",
+      "updated": "요금제를 수정했습니다",
+      "deleted": "요금제를 삭제했습니다",
+      "enabled": "요금제를 활성화했습니다",
+      "disabled": "요금제를 비활성화했습니다"
+    }
+  },
+  "saas": {
+    "tab": {
+      "all": "전체",
+      "pending": "대기",
+      "approved": "승인",
+      "rejected": "거절",
+      "cancelled": "취소"
+    },
+    "filter": {
+      "keyword": "검색어",
+      "request_keyword_placeholder": "회사 또는 요금제명",
+      "order_keyword_placeholder": "주문번호 또는 회사",
+      "date_from": "시작일",
+      "date_to": "종료일"
+    },
+    "field": {
+      "company": "회사",
+      "plan": "요금제",
+      "duration": "기간",
+      "message": "메시지",
+      "status": "상태",
+      "request_date": "요청일"
+    },
+    "action": {
+      "approve": "승인",
+      "reject": "거절",
+      "approve_named": "{{name}} 승인",
+      "reject_named": "{{name}} 거절"
+    },
+    "decision": {
+      "approve_title": "{{name}}을(를) 승인할까요?",
+      "reject_title": "{{name}}을(를) 거절할까요?",
+      "approve_description": "회사에 요금제가 한 결제 주기 동안 활성화됩니다(같은 요금제 사용 중이면 연장).",
+      "reject_description": "아래에 입력한 사유가 회사에 표시됩니다.",
+      "notes": "메모",
+      "reason": "사유",
+      "notes_hint": "선택 사항, 최대 500자. 회사에 표시됩니다."
+    },
+    "empty_filtered": "필터와 일치하는 결과가 없습니다",
+    "request_empty": "요금제 요청이 없습니다",
+    "toast": {
+      "approved": "승인했습니다",
+      "rejected": "거절했습니다"
+    }
+  },
+  "order": {
+    "empty": "주문이 없습니다",
+    "field": {
+      "order_number": "주문번호",
+      "company": "회사",
+      "company_email": "회사 이메일",
+      "plan": "요금제",
+      "billing_cycle": "결제 주기",
+      "original_price": "정가",
+      "coupon": "쿠폰",
+      "discount": "할인",
+      "final_price": "최종 금액",
+      "payment_method": "결제 방법",
+      "payment_reference": "거래 참조번호",
+      "status": "상태",
+      "order_date": "주문일",
+      "processed_at": "처리일",
+      "notes": "메모"
+    },
+    "action": {
+      "view_named": "주문 {{number}} 보기"
+    },
+    "detail": {
+      "title": "주문 상세"
+    },
+    "bank": {
+      "title": "계좌이체 정보",
+      "bank_name": "은행",
+      "account_number": "계좌번호",
+      "account_name": "예금주",
+      "transfer_content": "이체 내용"
     }
   }
 }
