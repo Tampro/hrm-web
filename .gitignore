@@ -1,5 +1,6 @@
 .DS_Store
 .env*
+!.env.example
 node_modules
 
 # React Router
@@ -27,3 +28,9 @@ yarn-error.log*
 pnpm-debug.log*
 *.log
 docs/
+# Playwright
+test-results/
+playwright-report/
+blob-report/
+.auth/
+.playwright-mcp/

@@ -1,0 +1,28 @@
+{
+  "common": {
+    "error_network": "Cannot reach the server. Please try again."
+  },
+  "validation": {
+    "required": "This field is required",
+    "max_length": "At most {{max}} characters"
+  },
+  "auth": {
+    "login": {
+      "title": "Log in",
+      "description": "Log in to SPECOM HRM",
+      "username": "Username",
+      "username_placeholder": "Enter your username",
+      "password": "Password",
+      "password_placeholder": "Enter your password",
+      "show_password": "Show password",
+      "hide_password": "Hide password",
+      "submit": "Log in",
+      "submitting": "Logging in..."
+    },
+    "logout": "Log out"
+  },
+  "dashboard": {
+    "welcome": "Hello, {{name}}",
+    "roles": "Roles"
+  }
+}

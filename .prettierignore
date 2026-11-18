@@ -1,0 +1,6 @@
+build
+.react-router
+node_modules
+docs
+package-lock.json
+app/components/ui
