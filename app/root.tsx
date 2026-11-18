@@ -6,6 +6,7 @@ import type { Route } from './+types/root'
 import './app.css'
 import '~/configs/i18n.config'
 import { Toaster } from '~/components/ui/sonner'
+import { TooltipProvider } from '~/components/ui/tooltip'
 
 export function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -31,7 +32,9 @@ export default function App() {
   )
   return (
     <QueryClientProvider client={queryClient}>
-      <Outlet />
+      <TooltipProvider>
+        <Outlet />
+      </TooltipProvider>
       <Toaster richColors position='top-right' />
     </QueryClientProvider>
   )

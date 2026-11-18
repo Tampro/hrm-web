@@ -1,5 +1,13 @@
 export const QUERY_KEY = {
   AUTH: {
     ME: 'AUTH_ME'
+  },
+  COMPANY: {
+    GET_LIST: 'COMPANY_GET_LIST',
+    GET_STATUS_COUNTS: 'COMPANY_GET_STATUS_COUNTS',
+    GET_INFO: 'COMPANY_GET_INFO'
+  },
+  PLAN: {
+    GET_ADMIN_LIST: 'PLAN_GET_ADMIN_LIST'
   }
 } as const

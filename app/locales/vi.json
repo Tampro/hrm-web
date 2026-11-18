@@ -1,10 +1,27 @@
 {
   "common": {
-    "error_network": "Không kết nối được máy chủ. Vui lòng thử lại."
+    "error_network": "Không kết nối được máy chủ. Vui lòng thử lại.",
+    "select_date": "Chọn ngày",
+    "clear": "Xoá",
+    "actions": "Thao tác",
+    "cancel": "Huỷ",
+    "confirm": "Xác nhận",
+    "save": "Lưu",
+    "saving": "Đang lưu...",
+    "search": "Tìm kiếm",
+    "copy": "Sao chép",
+    "copied": "Đã sao chép",
+    "copy_failed": "Không sao chép được, hãy chép thủ công",
+    "no_permission": "Bạn không có quyền truy cập trang này."
   },
   "validation": {
     "required": "Vui lòng nhập thông tin này",
-    "max_length": "Tối đa {{max}} ký tự"
+    "max_length": "Tối đa {{max}} ký tự",
+    "email": "Email không hợp lệ",
+    "date_range": "Ngày kết thúc phải sau hoặc bằng ngày bắt đầu",
+    "company_code": "Chỉ gồm chữ in hoa, số và dấu gạch dưới",
+    "min_length": "Tối thiểu {{min}} ký tự",
+    "username": "Chỉ gồm chữ, số và . _ -"
   },
   "auth": {
     "login": {
@@ -24,5 +41,134 @@
   "dashboard": {
     "welcome": "Xin chào, {{name}}",
     "roles": "Vai trò"
+  },
+  "sidebar": {
+    "dashboard": "Tổng quan",
+    "companies": "Công ty",
+    "toggle": "Ẩn/hiện menu"
+  },
+  "table": {
+    "rows_per_page": "Số dòng mỗi trang",
+    "pagination": "Phân trang",
+    "previous": "Trang trước",
+    "next": "Trang sau",
+    "showing": "Hiển thị {{count}} / {{total}}",
+    "empty": "Không có dữ liệu"
+  },
+  "enum": {
+    "ACTIVE": "Hoạt động",
+    "SUSPENDED": "Tạm khoá",
+    "NONE": "Chưa có gói",
+    "TRIAL": "Dùng thử",
+    "EXPIRED": "Hết hạn",
+    "LOCKED": "Đã khoá"
+  },
+  "company": {
+    "title": "Quản lý công ty",
+    "subtitle": "Xem và quản lý các công ty đăng ký trên hệ thống",
+    "empty": "Chưa có công ty nào",
+    "empty_filtered": "Không có công ty phù hợp với bộ lọc",
+    "tab": {
+      "all": "Tất cả",
+      "active": "Hoạt động",
+      "inactive": "Tạm khoá"
+    },
+    "filter": {
+      "keyword": "Từ khoá",
+      "keyword_placeholder": "Tên, mã hoặc email",
+      "created_from": "Tạo từ ngày",
+      "created_to": "Đến ngày",
+      "clear": "Xoá bộ lọc",
+      "applied": "{{count}} bộ lọc đang áp dụng"
+    },
+    "field": {
+      "code": "Mã công ty",
+      "name": "Tên công ty",
+      "email": "Email",
+      "status": "Trạng thái",
+      "plan": "Gói",
+      "subscription": "Thuê bao",
+      "plan_expires_at": "Gói hết hạn",
+      "users": "Tài khoản / giới hạn",
+      "created_at": "Ngày tạo",
+      "enable_login": "Cho phép đăng nhập",
+      "admin_username": "Tên đăng nhập quản trị",
+      "admin_full_name": "Họ tên quản trị",
+      "admin_email": "Email quản trị"
+    },
+    "action": {
+      "menu": "Thao tác cho {{name}}",
+      "info": "Thông tin công ty",
+      "edit": "Sửa",
+      "upgrade": "Nâng cấp gói",
+      "reset_password": "Đặt lại mật khẩu",
+      "disable_login": "Khoá đăng nhập",
+      "enable_login": "Mở đăng nhập",
+      "delete": "Xoá"
+    },
+    "create": {
+      "button": "Thêm công ty",
+      "title": "Thêm công ty",
+      "description": "Tạo công ty cùng vai trò mặc định, gói mặc định và tài khoản quản trị đầu tiên.",
+      "code_hint": "Chữ in hoa, số, dấu gạch dưới; không đổi được sau khi tạo.",
+      "enable_login_hint": "Tắt thì công ty được tạo ở trạng thái tạm khoá.",
+      "admin_section": "Quản trị viên đầu tiên",
+      "submit": "Tạo công ty"
+    },
+    "temp_password": {
+      "title": "Mật khẩu tạm của quản trị viên",
+      "description": "Mật khẩu này chỉ hiển thị một lần. Hãy gửi cho quản trị viên; họ sẽ phải đổi khi đăng nhập lần đầu.",
+      "password": "Mật khẩu tạm",
+      "done": "Tôi đã lưu mật khẩu"
+    },
+    "edit": {
+      "title": "Sửa công ty",
+      "description": "Mã công ty không thay đổi được."
+    },
+    "info": {
+      "title": "Thông tin công ty",
+      "administrators": "Quản trị viên",
+      "no_administrators": "Chưa có quản trị viên"
+    },
+    "reset_password": {
+      "title": "Đặt lại mật khẩu",
+      "description": "Đặt mật khẩu mới cho một tài khoản của {{name}}. Các phiên đăng nhập của tài khoản đó sẽ bị kết thúc.",
+      "account": "Tài khoản",
+      "default_admin": "Quản trị viên chính (mặc định)",
+      "account_hint": "Để mặc định: quản trị viên đang hoạt động đầu tiên.",
+      "new_password": "Mật khẩu mới"
+    },
+    "upgrade": {
+      "title": "Nâng cấp gói",
+      "description": "{{name}} đang dùng gói {{plan}}. Gói mới áp dụng từ bây giờ cho một chu kỳ thanh toán.",
+      "monthly": "Theo tháng",
+      "yearly": "Theo năm",
+      "plan": "Gói",
+      "no_plans": "Chưa có gói nào đang bật",
+      "no_price": "Không có giá cho chu kỳ này",
+      "per_month": "{{price}} / tháng",
+      "per_year": "{{price}} / năm",
+      "max_users": "Tối đa {{value}} tài khoản",
+      "submit": "Nâng cấp"
+    },
+    "status": {
+      "disable_title": "Khoá đăng nhập công ty?",
+      "disable_description": "Không ai thuộc {{name}} đăng nhập được nữa; phiên đang mở bị từ chối trong vòng 30 giây.",
+      "enable_title": "Mở đăng nhập công ty?",
+      "enable_description": "Tài khoản của {{name}} sẽ đăng nhập lại được."
+    },
+    "delete": {
+      "title": "Xoá công ty?",
+      "description": "Xoá {{name}}: mọi tài khoản bị vô hiệu hoá, đơn đang chờ bị huỷ và mã công ty được giải phóng. Không thể hoàn tác qua hệ thống."
+    },
+    "toast": {
+      "created": "Đã tạo công ty",
+      "updated": "Đã cập nhật công ty",
+      "deleted": "Đã xoá công ty",
+      "login_enabled": "Đã mở đăng nhập",
+      "login_disabled": "Đã khoá đăng nhập",
+      "plan_upgraded": "Đã nâng cấp gói",
+      "password_reset": "Đã đặt lại mật khẩu cho {{username}}"
+    }
   }
 }
