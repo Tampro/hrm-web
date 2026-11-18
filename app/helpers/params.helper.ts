@@ -2,12 +2,13 @@ import { commonHelper } from '~/helpers/common.helper'
 import type {
   TCompanyFilterSchema,
   TCouponFilterSchema,
-  TCurrencyFilterSchema,
+  TKeywordFilterSchema,
   TSaasFilterSchema
 } from '~/helpers/schema.helper'
 import { DEFAULT_PAGE, DEFAULT_SIZE } from '~/hooks/use-pagination'
 import { ECompanyStatus } from '~/shared/enums/company.enum'
 import { ECouponStatusTab } from '~/shared/enums/coupon.enum'
+import { EPayoutStatus } from '~/shared/enums/referral.enum'
 import { ESaasRequestStatus } from '~/shared/enums/saas.enum'
 
 const pick = (searchParams: URLSearchParams, key: string, fallback: string) => searchParams.get(key) ?? fallback
@@ -54,9 +55,16 @@ export const paramsHelper = {
   }),
 
   /** Every param the currencies page owns */
-  currencyToSearchParams: (searchParams: URLSearchParams, defaults: TCurrencyFilterSchema) => ({
+  currencyToSearchParams: (searchParams: URLSearchParams, defaults: TKeywordFilterSchema) => ({
     ...paramsHelper.paginationToSearchParams(searchParams),
     keyword: pick(searchParams, 'keyword', defaults.keyword)
+  }),
+
+  /** Referred users / payout requests: keyword (+ tab for payouts) */
+  keywordToSearchParams: (searchParams: URLSearchParams, tab?: string) => ({
+    ...paramsHelper.paginationToSearchParams(searchParams),
+    keyword: pick(searchParams, 'keyword', ''),
+    ...(tab && { tab })
   }),
 
   /** Tab from ?tab=, falls back to All for unknown values */
@@ -65,6 +73,9 @@ export const paramsHelper = {
 
   getCouponTab: (searchParams: URLSearchParams) =>
     commonHelper.toEnumValue(searchParams.get('tab'), Object.values(ECouponStatusTab), ECouponStatusTab.All),
+
+  getPayoutTab: (searchParams: URLSearchParams) =>
+    commonHelper.toEnumValue(searchParams.get('tab'), Object.values(EPayoutStatus), EPayoutStatus.All),
 
   getSaasTab: (searchParams: URLSearchParams) =>
     commonHelper.toEnumValue(searchParams.get('tab'), Object.values(ESaasRequestStatus), ESaasRequestStatus.All)

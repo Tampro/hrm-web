@@ -60,7 +60,8 @@
     "toggle": "Toggle menu",
     "plans": "Plans",
     "coupons": "Coupons",
-    "currencies": "Currencies"
+    "currencies": "Currencies",
+    "referral": "Referral"
   },
   "table": {
     "rows_per_page": "Rows per page",
@@ -465,6 +466,75 @@
       "created": "Currency created",
       "updated": "Currency updated",
       "deleted": "Currency deleted"
+    }
+  },
+  "referral": {
+    "title": "Referral program",
+    "subtitle": "Track referred companies, process commission payouts and configure the program",
+    "section": {
+      "dashboard": "Dashboard",
+      "referred": "Referred companies",
+      "payouts": "Payout requests",
+      "settings": "Settings"
+    },
+    "keyword_placeholder": "Company name or email",
+    "no_plan": "No plan",
+    "field": {
+      "company": "Company",
+      "referrals": "Referrals",
+      "commission_earned": "Commission earned",
+      "registered_at": "Registration date",
+      "referrer": "Referred by",
+      "plan": "Plan",
+      "plan_price": "Plan price / month",
+      "commission": "Commission",
+      "commission_history": "Commission history",
+      "date": "Date",
+      "order_amount": "Order amount",
+      "percentage": "Rate",
+      "amount": "Amount",
+      "status": "Status",
+      "notes": "Notes"
+    },
+    "action": {
+      "history_named": "Commission history of {{name}} ({{count}})"
+    },
+    "dashboard": {
+      "summary": "Referral program overview",
+      "total_referred": "Total referred companies",
+      "pending_payouts": "Pending payouts",
+      "total_paid": "Total commission paid",
+      "active_companies": "Active companies",
+      "top_referrers": "Top referring companies",
+      "no_referrers": "No referring companies yet",
+      "this_year": "This year",
+      "signups_this_year": "Referral signups",
+      "payouts_this_year": "Payouts processed"
+    },
+    "referred": {
+      "summary": "Referred companies summary",
+      "total": "Total referred companies",
+      "with_plans": "Companies with plans",
+      "total_commission": "Total commission earned",
+      "empty": "No referred companies yet",
+      "no_commission": "No commission yet"
+    },
+    "payouts": {
+      "empty": "No payout requests yet",
+      "approve_description": "Confirm that {{amount}} was paid to the company (payment is made outside the system). The note can hold the transfer reference.",
+      "reject_description": "{{amount}} goes back to the company's available balance. The company sees the reason."
+    },
+    "settings": {
+      "enabled": "Enable referral program",
+      "enabled_hint": "When off, companies cannot use referral codes or request payouts.",
+      "commission_percentage": "Commission percentage (%)",
+      "threshold_amount": "Minimum payout threshold ({{unit}})",
+      "threshold_hint": "Earned commission must reach this amount before a payout can be requested. In the default currency.",
+      "guidelines": "Referral guidelines",
+      "guidelines_hint": "Shown to referrers. Up to 10,000 characters; leaving it empty clears the current text.",
+      "updated_at": "Last updated: {{date}}",
+      "save": "Save settings",
+      "saved": "Settings saved"
     }
   }
 }

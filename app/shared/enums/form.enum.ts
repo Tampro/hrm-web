@@ -75,7 +75,7 @@ export enum ECouponFormKey {
   ExpiryDate = 'expiryDate'
 }
 
-export enum ECurrencyFilterFormKey {
+export enum EKeywordFilterFormKey {
   Keyword = 'keyword'
 }
 
@@ -85,4 +85,11 @@ export enum ECurrencyFormKey {
   Symbol = 'symbol',
   Description = 'description',
   DefaultCurrency = 'defaultCurrency'
+}
+
+export enum EReferralSettingsFormKey {
+  Enabled = 'enabled',
+  CommissionPercentage = 'commissionPercentage',
+  ThresholdAmount = 'thresholdAmount',
+  Guidelines = 'guidelines'
 }

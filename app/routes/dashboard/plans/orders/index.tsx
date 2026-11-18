@@ -26,9 +26,9 @@ import { ESaasFilterFormKey } from '~/shared/enums/form.enum'
 import { ESaasRequestStatus } from '~/shared/enums/saas.enum'
 import type { IAdminOrder, IOrderListParams } from '~/shared/models/saas.model'
 
-import { DecisionDialog } from '../components/decision-dialog'
+import { DecisionDialog } from '~/components/common/decision-dialog'
 import { OrderDetailSheet } from '../components/order-detail-sheet'
-import { SaasFilterBar } from '../components/saas-filter-bar'
+import { SaasFilterBar } from '~/components/common/saas-filter-bar'
 
 const DEFAULT_VALUES: TSaasFilterSchema = {
   [ESaasFilterFormKey.Keyword]: '',
