@@ -8,6 +8,8 @@ import {
   ECompanyFormKey,
   ECouponFilterFormKey,
   ECouponFormKey,
+  ECurrencyFilterFormKey,
+  ECurrencyFormKey,
   EDecisionFormKey,
   ELoginFormKey,
   EPlanFormKey,
@@ -221,3 +223,21 @@ export const getCouponSchema = (t?: TFunction) =>
     )
 
 export type TCouponSchema = z.infer<ReturnType<typeof getCouponSchema>>
+
+// Spec: GET /saas/admin/currencies — keyword (name, code or symbol)
+export const getCurrencyFilterSchema = (t?: TFunction) =>
+  z.object({ [ECurrencyFilterFormKey.Keyword]: z.string().trim().max(255, maxLength(255, t)) })
+
+export type TCurrencyFilterSchema = z.infer<ReturnType<typeof getCurrencyFilterSchema>>
+
+// Spec: CurrencyForm (hrm-be CurrencyService.java) — name ≤100, code ISO 4217 [A-Z]{3}, symbol ≤10, description ≤500
+export const getCurrencySchema = (t?: TFunction) =>
+  z.object({
+    [ECurrencyFormKey.Name]: requiredText(100, t),
+    [ECurrencyFormKey.Code]: requiredText(3, t).regex(/^[A-Z]{3}$/, t?.('validation.currency_code')),
+    [ECurrencyFormKey.Symbol]: z.string().trim().max(10, maxLength(10, t)),
+    [ECurrencyFormKey.Description]: z.string().trim().max(500, maxLength(500, t)),
+    [ECurrencyFormKey.DefaultCurrency]: z.boolean()
+  })
+
+export type TCurrencySchema = z.infer<ReturnType<typeof getCurrencySchema>>

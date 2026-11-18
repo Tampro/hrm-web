@@ -1,5 +1,10 @@
 import { commonHelper } from '~/helpers/common.helper'
-import type { TCompanyFilterSchema, TCouponFilterSchema, TSaasFilterSchema } from '~/helpers/schema.helper'
+import type {
+  TCompanyFilterSchema,
+  TCouponFilterSchema,
+  TCurrencyFilterSchema,
+  TSaasFilterSchema
+} from '~/helpers/schema.helper'
 import { DEFAULT_PAGE, DEFAULT_SIZE } from '~/hooks/use-pagination'
 import { ECompanyStatus } from '~/shared/enums/company.enum'
 import { ECouponStatusTab } from '~/shared/enums/coupon.enum'
@@ -46,6 +51,12 @@ export const paramsHelper = {
     dateFrom: pick(searchParams, 'dateFrom', defaults.dateFrom),
     dateTo: pick(searchParams, 'dateTo', defaults.dateTo),
     tab
+  }),
+
+  /** Every param the currencies page owns */
+  currencyToSearchParams: (searchParams: URLSearchParams, defaults: TCurrencyFilterSchema) => ({
+    ...paramsHelper.paginationToSearchParams(searchParams),
+    keyword: pick(searchParams, 'keyword', defaults.keyword)
   }),
 
   /** Tab from ?tab=, falls back to All for unknown values */

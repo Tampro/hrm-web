@@ -14,7 +14,9 @@
     "copy_failed": "복사하지 못했습니다. 직접 복사해 주세요",
     "no_permission": "이 페이지에 접근할 권한이 없습니다.",
     "edit": "수정",
-    "delete": "삭제"
+    "delete": "삭제",
+    "yes": "예",
+    "no": "아니요"
   },
   "validation": {
     "required": "필수 입력 항목입니다",
@@ -30,7 +32,8 @@
     "plan_code": "영문 대문자로 시작하며 영문 대문자, 숫자, 밑줄만 사용할 수 있습니다",
     "coupon_code": "영문 대문자, 숫자, 밑줄, 하이픈만 사용할 수 있습니다",
     "percentage_max": "정률 할인은 최대 100입니다",
-    "min_max_spend": "최대 사용 금액은 최소 사용 금액 이상이어야 합니다"
+    "min_max_spend": "최대 사용 금액은 최소 사용 금액 이상이어야 합니다",
+    "currency_code": "영문 대문자 3자리 ISO 4217 코드입니다 (예: USD)"
   },
   "auth": {
     "login": {
@@ -56,7 +59,8 @@
     "companies": "회사",
     "toggle": "메뉴 접기/펼치기",
     "plans": "요금제",
-    "coupons": "쿠폰"
+    "coupons": "쿠폰",
+    "currencies": "통화"
   },
   "table": {
     "rows_per_page": "페이지당 행 수",
@@ -416,6 +420,51 @@
       "order_amount": "주문 금액",
       "discount_applied": "할인 금액",
       "used_at": "사용 일시"
+    }
+  },
+  "currency": {
+    "title": "통화",
+    "subtitle": "플랫폼에서 사용하는 통화를 관리합니다",
+    "add": "통화 추가",
+    "empty": "등록된 통화가 없습니다",
+    "keyword_placeholder": "이름, 코드 또는 기호",
+    "default_cannot_delete": "기본 통화는 삭제할 수 없습니다",
+    "field": {
+      "name": "통화명",
+      "code": "통화 코드",
+      "symbol": "기호",
+      "description": "설명",
+      "default": "기본",
+      "set_default": "기본 통화로 설정",
+      "created_at": "생성일",
+      "updated_at": "최종 수정"
+    },
+    "action": {
+      "view_named": "{{name}} 보기",
+      "edit_named": "{{name}} 수정",
+      "delete_named": "{{name}} 삭제"
+    },
+    "form": {
+      "create_title": "통화 추가",
+      "create_description": "처음 생성한 통화가 자동으로 기본 통화가 됩니다.",
+      "edit_title": "통화 수정",
+      "edit_description": "모든 항목이 교체됩니다. 기호나 설명을 비우면 삭제됩니다.",
+      "code_hint": "ISO 4217 코드 (예: USD, EUR, VND)",
+      "default_hint": "가격은 기본 통화로 표시되며, 현재 기본 통화의 기본 표시는 해제됩니다.",
+      "is_default_hint": "현재 기본 통화입니다. 변경하려면 다른 통화를 기본으로 설정하세요.",
+      "create_submit": "통화 생성"
+    },
+    "detail": {
+      "title": "통화 정보"
+    },
+    "delete": {
+      "title": "통화를 삭제할까요?",
+      "description": "{{name}} ({{code}})이(가) 영구 삭제됩니다. 되돌릴 수 없습니다."
+    },
+    "toast": {
+      "created": "통화를 생성했습니다",
+      "updated": "통화를 수정했습니다",
+      "deleted": "통화를 삭제했습니다"
     }
   }
 }

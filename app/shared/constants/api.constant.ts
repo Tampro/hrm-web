@@ -49,7 +49,9 @@ export const API_COUPON = {
   ADMIN_STATUS_URL: (id: string) => `/saas/admin/coupons/${id}/status`
 } as const
 
-// Spec: currencies for pickers / price display, default first
+// Spec: currencies for pickers / price display, default first; admin CRUD (super admin). DELETE is permanent
 export const API_CURRENCY = {
-  LIST_URL: '/saas/currencies'
+  LIST_URL: '/saas/currencies',
+  ADMIN_LIST_URL: '/saas/admin/currencies',
+  ADMIN_DETAIL_URL: (id: string) => `/saas/admin/currencies/${id}`
 } as const

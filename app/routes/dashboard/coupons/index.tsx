@@ -37,6 +37,10 @@ const DEFAULT_VALUES: TCouponFilterSchema = {
   [ECouponFilterFormKey.DateTo]: ''
 }
 
+export function meta() {
+  return [{ title: 'Coupons · SPECOM HRM' }]
+}
+
 /** A real coupon type (not the All filter option) */
 const isCouponType = (value: ECouponType): value is Exclude<ECouponType, ECouponType.All> => value !== ECouponType.All
 

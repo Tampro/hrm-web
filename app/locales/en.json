@@ -14,7 +14,9 @@
     "copy_failed": "Could not copy, please copy it manually",
     "no_permission": "You do not have access to this page.",
     "edit": "Edit",
-    "delete": "Delete"
+    "delete": "Delete",
+    "yes": "Yes",
+    "no": "No"
   },
   "validation": {
     "required": "This field is required",
@@ -30,7 +32,8 @@
     "plan_code": "Start with an uppercase letter; uppercase letters, digits and underscores only",
     "coupon_code": "Uppercase letters, digits, underscores and hyphens only",
     "percentage_max": "A percentage discount is at most 100",
-    "min_max_spend": "Maximum spend must be greater than or equal to the minimum spend"
+    "min_max_spend": "Maximum spend must be greater than or equal to the minimum spend",
+    "currency_code": "An ISO 4217 code of exactly 3 uppercase letters, e.g. USD"
   },
   "auth": {
     "login": {
@@ -56,7 +59,8 @@
     "companies": "Companies",
     "toggle": "Toggle menu",
     "plans": "Plans",
-    "coupons": "Coupons"
+    "coupons": "Coupons",
+    "currencies": "Currencies"
   },
   "table": {
     "rows_per_page": "Rows per page",
@@ -416,6 +420,51 @@
       "order_amount": "Order amount",
       "discount_applied": "Discount applied",
       "used_at": "Used at"
+    }
+  },
+  "currency": {
+    "title": "Currencies",
+    "subtitle": "Manage the currencies available on the platform",
+    "add": "Add currency",
+    "empty": "No currencies yet",
+    "keyword_placeholder": "Name, code or symbol",
+    "default_cannot_delete": "The default currency cannot be deleted",
+    "field": {
+      "name": "Currency name",
+      "code": "Currency code",
+      "symbol": "Symbol",
+      "description": "Description",
+      "default": "Default",
+      "set_default": "Set as default currency",
+      "created_at": "Created at",
+      "updated_at": "Last updated"
+    },
+    "action": {
+      "view_named": "View {{name}}",
+      "edit_named": "Edit {{name}}",
+      "delete_named": "Delete {{name}}"
+    },
+    "form": {
+      "create_title": "Add currency",
+      "create_description": "The first currency created becomes the default automatically.",
+      "edit_title": "Edit currency",
+      "edit_description": "Every field is replaced; an empty symbol or description is cleared.",
+      "code_hint": "ISO 4217 code, e.g. USD, EUR, VND.",
+      "default_hint": "Prices are shown in the default currency; the current default loses the flag.",
+      "is_default_hint": "This is the default currency. To change it, make another currency the default.",
+      "create_submit": "Create currency"
+    },
+    "detail": {
+      "title": "Currency details"
+    },
+    "delete": {
+      "title": "Delete currency?",
+      "description": "{{name}} ({{code}}) is deleted permanently. This cannot be undone."
+    },
+    "toast": {
+      "created": "Currency created",
+      "updated": "Currency updated",
+      "deleted": "Currency deleted"
     }
   }
 }

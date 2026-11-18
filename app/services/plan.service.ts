@@ -5,6 +5,8 @@ import type { IPlan, IPlanPayload } from '~/shared/models/plan.model'
 import type {
   IAdminOrder,
   ICurrency,
+  ICurrencyListParams,
+  ICurrencyPayload,
   IDecisionPayload,
   IOrder,
   IOrderListParams,
@@ -51,5 +53,14 @@ export const OrderService = {
 }
 
 export const CurrencyService = {
-  GetList: async (): Promise<IApiResponse<ICurrency[]>> => await axiosClient.get(API_CURRENCY.LIST_URL)
+  GetList: async (): Promise<IApiResponse<ICurrency[]>> => await axiosClient.get(API_CURRENCY.LIST_URL),
+  GetAdminListCurrency: async (params?: ICurrencyListParams): Promise<IApiResponse<IApiPagination<ICurrency>>> =>
+    await axiosClient.get(API_CURRENCY.ADMIN_LIST_URL, { params }),
+  GetAdminDetail: async (id: string): Promise<IApiResponse<ICurrency>> =>
+    await axiosClient.get(API_CURRENCY.ADMIN_DETAIL_URL(id)),
+  Create: async (payload: ICurrencyPayload): Promise<IApiResponse<ICurrency>> =>
+    await axiosClient.post(API_CURRENCY.ADMIN_LIST_URL, payload),
+  Update: async (id: string, payload: ICurrencyPayload): Promise<IApiResponse<ICurrency>> =>
+    await axiosClient.put(API_CURRENCY.ADMIN_DETAIL_URL(id), payload),
+  Delete: async (id: string): Promise<IApiResponse<void>> => await axiosClient.delete(API_CURRENCY.ADMIN_DETAIL_URL(id))
 }

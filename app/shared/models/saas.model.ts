@@ -83,7 +83,7 @@ export interface IDecisionPayload {
   notes?: string
 }
 
-// Spec: CurrencyDto
+// Spec: CurrencyDto (hrm-be CurrencyService.java). Exactly one default currency at any time
 export interface ICurrency {
   id?: string
   code?: string
@@ -91,4 +91,18 @@ export interface ICurrency {
   symbol?: string | null
   description?: string | null
   defaultCurrency?: boolean
+  createdDate?: string
+  updatedDate?: string
+}
+
+// Spec: GET /saas/admin/currencies — keyword matches name, code or symbol
+export interface ICurrencyListParams extends IBasePagination, IBaseFilterPanel {}
+
+// Spec: CurrencyForm — full replacement: an omitted symbol / description is cleared
+export interface ICurrencyPayload {
+  name: string
+  code: string
+  symbol?: string
+  description?: string
+  defaultCurrency: boolean
 }

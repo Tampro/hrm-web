@@ -74,3 +74,15 @@ export enum ECouponFormKey {
   UseLimitPerCompany = 'useLimitPerCompany',
   ExpiryDate = 'expiryDate'
 }
+
+export enum ECurrencyFilterFormKey {
+  Keyword = 'keyword'
+}
+
+export enum ECurrencyFormKey {
+  Name = 'name',
+  Code = 'code',
+  Symbol = 'symbol',
+  Description = 'description',
+  DefaultCurrency = 'defaultCurrency'
+}

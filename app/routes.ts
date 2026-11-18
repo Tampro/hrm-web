@@ -14,9 +14,14 @@ export default [
         route(BASE_ROUTES.PLAN_REQUESTS, 'routes/dashboard/plans/requests/index.tsx'),
         route(BASE_ROUTES.PLAN_ORDERS, 'routes/dashboard/plans/orders/index.tsx')
       ]),
-      route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.COUPONS}`, 'routes/dashboard/coupons/layout.tsx', [
-        index('routes/dashboard/coupons/index.tsx'),
-        route(':id', 'routes/dashboard/coupons/coupon-detail/index.tsx')
+      // super-admin-only sections
+      layout('layouts/super-admin.layout.tsx', [
+        route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.COUPONS}`, 'routes/dashboard/coupons/index.tsx'),
+        route(
+          `${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.COUPONS}/:id`,
+          'routes/dashboard/coupons/coupon-detail/index.tsx'
+        ),
+        route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.CURRENCIES}`, 'routes/dashboard/currencies/index.tsx')
       ])
     ])
   ])
