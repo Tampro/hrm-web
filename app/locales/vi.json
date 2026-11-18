@@ -27,7 +27,10 @@
     "number": "Vui lòng nhập số",
     "integer": "Vui lòng nhập số nguyên",
     "min_value": "Giá trị tối thiểu là {{min}}",
-    "plan_code": "Bắt đầu bằng chữ in hoa; chỉ gồm chữ in hoa, số và dấu gạch dưới"
+    "plan_code": "Bắt đầu bằng chữ in hoa; chỉ gồm chữ in hoa, số và dấu gạch dưới",
+    "coupon_code": "Chỉ gồm chữ in hoa, số, dấu gạch dưới và gạch ngang",
+    "percentage_max": "Giảm theo phần trăm tối đa 100",
+    "min_max_spend": "Mức chi tiêu tối đa phải lớn hơn hoặc bằng mức tối thiểu"
   },
   "auth": {
     "login": {
@@ -52,7 +55,8 @@
     "dashboard": "Tổng quan",
     "companies": "Công ty",
     "toggle": "Ẩn/hiện menu",
-    "plans": "Gói dịch vụ"
+    "plans": "Gói dịch vụ",
+    "coupons": "Mã giảm giá"
   },
   "table": {
     "rows_per_page": "Số dòng mỗi trang",
@@ -76,7 +80,10 @@
     "REJECTED": "Từ chối",
     "CANCELLED": "Đã huỷ",
     "BANK_TRANSFER": "Chuyển khoản",
-    "MANUAL": "Thủ công"
+    "MANUAL": "Thủ công",
+    "PERCENTAGE": "Phần trăm",
+    "FLAT": "Số tiền cố định",
+    "AUTO": "Tự sinh"
   },
   "company": {
     "title": "Quản lý công ty",
@@ -328,6 +335,87 @@
       "account_number": "Số tài khoản",
       "account_name": "Chủ tài khoản",
       "transfer_content": "Nội dung chuyển khoản"
+    }
+  },
+  "coupon": {
+    "title": "Mã giảm giá",
+    "subtitle": "Tạo và quản lý mã giảm giá cho đơn mua gói của công ty",
+    "add": "Thêm mã giảm giá",
+    "empty": "Chưa có mã giảm giá nào",
+    "not_found": "Không tìm thấy mã giảm giá",
+    "back": "Quay lại danh sách mã giảm giá",
+    "type_all": "Tất cả loại",
+    "no_expiry": "Không hết hạn",
+    "no_limit": "Không giới hạn",
+    "tab": {
+      "all": "Tất cả",
+      "active": "Hoạt động",
+      "inactive": "Không hoạt động"
+    },
+    "filter": {
+      "keyword": "Từ khoá",
+      "keyword_placeholder": "Tên hoặc mã"
+    },
+    "field": {
+      "name": "Tên mã giảm giá",
+      "code": "Mã",
+      "code_generation": "Cách tạo mã",
+      "type": "Loại giảm giá",
+      "discount": "Mức giảm",
+      "discount_value": "Giá trị giảm",
+      "minimum_spend": "Chi tiêu tối thiểu",
+      "maximum_spend": "Chi tiêu tối đa",
+      "coupon_limit": "Tổng lượt dùng",
+      "user_limit": "Lượt dùng mỗi công ty",
+      "times_used": "Đã dùng",
+      "expiry_date": "Ngày hết hạn",
+      "status": "Trạng thái",
+      "active_for": "Hoạt động: {{name}}",
+      "created_at": "Ngày tạo"
+    },
+    "action": {
+      "edit_named": "Sửa {{name}}",
+      "delete_named": "Xoá {{name}}"
+    },
+    "form": {
+      "create_title": "Thêm mã giảm giá",
+      "create_description": "Công ty có thể áp dụng mã này khi đặt mua gói.",
+      "edit_title": "Sửa mã giảm giá",
+      "edit_description": "Mọi trường được thay thế; ô để trống nghĩa là không giới hạn.",
+      "manual": "Nhập thủ công",
+      "auto": "Tự sinh",
+      "auto_hint": "Hệ thống sẽ tạo mã 8 ký tự khi lưu.",
+      "code_hint": "Ví dụ SUMMER25. Chữ in hoa, số, _ và -.",
+      "percent_hint": "Từ 0 đến 100 (%)",
+      "optional_hint": "Để trống nếu không giới hạn.",
+      "unlimited_hint": "Để trống nghĩa là không giới hạn.",
+      "expiry_hint": "Ngày cuối cùng mã còn hiệu lực. Để trống nếu không hết hạn.",
+      "create_submit": "Tạo mã"
+    },
+    "delete": {
+      "title": "Xoá mã giảm giá?",
+      "description": "Xoá {{name}} ({{code}}): các đơn đã dùng mã vẫn giữ mức giảm, và mã này có thể được dùng lại cho mã mới."
+    },
+    "toast": {
+      "created": "Đã tạo mã {{code}}",
+      "updated": "Đã cập nhật mã giảm giá",
+      "deleted": "Đã xoá mã giảm giá",
+      "enabled": "Đã bật mã giảm giá",
+      "disabled": "Đã tắt mã giảm giá"
+    },
+    "detail": {
+      "summary": "Tóm tắt mã giảm giá",
+      "information": "Thông tin mã giảm giá",
+      "usage_history": "Lịch sử sử dụng",
+      "usage_hint": "Mới nhất trước. Lượt đã dùng gồm đơn chờ duyệt và đã duyệt.",
+      "usage_empty": "Mã chưa được sử dụng"
+    },
+    "usage": {
+      "company": "Công ty",
+      "order": "Mã đơn",
+      "order_amount": "Giá trị đơn",
+      "discount_applied": "Đã giảm",
+      "used_at": "Thời điểm dùng"
     }
   }
 }

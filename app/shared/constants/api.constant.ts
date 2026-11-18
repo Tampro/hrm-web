@@ -41,6 +41,14 @@ export const API_ORDER = {
   ADMIN_REJECT_URL: (id: string) => `/saas/admin/orders/${id}/reject`
 } as const
 
+// Spec: SaaS admin coupons (CouponController). DELETE is a soft delete: the code can be reused
+export const API_COUPON = {
+  ADMIN_LIST_URL: '/saas/admin/coupons',
+  ADMIN_STATUS_COUNTS_URL: '/saas/admin/coupons/status-counts',
+  ADMIN_DETAIL_URL: (id: string) => `/saas/admin/coupons/${id}`,
+  ADMIN_STATUS_URL: (id: string) => `/saas/admin/coupons/${id}/status`
+} as const
+
 // Spec: currencies for pickers / price display, default first
 export const API_CURRENCY = {
   LIST_URL: '/saas/currencies'

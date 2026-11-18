@@ -1,7 +1,8 @@
 import { commonHelper } from '~/helpers/common.helper'
-import type { TCompanyFilterSchema, TSaasFilterSchema } from '~/helpers/schema.helper'
+import type { TCompanyFilterSchema, TCouponFilterSchema, TSaasFilterSchema } from '~/helpers/schema.helper'
 import { DEFAULT_PAGE, DEFAULT_SIZE } from '~/hooks/use-pagination'
 import { ECompanyStatus } from '~/shared/enums/company.enum'
+import { ECouponStatusTab } from '~/shared/enums/coupon.enum'
 import { ESaasRequestStatus } from '~/shared/enums/saas.enum'
 
 const pick = (searchParams: URLSearchParams, key: string, fallback: string) => searchParams.get(key) ?? fallback
@@ -37,9 +38,22 @@ export const paramsHelper = {
     tab
   }),
 
+  /** Every param the coupons page owns */
+  couponToSearchParams: (searchParams: URLSearchParams, defaults: TCouponFilterSchema, tab: ECouponStatusTab) => ({
+    ...paramsHelper.paginationToSearchParams(searchParams),
+    keyword: pick(searchParams, 'keyword', defaults.keyword),
+    type: pick(searchParams, 'type', defaults.type),
+    dateFrom: pick(searchParams, 'dateFrom', defaults.dateFrom),
+    dateTo: pick(searchParams, 'dateTo', defaults.dateTo),
+    tab
+  }),
+
   /** Tab from ?tab=, falls back to All for unknown values */
   getCompanyTab: (searchParams: URLSearchParams) =>
     commonHelper.toEnumValue(searchParams.get('tab'), Object.values(ECompanyStatus), ECompanyStatus.All),
+
+  getCouponTab: (searchParams: URLSearchParams) =>
+    commonHelper.toEnumValue(searchParams.get('tab'), Object.values(ECouponStatusTab), ECouponStatusTab.All),
 
   getSaasTab: (searchParams: URLSearchParams) =>
     commonHelper.toEnumValue(searchParams.get('tab'), Object.values(ESaasRequestStatus), ESaasRequestStatus.All)

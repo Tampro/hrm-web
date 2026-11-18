@@ -1,13 +1,15 @@
 import type { TFunction } from 'i18next'
-import { Building2, LayoutDashboard, Package } from 'lucide-react'
+import { Building2, LayoutDashboard, Package, TicketPercent } from 'lucide-react'
 
 import { commonHelper } from '~/helpers/common.helper'
 import { dateHelper } from '~/helpers/date.helper'
 import { ROUTES } from '~/shared/constants/routes.constant'
 import { EBillingCycle, ECompanyStatus } from '~/shared/enums/company.enum'
+import { ECouponCodeGeneration, ECouponStatusTab, ECouponType } from '~/shared/enums/coupon.enum'
 import { ESaasRequestStatus } from '~/shared/enums/saas.enum'
 import type { IInfoRow, ISidebarItem, ITabItem, ITabOption } from '~/shared/models/common.model'
 import type { ICompanyInfo, ICompanyStatusCounts } from '~/shared/models/company.model'
+import type { ICoupon, ICouponStatusCounts } from '~/shared/models/coupon.model'
 import type { IPlan } from '~/shared/models/plan.model'
 import type { IAdminOrder, ICurrency, ISaasStatusCounts } from '~/shared/models/saas.model'
 
@@ -20,7 +22,8 @@ export const DATA = {
   GET_SIDEBAR_ITEMS: (t: TFunction): ISidebarItem[] => [
     { label: t('sidebar.dashboard'), route: ROUTES.DASHBOARD, icon: LayoutDashboard },
     { label: t('sidebar.companies'), route: ROUTES.COMPANIES, icon: Building2, superAdminOnly: true },
-    { label: t('sidebar.plans'), route: ROUTES.PLANS, icon: Package, superAdminOnly: true }
+    { label: t('sidebar.plans'), route: ROUTES.PLANS, icon: Package, superAdminOnly: true },
+    { label: t('sidebar.coupons'), route: ROUTES.COUPONS, icon: TicketPercent, superAdminOnly: true }
   ],
 
   // Spec: status-counts {all, active, inactive}; tabs All / Active / Inactive (manual 3.2.1)
@@ -121,5 +124,65 @@ export const DATA = {
       { label: t('order.bank.account_name'), value: bank?.accountName || '-' },
       { label: t('order.bank.transfer_content'), value: bank?.transferContent || '-' }
     ]
-  }
+  },
+
+  // Manual 3.2.4 status tabs All / Active / Inactive. Spec: CouponCountsDto(all, active, inactive)
+  GET_COUPON_STATUS_TABS: (t: TFunction, counts?: ICouponStatusCounts): ITabOption<ECouponStatusTab>[] => [
+    { label: t('coupon.tab.all'), value: ECouponStatusTab.All, count: counts?.all },
+    { label: t('coupon.tab.active'), value: ECouponStatusTab.Active, count: counts?.active },
+    { label: t('coupon.tab.inactive'), value: ECouponStatusTab.Inactive, count: counts?.inactive }
+  ],
+
+  GET_COUPON_TYPE_OPTIONS: (t: TFunction, withAll = false): ITabOption<ECouponType>[] => [
+    ...(withAll ? [{ label: t('coupon.type_all'), value: ECouponType.All }] : []),
+    { label: t('enum.PERCENTAGE'), value: ECouponType.Percentage },
+    { label: t('enum.FLAT'), value: ECouponType.Flat }
+  ],
+
+  GET_COUPON_CODE_GENERATION_OPTIONS: (t: TFunction): ITabOption<ECouponCodeGeneration>[] => [
+    { label: t('coupon.form.manual'), value: ECouponCodeGeneration.Manual },
+    { label: t('coupon.form.auto'), value: ECouponCodeGeneration.Auto }
+  ],
+
+  // Manual 3.2.4 View Details → summary cards: discount, times used (used / limit), user limit, expires
+  GET_COUPON_SUMMARY_ROWS: (t: TFunction, coupon: ICoupon | undefined, currency?: ICurrency): IInfoRow[] => [
+    { label: t('coupon.field.discount'), value: DATA.FORMAT_COUPON_DISCOUNT(coupon, currency) },
+    {
+      label: t('coupon.field.times_used'),
+      value: `${commonHelper.formatNumber(coupon?.timesUsed ?? null, 0)} / ${unlimited(t, coupon?.useLimitTotal, (v) => commonHelper.formatNumber(v, 0))}`
+    },
+    {
+      label: t('coupon.field.user_limit'),
+      value: unlimited(t, coupon?.useLimitPerCompany, (v) => commonHelper.formatNumber(v, 0))
+    },
+    {
+      label: t('coupon.field.expiry_date'),
+      value: coupon?.expiryDate ? dateHelper.formatDate(coupon.expiryDate) : t('coupon.no_expiry')
+    }
+  ],
+
+  // Manual 3.2.4 View Details → coupon information: code, type, min / max spend
+  GET_COUPON_INFO_ROWS: (
+    t: TFunction,
+    coupon: ICoupon | undefined,
+    translateEnum: TTranslateEnum,
+    currency?: ICurrency
+  ): IInfoRow[] => [
+    { label: t('coupon.field.code'), value: coupon?.code || '-' },
+    { label: t('coupon.field.code_generation'), value: translateEnum(coupon?.codeGeneration) },
+    { label: t('coupon.field.type'), value: translateEnum(coupon?.type) },
+    { label: t('coupon.field.minimum_spend'), value: DATA.FORMAT_OPTIONAL_MONEY(t, coupon?.minimumSpend, currency) },
+    { label: t('coupon.field.maximum_spend'), value: DATA.FORMAT_OPTIONAL_MONEY(t, coupon?.maximumSpend, currency) },
+    { label: t('coupon.field.created_at'), value: dateHelper.formatDate(coupon?.createdDate) }
+  ],
+
+  /** PERCENTAGE → 20 %, FLAT → money in the default currency */
+  FORMAT_COUPON_DISCOUNT: (coupon: ICoupon | undefined, currency?: ICurrency) =>
+    coupon?.type === ECouponType.Percentage
+      ? commonHelper.formatPercent(coupon?.discountValue)
+      : commonHelper.formatMoney(coupon?.discountValue, currency),
+
+  /** Spend bounds: null = no bound */
+  FORMAT_OPTIONAL_MONEY: (t: TFunction, value: number | null | undefined, currency?: ICurrency) =>
+    value === null || value === undefined ? t('coupon.no_limit') : commonHelper.formatMoney(value, currency)
 }
