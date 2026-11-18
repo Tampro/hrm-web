@@ -67,3 +67,9 @@ export const API_REFERRAL = {
   ADMIN_PAYOUT_REJECT_URL: (id: string) => `/saas/admin/referral/payouts/${id}/reject`,
   ADMIN_SETTINGS_URL: '/saas/admin/referral/settings'
 } as const
+
+// Spec: system settings (super admin), one GET + PUT per section; secrets are write-only
+export const API_SETTINGS = {
+  ADMIN_SECTION_URL: (section: string) => '/settings/admin/' + section,
+  ADMIN_EMAIL_TEST_URL: '/settings/admin/email/test'
+} as const

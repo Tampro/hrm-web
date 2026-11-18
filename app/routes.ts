@@ -1,6 +1,7 @@
 import { type RouteConfig, index, layout, route } from '@react-router/dev/routes'
 
 import { BASE_ROUTES } from './shared/constants/routes.constant'
+import { ESettingsSection } from './shared/enums/settings.enum'
 
 export default [
   index('layouts/root-redirect.tsx'),
@@ -27,6 +28,18 @@ export default [
           route(BASE_ROUTES.REFERRAL_REFERRED, 'routes/dashboard/referral/referred/index.tsx'),
           route(BASE_ROUTES.REFERRAL_PAYOUTS, 'routes/dashboard/referral/payouts/index.tsx'),
           route(BASE_ROUTES.REFERRAL_SETTINGS, 'routes/dashboard/referral/settings/index.tsx')
+        ]),
+        route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.SETTINGS}`, 'routes/dashboard/settings/layout.tsx', [
+          index('routes/dashboard/settings/index.tsx'),
+          route(ESettingsSection.System, 'routes/dashboard/settings/system/index.tsx'),
+          route(ESettingsSection.Brand, 'routes/dashboard/settings/brand/index.tsx'),
+          route(ESettingsSection.Currency, 'routes/dashboard/settings/currency/index.tsx'),
+          route(ESettingsSection.Email, 'routes/dashboard/settings/email/index.tsx'),
+          route(ESettingsSection.Payment, 'routes/dashboard/settings/payment/index.tsx'),
+          route(ESettingsSection.Storage, 'routes/dashboard/settings/storage/index.tsx'),
+          route(ESettingsSection.Seo, 'routes/dashboard/settings/seo/index.tsx'),
+          route(ESettingsSection.Recaptcha, 'routes/dashboard/settings/recaptcha/index.tsx'),
+          route(ESettingsSection.Cookie, 'routes/dashboard/settings/cookie/index.tsx')
         ])
       ])
     ])
