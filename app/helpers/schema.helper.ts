@@ -8,11 +8,12 @@ import {
   ECompanyFormKey,
   ECouponFilterFormKey,
   ECouponFormKey,
-  ECurrencyFilterFormKey,
+  EKeywordFilterFormKey,
   ECurrencyFormKey,
   EDecisionFormKey,
   ELoginFormKey,
   EPlanFormKey,
+  EReferralSettingsFormKey,
   EResetPasswordFormKey,
   ESaasFilterFormKey,
   EUpgradePlanFormKey
@@ -224,11 +225,11 @@ export const getCouponSchema = (t?: TFunction) =>
 
 export type TCouponSchema = z.infer<ReturnType<typeof getCouponSchema>>
 
-// Spec: GET /saas/admin/currencies — keyword (name, code or symbol)
-export const getCurrencyFilterSchema = (t?: TFunction) =>
-  z.object({ [ECurrencyFilterFormKey.Keyword]: z.string().trim().max(255, maxLength(255, t)) })
+// Keyword-only filter (currencies: name, code or symbol; referral pages: company name or email)
+export const getKeywordFilterSchema = (t?: TFunction) =>
+  z.object({ [EKeywordFilterFormKey.Keyword]: z.string().trim().max(255, maxLength(255, t)) })
 
-export type TCurrencyFilterSchema = z.infer<ReturnType<typeof getCurrencyFilterSchema>>
+export type TKeywordFilterSchema = z.infer<ReturnType<typeof getKeywordFilterSchema>>
 
 // Spec: CurrencyForm (hrm-be CurrencyService.java) — name ≤100, code ISO 4217 [A-Z]{3}, symbol ≤10, description ≤500
 export const getCurrencySchema = (t?: TFunction) =>
@@ -241,3 +242,20 @@ export const getCurrencySchema = (t?: TFunction) =>
   })
 
 export type TCurrencySchema = z.infer<ReturnType<typeof getCurrencySchema>>
+
+// Spec: ReferralDtos.SettingsForm — commissionPercentage 0–100, thresholdAmount ≥0 (default currency),
+// guidelines ≤ 10000 (cleared when omitted)
+export const getReferralSettingsSchema = (t?: TFunction) =>
+  z
+    .object({
+      [EReferralSettingsFormKey.Enabled]: z.boolean(),
+      [EReferralSettingsFormKey.CommissionPercentage]: numberText(t, { required: true }),
+      [EReferralSettingsFormKey.ThresholdAmount]: numberText(t, { required: true }),
+      [EReferralSettingsFormKey.Guidelines]: z.string().trim().max(10000, maxLength(10000, t))
+    })
+    .refine((v) => v.commissionPercentage === '' || Number(v.commissionPercentage) <= 100, {
+      path: [EReferralSettingsFormKey.CommissionPercentage],
+      message: t?.('validation.percentage_max')
+    })
+
+export type TReferralSettingsSchema = z.infer<ReturnType<typeof getReferralSettingsSchema>>

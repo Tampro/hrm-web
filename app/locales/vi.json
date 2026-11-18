@@ -60,7 +60,8 @@
     "toggle": "Ẩn/hiện menu",
     "plans": "Gói dịch vụ",
     "coupons": "Mã giảm giá",
-    "currencies": "Tiền tệ"
+    "currencies": "Tiền tệ",
+    "referral": "Giới thiệu"
   },
   "table": {
     "rows_per_page": "Số dòng mỗi trang",
@@ -465,6 +466,75 @@
       "created": "Đã tạo tiền tệ",
       "updated": "Đã cập nhật tiền tệ",
       "deleted": "Đã xoá tiền tệ"
+    }
+  },
+  "referral": {
+    "title": "Chương trình giới thiệu",
+    "subtitle": "Theo dõi công ty được giới thiệu, duyệt yêu cầu rút hoa hồng và cấu hình chương trình",
+    "section": {
+      "dashboard": "Tổng quan",
+      "referred": "Công ty được giới thiệu",
+      "payouts": "Yêu cầu rút tiền",
+      "settings": "Cài đặt"
+    },
+    "keyword_placeholder": "Tên hoặc email công ty",
+    "no_plan": "Chưa có gói",
+    "field": {
+      "company": "Công ty",
+      "referrals": "Số lượt giới thiệu",
+      "commission_earned": "Hoa hồng đã nhận",
+      "registered_at": "Ngày đăng ký",
+      "referrer": "Người giới thiệu",
+      "plan": "Gói",
+      "plan_price": "Giá gói / tháng",
+      "commission": "Hoa hồng",
+      "commission_history": "Lịch sử hoa hồng",
+      "date": "Ngày",
+      "order_amount": "Giá trị đơn",
+      "percentage": "Tỷ lệ",
+      "amount": "Số tiền",
+      "status": "Trạng thái",
+      "notes": "Ghi chú"
+    },
+    "action": {
+      "history_named": "Lịch sử hoa hồng của {{name}} ({{count}})"
+    },
+    "dashboard": {
+      "summary": "Tổng quan chương trình giới thiệu",
+      "total_referred": "Tổng công ty được giới thiệu",
+      "pending_payouts": "Đang chờ chi trả",
+      "total_paid": "Tổng hoa hồng đã chi",
+      "active_companies": "Công ty đang hoạt động",
+      "top_referrers": "Công ty giới thiệu nhiều nhất",
+      "no_referrers": "Chưa có công ty nào giới thiệu",
+      "this_year": "Năm nay",
+      "signups_this_year": "Lượt đăng ký qua giới thiệu",
+      "payouts_this_year": "Đã chi trả"
+    },
+    "referred": {
+      "summary": "Tóm tắt công ty được giới thiệu",
+      "total": "Tổng công ty được giới thiệu",
+      "with_plans": "Công ty đã có gói",
+      "total_commission": "Tổng hoa hồng",
+      "empty": "Chưa có công ty nào được giới thiệu",
+      "no_commission": "Chưa phát sinh hoa hồng"
+    },
+    "payouts": {
+      "empty": "Chưa có yêu cầu rút tiền nào",
+      "approve_description": "Xác nhận đã chuyển {{amount}} cho công ty (thanh toán thực hiện ngoài hệ thống). Ghi chú có thể là mã giao dịch.",
+      "reject_description": "Số tiền {{amount}} được trả lại vào số dư khả dụng của công ty. Công ty sẽ thấy lý do."
+    },
+    "settings": {
+      "enabled": "Bật chương trình giới thiệu",
+      "enabled_hint": "Khi tắt, công ty không thể dùng mã giới thiệu hay yêu cầu rút tiền.",
+      "commission_percentage": "Tỷ lệ hoa hồng (%)",
+      "threshold_amount": "Mức tối thiểu để rút ({{unit}})",
+      "threshold_hint": "Hoa hồng tích luỹ phải đạt mức này mới được yêu cầu rút. Tính theo tiền tệ mặc định.",
+      "guidelines": "Hướng dẫn chương trình",
+      "guidelines_hint": "Hiển thị cho công ty giới thiệu. Tối đa 10.000 ký tự; để trống sẽ xoá nội dung hiện tại.",
+      "updated_at": "Cập nhật lần cuối: {{date}}",
+      "save": "Lưu cài đặt",
+      "saved": "Đã lưu cài đặt"
     }
   }
 }

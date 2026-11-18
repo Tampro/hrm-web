@@ -1,16 +1,18 @@
 import type { TFunction } from 'i18next'
-import { Building2, Coins, LayoutDashboard, Package, TicketPercent } from 'lucide-react'
+import { Building2, Coins, Gift, LayoutDashboard, Package, TicketPercent } from 'lucide-react'
 
 import { commonHelper } from '~/helpers/common.helper'
 import { dateHelper } from '~/helpers/date.helper'
 import { ROUTES } from '~/shared/constants/routes.constant'
 import { EBillingCycle, ECompanyStatus } from '~/shared/enums/company.enum'
 import { ECouponCodeGeneration, ECouponStatusTab, ECouponType } from '~/shared/enums/coupon.enum'
+import { EPayoutStatus } from '~/shared/enums/referral.enum'
 import { ESaasRequestStatus } from '~/shared/enums/saas.enum'
 import type { IInfoRow, ISidebarItem, ITabItem, ITabOption } from '~/shared/models/common.model'
 import type { ICompanyInfo, ICompanyStatusCounts } from '~/shared/models/company.model'
 import type { ICoupon, ICouponStatusCounts } from '~/shared/models/coupon.model'
 import type { IPlan } from '~/shared/models/plan.model'
+import type { IPayoutStatusCounts, IReferralDashboard, IReferredSummary } from '~/shared/models/referral.model'
 import type { IAdminOrder, ICurrency, ISaasStatusCounts } from '~/shared/models/saas.model'
 
 type TTranslateEnum = (value?: string | null) => string
@@ -24,7 +26,8 @@ export const DATA = {
     { label: t('sidebar.companies'), route: ROUTES.COMPANIES, icon: Building2, superAdminOnly: true },
     { label: t('sidebar.plans'), route: ROUTES.PLANS, icon: Package, superAdminOnly: true },
     { label: t('sidebar.coupons'), route: ROUTES.COUPONS, icon: TicketPercent, superAdminOnly: true },
-    { label: t('sidebar.currencies'), route: ROUTES.CURRENCIES, icon: Coins, superAdminOnly: true }
+    { label: t('sidebar.currencies'), route: ROUTES.CURRENCIES, icon: Coins, superAdminOnly: true },
+    { label: t('sidebar.referral'), route: ROUTES.REFERRAL, icon: Gift, superAdminOnly: true }
   ],
 
   // Spec: status-counts {all, active, inactive}; tabs All / Active / Inactive (manual 3.2.1)
@@ -196,5 +199,63 @@ export const DATA = {
     { label: t('currency.field.default'), value: t(currency?.defaultCurrency ? 'common.yes' : 'common.no') },
     { label: t('currency.field.created_at'), value: dateHelper.formatDateTime(currency?.createdDate) },
     { label: t('currency.field.updated_at'), value: dateHelper.formatDateTime(currency?.updatedDate) }
+  ],
+
+  // Referral section: four sub-pages (separate routes)
+  GET_REFERRAL_SECTION_TABS: (t: TFunction): ITabItem[] => [
+    { label: t('referral.section.dashboard'), route: ROUTES.REFERRAL },
+    { label: t('referral.section.referred'), route: ROUTES.REFERRAL_REFERRED },
+    { label: t('referral.section.payouts'), route: ROUTES.REFERRAL_PAYOUTS },
+    { label: t('referral.section.settings'), route: ROUTES.REFERRAL_SETTINGS }
+  ],
+
+  // Spec: PayoutCountsDto(all, pending, approved, rejected)
+  GET_PAYOUT_STATUS_TABS: (t: TFunction, counts?: IPayoutStatusCounts): ITabOption<EPayoutStatus>[] => [
+    { label: t('saas.tab.all'), value: EPayoutStatus.All, count: counts?.all },
+    { label: t('saas.tab.pending'), value: EPayoutStatus.Pending, count: counts?.pending },
+    { label: t('saas.tab.approved'), value: EPayoutStatus.Approved, count: counts?.approved },
+    { label: t('saas.tab.rejected'), value: EPayoutStatus.Rejected, count: counts?.rejected }
+  ],
+
+  // Spec: DashboardDto — the four summary cards
+  GET_REFERRAL_DASHBOARD_CARDS: (t: TFunction, dashboard?: IReferralDashboard, currency?: ICurrency): IInfoRow[] => [
+    {
+      label: t('referral.dashboard.total_referred'),
+      value: commonHelper.formatNumber(dashboard?.totalReferredCompanies ?? null, 0)
+    },
+    {
+      label: t('referral.dashboard.pending_payouts'),
+      value: commonHelper.formatMoney(dashboard?.pendingPayouts, currency)
+    },
+    {
+      label: t('referral.dashboard.total_paid'),
+      value: commonHelper.formatMoney(dashboard?.totalCommissionPaid, currency)
+    },
+    {
+      label: t('referral.dashboard.active_companies'),
+      value: commonHelper.formatNumber(dashboard?.activeReferredCompanies ?? null, 0)
+    }
+  ],
+
+  // Spec: DashboardDto — this year's figures
+  GET_REFERRAL_YEAR_ROWS: (t: TFunction, dashboard?: IReferralDashboard, currency?: ICurrency): IInfoRow[] => [
+    {
+      label: t('referral.dashboard.signups_this_year'),
+      value: commonHelper.formatNumber(dashboard?.referralSignupsThisYear ?? null, 0)
+    },
+    {
+      label: t('referral.dashboard.payouts_this_year'),
+      value: commonHelper.formatMoney(dashboard?.payoutsProcessedThisYear, currency)
+    }
+  ],
+
+  // Spec: ReferredSummaryDto — the three summary cards
+  GET_REFERRED_SUMMARY_CARDS: (t: TFunction, summary?: IReferredSummary, currency?: ICurrency): IInfoRow[] => [
+    { label: t('referral.referred.total'), value: commonHelper.formatNumber(summary?.totalReferred ?? null, 0) },
+    { label: t('referral.referred.with_plans'), value: commonHelper.formatNumber(summary?.withPlans ?? null, 0) },
+    {
+      label: t('referral.referred.total_commission'),
+      value: commonHelper.formatMoney(summary?.totalCommission, currency)
+    }
   ]
 }

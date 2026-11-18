@@ -21,7 +21,13 @@ export default [
           `${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.COUPONS}/:id`,
           'routes/dashboard/coupons/coupon-detail/index.tsx'
         ),
-        route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.CURRENCIES}`, 'routes/dashboard/currencies/index.tsx')
+        route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.CURRENCIES}`, 'routes/dashboard/currencies/index.tsx'),
+        route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.REFERRAL}`, 'routes/dashboard/referral/layout.tsx', [
+          index('routes/dashboard/referral/index.tsx'),
+          route(BASE_ROUTES.REFERRAL_REFERRED, 'routes/dashboard/referral/referred/index.tsx'),
+          route(BASE_ROUTES.REFERRAL_PAYOUTS, 'routes/dashboard/referral/payouts/index.tsx'),
+          route(BASE_ROUTES.REFERRAL_SETTINGS, 'routes/dashboard/referral/settings/index.tsx')
+        ])
       ])
     ])
   ])

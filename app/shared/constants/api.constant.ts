@@ -55,3 +55,15 @@ export const API_CURRENCY = {
   ADMIN_LIST_URL: '/saas/admin/currencies',
   ADMIN_DETAIL_URL: (id: string) => `/saas/admin/currencies/${id}`
 } as const
+
+// Spec: referral program, super admin side (ReferralController). Money is in the default currency
+export const API_REFERRAL = {
+  ADMIN_DASHBOARD_URL: '/saas/admin/referral/dashboard',
+  ADMIN_REFERRED_URL: '/saas/admin/referral/referred',
+  ADMIN_REFERRED_SUMMARY_URL: '/saas/admin/referral/referred/summary',
+  ADMIN_PAYOUTS_URL: '/saas/admin/referral/payouts',
+  ADMIN_PAYOUT_STATUS_COUNTS_URL: '/saas/admin/referral/payouts/status-counts',
+  ADMIN_PAYOUT_APPROVE_URL: (id: string) => `/saas/admin/referral/payouts/${id}/approve`,
+  ADMIN_PAYOUT_REJECT_URL: (id: string) => `/saas/admin/referral/payouts/${id}/reject`,
+  ADMIN_SETTINGS_URL: '/saas/admin/referral/settings'
+} as const

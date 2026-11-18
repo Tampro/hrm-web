@@ -13,20 +13,20 @@ import { Input } from '~/components/ui/input'
 import { currencyMgtColumn, type TCurrencyAction } from '~/helpers/columns/currency-mgt-column'
 import { formHelper } from '~/helpers/form.helper'
 import { paramsHelper } from '~/helpers/params.helper'
-import { getCurrencyFilterSchema, type TCurrencyFilterSchema } from '~/helpers/schema.helper'
+import { getKeywordFilterSchema, type TKeywordFilterSchema } from '~/helpers/schema.helper'
 import { useGetAdminListCurrencyApi, useInvalidateCurrencies } from '~/hooks/apis/use-currency-api'
 import { useMutationApi } from '~/hooks/use-mutation-api'
 import { usePagination } from '~/hooks/use-pagination'
 import { useQueryParams } from '~/hooks/use-query-params'
 import { PageLayout } from '~/layouts/page.layout'
 import { CurrencyService } from '~/services/plan.service'
-import { ECurrencyFilterFormKey } from '~/shared/enums/form.enum'
+import { EKeywordFilterFormKey } from '~/shared/enums/form.enum'
 import type { ICurrency, ICurrencyListParams } from '~/shared/models/saas.model'
 
 import { CurrencyDetailSheet } from './components/currency-detail-sheet'
 import { CurrencyFormDialog } from './components/currency-form-dialog'
 
-const DEFAULT_VALUES: TCurrencyFilterSchema = { [ECurrencyFilterFormKey.Keyword]: '' }
+const DEFAULT_VALUES: TKeywordFilterSchema = { [EKeywordFilterFormKey.Keyword]: '' }
 
 export function meta() {
   return [{ title: 'Currencies · SPECOM HRM' }]
@@ -58,14 +58,14 @@ export default function CurrenciesPage() {
 
   // Form
   const urlValues = formHelper.getDefaultValues(searchParams, DEFAULT_VALUES)
-  const form = useForm<TCurrencyFilterSchema>({
+  const form = useForm<TKeywordFilterSchema>({
     defaultValues: urlValues,
-    resolver: zodResolver(getCurrencyFilterSchema(t)),
+    resolver: zodResolver(getKeywordFilterSchema(t)),
     mode: 'all'
   })
 
   // Convert data
-  const handleConvertData = (values: TCurrencyFilterSchema = form.getValues()) => ({
+  const handleConvertData = (values: TKeywordFilterSchema = form.getValues()) => ({
     keyword: values.keyword.trim() || undefined
   })
   const listParams: ICurrencyListParams = { ...toApiPaging(), ...handleConvertData(urlValues) }
@@ -123,7 +123,7 @@ export default function CurrenciesPage() {
         noValidate
       >
         <Controller
-          name={ECurrencyFilterFormKey.Keyword}
+          name={EKeywordFilterFormKey.Keyword}
           control={form.control}
           render={({ field }) => (
             <Field>

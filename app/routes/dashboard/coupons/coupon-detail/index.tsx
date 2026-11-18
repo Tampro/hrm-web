@@ -4,6 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Link, useParams } from 'react-router'
 
 import { InfoRows } from '~/components/customs/info-rows'
+import { StatCards } from '~/components/customs/stat-cards'
 import { TableCustom } from '~/components/customs/table-custom'
 import { Badge } from '~/components/ui/badge'
 import { Button, buttonVariants } from '~/components/ui/button'
@@ -80,18 +81,11 @@ export default function CouponDetailPage() {
 
       {!isError && (
         <>
-          <section aria-label={t('coupon.detail.summary')} className='grid gap-4 sm:grid-cols-2 xl:grid-cols-4'>
-            {DATA.GET_COUPON_SUMMARY_ROWS(t, coupon, currency).map((row) => (
-              <div key={row.label} className='bg-card flex flex-col gap-1 rounded-xl border p-4'>
-                <span className='text-muted-foreground text-sm'>{row.label}</span>
-                {isLoading ? (
-                  <Skeleton className='h-7 w-24' />
-                ) : (
-                  <span className='text-xl font-semibold'>{row.value}</span>
-                )}
-              </div>
-            ))}
-          </section>
+          <StatCards
+            label={t('coupon.detail.summary')}
+            items={DATA.GET_COUPON_SUMMARY_ROWS(t, coupon, currency)}
+            loading={isLoading}
+          />
 
           <section className='bg-card flex flex-col gap-3 rounded-xl border p-4'>
             <h2 className='text-base font-semibold'>{t('coupon.detail.information')}</h2>

@@ -28,12 +28,25 @@ export interface IDecisionTarget {
 interface IProps {
   target: IDecisionTarget | undefined
   loading?: boolean
+  /** What approving / rejecting does (defaults: plan request / order wording) */
+  approveDescription?: string
+  rejectDescription?: string
   onClose: () => void
   onSubmit: (notes: string) => void
 }
 
-/** Approve / reject a plan request or order. Spec: OrderDecisionForm { notes ≤ 500 } shown to the company */
-export function DecisionDialog({ target: targetProp, loading, onClose, onSubmit }: IProps) {
+/**
+ * Approve / reject with an optional note shown to the company (≤ 500).
+ * Spec: OrderDecisionForm (plan requests, orders) and PayoutDecisionForm (referral payouts) share that shape.
+ */
+export function DecisionDialog({
+  target: targetProp,
+  loading,
+  approveDescription,
+  rejectDescription,
+  onClose,
+  onSubmit
+}: IProps) {
   const { t } = useTranslation()
   const target = useLastDefined(targetProp)
   const isReject = target?.decision === 'reject'
@@ -55,7 +68,9 @@ export function DecisionDialog({ target: targetProp, loading, onClose, onSubmit 
             {t(isReject ? 'saas.decision.reject_title' : 'saas.decision.approve_title', { name: target?.label ?? '-' })}
           </DialogTitle>
           <DialogDescription>
-            {t(isReject ? 'saas.decision.reject_description' : 'saas.decision.approve_description')}
+            {isReject
+              ? (rejectDescription ?? t('saas.decision.reject_description'))
+              : (approveDescription ?? t('saas.decision.approve_description'))}
           </DialogDescription>
         </DialogHeader>
         {/* min-w-0: a grid child would otherwise grow with long unbroken text and push the footer out of view */}
