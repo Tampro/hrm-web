@@ -28,3 +28,29 @@ export enum EUpgradePlanFormKey {
   PlanId = 'planId',
   BillingCycle = 'billingCycle'
 }
+
+export enum EPlanFormKey {
+  Code = 'code',
+  Name = 'name',
+  Description = 'description',
+  MonthlyPrice = 'monthlyPrice',
+  YearlyPrice = 'yearlyPrice',
+  MaxUsers = 'maxUsers',
+  MaxEmployees = 'maxEmployees',
+  StorageLimitGb = 'storageLimitGb',
+  EnableTrial = 'enableTrial',
+  TrialDays = 'trialDays',
+  AiIntegration = 'aiIntegration',
+  Enabled = 'enabled',
+  DefaultPlan = 'defaultPlan'
+}
+
+export enum ESaasFilterFormKey {
+  Keyword = 'keyword',
+  DateFrom = 'dateFrom',
+  DateTo = 'dateTo'
+}
+
+export enum EDecisionFormKey {
+  Notes = 'notes'
+}

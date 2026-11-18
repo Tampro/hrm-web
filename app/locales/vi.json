@@ -12,7 +12,9 @@
     "copy": "Sao chép",
     "copied": "Đã sao chép",
     "copy_failed": "Không sao chép được, hãy chép thủ công",
-    "no_permission": "Bạn không có quyền truy cập trang này."
+    "no_permission": "Bạn không có quyền truy cập trang này.",
+    "edit": "Sửa",
+    "delete": "Xoá"
   },
   "validation": {
     "required": "Vui lòng nhập thông tin này",
@@ -21,7 +23,11 @@
     "date_range": "Ngày kết thúc phải sau hoặc bằng ngày bắt đầu",
     "company_code": "Chỉ gồm chữ in hoa, số và dấu gạch dưới",
     "min_length": "Tối thiểu {{min}} ký tự",
-    "username": "Chỉ gồm chữ, số và . _ -"
+    "username": "Chỉ gồm chữ, số và . _ -",
+    "number": "Vui lòng nhập số",
+    "integer": "Vui lòng nhập số nguyên",
+    "min_value": "Giá trị tối thiểu là {{min}}",
+    "plan_code": "Bắt đầu bằng chữ in hoa; chỉ gồm chữ in hoa, số và dấu gạch dưới"
   },
   "auth": {
     "login": {
@@ -45,7 +51,8 @@
   "sidebar": {
     "dashboard": "Tổng quan",
     "companies": "Công ty",
-    "toggle": "Ẩn/hiện menu"
+    "toggle": "Ẩn/hiện menu",
+    "plans": "Gói dịch vụ"
   },
   "table": {
     "rows_per_page": "Số dòng mỗi trang",
@@ -61,7 +68,15 @@
     "NONE": "Chưa có gói",
     "TRIAL": "Dùng thử",
     "EXPIRED": "Hết hạn",
-    "LOCKED": "Đã khoá"
+    "LOCKED": "Đã khoá",
+    "MONTHLY": "Theo tháng",
+    "YEARLY": "Theo năm",
+    "PENDING": "Chờ duyệt",
+    "APPROVED": "Đã duyệt",
+    "REJECTED": "Từ chối",
+    "CANCELLED": "Đã huỷ",
+    "BANK_TRANSFER": "Chuyển khoản",
+    "MANUAL": "Thủ công"
   },
   "company": {
     "title": "Quản lý công ty",
@@ -169,6 +184,150 @@
       "login_disabled": "Đã khoá đăng nhập",
       "plan_upgraded": "Đã nâng cấp gói",
       "password_reset": "Đã đặt lại mật khẩu cho {{username}}"
+    }
+  },
+  "plan": {
+    "title": "Gói dịch vụ",
+    "subtitle": "Quản lý gói, yêu cầu đổi gói và đơn hàng của các công ty",
+    "section": {
+      "plans": "Gói",
+      "requests": "Yêu cầu gói",
+      "orders": "Đơn hàng"
+    },
+    "add": "Thêm gói",
+    "empty": "Chưa có gói nào",
+    "default": "Mặc định",
+    "unlimited": "Không giới hạn",
+    "per_month": "tháng",
+    "per_year": "năm",
+    "no_yearly_price": "Không có giá theo năm",
+    "trial_days": "Dùng thử {{count}} ngày",
+    "included": "Bao gồm",
+    "features": "Tính năng",
+    "enabled": "đang bật",
+    "disabled": "đang tắt",
+    "default_cannot_disable": "Gói mặc định không thể chuyển sang không hoạt động",
+    "default_cannot_delete": "Không thể xoá gói mặc định",
+    "field": {
+      "code": "Mã gói",
+      "name": "Tên gói",
+      "description": "Mô tả",
+      "monthly_price": "Giá theo tháng",
+      "yearly_price": "Giá theo năm",
+      "max_users": "Số tài khoản tối đa",
+      "max_employees": "Số nhân viên tối đa",
+      "storage_limit_gb": "Dung lượng (GB)",
+      "enable_trial": "Cho dùng thử",
+      "trial_days": "Số ngày dùng thử",
+      "ai_integration": "Tích hợp AI",
+      "enabled": "Hoạt động",
+      "enabled_for": "Hoạt động: {{name}}",
+      "default_plan": "Gói mặc định"
+    },
+    "form": {
+      "create_title": "Thêm gói",
+      "create_description": "Tạo gói dịch vụ cho các công ty.",
+      "edit_title": "Sửa gói",
+      "edit_description": "Mọi trường được thay thế; ô giới hạn để trống nghĩa là không giới hạn. Giới hạn mới áp dụng cho mọi công ty đang dùng gói.",
+      "code_hint": "Ví dụ STARTER. Bắt đầu bằng chữ in hoa.",
+      "yearly_hint": "Để trống nếu gói không bán theo năm.",
+      "limits_section": "Giới hạn sử dụng",
+      "limits_hint": "Để trống nghĩa là không giới hạn.",
+      "trial_hint": "Áp dụng khi gói được gán mặc định cho công ty mới.",
+      "settings_section": "Cài đặt",
+      "enabled_hint": "Gói không hoạt động sẽ không được chào bán; công ty đang dùng vẫn giữ tới khi hết hạn.",
+      "default_hint": "Đặt làm mặc định sẽ bỏ cờ mặc định của gói hiện tại.",
+      "is_default_hint": "Đây là gói mặc định. Muốn đổi, hãy đặt một gói khác làm mặc định.",
+      "create_submit": "Tạo gói"
+    },
+    "delete": {
+      "title": "Xoá gói?",
+      "description": "Xoá {{name}}: công ty đang dùng gói sẽ chuyển về gói mặc định hoặc hết hạn."
+    },
+    "toast": {
+      "created": "Đã tạo gói",
+      "updated": "Đã cập nhật gói",
+      "deleted": "Đã xoá gói",
+      "enabled": "Đã bật gói",
+      "disabled": "Đã tắt gói"
+    }
+  },
+  "saas": {
+    "tab": {
+      "all": "Tất cả",
+      "pending": "Chờ duyệt",
+      "approved": "Đã duyệt",
+      "rejected": "Từ chối",
+      "cancelled": "Đã huỷ"
+    },
+    "filter": {
+      "keyword": "Từ khoá",
+      "request_keyword_placeholder": "Công ty hoặc tên gói",
+      "order_keyword_placeholder": "Mã đơn hoặc công ty",
+      "date_from": "Từ ngày",
+      "date_to": "Đến ngày"
+    },
+    "field": {
+      "company": "Công ty",
+      "plan": "Gói",
+      "duration": "Chu kỳ",
+      "message": "Lời nhắn",
+      "status": "Trạng thái",
+      "request_date": "Ngày yêu cầu"
+    },
+    "action": {
+      "approve": "Duyệt",
+      "reject": "Từ chối",
+      "approve_named": "Duyệt {{name}}",
+      "reject_named": "Từ chối {{name}}"
+    },
+    "decision": {
+      "approve_title": "Duyệt {{name}}?",
+      "reject_title": "Từ chối {{name}}?",
+      "approve_description": "Gói được kích hoạt cho công ty trong một chu kỳ (gia hạn nếu đang dùng đúng gói này).",
+      "reject_description": "Công ty sẽ thấy lý do bạn nhập bên dưới.",
+      "notes": "Ghi chú",
+      "reason": "Lý do",
+      "notes_hint": "Không bắt buộc, tối đa 500 ký tự. Công ty sẽ thấy nội dung này."
+    },
+    "empty_filtered": "Không có kết quả phù hợp với bộ lọc",
+    "request_empty": "Chưa có yêu cầu gói nào",
+    "toast": {
+      "approved": "Đã duyệt",
+      "rejected": "Đã từ chối"
+    }
+  },
+  "order": {
+    "empty": "Chưa có đơn hàng nào",
+    "field": {
+      "order_number": "Mã đơn",
+      "company": "Công ty",
+      "company_email": "Email công ty",
+      "plan": "Gói",
+      "billing_cycle": "Chu kỳ",
+      "original_price": "Giá gốc",
+      "coupon": "Mã giảm giá",
+      "discount": "Giảm giá",
+      "final_price": "Thành tiền",
+      "payment_method": "Hình thức thanh toán",
+      "payment_reference": "Mã giao dịch",
+      "status": "Trạng thái",
+      "order_date": "Ngày đặt",
+      "processed_at": "Ngày xử lý",
+      "notes": "Ghi chú"
+    },
+    "action": {
+      "view_named": "Xem đơn {{number}}"
+    },
+    "detail": {
+      "title": "Chi tiết đơn hàng"
+    },
+    "bank": {
+      "title": "Thông tin chuyển khoản",
+      "bank_name": "Ngân hàng",
+      "account_number": "Số tài khoản",
+      "account_name": "Chủ tài khoản",
+      "transfer_content": "Nội dung chuyển khoản"
     }
   }
 }

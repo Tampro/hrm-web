@@ -5,8 +5,11 @@ import { EBillingCycle } from '~/shared/enums/company.enum'
 import {
   ECompanyFilterFormKey,
   ECompanyFormKey,
+  EDecisionFormKey,
   ELoginFormKey,
+  EPlanFormKey,
   EResetPasswordFormKey,
+  ESaasFilterFormKey,
   EUpgradePlanFormKey
 } from '~/shared/enums/form.enum'
 
@@ -87,3 +90,74 @@ export const getUpgradePlanSchema = (t?: TFunction) =>
   })
 
 export type TUpgradePlanSchema = z.infer<ReturnType<typeof getUpgradePlanSchema>>
+
+/**
+ * Number typed in a text input. Empty = not set (allowed unless `required`).
+ * `integer` rejects decimals; `min` is inclusive (backend @Min / @DecimalMin).
+ */
+const numberText = (t: TFunction | undefined, { required: isRequired = false, min = 0, integer = false } = {}) =>
+  z
+    .string()
+    .trim()
+    .refine((v) => !isRequired || v !== '', { message: required(t) })
+    .refine((v) => v === '' || (!Number.isNaN(Number(v)) && Number.isFinite(Number(v))), {
+      message: t?.('validation.number')
+    })
+    .refine((v) => v === '' || Number.isNaN(Number(v)) || !integer || Number.isInteger(Number(v)), {
+      message: t?.('validation.integer')
+    })
+    .refine((v) => v === '' || Number.isNaN(Number(v)) || Number(v) >= min, {
+      message: t?.('validation.min_value', { min })
+    })
+
+// Spec: PlanForm (hrm-be SaasDtos.java): code @Pattern [A-Z][A-Z0-9_]* ≤50, name ≤100, description ≤255,
+// monthlyPrice @NotNull ≥0, yearlyPrice ≥0 (omit = no yearly billing), maxUsers / maxEmployees @Min(1) (omit = unlimited),
+// storageLimitGb ≥0 (omit = unlimited), trialDays @Min(0)
+export const getPlanSchema = (t?: TFunction) =>
+  z
+    .object({
+      [EPlanFormKey.Code]: requiredText(50, t).regex(/^[A-Z][A-Z0-9_]*$/, t?.('validation.plan_code')),
+      [EPlanFormKey.Name]: requiredText(100, t),
+      [EPlanFormKey.Description]: z.string().trim().max(255, maxLength(255, t)),
+      [EPlanFormKey.MonthlyPrice]: numberText(t, { required: true }),
+      [EPlanFormKey.YearlyPrice]: numberText(t),
+      [EPlanFormKey.MaxUsers]: numberText(t, { min: 1, integer: true }),
+      [EPlanFormKey.MaxEmployees]: numberText(t, { min: 1, integer: true }),
+      [EPlanFormKey.StorageLimitGb]: numberText(t),
+      [EPlanFormKey.EnableTrial]: z.boolean(),
+      [EPlanFormKey.TrialDays]: numberText(t, { integer: true }),
+      [EPlanFormKey.AiIntegration]: z.boolean(),
+      [EPlanFormKey.Enabled]: z.boolean(),
+      [EPlanFormKey.DefaultPlan]: z.boolean()
+    })
+    // a trial needs a number of days (manual 3.2.3: "Enable Trial" + "Trial Days")
+    .refine((v) => !v.enableTrial || (v.trialDays !== '' && Number(v.trialDays) >= 1), {
+      path: [EPlanFormKey.TrialDays],
+      message: t?.('validation.min_value', { min: 1 })
+    })
+
+export type TPlanSchema = z.infer<ReturnType<typeof getPlanSchema>>
+
+// Spec: GET /saas/admin/orders and /plan-requests — keyword; orders also dateFrom/dateTo (YYYY-MM-DD, inclusive)
+export const getSaasFilterSchema = (t?: TFunction) =>
+  z
+    .object({
+      [ESaasFilterFormKey.Keyword]: z.string().trim().max(255, maxLength(255, t)),
+      [ESaasFilterFormKey.DateFrom]: z.string(),
+      [ESaasFilterFormKey.DateTo]: z.string()
+    })
+    .refine((v) => !v.dateFrom || !v.dateTo || v.dateFrom <= v.dateTo, {
+      path: [ESaasFilterFormKey.DateTo],
+      message: t?.('validation.date_range')
+    })
+
+export type TSaasFilterSchema = z.infer<ReturnType<typeof getSaasFilterSchema>>
+
+// Spec: OrderDecisionForm — notes ≤ 500, optional
+// TODO(assumption): a reject reason is not required by the BE; the UI asks for one but allows empty
+export const getDecisionSchema = (t?: TFunction) =>
+  z.object({
+    [EDecisionFormKey.Notes]: z.string().trim().max(500, maxLength(500, t))
+  })
+
+export type TDecisionSchema = z.infer<ReturnType<typeof getDecisionSchema>>

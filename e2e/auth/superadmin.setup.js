@@ -2,8 +2,7 @@
 // Real UI login as super admin, session saved for the "integration" project.
 import { expect, test as setup } from '@playwright/test'
 
-import { SUPERADMIN_STATE } from '../../playwright.config.js'
-import { getSuperAdmin, MISSING_SUPERADMIN } from '../utils/credentials.js'
+import { getSuperAdmin, MISSING_SUPERADMIN, SUPERADMIN_STATE } from '../utils/credentials.js'
 import { LoginPage } from './login.page.js'
 
 setup('AUTH-INT-000 đăng nhập thật bằng super admin và lưu phiên', async ({ page }) => {

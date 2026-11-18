@@ -73,7 +73,8 @@ test.describe('Công ty · danh sách', () => {
     await expect(page).toHaveURL(/keyword=alpha/)
     await expect.poll(() => listCalls.at(-1)?.query.get('keyword')).toBe('alpha')
     expect(listCalls.at(-1)?.query.get('page')).toBe('0')
-    expect(countCalls.at(-1)?.query.get('keyword')).toBe('alpha')
+    // list and counts are separate queries fired together: their order is not fixed
+    await expect.poll(() => countCalls.at(-1)?.query.get('keyword')).toBe('alpha')
     await expect(companiesPage.searchButton).toContainText('1')
 
     await page.reload()

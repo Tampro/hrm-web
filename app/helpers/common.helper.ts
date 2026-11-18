@@ -17,5 +17,28 @@ export const commonHelper = {
     }).format(value)
   },
 
-  getLocale: () => LOCALE_BY_LANGUAGE[i18next.language] ?? 'vi-VN'
+  getLocale: () => LOCALE_BY_LANGUAGE[i18next.language] ?? 'vi-VN',
+
+  /**
+   * Money in a currency: ISO code → Intl currency format (e.g. 490.000 ₫), otherwise the number + symbol/code.
+   * '-' when the amount is missing.
+   */
+  formatMoney: (value: number | null | undefined, currency?: { code?: string; symbol?: string | null } | null) => {
+    if (value === null || value === undefined || Number.isNaN(value)) return '-'
+    const locale = commonHelper.getLocale()
+    if (currency?.code) {
+      try {
+        return new Intl.NumberFormat(locale, { style: 'currency', currency: currency.code }).format(value)
+      } catch {
+        // not an ISO 4217 code: fall through to number + symbol
+      }
+    }
+    const amount = new Intl.NumberFormat(locale, { maximumFractionDigits: 2 }).format(value)
+    const unit = currency?.symbol || currency?.code
+    return unit ? `${amount} ${unit}` : amount
+  },
+
+  /** Value from the URL when it is one of the enum values, otherwise the fallback */
+  toEnumValue: <T extends string>(value: string | null | undefined, values: readonly T[], fallback: T): T =>
+    values.includes(value as T) ? (value as T) : fallback
 }

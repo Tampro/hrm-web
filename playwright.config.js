@@ -3,6 +3,8 @@ import { existsSync } from 'node:fs'
 
 import { defineConfig, devices } from '@playwright/test'
 
+import { SUPERADMIN_STATE } from './e2e/utils/credentials.js'
+
 // Local credentials for tests against the real backend (HRM_SUPERADMIN / HRM_SUPERADMIN_INITIAL_PASSWORD).
 // Loaded into process.env only; never logged. Missing file or variables → those tests skip.
 if (existsSync('.env')) process.loadEnvFile('.env')
@@ -14,8 +16,6 @@ const PORT = 4173
 const baseURL = process.env.E2E_BASE_URL || `http://localhost:${PORT}`
 // API tests talk to the backend directly (default: local IAM). Never point this at production.
 const apiURL = process.env.E2E_API_URL || 'http://localhost:8081/api/v1/'
-
-export const SUPERADMIN_STATE = '.auth/superadmin.json'
 
 export default defineConfig({
   testDir: './e2e',
@@ -55,10 +55,12 @@ export default defineConfig({
       fullyParallel: false,
       use: { ...devices['Desktop Chrome'], viewport: { width: 1440, height: 900 }, storageState: SUPERADMIN_STATE }
     },
-    // Backend contract tests: <feature>/*.api.spec.js (need the backend running)
+    // Backend contract tests: <feature>/*.api.spec.js (need the backend running). They reuse the token of the single
+    // real login done by "setup" — never log in per file (parallel logins gave AUTH_001 and risk an account lockout).
     {
       name: 'api',
       testMatch: /.*\.api\.spec\.js/,
+      dependencies: ['setup'],
       use: { baseURL: apiURL, extraHTTPHeaders: { 'Accept-Language': 'vi' } }
     }
   ],

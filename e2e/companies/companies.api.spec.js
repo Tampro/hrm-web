@@ -3,7 +3,7 @@
 // Authorised checks use HRM_SUPERADMIN_* (loaded from .env by playwright.config.js) and only READ data.
 import { expect, test } from '@playwright/test'
 
-import { getSuperAdmin, loginSuperAdmin, MISSING_SUPERADMIN } from '../utils/credentials.js'
+import { getSuperAdmin, MISSING_SUPERADMIN, readSuperAdminToken } from '../utils/credentials.js'
 
 test.describe('IAM companies API', () => {
   test('CMP-API-001 danh sách công ty không có token → 401 COMMON_003', async ({ request }) => {
@@ -22,17 +22,12 @@ test.describe('IAM companies API', () => {
 
 test.describe('IAM companies API · super admin', () => {
   test.skip(!getSuperAdmin(), MISSING_SUPERADMIN)
-  // one worker, one login: parallel workers each logging in at once got intermittent AUTH_001 (2026-11-19)
-  test.describe.configure({ mode: 'serial' })
 
   /** @type {Record<string, string>} */
   let auth = {}
-  test.beforeAll(async ({ playwright }) => {
-    const request = await playwright.request.newContext({
-      baseURL: process.env.E2E_API_URL || 'http://localhost:8081/api/v1/'
-    })
-    auth = { Authorization: `Bearer ${await loginSuperAdmin(request)}` }
-    await request.dispose()
+  // token of the single real login done by the setup project
+  test.beforeAll(() => {
+    auth = { Authorization: `Bearer ${readSuperAdminToken()}` }
   })
 
   test('CMP-API-010 /me của super admin có superAdmin = true', async ({ request }) => {

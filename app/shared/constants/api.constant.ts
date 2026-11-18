@@ -17,7 +17,31 @@ export const API_COMPANY = {
   RESET_PASSWORD_URL: (id: string) => `/iam/companies/${id}/reset-password`
 } as const
 
-// Spec: SaaS admin — all plans, enabled or not
+// Spec: SaaS admin plans — list (enabled or not), create, full-replacement update, soft delete, active toggle
 export const API_PLAN = {
-  ADMIN_LIST_URL: '/saas/admin/plans'
+  ADMIN_LIST_URL: '/saas/admin/plans',
+  ADMIN_DETAIL_URL: (id: string) => `/saas/admin/plans/${id}`,
+  ADMIN_STATUS_URL: (id: string) => `/saas/admin/plans/${id}/status`
+} as const
+
+// Spec: SaaS admin plan requests (Plan Requests page)
+export const API_PLAN_REQUEST = {
+  ADMIN_LIST_URL: '/saas/admin/plan-requests',
+  ADMIN_STATUS_COUNTS_URL: '/saas/admin/plan-requests/status-counts',
+  ADMIN_APPROVE_URL: (id: string) => `/saas/admin/plan-requests/${id}/approve`,
+  ADMIN_REJECT_URL: (id: string) => `/saas/admin/plan-requests/${id}/reject`
+} as const
+
+// Spec: SaaS admin orders (Plan Orders page)
+export const API_ORDER = {
+  ADMIN_LIST_URL: '/saas/admin/orders',
+  ADMIN_STATUS_COUNTS_URL: '/saas/admin/orders/status-counts',
+  ADMIN_DETAIL_URL: (id: string) => `/saas/admin/orders/${id}`,
+  ADMIN_APPROVE_URL: (id: string) => `/saas/admin/orders/${id}/approve`,
+  ADMIN_REJECT_URL: (id: string) => `/saas/admin/orders/${id}/reject`
+} as const
+
+// Spec: currencies for pickers / price display, default first
+export const API_CURRENCY = {
+  LIST_URL: '/saas/currencies'
 } as const
