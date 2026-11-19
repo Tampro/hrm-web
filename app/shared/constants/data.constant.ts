@@ -1,5 +1,16 @@
 import type { TFunction } from 'i18next'
-import { Building2, Coins, Gift, LayoutDashboard, Mail, Package, Settings, TicketPercent, Users } from 'lucide-react'
+import {
+  Building2,
+  Coins,
+  GitBranch,
+  Gift,
+  LayoutDashboard,
+  Mail,
+  Package,
+  Settings,
+  TicketPercent,
+  Users
+} from 'lucide-react'
 
 import { commonHelper } from '~/helpers/common.helper'
 import { dateHelper } from '~/helpers/date.helper'
@@ -14,6 +25,7 @@ import {
   EGender,
   ELetterType
 } from '~/shared/enums/employee.enum'
+import { EOrgStatus } from '~/shared/enums/org.enum'
 import { EPayoutStatus } from '~/shared/enums/referral.enum'
 import { ESaasRequestStatus } from '~/shared/enums/saas.enum'
 import {
@@ -33,6 +45,7 @@ import type { ICompanyInfo, ICompanyStatusCounts } from '~/shared/models/company
 import type { ICoupon, ICouponStatusCounts } from '~/shared/models/coupon.model'
 import type { IEmailTemplatePreview } from '~/shared/models/email-template.model'
 import type { IEmployeeBanking, IEmployeeDetail, IEmployeeStatusCounts } from '~/shared/models/employee.model'
+import type { IBranch } from '~/shared/models/org.model'
 import type { IPlan } from '~/shared/models/plan.model'
 import type { IPayoutStatusCounts, IReferralDashboard, IReferredSummary } from '~/shared/models/referral.model'
 import type { IAdminOrder, ICurrency, ISaasStatusCounts } from '~/shared/models/saas.model'
@@ -46,6 +59,7 @@ export const DATA = {
   GET_SIDEBAR_ITEMS: (t: TFunction): ISidebarItem[] => [
     { label: t('sidebar.dashboard'), route: ROUTES.DASHBOARD, icon: LayoutDashboard },
     { label: t('sidebar.employees'), route: ROUTES.EMPLOYEES, icon: Users, permission: 'EMPLOYEE_VIEW' },
+    { label: t('sidebar.branches'), route: ROUTES.BRANCHES, icon: GitBranch, permission: 'ORG_VIEW' },
     { label: t('sidebar.companies'), route: ROUTES.COMPANIES, icon: Building2, superAdminOnly: true },
     { label: t('sidebar.plans'), route: ROUTES.PLANS, icon: Package, superAdminOnly: true },
     { label: t('sidebar.coupons'), route: ROUTES.COUPONS, icon: TicketPercent, superAdminOnly: true },
@@ -300,6 +314,30 @@ export const DATA = {
     { label: t('employee.field.bank_branch'), value: b?.bankBranch || '-' },
     { label: t('employee.field.tax_payer_id'), value: b?.taxPayerId || '-' },
     { label: t('employee.field.base_salary'), value: commonHelper.formatMoney(b?.baseSalary) }
+  ],
+
+  // Spec: list filter status ACTIVE | INACTIVE (omitted = all); no status-counts endpoint for branches
+  GET_ORG_STATUS_TABS: (t: TFunction): ITabOption<EOrgStatus>[] => [
+    { label: t('employee.tab.all'), value: EOrgStatus.All },
+    { label: t('enum.ACTIVE'), value: EOrgStatus.Active },
+    { label: t('enum.INACTIVE'), value: EOrgStatus.Inactive }
+  ],
+
+  // Spec: BranchDto — the counts are filled only by GET /org/branches/{id}
+  GET_BRANCH_DETAIL_ROWS: (t: TFunction, b: IBranch | undefined, translateEnum: TTranslateEnum): IInfoRow[] => [
+    { label: t('branch.field.name'), value: b?.name || '-' },
+    { label: t('branch.field.status'), value: translateEnum(b?.status) },
+    { label: t('branch.field.address'), value: b?.address || '-' },
+    { label: t('branch.field.city'), value: b?.city || '-' },
+    { label: t('branch.field.state'), value: b?.state || '-' },
+    { label: t('branch.field.country'), value: b?.country || '-' },
+    { label: t('branch.field.postal_code'), value: b?.postalCode || '-' },
+    { label: t('branch.field.phone'), value: b?.phone || '-' },
+    { label: t('branch.field.email'), value: b?.email || '-' },
+    { label: t('branch.field.department_count'), value: commonHelper.formatNumber(b?.departmentCount, 0) },
+    { label: t('branch.field.employee_count'), value: commonHelper.formatNumber(b?.employeeCount, 0) },
+    { label: t('branch.field.created_at'), value: dateHelper.formatDateTime(b?.createdDate) },
+    { label: t('branch.field.updated_at'), value: dateHelper.formatDateTime(b?.updatedDate) }
   ],
 
   // Spec: Rendered {fromName, subject, html} of the email template preview

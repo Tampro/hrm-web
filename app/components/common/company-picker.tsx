@@ -4,7 +4,7 @@ import { useTranslation } from 'react-i18next'
 import { Field, FieldLabel } from '~/components/ui/field'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '~/components/ui/select'
 import { useGetListCompanyApi } from '~/hooks/apis/use-company-api'
-import { useEmployeeCompany } from '~/hooks/apis/use-employee-api'
+import { useCompanyScope } from '~/hooks/use-company-scope'
 import { useQueryParams } from '~/hooks/use-query-params'
 
 /**
@@ -13,7 +13,7 @@ import { useQueryParams } from '~/hooks/use-query-params'
  */
 export function CompanyPicker() {
   const { t } = useTranslation()
-  const { isSuperAdmin, companyId } = useEmployeeCompany()
+  const { isSuperAdmin, companyId } = useCompanyScope()
   const { setQuery } = useQueryParams()
   // super admin lists every company; 100 covers the platform for now
   const { dataList, isLoading } = useGetListCompanyApi({ params: { page: 0, size: 100 }, enabled: isSuperAdmin })
@@ -48,12 +48,12 @@ export function CompanyPicker() {
 }
 
 /** Shown in place of the page body until a super admin picks a company */
-export function PickCompanyHint() {
+export function PickCompanyHint({ message }: { message?: string }) {
   const { t } = useTranslation()
   return (
     <div className='bg-card text-muted-foreground flex flex-col items-center gap-2 rounded-xl border p-10 text-center'>
       <Building2 className='size-8' />
-      <p>{t('employee.company_picker.hint')}</p>
+      <p>{message ?? t('employee.company_picker.hint')}</p>
     </div>
   )
 }

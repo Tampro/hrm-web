@@ -7,6 +7,7 @@ import { CompaniesPage } from '../companies/companies.page.js'
 import { CouponsPage } from '../coupons/coupons.page.js'
 import { CurrenciesPage } from '../currencies/currencies.page.js'
 import { ReferralPage } from '../referral/referral.page.js'
+import { BranchesPage } from '../branches/branches.page.js'
 import { EmailTemplatesPage } from '../email-templates/email-templates.page.js'
 import { EmployeesPage } from '../employees/employees.page.js'
 import { SettingsPage } from '../settings/settings.page.js'
@@ -23,6 +24,7 @@ import { mockApi } from '../utils/mock-api.js'
  * @property {SettingsPage} settingsPage
  * @property {EmailTemplatesPage} emailTemplatesPage
  * @property {EmployeesPage} employeesPage
+ * @property {BranchesPage} branchesPage
  * @property {PlansPage} plansPage
  * @property {SaasListPage} saasListPage
  * @property {ReturnType<typeof mockApi>} api  Helpers to stub backend responses (register before page.goto)
@@ -53,6 +55,9 @@ export const test = base.extend({
   },
   employeesPage: async ({ page }, use) => {
     await use(new EmployeesPage(page))
+  },
+  branchesPage: async ({ page }, use) => {
+    await use(new BranchesPage(page))
   },
   plansPage: async ({ page }, use) => {
     await use(new PlansPage(page))

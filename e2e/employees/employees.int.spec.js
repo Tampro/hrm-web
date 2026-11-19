@@ -120,7 +120,11 @@ test.describe('Nhân viên · backend thật', () => {
     createdId = ''
 
     await expect(page).toHaveURL(/\/dashboard\/employees\?.*companyId=\d+/)
-    const list = nextCall(page, 'GET', /\/employees$/)
+    // the search request only: the list's own first load (no keyword) can still be in flight
+    const list = page.waitForResponse(
+      (r) =>
+        /\/api\/v1\/employees$/.test(new URL(r.url()).pathname) && new URL(r.url()).searchParams.get('keyword') === NAME
+    )
     await employeesPage.keyword.fill(NAME)
     await employeesPage.searchButton.click()
     expect((await (await list).json()).data.totalElements).toBe(0)

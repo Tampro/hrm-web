@@ -72,7 +72,8 @@
     "referral": "Referral",
     "settings": "System settings",
     "email_templates": "Email templates",
-    "employees": "Employees"
+    "employees": "Employees",
+    "branches": "Branches"
   },
   "table": {
     "rows_per_page": "Rows per page",
@@ -994,6 +995,59 @@
       "empty": "No employees in the chart yet.",
       "active": "Active",
       "inactive": "Inactive"
+    }
+  },
+  "branch": {
+    "title": "Branches",
+    "subtitle": "Offices of the company. An inactive branch cannot be assigned to an employee.",
+    "add": "Add branch",
+    "empty": "No branches yet.",
+    "keyword_placeholder": "Name, email or phone",
+    "pick_company": "Choose a company to see and manage its branches.",
+    "field": {
+      "name": "Branch name",
+      "address": "Address",
+      "city": "City",
+      "state": "State / province",
+      "country": "Country",
+      "postal_code": "Postal code",
+      "phone": "Phone",
+      "email": "Email",
+      "contact": "Contact",
+      "status": "Status",
+      "active": "Active",
+      "department_count": "Departments",
+      "employee_count": "Employees",
+      "created_at": "Created",
+      "updated_at": "Updated"
+    },
+    "form": {
+      "create_title": "Add branch",
+      "edit_title": "Edit branch",
+      "description": "The branch name must be unique in the company.",
+      "name_placeholder": "e.g. Head office",
+      "active_hint": "Off stops assigning the branch; current employees keep it.",
+      "create_submit": "Add branch"
+    },
+    "detail": {
+      "title": "Branch details"
+    },
+    "action": {
+      "view_named": "View {{name}}",
+      "edit_named": "Edit {{name}}",
+      "delete_named": "Delete {{name}}",
+      "toggle_named": "Turn {{name}} on or off"
+    },
+    "delete": {
+      "title": "Delete the branch?",
+      "description": "Delete \"{{name}}\". Refused while a department or an employee uses it."
+    },
+    "toast": {
+      "created": "Branch added",
+      "updated": "Branch saved",
+      "deleted": "Branch deleted",
+      "activated": "Branch activated",
+      "deactivated": "Branch deactivated"
     }
   }
 }

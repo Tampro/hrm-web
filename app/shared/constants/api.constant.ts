@@ -94,6 +94,9 @@ export const API_EMPLOYEE = {
 
 // Spec: employee-service org dropdowns (active items only) and document types
 export const API_ORG = {
+  BRANCHES_URL: '/org/branches',
+  BRANCH_URL: (id: string) => '/org/branches/' + id,
+  BRANCH_STATUS_URL: (id: string) => '/org/branches/' + id + '/status',
   BRANCH_OPTIONS_URL: '/org/branches/options',
   DEPARTMENT_OPTIONS_URL: '/org/departments/options',
   DESIGNATION_OPTIONS_URL: '/org/designations/options',
