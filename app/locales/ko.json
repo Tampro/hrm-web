@@ -72,7 +72,8 @@
     "referral": "추천",
     "settings": "시스템 설정",
     "email_templates": "이메일 템플릿",
-    "employees": "직원"
+    "employees": "직원",
+    "branches": "지점"
   },
   "table": {
     "rows_per_page": "페이지당 행 수",
@@ -994,6 +995,59 @@
       "empty": "조직도에 직원이 없습니다.",
       "active": "재직 중",
       "inactive": "비활성"
+    }
+  },
+  "branch": {
+    "title": "지점",
+    "subtitle": "회사의 지점(사무소)입니다. 비활성 지점은 직원에게 배정할 수 없습니다.",
+    "add": "지점 추가",
+    "empty": "지점이 없습니다.",
+    "keyword_placeholder": "이름, 이메일 또는 전화",
+    "pick_company": "지점을 보고 관리할 회사를 선택하세요.",
+    "field": {
+      "name": "지점명",
+      "address": "주소",
+      "city": "도시",
+      "state": "시/도",
+      "country": "국가",
+      "postal_code": "우편번호",
+      "phone": "전화",
+      "email": "이메일",
+      "contact": "연락처",
+      "status": "상태",
+      "active": "활성",
+      "department_count": "부서 수",
+      "employee_count": "직원 수",
+      "created_at": "생성일",
+      "updated_at": "수정일"
+    },
+    "form": {
+      "create_title": "지점 추가",
+      "edit_title": "지점 수정",
+      "description": "지점명은 회사 내에서 중복될 수 없습니다.",
+      "name_placeholder": "예: 본사",
+      "active_hint": "끄면 더 이상 배정되지 않으며 기존 직원은 유지됩니다.",
+      "create_submit": "지점 추가"
+    },
+    "detail": {
+      "title": "지점 상세"
+    },
+    "action": {
+      "view_named": "{{name}} 보기",
+      "edit_named": "{{name}} 수정",
+      "delete_named": "{{name}} 삭제",
+      "toggle_named": "{{name}} 활성/비활성"
+    },
+    "delete": {
+      "title": "지점을 삭제할까요?",
+      "description": "\"{{name}}\"을(를) 삭제합니다. 부서나 직원이 사용 중이면 삭제할 수 없습니다."
+    },
+    "toast": {
+      "created": "지점이 추가되었습니다",
+      "updated": "지점이 저장되었습니다",
+      "deleted": "지점이 삭제되었습니다",
+      "activated": "지점이 활성화되었습니다",
+      "deactivated": "지점이 비활성화되었습니다"
     }
   }
 }

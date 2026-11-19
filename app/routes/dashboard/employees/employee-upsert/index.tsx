@@ -12,12 +12,8 @@ import { Skeleton } from '~/components/ui/skeleton'
 import { EMPLOYEE_DEFAULT_VALUES, EMPLOYEE_STEP_FIELDS, employeeHelper } from '~/helpers/employee.helper'
 import { getEmployeeSchema, type TEmployeeSchema } from '~/helpers/schemas/employee.schema'
 import { useMeApi } from '~/hooks/apis/use-auth-api'
-import {
-  useDocumentTypesApi,
-  useEmployeeCompany,
-  useGetEmployeeDetailApi,
-  useInvalidateEmployees
-} from '~/hooks/apis/use-employee-api'
+import { useDocumentTypesApi, useGetEmployeeDetailApi, useInvalidateEmployees } from '~/hooks/apis/use-employee-api'
+import { useCompanyScope } from '~/hooks/use-company-scope'
 import { useMutationApi } from '~/hooks/use-mutation-api'
 import { PageLayout } from '~/layouts/page.layout'
 import { EmployeeService, MediaService } from '~/services/employee.service'
@@ -25,7 +21,7 @@ import { DATA } from '~/shared/constants/data.constant'
 import { ROUTES } from '~/shared/constants/routes.constant'
 import { EEmployeeStep } from '~/shared/enums/employee.enum'
 
-import { CompanyPicker, PickCompanyHint } from '../components/company-picker'
+import { CompanyPicker, PickCompanyHint } from '~/components/common/company-picker'
 import { EmployeeStepper } from './components/employee-stepper'
 import { StepAccount } from './components/step-account'
 import { StepBanking } from './components/step-banking'
@@ -56,7 +52,7 @@ export default function EmployeeUpsertPage() {
 
   // API
   const { detail, isLoading: isLoadingDetail, isError } = useGetEmployeeDetailApi({ id, enabled: !isCreate })
-  const company = useEmployeeCompany()
+  const company = useCompanyScope()
   // edit: the employee's own company (super admin); create: the picked one
   const companyId = isCreate ? company.companyId : company.isSuperAdmin ? detail?.companyId : undefined
   const isReady = isCreate ? company.isReady : !!detail

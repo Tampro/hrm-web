@@ -72,7 +72,8 @@
     "referral": "Giới thiệu",
     "settings": "Cài đặt hệ thống",
     "email_templates": "Mẫu email",
-    "employees": "Hồ sơ nhân viên"
+    "employees": "Hồ sơ nhân viên",
+    "branches": "Chi nhánh"
   },
   "table": {
     "rows_per_page": "Số dòng mỗi trang",
@@ -994,6 +995,59 @@
       "empty": "Chưa có nhân viên trong sơ đồ.",
       "active": "Đang làm việc",
       "inactive": "Tạm nghỉ"
+    }
+  },
+  "branch": {
+    "title": "Chi nhánh",
+    "subtitle": "Các chi nhánh / văn phòng của công ty. Chi nhánh tạm ngưng không gán được cho nhân viên mới.",
+    "add": "Thêm chi nhánh",
+    "empty": "Chưa có chi nhánh.",
+    "keyword_placeholder": "Tên, email hoặc điện thoại",
+    "pick_company": "Chọn công ty để xem và quản lý chi nhánh.",
+    "field": {
+      "name": "Tên chi nhánh",
+      "address": "Địa chỉ",
+      "city": "Thành phố",
+      "state": "Tỉnh / bang",
+      "country": "Quốc gia",
+      "postal_code": "Mã bưu chính",
+      "phone": "Điện thoại",
+      "email": "Email",
+      "contact": "Liên hệ",
+      "status": "Trạng thái",
+      "active": "Đang hoạt động",
+      "department_count": "Số phòng ban",
+      "employee_count": "Số nhân viên",
+      "created_at": "Ngày tạo",
+      "updated_at": "Cập nhật"
+    },
+    "form": {
+      "create_title": "Thêm chi nhánh",
+      "edit_title": "Sửa chi nhánh",
+      "description": "Tên chi nhánh không được trùng trong công ty.",
+      "name_placeholder": "VD: Trụ sở chính",
+      "active_hint": "Tắt để ngừng gán chi nhánh cho nhân viên; nhân viên hiện có được giữ nguyên.",
+      "create_submit": "Thêm chi nhánh"
+    },
+    "detail": {
+      "title": "Chi tiết chi nhánh"
+    },
+    "action": {
+      "view_named": "Xem {{name}}",
+      "edit_named": "Sửa {{name}}",
+      "delete_named": "Xoá {{name}}",
+      "toggle_named": "Bật / tắt {{name}}"
+    },
+    "delete": {
+      "title": "Xoá chi nhánh?",
+      "description": "Xoá \"{{name}}\". Không xoá được khi còn phòng ban hoặc nhân viên thuộc chi nhánh này."
+    },
+    "toast": {
+      "created": "Đã thêm chi nhánh",
+      "updated": "Đã lưu chi nhánh",
+      "deleted": "Đã xoá chi nhánh",
+      "activated": "Đã bật chi nhánh",
+      "deactivated": "Đã tạm ngưng chi nhánh"
     }
   }
 }

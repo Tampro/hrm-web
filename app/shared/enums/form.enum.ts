@@ -237,3 +237,15 @@ export enum EEmployeePasswordFormKey {
   NewPassword = 'newPassword',
   ConfirmPassword = 'confirmPassword'
 }
+
+export enum EBranchFormKey {
+  Name = 'name',
+  Address = 'address',
+  City = 'city',
+  State = 'state',
+  Country = 'country',
+  PostalCode = 'postalCode',
+  Phone = 'phone',
+  Email = 'email',
+  Active = 'active'
+}

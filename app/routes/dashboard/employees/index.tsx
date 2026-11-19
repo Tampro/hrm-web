@@ -14,7 +14,8 @@ import { commonHelper } from '~/helpers/common.helper'
 import { formHelper } from '~/helpers/form.helper'
 import { paramsHelper } from '~/helpers/params.helper'
 import { getEmployeeFilterSchema, type TEmployeeFilterSchema } from '~/helpers/schemas/employee.schema'
-import { useEmployeeCompany, useGetEmployeeStatusCountsApi, useGetListEmployeeApi } from '~/hooks/apis/use-employee-api'
+import { useGetEmployeeStatusCountsApi, useGetListEmployeeApi } from '~/hooks/apis/use-employee-api'
+import { useCompanyScope } from '~/hooks/use-company-scope'
 import { useMeApi } from '~/hooks/apis/use-auth-api'
 import { usePagination } from '~/hooks/use-pagination'
 import { useQueryParams } from '~/hooks/use-query-params'
@@ -27,7 +28,7 @@ import { EEmployeeStatus } from '~/shared/enums/employee.enum'
 import { EEmployeeFilterFormKey } from '~/shared/enums/form.enum'
 import type { IEmployeeListParams } from '~/shared/models/employee.model'
 
-import { CompanyPicker, PickCompanyHint } from './components/company-picker'
+import { CompanyPicker, PickCompanyHint } from '~/components/common/company-picker'
 import { EmployeeFilterBar } from './components/employee-filter-bar'
 import { ImportEmployeesDialog } from './components/import-employees-dialog'
 
@@ -51,7 +52,7 @@ export default function EmployeesPage() {
   const { t } = useTranslation()
   const { getTranslateEnum } = useTransferEnum()
   const { data: me } = useMeApi()
-  const { companyId, isSuperAdmin, isReady } = useEmployeeCompany()
+  const { companyId, isSuperAdmin, isReady } = useCompanyScope()
   const can = (permission: string) => !!me?.superAdmin || !!me?.permissions?.includes(permission)
   const [isImportOpen, setIsImportOpen] = useState(false)
   const [isExporting, setIsExporting] = useState(false)
@@ -140,7 +141,9 @@ export default function EmployeesPage() {
 
   // Sync data and url
   useEffect(() => {
-    setQuery(paramsHelper.employeeToSearchParams(searchParams, DEFAULT_VALUES, tab, companyId))
+    setQuery(
+      paramsHelper.employeeToSearchParams(searchParams, DEFAULT_VALUES, tab, searchParams.get('companyId') ?? undefined)
+    )
   }, [])
 
   return (

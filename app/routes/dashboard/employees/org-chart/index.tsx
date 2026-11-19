@@ -7,14 +7,14 @@ import { Avatar } from '~/components/customs/avatar-custom'
 import { buttonVariants } from '~/components/ui/button'
 import { cn } from '~/lib/utils'
 import { Skeleton } from '~/components/ui/skeleton'
-import { useEmployeeCompany } from '~/hooks/apis/use-employee-api'
+import { useCompanyScope } from '~/hooks/use-company-scope'
 import { PageLayout } from '~/layouts/page.layout'
 import { EmployeeService } from '~/services/employee.service'
 import { QUERY_KEY } from '~/shared/constants/query-key.constant'
 import { ROUTES } from '~/shared/constants/routes.constant'
 import type { IOrgChartNode } from '~/shared/models/employee.model'
 
-import { CompanyPicker, PickCompanyHint } from '../components/company-picker'
+import { CompanyPicker, PickCompanyHint } from '~/components/common/company-picker'
 
 export function meta() {
   return [{ title: 'Organization chart · SPECOM HRM' }]
@@ -56,7 +56,7 @@ function ChartNode({ node }: { node: IOrgChartNode }) {
 // they report to (profile.reportsToId); terminated employees are left out.
 export default function OrgChartPage() {
   const { t } = useTranslation()
-  const { companyId, isSuperAdmin, isReady } = useEmployeeCompany()
+  const { companyId, isSuperAdmin, isReady } = useCompanyScope()
   const { data: chart, isLoading } = useQuery({
     queryKey: [QUERY_KEY.EMPLOYEE.GET_ORG_CHART, companyId],
     queryFn: () => EmployeeService.GetOrgChart({ companyId }),
