@@ -153,6 +153,15 @@ export enum EStorageSettingsFormKey {
   MaxUploadSizeKb = 'maxUploadSizeKb'
 }
 
+export enum EEmailTemplateSettingsFormKey {
+  FromName = 'fromName'
+}
+
+export enum EEmailTemplateContentFormKey {
+  Subject = 'subject',
+  Content = 'content'
+}
+
 export enum ESeoSettingsFormKey {
   MetaKeywords = 'metaKeywords',
   MetaDescription = 'metaDescription',

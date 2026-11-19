@@ -1,5 +1,5 @@
 import type { TFunction } from 'i18next'
-import { Building2, Coins, Gift, LayoutDashboard, Package, Settings, TicketPercent } from 'lucide-react'
+import { Building2, Coins, Gift, LayoutDashboard, Mail, Package, Settings, TicketPercent } from 'lucide-react'
 
 import { commonHelper } from '~/helpers/common.helper'
 import { dateHelper } from '~/helpers/date.helper'
@@ -23,6 +23,7 @@ import {
 import type { IInfoRow, ISidebarItem, ITabItem, ITabOption } from '~/shared/models/common.model'
 import type { ICompanyInfo, ICompanyStatusCounts } from '~/shared/models/company.model'
 import type { ICoupon, ICouponStatusCounts } from '~/shared/models/coupon.model'
+import type { IEmailTemplatePreview } from '~/shared/models/email-template.model'
 import type { IPlan } from '~/shared/models/plan.model'
 import type { IPayoutStatusCounts, IReferralDashboard, IReferredSummary } from '~/shared/models/referral.model'
 import type { IAdminOrder, ICurrency, ISaasStatusCounts } from '~/shared/models/saas.model'
@@ -40,6 +41,7 @@ export const DATA = {
     { label: t('sidebar.coupons'), route: ROUTES.COUPONS, icon: TicketPercent, superAdminOnly: true },
     { label: t('sidebar.currencies'), route: ROUTES.CURRENCIES, icon: Coins, superAdminOnly: true },
     { label: t('sidebar.referral'), route: ROUTES.REFERRAL, icon: Gift, superAdminOnly: true },
+    { label: t('sidebar.email_templates'), route: ROUTES.EMAIL_TEMPLATES, icon: Mail, superAdminOnly: true },
     { label: t('sidebar.settings'), route: ROUTES.SETTINGS, icon: Settings, superAdminOnly: true }
   ],
 
@@ -204,6 +206,12 @@ export const DATA = {
     value === null || value === undefined ? t('coupon.no_limit') : commonHelper.formatMoney(value, currency),
 
   // Manual 3.2.5 View: currency information. Spec: CurrencyDto
+  // Spec: Rendered {fromName, subject, html} of the email template preview
+  GET_EMAIL_PREVIEW_ROWS: (t: TFunction, preview: IEmailTemplatePreview | undefined): IInfoRow[] => [
+    { label: t('email_template.field.from_name'), value: preview?.fromName || '-' },
+    { label: t('email_template.field.subject'), value: preview?.subject || '-' }
+  ],
+
   GET_CURRENCY_DETAIL_ROWS: (t: TFunction, currency: ICurrency | undefined): IInfoRow[] => [
     { label: t('currency.field.name'), value: currency?.name || '-' },
     { label: t('currency.field.code'), value: currency?.code || '-' },

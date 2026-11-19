@@ -67,7 +67,8 @@
     "coupons": "Mã giảm giá",
     "currencies": "Tiền tệ",
     "referral": "Giới thiệu",
-    "settings": "Cài đặt hệ thống"
+    "settings": "Cài đặt hệ thống",
+    "email_templates": "Mẫu email"
   },
   "table": {
     "rows_per_page": "Số dòng mỗi trang",
@@ -716,6 +717,48 @@
       "contact": "Liên hệ",
       "contact_description": "Nội dung liên hệ",
       "contact_url": "Đường dẫn liên hệ"
+    }
+  },
+  "email_template": {
+    "title": "Mẫu email",
+    "subtitle": "Nội dung các email hệ thống tự gửi, theo từng ngôn ngữ.",
+    "keyword_placeholder": "Tên mẫu hoặc tên người gửi",
+    "empty": "Chưa có mẫu email.",
+    "back": "Quay lại danh sách mẫu email",
+    "not_found": "Mẫu email không tồn tại.",
+    "toggleable": "Công ty có thể tắt",
+    "settings_title": "Thiết lập",
+    "from_name_hint": "Có thể dùng biến, ví dụ {app_name}.",
+    "content_title": "Nội dung",
+    "content_description": "Tiêu đề và nội dung HTML cho từng ngôn ngữ. Đổi tab sẽ bỏ các thay đổi chưa lưu.",
+    "content_hint": "HTML, ví dụ <p>Xin chào {user_name},</p>. Giá trị điền vào biến được mã hoá HTML khi gửi.",
+    "no_content": "Ngôn ngữ này chưa có nội dung. Khi gửi, hệ thống dùng bản tiếng Anh.",
+    "variables_title": "Biến có thể dùng",
+    "variables_hint": "Bấm để sao chép, rồi dán vào tiêu đề hoặc nội dung.",
+    "copy_variable": "Sao chép {{name}}",
+    "field": {
+      "name": "Tên mẫu",
+      "from_name": "Tên người gửi",
+      "created_date": "Ngày tạo",
+      "subject": "Tiêu đề email",
+      "content": "Nội dung email"
+    },
+    "preview": {
+      "open": "Xem trước",
+      "title": "Xem trước email",
+      "description": "Bản đã lưu, các biến được thay bằng [tên_biến].",
+      "body": "Nội dung email xem trước",
+      "save_first": "Lưu thay đổi trước khi xem trước"
+    },
+    "name": {
+      "USER_CREATE": "Tạo người dùng",
+      "COMPANY_CREATE": "Tạo công ty",
+      "PLAN_ORDER_APPROVED": "Đơn mua gói được duyệt",
+      "PLAN_ORDER_REJECTED": "Đơn mua gói bị từ chối",
+      "PLAN_REQUEST_APPROVED": "Yêu cầu gói được duyệt",
+      "PLAN_REQUEST_REJECTED": "Yêu cầu gói bị từ chối",
+      "PAYOUT_APPROVED": "Rút tiền được duyệt",
+      "PAYOUT_REJECTED": "Rút tiền bị từ chối"
     }
   }
 }

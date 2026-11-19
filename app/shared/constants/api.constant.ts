@@ -73,3 +73,12 @@ export const API_SETTINGS = {
   ADMIN_SECTION_URL: (section: string) => '/settings/admin/' + section,
   ADMIN_EMAIL_TEST_URL: '/settings/admin/email/test'
 } as const
+
+// Spec: EmailTemplateController (super admin) — list, detail, From Name, content per language, preview
+export const API_EMAIL_TEMPLATE = {
+  LIST_URL: '/settings/admin/email-templates',
+  DETAIL_URL: (id: string) => '/settings/admin/email-templates/' + id,
+  SETTINGS_URL: (id: string) => '/settings/admin/email-templates/' + id + '/settings',
+  CONTENT_URL: (id: string, lang: string) => '/settings/admin/email-templates/' + id + '/content/' + lang,
+  PREVIEW_URL: (id: string, lang: string) => '/settings/admin/email-templates/' + id + '/preview/' + lang
+} as const
