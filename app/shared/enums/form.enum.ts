@@ -261,3 +261,15 @@ export enum EDepartmentFilterFormKey {
   Keyword = 'keyword',
   BranchId = 'branchId'
 }
+
+export enum EDesignationFormKey {
+  Name = 'name',
+  DepartmentId = 'departmentId',
+  Description = 'description',
+  Active = 'active'
+}
+
+export enum EDesignationFilterFormKey {
+  Keyword = 'keyword',
+  DepartmentId = 'departmentId'
+}

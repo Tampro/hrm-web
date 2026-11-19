@@ -74,7 +74,8 @@
     "email_templates": "Email templates",
     "employees": "Employees",
     "branches": "Branches",
-    "departments": "Departments"
+    "departments": "Departments",
+    "designations": "Designations"
   },
   "table": {
     "rows_per_page": "Rows per page",
@@ -1101,6 +1102,54 @@
       "deleted": "Department deleted",
       "activated": "Department activated",
       "deactivated": "Department deactivated"
+    }
+  },
+  "designation": {
+    "title": "Designations",
+    "subtitle": "Designations of each department. An inactive designation cannot be assigned to an employee.",
+    "add": "Add designation",
+    "empty": "No designations yet.",
+    "keyword_placeholder": "Designation name or description",
+    "pick_company": "Choose a company to see and manage its designations.",
+    "field": {
+      "name": "Designation name",
+      "department": "Department",
+      "branch": "Branch",
+      "description": "Description",
+      "status": "Status",
+      "active": "Active",
+      "employee_count": "Employees",
+      "created_at": "Created",
+      "updated_at": "Updated"
+    },
+    "form": {
+      "create_title": "Add designation",
+      "edit_title": "Edit designation",
+      "description": "The name must be unique in its department.",
+      "name_placeholder": "e.g. Software engineer",
+      "no_department": "No active department yet. Create a department first.",
+      "active_hint": "Off stops assigning the designation; current employees keep it.",
+      "create_submit": "Create designation"
+    },
+    "detail": {
+      "title": "Designation details"
+    },
+    "action": {
+      "view_named": "View {{name}}",
+      "edit_named": "Edit {{name}}",
+      "delete_named": "Delete {{name}}",
+      "toggle_named": "Turn {{name}} on or off"
+    },
+    "delete": {
+      "title": "Delete designation {{name}}?",
+      "description": "This cannot be undone. It is refused while an employee holds the designation."
+    },
+    "toast": {
+      "created": "Designation created",
+      "updated": "Designation saved",
+      "deleted": "Designation deleted",
+      "activated": "Designation activated",
+      "deactivated": "Designation deactivated"
     }
   }
 }

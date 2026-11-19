@@ -74,7 +74,8 @@
     "email_templates": "Mẫu email",
     "employees": "Hồ sơ nhân viên",
     "branches": "Chi nhánh",
-    "departments": "Phòng ban"
+    "departments": "Phòng ban",
+    "designations": "Chức danh"
   },
   "table": {
     "rows_per_page": "Số dòng mỗi trang",
@@ -1101,6 +1102,54 @@
       "deleted": "Đã xoá phòng ban",
       "activated": "Đã bật phòng ban",
       "deactivated": "Đã tạm ngưng phòng ban"
+    }
+  },
+  "designation": {
+    "title": "Chức danh",
+    "subtitle": "Chức danh thuộc từng phòng ban. Chức danh tạm ngưng không gán được cho nhân viên mới.",
+    "add": "Thêm chức danh",
+    "empty": "Chưa có chức danh.",
+    "keyword_placeholder": "Tên hoặc mô tả chức danh",
+    "pick_company": "Chọn công ty để xem và quản lý chức danh.",
+    "field": {
+      "name": "Tên chức danh",
+      "department": "Phòng ban",
+      "branch": "Chi nhánh",
+      "description": "Mô tả",
+      "status": "Trạng thái",
+      "active": "Đang hoạt động",
+      "employee_count": "Số nhân viên",
+      "created_at": "Ngày tạo",
+      "updated_at": "Cập nhật"
+    },
+    "form": {
+      "create_title": "Thêm chức danh",
+      "edit_title": "Sửa chức danh",
+      "description": "Tên chức danh không được trùng trong cùng phòng ban.",
+      "name_placeholder": "VD: Kỹ sư phần mềm",
+      "no_department": "Chưa có phòng ban đang hoạt động. Hãy tạo phòng ban trước.",
+      "active_hint": "Tắt để ngừng gán chức danh cho nhân viên; nhân viên hiện có được giữ nguyên.",
+      "create_submit": "Tạo chức danh"
+    },
+    "detail": {
+      "title": "Chi tiết chức danh"
+    },
+    "action": {
+      "view_named": "Xem {{name}}",
+      "edit_named": "Sửa {{name}}",
+      "delete_named": "Xoá {{name}}",
+      "toggle_named": "Bật / tắt {{name}}"
+    },
+    "delete": {
+      "title": "Xoá chức danh {{name}}?",
+      "description": "Không thể hoàn tác. Hệ thống từ chối khi còn nhân viên giữ chức danh này."
+    },
+    "toast": {
+      "created": "Đã tạo chức danh",
+      "updated": "Đã lưu chức danh",
+      "deleted": "Đã xoá chức danh",
+      "activated": "Đã bật chức danh",
+      "deactivated": "Đã tạm ngưng chức danh"
     }
   }
 }

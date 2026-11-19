@@ -76,3 +76,33 @@ export interface IDepartmentPayload {
   description?: string
   status?: EOrgStatus
 }
+
+// Spec: employee-service DesignationDtos
+
+/** DesignationDto — its department and that department's branch; employeeCount only from GET /org/designations/{id} */
+export interface IDesignation {
+  id?: string
+  companyId?: string
+  name?: string
+  description?: string | null
+  department?: { id?: string; name?: string | null } | null
+  branch?: { id?: string; name?: string | null } | null
+  status?: EOrgStatus
+  createdDate?: string
+  updatedDate?: string | null
+  employeeCount?: number | null
+}
+
+export interface IDesignationListParams extends IBasePagination, IBaseFilterPanel {
+  companyId?: string
+  departmentId?: string
+  status?: EOrgStatus
+}
+
+/** DesignationForm — full replacement on update (omitted description = cleared, omitted status = unchanged) */
+export interface IDesignationPayload {
+  name: string
+  departmentId: number
+  description?: string
+  status?: EOrgStatus
+}

@@ -103,6 +103,9 @@ export const API_ORG = {
   DEPARTMENT_URL: (id: string) => '/org/departments/' + id,
   DEPARTMENT_STATUS_URL: (id: string) => '/org/departments/' + id + '/status',
   DEPARTMENT_OPTIONS_URL: '/org/departments/options',
+  DESIGNATIONS_URL: '/org/designations',
+  DESIGNATION_URL: (id: string) => '/org/designations/' + id,
+  DESIGNATION_STATUS_URL: (id: string) => '/org/designations/' + id + '/status',
   DESIGNATION_OPTIONS_URL: '/org/designations/options',
   DOCUMENT_TYPES_URL: '/org/document-types'
 } as const
