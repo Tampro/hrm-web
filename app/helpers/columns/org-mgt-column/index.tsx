@@ -7,9 +7,11 @@ import { Switch } from '~/components/ui/switch'
 import { dateHelper } from '~/helpers/date.helper'
 import type { TGetTranslateEnumFn } from '~/hooks/use-transfer-enum'
 import { EOrgStatus } from '~/shared/enums/org.enum'
-import type { IBranch, IDepartment } from '~/shared/models/org.model'
+import type { IBranch, IDepartment, IDesignation } from '~/shared/models/org.model'
 
 export type TDepartmentAction = 'select' | 'edit' | 'delete'
+
+export type TDesignationAction = 'view' | 'edit' | 'delete'
 
 export type TBranchAction = 'view' | 'edit' | 'delete'
 
@@ -196,6 +198,97 @@ export const orgMgtColumn = {
             </Button>
           </div>
         )
+    }
+  ],
+
+  // Designations list: name (+ description), department, branch, status (switch), created, actions
+  getDesignation: (
+    t: TFunction,
+    getTranslateEnum: TGetTranslateEnumFn,
+    {
+      onAction,
+      onToggle,
+      canManage,
+      togglingId
+    }: {
+      onAction: (action: TDesignationAction, designation: IDesignation) => void
+      onToggle: (designation: IDesignation, active: boolean) => void
+      canManage: boolean
+      togglingId?: string
+    }
+  ): IColumn<IDesignation>[] => [
+    {
+      id: 'name',
+      header: t('designation.field.name'),
+      cell: (row) => (
+        <div className='min-w-0'>
+          <p className='truncate font-medium'>{row.name || '-'}</p>
+          {row.description && <p className='text-muted-foreground truncate text-xs'>{row.description}</p>}
+        </div>
+      )
+    },
+    { id: 'department', header: t('designation.field.department'), cell: (row) => row.department?.name || '-' },
+    { id: 'branch', header: t('designation.field.branch'), cell: (row) => row.branch?.name || '-' },
+    {
+      id: 'status',
+      header: t('designation.field.status'),
+      cell: (row) =>
+        canManage ? (
+          <div className='flex items-center gap-2'>
+            <Switch
+              checked={row.status === EOrgStatus.Active}
+              disabled={togglingId === row.id}
+              onCheckedChange={(checked) => onToggle(row, checked)}
+              aria-label={t('designation.action.toggle_named', { name: row.name ?? '' })}
+            />
+            <span className='text-sm'>{getTranslateEnum(row.status)}</span>
+          </div>
+        ) : (
+          getTranslateEnum(row.status)
+        )
+    },
+    {
+      id: 'createdDate',
+      header: t('designation.field.created_at'),
+      cell: (row) => dateHelper.formatDate(row.createdDate)
+    },
+    {
+      id: 'actions',
+      header: <span className='sr-only'>{t('common.actions')}</span>,
+      className: 'w-32 text-right',
+      cell: (row) => (
+        <div className='flex justify-end gap-1'>
+          <Button
+            variant='ghost'
+            size='icon-sm'
+            aria-label={t('designation.action.view_named', { name: row.name ?? '' })}
+            onClick={() => onAction('view', row)}
+          >
+            <Eye />
+          </Button>
+          {canManage && (
+            <>
+              <Button
+                variant='ghost'
+                size='icon-sm'
+                aria-label={t('designation.action.edit_named', { name: row.name ?? '' })}
+                onClick={() => onAction('edit', row)}
+              >
+                <Pencil />
+              </Button>
+              <Button
+                variant='ghost'
+                size='icon-sm'
+                className='text-destructive'
+                aria-label={t('designation.action.delete_named', { name: row.name ?? '' })}
+                onClick={() => onAction('delete', row)}
+              >
+                <Trash2 />
+              </Button>
+            </>
+          )}
+        </div>
+      )
     }
   ]
 }

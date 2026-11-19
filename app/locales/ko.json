@@ -74,7 +74,8 @@
     "email_templates": "이메일 템플릿",
     "employees": "직원",
     "branches": "지점",
-    "departments": "부서"
+    "departments": "부서",
+    "designations": "직책"
   },
   "table": {
     "rows_per_page": "페이지당 행 수",
@@ -1101,6 +1102,54 @@
       "deleted": "부서가 삭제되었습니다",
       "activated": "부서가 활성화되었습니다",
       "deactivated": "부서가 비활성화되었습니다"
+    }
+  },
+  "designation": {
+    "title": "직책",
+    "subtitle": "부서별 직책입니다. 비활성 직책은 직원에게 배정할 수 없습니다.",
+    "add": "직책 추가",
+    "empty": "직책이 없습니다.",
+    "keyword_placeholder": "직책명 또는 설명",
+    "pick_company": "직책을 보고 관리할 회사를 선택하세요.",
+    "field": {
+      "name": "직책명",
+      "department": "부서",
+      "branch": "지점",
+      "description": "설명",
+      "status": "상태",
+      "active": "활성",
+      "employee_count": "직원 수",
+      "created_at": "생성일",
+      "updated_at": "수정일"
+    },
+    "form": {
+      "create_title": "직책 추가",
+      "edit_title": "직책 수정",
+      "description": "직책명은 부서 내에서 중복될 수 없습니다.",
+      "name_placeholder": "예: 소프트웨어 엔지니어",
+      "no_department": "활성 부서가 없습니다. 먼저 부서를 만드세요.",
+      "active_hint": "끄면 더 이상 배정되지 않으며 기존 직원은 유지됩니다.",
+      "create_submit": "직책 생성"
+    },
+    "detail": {
+      "title": "직책 상세"
+    },
+    "action": {
+      "view_named": "{{name}} 보기",
+      "edit_named": "{{name}} 수정",
+      "delete_named": "{{name}} 삭제",
+      "toggle_named": "{{name}} 활성/비활성"
+    },
+    "delete": {
+      "title": "{{name}} 직책을 삭제할까요?",
+      "description": "되돌릴 수 없습니다. 직원이 이 직책을 가지고 있으면 거부됩니다."
+    },
+    "toast": {
+      "created": "직책이 생성되었습니다",
+      "updated": "직책이 저장되었습니다",
+      "deleted": "직책이 삭제되었습니다",
+      "activated": "직책이 활성화되었습니다",
+      "deactivated": "직책이 비활성화되었습니다"
     }
   }
 }

@@ -2,7 +2,13 @@ import type { TFunction } from 'i18next'
 import { z } from 'zod'
 
 import { maxLength, required, requiredText } from '~/helpers/schema.helper'
-import { EBranchFormKey, EDepartmentFilterFormKey, EDepartmentFormKey } from '~/shared/enums/form.enum'
+import {
+  EBranchFormKey,
+  EDepartmentFilterFormKey,
+  EDepartmentFormKey,
+  EDesignationFilterFormKey,
+  EDesignationFormKey
+} from '~/shared/enums/form.enum'
 
 const text = (max: number, t?: TFunction) => z.string().trim().max(max, maxLength(max, t))
 
@@ -43,3 +49,23 @@ export const getDepartmentFilterSchema = (t?: TFunction) =>
   })
 
 export type TDepartmentFilterSchema = z.infer<ReturnType<typeof getDepartmentFilterSchema>>
+
+// Spec: DesignationForm — name required ≤ 150 (unique in the department, EMP_011), department required, description ≤ 500
+export const getDesignationSchema = (t?: TFunction) =>
+  z.object({
+    [EDesignationFormKey.Name]: requiredText(150, t),
+    [EDesignationFormKey.DepartmentId]: z.string().min(1, required(t)),
+    [EDesignationFormKey.Description]: text(500, t),
+    [EDesignationFormKey.Active]: z.boolean()
+  })
+
+export type TDesignationSchema = z.infer<ReturnType<typeof getDesignationSchema>>
+
+// Spec: designation list filters — keyword matches name or description; departmentId
+export const getDesignationFilterSchema = (t?: TFunction) =>
+  z.object({
+    [EDesignationFilterFormKey.Keyword]: text(255, t),
+    [EDesignationFilterFormKey.DepartmentId]: z.string()
+  })
+
+export type TDesignationFilterSchema = z.infer<ReturnType<typeof getDesignationFilterSchema>>

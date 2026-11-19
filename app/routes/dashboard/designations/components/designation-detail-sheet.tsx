@@ -1,0 +1,44 @@
+import { useTranslation } from 'react-i18next'
+
+import { InfoRows } from '~/components/customs/info-rows'
+import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle } from '~/components/ui/sheet'
+import { Skeleton } from '~/components/ui/skeleton'
+import { useGetDesignationDetailApi } from '~/hooks/apis/use-org-api'
+import { useLastDefined } from '~/hooks/use-last-defined'
+import { useTransferEnum } from '~/hooks/use-transfer-enum'
+import { DATA } from '~/shared/constants/data.constant'
+
+interface IProps {
+  designationId: string | undefined
+  onClose: () => void
+}
+
+/** Manual 6.4 View. Spec: GET /org/designations/{id} — department, branch and employee count (EMP_004 when missing) */
+export function DesignationDetailSheet({ designationId: idProp, onClose }: IProps) {
+  const { t } = useTranslation()
+  const { getTranslateEnum } = useTransferEnum()
+  const designationId = useLastDefined(idProp)
+  const { detail, isLoading } = useGetDesignationDetailApi({ id: designationId })
+
+  return (
+    <Sheet open={!!idProp} onOpenChange={(open) => !open && onClose()}>
+      <SheetContent className='w-full gap-0 sm:max-w-md'>
+        <SheetHeader>
+          <SheetTitle>{t('designation.detail.title')}</SheetTitle>
+          <SheetDescription>{detail?.name || '-'}</SheetDescription>
+        </SheetHeader>
+        <div className='px-4 pb-6'>
+          {isLoading ? (
+            <div className='flex flex-col gap-2'>
+              {Array.from({ length: 6 }, (_, i) => (
+                <Skeleton key={i} className='h-5 w-full' />
+              ))}
+            </div>
+          ) : (
+            <InfoRows rows={DATA.GET_DESIGNATION_DETAIL_ROWS(t, detail, getTranslateEnum)} />
+          )}
+        </div>
+      </SheetContent>
+    </Sheet>
+  )
+}

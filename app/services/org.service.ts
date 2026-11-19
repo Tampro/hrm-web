@@ -9,6 +9,9 @@ import type {
   IDepartment,
   IDepartmentListParams,
   IDepartmentPayload,
+  IDesignation,
+  IDesignationListParams,
+  IDesignationPayload,
   IOrgStatusCounts
 } from '~/shared/models/org.model'
 
@@ -41,4 +44,19 @@ export const DepartmentService = {
   UpdateStatus: async (id: string, status: EOrgStatus): Promise<IApiResponse<IDepartment>> =>
     await axiosClient.put(API_ORG.DEPARTMENT_STATUS_URL(id), { status }),
   Delete: async (id: string): Promise<IApiResponse<void>> => await axiosClient.delete(API_ORG.DEPARTMENT_URL(id))
+}
+
+// Spec: employee-service DesignationController (ORG_VIEW to read, ORG_MANAGE to write; super admin passes companyId)
+export const DesignationService = {
+  GetList: async (params?: IDesignationListParams): Promise<IApiResponse<IApiPagination<IDesignation>>> =>
+    await axiosClient.get(API_ORG.DESIGNATIONS_URL, { params }),
+  GetDetail: async (id: string): Promise<IApiResponse<IDesignation>> =>
+    await axiosClient.get(API_ORG.DESIGNATION_URL(id)),
+  Create: async (companyId: string | undefined, payload: IDesignationPayload): Promise<IApiResponse<IDesignation>> =>
+    await axiosClient.post(API_ORG.DESIGNATIONS_URL, payload, { params: { companyId } }),
+  Update: async (id: string, payload: IDesignationPayload): Promise<IApiResponse<IDesignation>> =>
+    await axiosClient.put(API_ORG.DESIGNATION_URL(id), payload),
+  UpdateStatus: async (id: string, status: EOrgStatus): Promise<IApiResponse<IDesignation>> =>
+    await axiosClient.put(API_ORG.DESIGNATION_STATUS_URL(id), { status }),
+  Delete: async (id: string): Promise<IApiResponse<void>> => await axiosClient.delete(API_ORG.DESIGNATION_URL(id))
 }

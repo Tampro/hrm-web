@@ -1,5 +1,6 @@
 import type { TFunction } from 'i18next'
 import {
+  BadgeCheck,
   Boxes,
   Building2,
   Coins,
@@ -46,7 +47,7 @@ import type { ICompanyInfo, ICompanyStatusCounts } from '~/shared/models/company
 import type { ICoupon, ICouponStatusCounts } from '~/shared/models/coupon.model'
 import type { IEmailTemplatePreview } from '~/shared/models/email-template.model'
 import type { IEmployeeBanking, IEmployeeDetail, IEmployeeStatusCounts } from '~/shared/models/employee.model'
-import type { IBranch, IDepartment, IOrgStatusCounts } from '~/shared/models/org.model'
+import type { IBranch, IDepartment, IDesignation, IOrgStatusCounts } from '~/shared/models/org.model'
 import type { IPlan } from '~/shared/models/plan.model'
 import type { IPayoutStatusCounts, IReferralDashboard, IReferredSummary } from '~/shared/models/referral.model'
 import type { IAdminOrder, ICurrency, ISaasStatusCounts } from '~/shared/models/saas.model'
@@ -62,6 +63,7 @@ export const DATA = {
     { label: t('sidebar.employees'), route: ROUTES.EMPLOYEES, icon: Users, permission: 'EMPLOYEE_VIEW' },
     { label: t('sidebar.branches'), route: ROUTES.BRANCHES, icon: GitBranch, permission: 'ORG_VIEW' },
     { label: t('sidebar.departments'), route: ROUTES.DEPARTMENTS, icon: Boxes, permission: 'ORG_VIEW' },
+    { label: t('sidebar.designations'), route: ROUTES.DESIGNATIONS, icon: BadgeCheck, permission: 'ORG_VIEW' },
     { label: t('sidebar.companies'), route: ROUTES.COMPANIES, icon: Building2, superAdminOnly: true },
     { label: t('sidebar.plans'), route: ROUTES.PLANS, icon: Package, superAdminOnly: true },
     { label: t('sidebar.coupons'), route: ROUTES.COUPONS, icon: TicketPercent, superAdminOnly: true },
@@ -324,6 +326,22 @@ export const DATA = {
     { label: t('employee.tab.all'), value: EOrgStatus.All, count: counts?.all },
     { label: t('enum.ACTIVE'), value: EOrgStatus.Active, count: counts?.active },
     { label: t('enum.INACTIVE'), value: EOrgStatus.Inactive, count: counts?.inactive }
+  ],
+
+  // Spec: DesignationDto — employeeCount is filled only by GET /org/designations/{id}
+  GET_DESIGNATION_DETAIL_ROWS: (
+    t: TFunction,
+    d: IDesignation | undefined,
+    translateEnum: TTranslateEnum
+  ): IInfoRow[] => [
+    { label: t('designation.field.name'), value: d?.name || '-' },
+    { label: t('designation.field.status'), value: translateEnum(d?.status) },
+    { label: t('designation.field.department'), value: d?.department?.name || '-' },
+    { label: t('designation.field.branch'), value: d?.branch?.name || '-' },
+    { label: t('designation.field.description'), value: d?.description || '-' },
+    { label: t('designation.field.employee_count'), value: commonHelper.formatNumber(d?.employeeCount, 0) },
+    { label: t('designation.field.created_at'), value: dateHelper.formatDateTime(d?.createdDate) },
+    { label: t('designation.field.updated_at'), value: dateHelper.formatDateTime(d?.updatedDate) }
   ],
 
   // Spec: DepartmentDto — the counts are filled only by GET /org/departments/{id}
