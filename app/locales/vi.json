@@ -77,7 +77,8 @@
     "departments": "Phòng ban",
     "designations": "Chức danh",
     "holidays": "Ngày lễ",
-    "announcements": "Thông báo"
+    "announcements": "Thông báo",
+    "award_types": "Loại khen thưởng"
   },
   "table": {
     "rows_per_page": "Số dòng mỗi trang",
@@ -1384,6 +1385,46 @@
       "created": "Đã tạo thông báo",
       "updated": "Đã lưu thông báo",
       "deleted": "Đã xoá thông báo"
+    }
+  },
+  "award_type": {
+    "title": "Loại khen thưởng",
+    "subtitle": "Các loại khen thưởng dùng để ghi nhận nhân viên.",
+    "empty": "Chưa có loại khen thưởng.",
+    "keyword_placeholder": "Tên hoặc mô tả",
+    "pick_company": "Chọn công ty để xem và quản lý loại khen thưởng.",
+    "all_statuses": "Tất cả trạng thái",
+    "icon_named": "Biểu tượng {{name}}",
+    "field": {
+      "name": "Tên loại khen thưởng",
+      "description": "Mô tả",
+      "icon": "Biểu tượng",
+      "status": "Trạng thái",
+      "active": "Đang hoạt động"
+    },
+    "form": {
+      "create_title": "Thêm loại khen thưởng",
+      "edit_title": "Sửa loại khen thưởng",
+      "name_placeholder": "VD: Nhân viên xuất sắc tháng",
+      "active_hint": "Tắt để không chọn được khi trao thưởng; các lần trao trước vẫn giữ.",
+      "create_submit": "Thêm loại khen thưởng"
+    },
+    "action": {
+      "edit_named": "Sửa {{name}}",
+      "activate_named": "Kích hoạt {{name}}",
+      "deactivate_named": "Tạm ngưng {{name}}",
+      "delete_named": "Xoá {{name}}"
+    },
+    "delete": {
+      "title": "Xoá loại khen thưởng {{name}}?",
+      "description": "Loại khen thưởng bị xoá khỏi danh sách. Không thể hoàn tác."
+    },
+    "toast": {
+      "created": "Đã thêm loại khen thưởng",
+      "updated": "Đã lưu loại khen thưởng",
+      "deleted": "Đã xoá loại khen thưởng",
+      "activated": "Đã kích hoạt loại khen thưởng",
+      "deactivated": "Đã tạm ngưng loại khen thưởng"
     }
   }
 }

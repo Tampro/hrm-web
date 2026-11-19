@@ -77,7 +77,8 @@
     "departments": "Departments",
     "designations": "Designations",
     "holidays": "Holidays",
-    "announcements": "Announcements"
+    "announcements": "Announcements",
+    "award_types": "Award types"
   },
   "table": {
     "rows_per_page": "Rows per page",
@@ -1384,6 +1385,46 @@
       "created": "Announcement created",
       "updated": "Announcement saved",
       "deleted": "Announcement deleted"
+    }
+  },
+  "award_type": {
+    "title": "Award types",
+    "subtitle": "Award categories used to recognise employees.",
+    "empty": "No award types yet.",
+    "keyword_placeholder": "Name or description",
+    "pick_company": "Choose a company to see and manage its award types.",
+    "all_statuses": "All statuses",
+    "icon_named": "Icon {{name}}",
+    "field": {
+      "name": "Award type name",
+      "description": "Description",
+      "icon": "Icon",
+      "status": "Status",
+      "active": "Active"
+    },
+    "form": {
+      "create_title": "Add new award type",
+      "edit_title": "Edit award type",
+      "name_placeholder": "e.g. Employee of the month",
+      "active_hint": "Off hides it when giving awards; past awards are kept.",
+      "create_submit": "Add award type"
+    },
+    "action": {
+      "edit_named": "Edit {{name}}",
+      "activate_named": "Activate {{name}}",
+      "deactivate_named": "Deactivate {{name}}",
+      "delete_named": "Delete {{name}}"
+    },
+    "delete": {
+      "title": "Delete award type {{name}}?",
+      "description": "The award type is removed from the list. This cannot be undone."
+    },
+    "toast": {
+      "created": "Award type added",
+      "updated": "Award type saved",
+      "deleted": "Award type deleted",
+      "activated": "Award type activated",
+      "deactivated": "Award type deactivated"
     }
   }
 }

@@ -106,3 +106,30 @@ export interface IDesignationPayload {
   description?: string
   status?: EOrgStatus
 }
+
+// Spec: employee-service AwardTypeDtos
+
+/** AwardTypeDto — icon = key of the FE icon set (null = default icon) */
+export interface IAwardType {
+  id?: string
+  companyId?: string
+  name?: string
+  description?: string | null
+  icon?: string | null
+  status?: EOrgStatus
+  createdDate?: string
+  updatedDate?: string | null
+}
+
+export interface IAwardTypeListParams extends IBasePagination, IBaseFilterPanel {
+  companyId?: string
+  status?: EOrgStatus
+}
+
+/** AwardTypeForm — full replacement on update (omitted description / icon = cleared, omitted status = unchanged) */
+export interface IAwardTypePayload {
+  name: string
+  description?: string
+  icon?: string
+  status?: EOrgStatus
+}

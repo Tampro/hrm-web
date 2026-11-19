@@ -1,17 +1,21 @@
 import type { TFunction } from 'i18next'
-import { Eye, Pencil, Trash2 } from 'lucide-react'
+import { Eye, Pencil, Power, PowerOff, Trash2 } from 'lucide-react'
 
+import { AwardIcon } from '~/components/customs/award-icon'
 import type { IColumn } from '~/components/customs/table-custom'
+import { Badge } from '~/components/ui/badge'
 import { Button } from '~/components/ui/button'
 import { Switch } from '~/components/ui/switch'
 import { dateHelper } from '~/helpers/date.helper'
 import type { TGetTranslateEnumFn } from '~/hooks/use-transfer-enum'
 import { EOrgStatus } from '~/shared/enums/org.enum'
-import type { IBranch, IDepartment, IDesignation } from '~/shared/models/org.model'
+import type { IAwardType, IBranch, IDepartment, IDesignation } from '~/shared/models/org.model'
 
 export type TDepartmentAction = 'select' | 'edit' | 'delete'
 
 export type TDesignationAction = 'view' | 'edit' | 'delete'
+
+export type TAwardTypeAction = 'edit' | 'toggle' | 'delete'
 
 export type TBranchAction = 'view' | 'edit' | 'delete'
 
@@ -289,6 +293,85 @@ export const orgMgtColumn = {
           )}
         </div>
       )
+    }
+  ],
+
+  // Manual 6.3.6 list: name (icon, name, description), status, actions (edit, deactivate / activate, delete)
+  getAwardType: (
+    t: TFunction,
+    getTranslateEnum: TGetTranslateEnumFn,
+    {
+      onAction,
+      canManage,
+      busyId
+    }: { onAction: (action: TAwardTypeAction, awardType: IAwardType) => void; canManage: boolean; busyId?: string }
+  ): IColumn<IAwardType>[] => [
+    {
+      id: 'name',
+      header: t('award_type.field.name'),
+      cell: (row) => (
+        <div className='flex min-w-0 items-center gap-3'>
+          <AwardIcon icon={row.icon} />
+          <div className='min-w-0'>
+            <p className='truncate font-medium'>{row.name || '-'}</p>
+            {row.description && <p className='text-muted-foreground line-clamp-2 text-xs'>{row.description}</p>}
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'status',
+      header: t('award_type.field.status'),
+      className: 'w-32',
+      cell: (row) => (
+        <Badge
+          variant='outline'
+          className={row.status === EOrgStatus.Active ? 'border-emerald-200 bg-emerald-50 text-emerald-700' : undefined}
+        >
+          {getTranslateEnum(row.status)}
+        </Badge>
+      )
+    },
+    {
+      id: 'actions',
+      header: <span className='sr-only'>{t('common.actions')}</span>,
+      className: 'w-32 text-right',
+      cell: (row) =>
+        canManage && (
+          <div className='flex justify-end gap-1'>
+            <Button
+              variant='ghost'
+              size='icon-sm'
+              aria-label={t('award_type.action.edit_named', { name: row.name ?? '' })}
+              onClick={() => onAction('edit', row)}
+            >
+              <Pencil />
+            </Button>
+            <Button
+              variant='ghost'
+              size='icon-sm'
+              disabled={busyId === row.id}
+              aria-label={t(
+                row.status === EOrgStatus.Active
+                  ? 'award_type.action.deactivate_named'
+                  : 'award_type.action.activate_named',
+                { name: row.name ?? '' }
+              )}
+              onClick={() => onAction('toggle', row)}
+            >
+              {row.status === EOrgStatus.Active ? <PowerOff /> : <Power />}
+            </Button>
+            <Button
+              variant='ghost'
+              size='icon-sm'
+              className='text-destructive'
+              aria-label={t('award_type.action.delete_named', { name: row.name ?? '' })}
+              onClick={() => onAction('delete', row)}
+            >
+              <Trash2 />
+            </Button>
+          </div>
+        )
     }
   ]
 }

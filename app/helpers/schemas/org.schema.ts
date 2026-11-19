@@ -3,6 +3,7 @@ import { z } from 'zod'
 
 import { maxLength, required, requiredText } from '~/helpers/schema.helper'
 import {
+  EAwardTypeFormKey,
   EBranchFormKey,
   EDepartmentFilterFormKey,
   EDepartmentFormKey,
@@ -69,3 +70,17 @@ export const getDesignationFilterSchema = (t?: TFunction) =>
   })
 
 export type TDesignationFilterSchema = z.infer<ReturnType<typeof getDesignationFilterSchema>>
+
+// Spec: AwardTypeForm — name required ≤ 150 (unique, EMP_011), description ≤ 500, icon key [a-z0-9-] ≤ 50
+export const getAwardTypeSchema = (t?: TFunction) =>
+  z.object({
+    [EAwardTypeFormKey.Name]: requiredText(150, t),
+    [EAwardTypeFormKey.Description]: text(500, t),
+    [EAwardTypeFormKey.Icon]: z
+      .string()
+      .max(50)
+      .regex(/^[a-z0-9-]*$/),
+    [EAwardTypeFormKey.Active]: z.boolean()
+  })
+
+export type TAwardTypeSchema = z.infer<ReturnType<typeof getAwardTypeSchema>>

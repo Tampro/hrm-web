@@ -3,6 +3,9 @@ import { API_ORG } from '~/shared/constants/api.constant'
 import type { EOrgStatus } from '~/shared/enums/org.enum'
 import type { IApiPagination, IApiResponse } from '~/shared/models/common.model'
 import type {
+  IAwardType,
+  IAwardTypeListParams,
+  IAwardTypePayload,
   IBranch,
   IBranchListParams,
   IBranchPayload,
@@ -59,4 +62,17 @@ export const DesignationService = {
   UpdateStatus: async (id: string, status: EOrgStatus): Promise<IApiResponse<IDesignation>> =>
     await axiosClient.put(API_ORG.DESIGNATION_STATUS_URL(id), { status }),
   Delete: async (id: string): Promise<IApiResponse<void>> => await axiosClient.delete(API_ORG.DESIGNATION_URL(id))
+}
+
+// Spec: employee-service AwardTypeController (ORG_VIEW to read, ORG_MANAGE to write; super admin passes companyId)
+export const AwardTypeService = {
+  GetList: async (params?: IAwardTypeListParams): Promise<IApiResponse<IApiPagination<IAwardType>>> =>
+    await axiosClient.get(API_ORG.AWARD_TYPES_URL, { params }),
+  Create: async (companyId: string | undefined, payload: IAwardTypePayload): Promise<IApiResponse<IAwardType>> =>
+    await axiosClient.post(API_ORG.AWARD_TYPES_URL, payload, { params: { companyId } }),
+  Update: async (id: string, payload: IAwardTypePayload): Promise<IApiResponse<IAwardType>> =>
+    await axiosClient.put(API_ORG.AWARD_TYPE_URL(id), payload),
+  UpdateStatus: async (id: string, status: EOrgStatus): Promise<IApiResponse<IAwardType>> =>
+    await axiosClient.put(API_ORG.AWARD_TYPE_STATUS_URL(id), { status }),
+  Delete: async (id: string): Promise<IApiResponse<void>> => await axiosClient.delete(API_ORG.AWARD_TYPE_URL(id))
 }
