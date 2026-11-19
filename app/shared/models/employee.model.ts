@@ -206,12 +206,20 @@ export interface IDesignationOption {
   departmentId?: string
 }
 
+/**
+ * DocumentTypeDto — system = shared by every company (name / description read-only, Required set per company);
+ * required = for the caller's company (tracked, never blocks adding an employee)
+ */
 export interface IDocumentType {
   id?: string
   name?: string
+  description?: string | null
+  required?: boolean
   system?: boolean
   /** shown as an empty slot on the Documents step by default */
   defaultSlot?: boolean
+  createdDate?: string
+  updatedDate?: string | null
 }
 
 // Spec: media-service MediaFileDto (fields the FE uses)

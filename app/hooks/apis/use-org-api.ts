@@ -2,7 +2,13 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { createDetailApiHook, createListApiHook } from '~/hooks/use-query-api'
 import { OrgService } from '~/services/employee.service'
-import { AwardTypeService, BranchService, DepartmentService, DesignationService } from '~/services/org.service'
+import {
+  AwardTypeService,
+  BranchService,
+  DepartmentService,
+  DesignationService,
+  DocumentTypeService
+} from '~/services/org.service'
 import { QUERY_KEY } from '~/shared/constants/query-key.constant'
 import type { IDepartmentListParams } from '~/shared/models/org.model'
 
@@ -98,3 +104,19 @@ export const useDepartmentChoicesApi = (companyId: string | undefined, enabled =
 }
 
 export const useGetListAwardTypeApi = createListApiHook(QUERY_KEY.ORG.GET_AWARD_TYPE_LIST, AwardTypeService.GetList)
+
+export const useGetListDocumentTypeApi = createListApiHook(
+  QUERY_KEY.ORG.GET_DOCUMENT_TYPE_LIST,
+  DocumentTypeService.GetList
+)
+
+/** A document type write changes the page list and the dropdowns of the employee screens */
+export const useInvalidateDocumentTypes = () => {
+  const queryClient = useQueryClient()
+  return () =>
+    Promise.all(
+      [QUERY_KEY.ORG.GET_DOCUMENT_TYPE_LIST, QUERY_KEY.ORG.GET_DOCUMENT_TYPES].map((key) =>
+        queryClient.invalidateQueries({ queryKey: [key] })
+      )
+    )
+}

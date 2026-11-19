@@ -2,11 +2,14 @@ import { axiosClient } from '~/configs/axios.config'
 import { API_ORG } from '~/shared/constants/api.constant'
 import type { EOrgStatus } from '~/shared/enums/org.enum'
 import type { IApiPagination, IApiResponse } from '~/shared/models/common.model'
+import type { IDocumentType } from '~/shared/models/employee.model'
 import type {
   IAwardType,
   IAwardTypeListParams,
   IAwardTypePayload,
   IBranch,
+  IDocumentTypeListParams,
+  IDocumentTypePayload,
   IBranchListParams,
   IBranchPayload,
   IDepartment,
@@ -75,4 +78,22 @@ export const AwardTypeService = {
   UpdateStatus: async (id: string, status: EOrgStatus): Promise<IApiResponse<IAwardType>> =>
     await axiosClient.put(API_ORG.AWARD_TYPE_STATUS_URL(id), { status }),
   Delete: async (id: string): Promise<IApiResponse<void>> => await axiosClient.delete(API_ORG.AWARD_TYPE_URL(id))
+}
+
+// Spec: employee-service DocumentTypeController (ORG_VIEW to read, ORG_MANAGE to write). System types: only Required
+// can be set, per company (PUT /{id}/required, super admin passes companyId).
+export const DocumentTypeService = {
+  GetList: async (params?: IDocumentTypeListParams): Promise<IApiResponse<IApiPagination<IDocumentType>>> =>
+    await axiosClient.get(API_ORG.DOCUMENT_TYPES_URL, { params }),
+  Create: async (companyId: string | undefined, payload: IDocumentTypePayload): Promise<IApiResponse<IDocumentType>> =>
+    await axiosClient.post(API_ORG.DOCUMENT_TYPES_URL, payload, { params: { companyId } }),
+  Update: async (id: string, payload: IDocumentTypePayload): Promise<IApiResponse<IDocumentType>> =>
+    await axiosClient.put(API_ORG.DOCUMENT_TYPE_URL(id), payload),
+  SetRequired: async (
+    id: string,
+    companyId: string | undefined,
+    required: boolean
+  ): Promise<IApiResponse<IDocumentType>> =>
+    await axiosClient.put(API_ORG.DOCUMENT_TYPE_REQUIRED_URL(id), { required }, { params: { companyId } }),
+  Delete: async (id: string): Promise<IApiResponse<void>> => await axiosClient.delete(API_ORG.DOCUMENT_TYPE_URL(id))
 }

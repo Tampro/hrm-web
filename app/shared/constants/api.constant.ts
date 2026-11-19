@@ -107,7 +107,11 @@ export const API_ORG = {
   DESIGNATION_URL: (id: string) => '/org/designations/' + id,
   DESIGNATION_STATUS_URL: (id: string) => '/org/designations/' + id + '/status',
   DESIGNATION_OPTIONS_URL: '/org/designations/options',
+  /** Spec: paged list of the Document Types page; dropdowns use DOCUMENT_TYPE_OPTIONS_URL (a plain list) */
   DOCUMENT_TYPES_URL: '/org/document-types',
+  DOCUMENT_TYPE_OPTIONS_URL: '/org/document-types/options',
+  DOCUMENT_TYPE_URL: (id: string) => '/org/document-types/' + id,
+  DOCUMENT_TYPE_REQUIRED_URL: (id: string) => '/org/document-types/' + id + '/required',
   AWARD_TYPES_URL: '/org/award-types',
   AWARD_TYPE_URL: (id: string) => '/org/award-types/' + id,
   AWARD_TYPE_STATUS_URL: (id: string) => '/org/award-types/' + id + '/status'

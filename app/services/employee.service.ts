@@ -78,7 +78,7 @@ export const OrgService = {
     params?: TCompanyParams & { departmentId?: string }
   ): Promise<IApiResponse<IDesignationOption[]>> => await axiosClient.get(API_ORG.DESIGNATION_OPTIONS_URL, { params }),
   GetDocumentTypes: async (params?: TCompanyParams): Promise<IApiResponse<IDocumentType[]>> =>
-    await axiosClient.get(API_ORG.DOCUMENT_TYPES_URL, { params })
+    await axiosClient.get(API_ORG.DOCUMENT_TYPE_OPTIONS_URL, { params })
 }
 
 export const MediaService = {

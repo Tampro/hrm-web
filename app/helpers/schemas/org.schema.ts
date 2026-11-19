@@ -8,7 +8,8 @@ import {
   EDepartmentFilterFormKey,
   EDepartmentFormKey,
   EDesignationFilterFormKey,
-  EDesignationFormKey
+  EDesignationFormKey,
+  EDocumentTypeFormKey
 } from '~/shared/enums/form.enum'
 
 const text = (max: number, t?: TFunction) => z.string().trim().max(max, maxLength(max, t))
@@ -84,3 +85,13 @@ export const getAwardTypeSchema = (t?: TFunction) =>
   })
 
 export type TAwardTypeSchema = z.infer<ReturnType<typeof getAwardTypeSchema>>
+
+// Spec: DocumentTypeForm — name required ≤ 150 (unique, EMP_011), description ≤ 500, required = Required / Optional
+export const getDocumentTypeSchema = (t?: TFunction) =>
+  z.object({
+    [EDocumentTypeFormKey.Name]: requiredText(150, t),
+    [EDocumentTypeFormKey.Description]: text(500, t),
+    [EDocumentTypeFormKey.Required]: z.boolean()
+  })
+
+export type TDocumentTypeSchema = z.infer<ReturnType<typeof getDocumentTypeSchema>>

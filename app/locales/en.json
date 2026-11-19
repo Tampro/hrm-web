@@ -78,7 +78,8 @@
     "designations": "Designations",
     "holidays": "Holidays",
     "announcements": "Announcements",
-    "award_types": "Award types"
+    "award_types": "Award types",
+    "document_types": "Document types"
   },
   "table": {
     "rows_per_page": "Rows per page",
@@ -1425,6 +1426,44 @@
       "deleted": "Award type deleted",
       "activated": "Award type activated",
       "deactivated": "Award type deactivated"
+    }
+  },
+  "document_type": {
+    "title": "Document types",
+    "subtitle": "Document categories of employee records and which ones are required.",
+    "empty": "No document types yet.",
+    "keyword_placeholder": "Name or description",
+    "pick_company": "Choose a company to see and manage its document types.",
+    "required": "Required",
+    "optional": "Optional",
+    "filter": {
+      "all": "All"
+    },
+    "field": {
+      "name": "Document type name",
+      "description": "Description",
+      "required": "Required"
+    },
+    "form": {
+      "create_title": "Add new document type",
+      "edit_title": "Edit document type",
+      "name_placeholder": "e.g. Work permit",
+      "required_hint": "Required for all employees: missing ones are tracked, adding an employee is never blocked.",
+      "system_hint": "Shared system type: name and description are read-only, the company only chooses Required / Optional.",
+      "create_submit": "Add document type"
+    },
+    "action": {
+      "edit_named": "Edit {{name}}",
+      "delete_named": "Delete {{name}}"
+    },
+    "delete": {
+      "title": "Delete document type {{name}}?",
+      "description": "Refused while an employee document uses it. This cannot be undone."
+    },
+    "toast": {
+      "created": "Document type added",
+      "updated": "Document type saved",
+      "deleted": "Document type deleted"
     }
   }
 }
