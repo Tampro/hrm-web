@@ -13,6 +13,7 @@ export default [
       route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.BRANCHES}`, 'routes/dashboard/branches/index.tsx'),
       route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.DEPARTMENTS}`, 'routes/dashboard/departments/index.tsx'),
       route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.DESIGNATIONS}`, 'routes/dashboard/designations/index.tsx'),
+      route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.HOLIDAYS}`, 'routes/dashboard/holidays/index.tsx'),
       route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.EMPLOYEES}`, 'routes/dashboard/employees/layout.tsx', [
         index('routes/dashboard/employees/index.tsx'),
         route(BASE_ROUTES.EMPLOYEE_CREATE, 'routes/dashboard/employees/employee-upsert/index.tsx', {

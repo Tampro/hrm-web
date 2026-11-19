@@ -75,7 +75,8 @@
     "employees": "직원",
     "branches": "지점",
     "departments": "부서",
-    "designations": "직책"
+    "designations": "직책",
+    "holidays": "공휴일"
   },
   "table": {
     "rows_per_page": "페이지당 행 수",
@@ -1150,6 +1151,108 @@
       "deleted": "직책이 삭제되었습니다",
       "activated": "직책이 활성화되었습니다",
       "deactivated": "직책이 비활성화되었습니다"
+    }
+  },
+  "holiday": {
+    "title": "공휴일",
+    "subtitle": "회사 공휴일이며 모든 지점 또는 일부 지점에 적용됩니다.",
+    "add": "공휴일 추가",
+    "empty": "공휴일이 없습니다.",
+    "keyword_placeholder": "공휴일명 또는 설명",
+    "pick_company": "공휴일을 보고 관리할 회사를 선택하세요.",
+    "all_branches": "모든 지점",
+    "days_count": "{{count}}일",
+    "view": {
+      "calendar": "달력 보기",
+      "list": "목록 보기"
+    },
+    "export": {
+      "pdf": "PDF 내보내기",
+      "ical": "iCal 내보내기",
+      "exporting": "내보내는 중..."
+    },
+    "filter": {
+      "title": "공휴일 필터",
+      "year": "연도",
+      "applied": "필터 {{count}}개 적용됨"
+    },
+    "field": {
+      "name": "공휴일명",
+      "date": "날짜",
+      "days": "일수",
+      "category": "분류",
+      "branches": "적용 지점",
+      "start_date": "시작일",
+      "end_date": "종료일",
+      "description": "설명",
+      "created_at": "생성일",
+      "updated_at": "수정일"
+    },
+    "form": {
+      "create_title": "공휴일 추가",
+      "edit_title": "공휴일 수정",
+      "description": "선택한 지점의 달력과 근태표에 표시됩니다.",
+      "name_placeholder": "예: 국경일",
+      "end_hint": "하루 공휴일은 시작일과 같게 선택",
+      "branches_hint": "선택하지 않으면 이후 생성되는 지점을 포함한 모든 지점에 적용됩니다.",
+      "no_branch": "활성 지점이 없어 모든 지점에 적용됩니다.",
+      "create_submit": "공휴일 추가"
+    },
+    "validation": {
+      "end_before_start": "종료일은 시작일보다 빠를 수 없습니다",
+      "too_long": "공휴일은 최대 {{max}}일입니다",
+      "color": "#RRGGBB 형식의 색상"
+    },
+    "detail": {
+      "title": "공휴일 상세"
+    },
+    "action": {
+      "view_named": "{{name}} 보기",
+      "edit_named": "{{name}} 수정",
+      "delete_named": "{{name}} 삭제"
+    },
+    "delete": {
+      "title": "{{name}} 공휴일을 삭제할까요?",
+      "description": "공휴일이 목록과 달력에서 사라집니다. 되돌릴 수 없습니다."
+    },
+    "toast": {
+      "created": "공휴일이 추가되었습니다",
+      "updated": "공휴일이 저장되었습니다",
+      "deleted": "공휴일이 삭제되었습니다"
+    },
+    "calendar": {
+      "title": "공휴일 달력",
+      "month": "월",
+      "week": "주",
+      "day": "일",
+      "today": "오늘",
+      "previous": "이전",
+      "next": "다음",
+      "legend": "분류 범례",
+      "no_holiday": "이 날에는 공휴일이 없습니다."
+    },
+    "category": {
+      "open": "분류",
+      "title": "공휴일 분류",
+      "description": "시스템 분류 4개는 공용이며 수정할 수 없습니다. 회사 고유 분류를 달력 색상과 함께 추가할 수 있습니다.",
+      "system": "시스템",
+      "add": "분류 추가",
+      "edit": "분류 수정",
+      "color": "색상",
+      "name_placeholder": "예: 지역 축제",
+      "edit_named": "{{name}} 분류 수정",
+      "delete_named": "{{name}} 분류 삭제",
+      "toast": {
+        "created": "분류가 추가되었습니다",
+        "updated": "분류가 저장되었습니다",
+        "deleted": "분류가 삭제되었습니다"
+      },
+      "system_name": {
+        "COMPANY_SPECIFIC": "회사 지정",
+        "NATIONAL": "국가",
+        "REGIONAL": "지역",
+        "RELIGIOUS": "종교"
+      }
     }
   }
 }

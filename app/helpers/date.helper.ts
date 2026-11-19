@@ -34,5 +34,25 @@ export const dateHelper = {
     if (!match) return undefined
     const date = new Date(Number(match[1]), Number(match[2]) - 1, Number(match[3]))
     return Number.isNaN(date.getTime()) ? undefined : date
-  }
+  },
+
+  /** New local date `days` later (negative = earlier) */
+  addDays: (date: Date, days: number) => new Date(date.getFullYear(), date.getMonth(), date.getDate() + days),
+
+  /** Monday of the week of `date` (weeks start on Monday) */
+  startOfWeek: (date: Date) => dateHelper.addDays(date, -((date.getDay() + 6) % 7)),
+
+  /** Same calendar day (time ignored) */
+  isSameDay: (a: Date, b: Date) =>
+    a.getFullYear() === b.getFullYear() && a.getMonth() === b.getMonth() && a.getDate() === b.getDate(),
+
+  /** Localized date text, e.g. { month: 'long', year: 'numeric' } → "tháng 11 năm 2026" */
+  formatIntl: (date: Date, options: Intl.DateTimeFormatOptions) =>
+    new Intl.DateTimeFormat(commonHelper.getLocale(), options).format(date),
+
+  /** Day range "DD/MM/YYYY" or "DD/MM/YYYY – DD/MM/YYYY" when it spans several days */
+  formatDateRange: (start: string | null | undefined, end: string | null | undefined) =>
+    !end || end === start
+      ? dateHelper.formatDate(start)
+      : `${dateHelper.formatDate(start)} – ${dateHelper.formatDate(end)}`
 }

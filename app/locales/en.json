@@ -75,7 +75,8 @@
     "employees": "Employees",
     "branches": "Branches",
     "departments": "Departments",
-    "designations": "Designations"
+    "designations": "Designations",
+    "holidays": "Holidays"
   },
   "table": {
     "rows_per_page": "Rows per page",
@@ -1150,6 +1151,108 @@
       "deleted": "Designation deleted",
       "activated": "Designation activated",
       "deactivated": "Designation deactivated"
+    }
+  },
+  "holiday": {
+    "title": "Holidays",
+    "subtitle": "Holidays of the company, for every branch or selected ones.",
+    "add": "Add holiday",
+    "empty": "No holidays yet.",
+    "keyword_placeholder": "Holiday name or description",
+    "pick_company": "Choose a company to see and manage its holidays.",
+    "all_branches": "All branches",
+    "days_count": "{{count}} days",
+    "view": {
+      "calendar": "Calendar view",
+      "list": "List view"
+    },
+    "export": {
+      "pdf": "Export PDF",
+      "ical": "Export iCal",
+      "exporting": "Exporting..."
+    },
+    "filter": {
+      "title": "Holiday filters",
+      "year": "Year",
+      "applied": "{{count}} filters applied"
+    },
+    "field": {
+      "name": "Holiday name",
+      "date": "Date",
+      "days": "Days",
+      "category": "Category",
+      "branches": "Applicable branches",
+      "start_date": "Start date",
+      "end_date": "End date",
+      "description": "Description",
+      "created_at": "Created",
+      "updated_at": "Updated"
+    },
+    "form": {
+      "create_title": "Add holiday",
+      "edit_title": "Edit holiday",
+      "description": "The holiday shows on the calendar and timesheets of the selected branches.",
+      "name_placeholder": "e.g. National Day",
+      "end_hint": "One-day holiday: same as the start date",
+      "branches_hint": "No branch selected = every branch, also ones created later.",
+      "no_branch": "No active branch yet: the holiday applies to every branch.",
+      "create_submit": "Add holiday"
+    },
+    "validation": {
+      "end_before_start": "The end date must not be before the start date",
+      "too_long": "A holiday lasts at most {{max}} days",
+      "color": "Colour as #RRGGBB"
+    },
+    "detail": {
+      "title": "Holiday details"
+    },
+    "action": {
+      "view_named": "View {{name}}",
+      "edit_named": "Edit {{name}}",
+      "delete_named": "Delete {{name}}"
+    },
+    "delete": {
+      "title": "Delete holiday {{name}}?",
+      "description": "The holiday disappears from the list and the calendar. This cannot be undone."
+    },
+    "toast": {
+      "created": "Holiday added",
+      "updated": "Holiday saved",
+      "deleted": "Holiday deleted"
+    },
+    "calendar": {
+      "title": "Holiday calendar",
+      "month": "Month",
+      "week": "Week",
+      "day": "Day",
+      "today": "Today",
+      "previous": "Previous",
+      "next": "Next",
+      "legend": "Category legend",
+      "no_holiday": "No holiday on this day."
+    },
+    "category": {
+      "open": "Categories",
+      "title": "Holiday categories",
+      "description": "The 4 system categories are shared and read-only; the company can add its own, with a calendar colour.",
+      "system": "System",
+      "add": "Add category",
+      "edit": "Edit category",
+      "color": "Colour",
+      "name_placeholder": "e.g. Local festival",
+      "edit_named": "Edit category {{name}}",
+      "delete_named": "Delete category {{name}}",
+      "toast": {
+        "created": "Category added",
+        "updated": "Category saved",
+        "deleted": "Category deleted"
+      },
+      "system_name": {
+        "COMPANY_SPECIFIC": "Company specific",
+        "NATIONAL": "National",
+        "REGIONAL": "Regional",
+        "RELIGIOUS": "Religious"
+      }
     }
   }
 }

@@ -75,7 +75,8 @@
     "employees": "Hồ sơ nhân viên",
     "branches": "Chi nhánh",
     "departments": "Phòng ban",
-    "designations": "Chức danh"
+    "designations": "Chức danh",
+    "holidays": "Ngày lễ"
   },
   "table": {
     "rows_per_page": "Số dòng mỗi trang",
@@ -1150,6 +1151,108 @@
       "deleted": "Đã xoá chức danh",
       "activated": "Đã bật chức danh",
       "deactivated": "Đã tạm ngưng chức danh"
+    }
+  },
+  "holiday": {
+    "title": "Ngày lễ",
+    "subtitle": "Ngày nghỉ lễ của công ty, áp dụng cho tất cả hoặc một số chi nhánh.",
+    "add": "Thêm ngày lễ",
+    "empty": "Chưa có ngày lễ.",
+    "keyword_placeholder": "Tên hoặc mô tả ngày lễ",
+    "pick_company": "Chọn công ty để xem và quản lý ngày lễ.",
+    "all_branches": "Tất cả chi nhánh",
+    "days_count": "{{count}} ngày",
+    "view": {
+      "calendar": "Xem lịch",
+      "list": "Xem danh sách"
+    },
+    "export": {
+      "pdf": "Xuất PDF",
+      "ical": "Xuất iCal",
+      "exporting": "Đang xuất..."
+    },
+    "filter": {
+      "title": "Bộ lọc ngày lễ",
+      "year": "Năm",
+      "applied": "{{count}} bộ lọc đang áp dụng"
+    },
+    "field": {
+      "name": "Tên ngày lễ",
+      "date": "Ngày",
+      "days": "Số ngày",
+      "category": "Loại",
+      "branches": "Chi nhánh áp dụng",
+      "start_date": "Ngày bắt đầu",
+      "end_date": "Ngày kết thúc",
+      "description": "Mô tả",
+      "created_at": "Ngày tạo",
+      "updated_at": "Cập nhật"
+    },
+    "form": {
+      "create_title": "Thêm ngày lễ",
+      "edit_title": "Sửa ngày lễ",
+      "description": "Ngày lễ hiện trên lịch và bảng công của các chi nhánh được chọn.",
+      "name_placeholder": "VD: Quốc khánh",
+      "end_hint": "Ngày lễ 1 ngày: chọn trùng ngày bắt đầu",
+      "branches_hint": "Không chọn chi nhánh nào = áp dụng cho tất cả chi nhánh, kể cả chi nhánh tạo sau.",
+      "no_branch": "Chưa có chi nhánh đang hoạt động: ngày lễ sẽ áp dụng cho tất cả chi nhánh.",
+      "create_submit": "Thêm ngày lễ"
+    },
+    "validation": {
+      "end_before_start": "Ngày kết thúc không được trước ngày bắt đầu",
+      "too_long": "Ngày lễ dài tối đa {{max}} ngày",
+      "color": "Màu dạng #RRGGBB"
+    },
+    "detail": {
+      "title": "Chi tiết ngày lễ"
+    },
+    "action": {
+      "view_named": "Xem {{name}}",
+      "edit_named": "Sửa {{name}}",
+      "delete_named": "Xoá {{name}}"
+    },
+    "delete": {
+      "title": "Xoá ngày lễ {{name}}?",
+      "description": "Ngày lễ biến mất khỏi danh sách và lịch. Không thể hoàn tác."
+    },
+    "toast": {
+      "created": "Đã thêm ngày lễ",
+      "updated": "Đã lưu ngày lễ",
+      "deleted": "Đã xoá ngày lễ"
+    },
+    "calendar": {
+      "title": "Lịch ngày lễ",
+      "month": "Tháng",
+      "week": "Tuần",
+      "day": "Ngày",
+      "today": "Hôm nay",
+      "previous": "Trước",
+      "next": "Sau",
+      "legend": "Chú thích loại ngày lễ",
+      "no_holiday": "Không có ngày lễ trong ngày này."
+    },
+    "category": {
+      "open": "Loại ngày lễ",
+      "title": "Loại ngày lễ",
+      "description": "4 loại hệ thống dùng chung và không sửa được; công ty có thể thêm loại riêng với màu trên lịch.",
+      "system": "Hệ thống",
+      "add": "Thêm loại",
+      "edit": "Sửa loại",
+      "color": "Màu",
+      "name_placeholder": "VD: Lễ hội địa phương",
+      "edit_named": "Sửa loại {{name}}",
+      "delete_named": "Xoá loại {{name}}",
+      "toast": {
+        "created": "Đã thêm loại ngày lễ",
+        "updated": "Đã lưu loại ngày lễ",
+        "deleted": "Đã xoá loại ngày lễ"
+      },
+      "system_name": {
+        "COMPANY_SPECIFIC": "Riêng công ty",
+        "NATIONAL": "Quốc gia",
+        "REGIONAL": "Khu vực",
+        "RELIGIOUS": "Tôn giáo"
+      }
     }
   }
 }

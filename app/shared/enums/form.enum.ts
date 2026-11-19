@@ -273,3 +273,25 @@ export enum EDesignationFilterFormKey {
   Keyword = 'keyword',
   DepartmentId = 'departmentId'
 }
+
+export enum EHolidayFormKey {
+  Name = 'name',
+  CategoryId = 'categoryId',
+  StartDate = 'startDate',
+  EndDate = 'endDate',
+  Description = 'description',
+  BranchIds = 'branchIds'
+}
+
+export enum EHolidayFilterFormKey {
+  Keyword = 'keyword',
+  CategoryId = 'categoryId',
+  Year = 'year',
+  DateFrom = 'dateFrom',
+  DateTo = 'dateTo'
+}
+
+export enum EHolidayCategoryFormKey {
+  Name = 'name',
+  Color = 'color'
+}

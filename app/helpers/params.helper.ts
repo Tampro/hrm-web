@@ -6,6 +6,7 @@ import type {
   TSaasFilterSchema
 } from '~/helpers/schema.helper'
 import type { TEmployeeFilterSchema } from '~/helpers/schemas/employee.schema'
+import type { THolidayFilterSchema } from '~/helpers/schemas/holiday.schema'
 import type { TDepartmentFilterSchema, TDesignationFilterSchema } from '~/helpers/schemas/org.schema'
 import { DEFAULT_PAGE, DEFAULT_SIZE } from '~/hooks/use-pagination'
 import { ECompanyStatus } from '~/shared/enums/company.enum'
@@ -113,6 +114,23 @@ export const paramsHelper = {
     keyword: pick(searchParams, 'keyword', defaults.keyword),
     departmentId: pick(searchParams, 'departmentId', defaults.departmentId),
     tab
+  }),
+
+  /** Holidays page: company (super admin), filters, list / calendar view */
+  holidayToSearchParams: (
+    searchParams: URLSearchParams,
+    defaults: THolidayFilterSchema,
+    view: string,
+    companyId?: string
+  ) => ({
+    ...paramsHelper.paginationToSearchParams(searchParams),
+    companyId,
+    keyword: pick(searchParams, 'keyword', defaults.keyword),
+    categoryId: pick(searchParams, 'categoryId', defaults.categoryId),
+    year: pick(searchParams, 'year', defaults.year),
+    dateFrom: pick(searchParams, 'dateFrom', defaults.dateFrom),
+    dateTo: pick(searchParams, 'dateTo', defaults.dateTo),
+    view
   }),
 
   getEmployeeTab: (searchParams: URLSearchParams) =>
