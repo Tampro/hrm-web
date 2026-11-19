@@ -78,7 +78,8 @@
     "designations": "Chức danh",
     "holidays": "Ngày lễ",
     "announcements": "Thông báo",
-    "award_types": "Loại khen thưởng"
+    "award_types": "Loại khen thưởng",
+    "document_types": "Loại tài liệu"
   },
   "table": {
     "rows_per_page": "Số dòng mỗi trang",
@@ -1425,6 +1426,44 @@
       "deleted": "Đã xoá loại khen thưởng",
       "activated": "Đã kích hoạt loại khen thưởng",
       "deactivated": "Đã tạm ngưng loại khen thưởng"
+    }
+  },
+  "document_type": {
+    "title": "Loại tài liệu",
+    "subtitle": "Các loại tài liệu trong hồ sơ nhân viên và loại nào bắt buộc.",
+    "empty": "Chưa có loại tài liệu.",
+    "keyword_placeholder": "Tên hoặc mô tả",
+    "pick_company": "Chọn công ty để xem và quản lý loại tài liệu.",
+    "required": "Bắt buộc",
+    "optional": "Không bắt buộc",
+    "filter": {
+      "all": "Tất cả"
+    },
+    "field": {
+      "name": "Tên loại tài liệu",
+      "description": "Mô tả",
+      "required": "Bắt buộc"
+    },
+    "form": {
+      "create_title": "Thêm loại tài liệu",
+      "edit_title": "Sửa loại tài liệu",
+      "name_placeholder": "VD: Giấy phép lao động",
+      "required_hint": "Bắt buộc với mọi nhân viên: hồ sơ thiếu sẽ được đánh dấu, nhưng không chặn việc thêm nhân viên.",
+      "system_hint": "Loại hệ thống dùng chung: tên và mô tả không sửa được, công ty chỉ chọn Bắt buộc / Không bắt buộc.",
+      "create_submit": "Thêm loại tài liệu"
+    },
+    "action": {
+      "edit_named": "Sửa {{name}}",
+      "delete_named": "Xoá {{name}}"
+    },
+    "delete": {
+      "title": "Xoá loại tài liệu {{name}}?",
+      "description": "Không xoá được khi còn tài liệu nhân viên thuộc loại này. Không thể hoàn tác."
+    },
+    "toast": {
+      "created": "Đã thêm loại tài liệu",
+      "updated": "Đã lưu loại tài liệu",
+      "deleted": "Đã xoá loại tài liệu"
     }
   }
 }

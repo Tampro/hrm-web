@@ -1,5 +1,5 @@
 import type { TFunction } from 'i18next'
-import { Eye, Pencil, Power, PowerOff, Trash2 } from 'lucide-react'
+import { Eye, FileText, Lock, Pencil, Power, PowerOff, Trash2 } from 'lucide-react'
 
 import { AwardIcon } from '~/components/customs/award-icon'
 import type { IColumn } from '~/components/customs/table-custom'
@@ -9,11 +9,14 @@ import { Switch } from '~/components/ui/switch'
 import { dateHelper } from '~/helpers/date.helper'
 import type { TGetTranslateEnumFn } from '~/hooks/use-transfer-enum'
 import { EOrgStatus } from '~/shared/enums/org.enum'
+import type { IDocumentType } from '~/shared/models/employee.model'
 import type { IAwardType, IBranch, IDepartment, IDesignation } from '~/shared/models/org.model'
 
 export type TDepartmentAction = 'select' | 'edit' | 'delete'
 
 export type TDesignationAction = 'view' | 'edit' | 'delete'
+
+export type TDocumentTypeAction = 'edit' | 'delete'
 
 export type TAwardTypeAction = 'edit' | 'toggle' | 'delete'
 
@@ -370,6 +373,82 @@ export const orgMgtColumn = {
             >
               <Trash2 />
             </Button>
+          </div>
+        )
+    }
+  ],
+
+  // Manual 6.3.7 list: name (icon, name, description), Required / Optional, actions (edit, delete).
+  // System types are shared: no delete, and edit only changes Required for the company.
+  getDocumentType: (
+    t: TFunction,
+    { onAction, canManage }: { onAction: (action: TDocumentTypeAction, d: IDocumentType) => void; canManage: boolean }
+  ): IColumn<IDocumentType>[] => [
+    {
+      id: 'name',
+      header: t('document_type.field.name'),
+      cell: (row) => (
+        <div className='flex min-w-0 items-center gap-3'>
+          <span
+            aria-hidden
+            className='bg-primary/10 text-primary flex size-9 shrink-0 items-center justify-center rounded-full'
+          >
+            <FileText className='size-4' />
+          </span>
+          <div className='min-w-0'>
+            <p className='flex items-center gap-2 font-medium'>
+              <span className='truncate'>{row.name || '-'}</span>
+              {row.system && (
+                <span className='text-muted-foreground inline-flex shrink-0 items-center gap-1 text-xs font-normal'>
+                  <Lock className='size-3' />
+                  {t('category_dialog.system')}
+                </span>
+              )}
+            </p>
+            {row.description && <p className='text-muted-foreground line-clamp-2 text-xs'>{row.description}</p>}
+          </div>
+        </div>
+      )
+    },
+    {
+      id: 'required',
+      header: t('document_type.field.required'),
+      className: 'w-32',
+      cell: (row) =>
+        row.required ? (
+          <Badge variant='outline' className='border-red-200 bg-red-50 text-red-700'>
+            {t('document_type.required')}
+          </Badge>
+        ) : (
+          <Badge variant='outline'>{t('document_type.optional')}</Badge>
+        )
+    },
+    {
+      id: 'actions',
+      header: <span className='sr-only'>{t('common.actions')}</span>,
+      className: 'w-24 text-right',
+      cell: (row) =>
+        canManage && (
+          <div className='flex justify-end gap-1'>
+            <Button
+              variant='ghost'
+              size='icon-sm'
+              aria-label={t('document_type.action.edit_named', { name: row.name ?? '' })}
+              onClick={() => onAction('edit', row)}
+            >
+              <Pencil />
+            </Button>
+            {!row.system && (
+              <Button
+                variant='ghost'
+                size='icon-sm'
+                className='text-destructive'
+                aria-label={t('document_type.action.delete_named', { name: row.name ?? '' })}
+                onClick={() => onAction('delete', row)}
+              >
+                <Trash2 />
+              </Button>
+            )}
           </div>
         )
     }

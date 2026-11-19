@@ -15,6 +15,7 @@ export default [
       route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.DESIGNATIONS}`, 'routes/dashboard/designations/index.tsx'),
       route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.HOLIDAYS}`, 'routes/dashboard/holidays/index.tsx'),
       route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.AWARD_TYPES}`, 'routes/dashboard/award-types/index.tsx'),
+      route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.DOCUMENT_TYPES}`, 'routes/dashboard/document-types/index.tsx'),
       route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.ANNOUNCEMENTS}`, 'routes/dashboard/announcements/index.tsx'),
       route(
         `${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.ANNOUNCEMENTS}/:id`,

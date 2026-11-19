@@ -5,6 +5,7 @@ import {
   Building2,
   CalendarDays,
   Coins,
+  FileText,
   GitBranch,
   Gift,
   LayoutDashboard,
@@ -74,6 +75,7 @@ export const DATA = {
     { label: t('sidebar.designations'), route: ROUTES.DESIGNATIONS, icon: BadgeCheck, permission: 'ORG_VIEW' },
     { label: t('sidebar.holidays'), route: ROUTES.HOLIDAYS, icon: CalendarDays, permission: 'ORG_VIEW' },
     { label: t('sidebar.award_types'), route: ROUTES.AWARD_TYPES, icon: Trophy, permission: 'ORG_VIEW' },
+    { label: t('sidebar.document_types'), route: ROUTES.DOCUMENT_TYPES, icon: FileText, permission: 'ORG_VIEW' },
     {
       label: t('sidebar.announcements'),
       route: ROUTES.ANNOUNCEMENTS,
@@ -342,6 +344,13 @@ export const DATA = {
     { label: t('award_type.all_statuses'), value: EOrgStatus.All },
     { label: t('enum.ACTIVE'), value: EOrgStatus.Active },
     { label: t('enum.INACTIVE'), value: EOrgStatus.Inactive }
+  ],
+
+  /** Required filter of document types: '' = all, 'true' = Required, 'false' = Optional (Spec: Boolean param) */
+  GET_REQUIRED_FILTER_OPTIONS: (t: TFunction): ITabOption[] => [
+    { label: t('document_type.filter.all'), value: '' },
+    { label: t('document_type.required'), value: 'true' },
+    { label: t('document_type.optional'), value: 'false' }
   ],
 
   // departments pass the counts of GET /org/departments/status-counts {all, active, inactive}

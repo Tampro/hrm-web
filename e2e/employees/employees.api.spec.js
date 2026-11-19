@@ -68,10 +68,13 @@ test.describe('Employees API · super admin', () => {
       expect(Array.isArray((await res.json()).data), path).toBe(true)
     }
     const types = (
-      await (await request.get(`${EMP_URL}org/document-types`, { headers: auth, params: { companyId } })).json()
+      await (await request.get(`${EMP_URL}org/document-types/options`, { headers: auth, params: { companyId } })).json()
     ).data
     expect(types.some((/** @type {any} */ d) => d.system)).toBe(true)
-    expect(Object.keys(types[0]).sort()).toEqual(['defaultSlot', 'id', 'name', 'system'])
+    // Spec: the dropdowns read /options (a list); /org/document-types is the paged list of the Document Types page
+    expect(Object.keys(types[0]).sort()).toEqual(
+      ['createdDate', 'defaultSlot', 'description', 'id', 'name', 'required', 'system', 'updatedDate'].sort()
+    )
   })
 
   test('EMP-API-014 sơ đồ tổ chức: {companyName, members, children}', async ({ request }) => {

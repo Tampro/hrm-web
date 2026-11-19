@@ -133,3 +133,18 @@ export interface IAwardTypePayload {
   icon?: string
   status?: EOrgStatus
 }
+
+// Spec: employee-service DocumentTypeDtos (the DTO itself is IDocumentType in employee.model)
+
+export interface IDocumentTypeListParams extends IBasePagination, IBaseFilterPanel {
+  companyId?: string
+  /** true = Required, false = Optional, omitted = all */
+  required?: boolean
+}
+
+/** DocumentTypeForm — full replacement on update (omitted description = cleared) */
+export interface IDocumentTypePayload {
+  name: string
+  description?: string
+  required: boolean
+}

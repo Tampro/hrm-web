@@ -41,7 +41,7 @@ const stubWizardOptions = async (api) => {
   await api.route('/org/branches/options', { body: ok(BRANCHES) })
   await api.route('/org/departments/options', { body: ok(DEPARTMENTS) })
   await api.route('/org/designations/options', { body: ok(DESIGNATIONS) })
-  await api.route('/org/document-types', { body: ok(DOCUMENT_TYPES) })
+  await api.route('/org/document-types/options', { body: ok(DOCUMENT_TYPES) })
   await api.route('/employees', {
     method: 'GET',
     body: ok(pageOf([{ ...ROW, id: '138', fullName: 'Trần Quốc Hưng', employeeNo: 'NV0138' }]))
@@ -376,7 +376,7 @@ test.describe('Nhân viên · người dùng công ty', () => {
     employeesPage
   }) => {
     await api.route('/employees/142', { method: 'GET', body: ok(DETAIL) })
-    await api.route('/org/document-types', { body: ok(DOCUMENT_TYPES) })
+    await api.route('/org/document-types/options', { body: ok(DOCUMENT_TYPES) })
     const verify = await api.route('/employees/142/documents/501/verify', { method: 'PUT', body: ok(DOCUMENT) })
     const removes = await api.route('/employees/142/documents/501', { method: 'DELETE', body: ok(null) })
     const uploads = await api.route('/media/files', { method: 'POST', body: ok([{ id: '78' }]) })

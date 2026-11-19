@@ -78,7 +78,8 @@
     "designations": "직책",
     "holidays": "공휴일",
     "announcements": "공지사항",
-    "award_types": "포상 유형"
+    "award_types": "포상 유형",
+    "document_types": "문서 유형"
   },
   "table": {
     "rows_per_page": "페이지당 행 수",
@@ -1425,6 +1426,44 @@
       "deleted": "포상 유형이 삭제되었습니다",
       "activated": "포상 유형이 활성화되었습니다",
       "deactivated": "포상 유형이 비활성화되었습니다"
+    }
+  },
+  "document_type": {
+    "title": "문서 유형",
+    "subtitle": "직원 기록의 문서 유형과 필수 여부입니다.",
+    "empty": "문서 유형이 없습니다.",
+    "keyword_placeholder": "이름 또는 설명",
+    "pick_company": "문서 유형을 보고 관리할 회사를 선택하세요.",
+    "required": "필수",
+    "optional": "선택",
+    "filter": {
+      "all": "전체"
+    },
+    "field": {
+      "name": "문서 유형명",
+      "description": "설명",
+      "required": "필수 여부"
+    },
+    "form": {
+      "create_title": "문서 유형 추가",
+      "edit_title": "문서 유형 수정",
+      "name_placeholder": "예: 취업 허가증",
+      "required_hint": "모든 직원 필수: 누락이 표시되지만 직원 추가는 막지 않습니다.",
+      "system_hint": "공용 시스템 유형: 이름과 설명은 수정할 수 없고 회사는 필수 여부만 선택합니다.",
+      "create_submit": "문서 유형 추가"
+    },
+    "action": {
+      "edit_named": "{{name}} 수정",
+      "delete_named": "{{name}} 삭제"
+    },
+    "delete": {
+      "title": "{{name}} 문서 유형을 삭제할까요?",
+      "description": "직원 문서가 사용 중이면 삭제할 수 없습니다. 되돌릴 수 없습니다."
+    },
+    "toast": {
+      "created": "문서 유형이 추가되었습니다",
+      "updated": "문서 유형이 저장되었습니다",
+      "deleted": "문서 유형이 삭제되었습니다"
     }
   }
 }

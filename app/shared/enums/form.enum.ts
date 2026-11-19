@@ -326,3 +326,9 @@ export enum EAwardTypeFormKey {
   Icon = 'icon',
   Active = 'active'
 }
+
+export enum EDocumentTypeFormKey {
+  Name = 'name',
+  Description = 'description',
+  Required = 'required'
+}
