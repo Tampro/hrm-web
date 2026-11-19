@@ -73,7 +73,8 @@
     "settings": "Cài đặt hệ thống",
     "email_templates": "Mẫu email",
     "employees": "Hồ sơ nhân viên",
-    "branches": "Chi nhánh"
+    "branches": "Chi nhánh",
+    "departments": "Phòng ban"
   },
   "table": {
     "rows_per_page": "Số dòng mỗi trang",
@@ -1048,6 +1049,58 @@
       "deleted": "Đã xoá chi nhánh",
       "activated": "Đã bật chi nhánh",
       "deactivated": "Đã tạm ngưng chi nhánh"
+    }
+  },
+  "department": {
+    "title": "Phòng ban",
+    "subtitle": "Phòng ban thuộc từng chi nhánh. Phòng ban tạm ngưng không gán được cho nhân viên hay chức danh mới.",
+    "add": "Thêm phòng ban",
+    "empty": "Chưa có phòng ban.",
+    "keyword_placeholder": "Tên hoặc mô tả phòng ban",
+    "pick_company": "Chọn công ty để xem và quản lý phòng ban.",
+    "field": {
+      "name": "Tên phòng ban",
+      "branch": "Chi nhánh",
+      "description": "Mô tả chức năng",
+      "status": "Trạng thái",
+      "active": "Đang hoạt động",
+      "designation_count": "Số chức danh",
+      "employee_count": "Nhân sự",
+      "created_at": "Ngày tạo",
+      "updated_at": "Cập nhật"
+    },
+    "form": {
+      "create_title": "Thêm phòng ban",
+      "edit_title": "Sửa phòng ban",
+      "description": "Phòng ban mới sẽ xuất hiện trong bộ lọc và hồ sơ nhân viên. Tên không được trùng trong cùng chi nhánh.",
+      "name_placeholder": "VD: Chăm sóc khách hàng",
+      "no_branch": "Chưa có chi nhánh đang hoạt động. Hãy tạo chi nhánh trước.",
+      "active_hint": "Tắt để ngừng gán phòng ban cho nhân viên; nhân viên hiện có được giữ nguyên.",
+      "create_submit": "Tạo phòng ban"
+    },
+    "panel": {
+      "title": "Phòng ban đang chọn",
+      "empty": "Bấm tên một phòng ban để xem chi tiết.",
+      "delete_note": "Không xoá được phòng ban khi còn chức danh hoặc nhân sự trực thuộc. Chuyển hết nhân sự và chức danh sang phòng ban khác trước."
+    },
+    "action": {
+      "select_named": "Xem phòng ban {{name}}",
+      "edit": "Sửa phòng ban",
+      "delete": "Xoá",
+      "edit_named": "Sửa {{name}}",
+      "delete_named": "Xoá {{name}}",
+      "toggle_named": "Bật / tắt {{name}}"
+    },
+    "delete": {
+      "title": "Xoá phòng ban {{name}}?",
+      "description": "Không thể hoàn tác. Hệ thống từ chối khi phòng ban còn chức danh hoặc nhân sự."
+    },
+    "toast": {
+      "created": "Đã tạo phòng ban",
+      "updated": "Đã lưu phòng ban",
+      "deleted": "Đã xoá phòng ban",
+      "activated": "Đã bật phòng ban",
+      "deactivated": "Đã tạm ngưng phòng ban"
     }
   }
 }

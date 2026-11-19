@@ -73,7 +73,8 @@
     "settings": "System settings",
     "email_templates": "Email templates",
     "employees": "Employees",
-    "branches": "Branches"
+    "branches": "Branches",
+    "departments": "Departments"
   },
   "table": {
     "rows_per_page": "Rows per page",
@@ -1048,6 +1049,58 @@
       "deleted": "Branch deleted",
       "activated": "Branch activated",
       "deactivated": "Branch deactivated"
+    }
+  },
+  "department": {
+    "title": "Departments",
+    "subtitle": "Departments of each branch. An inactive department cannot get new employees or designations.",
+    "add": "Add department",
+    "empty": "No departments yet.",
+    "keyword_placeholder": "Department name or description",
+    "pick_company": "Choose a company to see and manage its departments.",
+    "field": {
+      "name": "Department name",
+      "branch": "Branch",
+      "description": "Description",
+      "status": "Status",
+      "active": "Active",
+      "designation_count": "Designations",
+      "employee_count": "Employees",
+      "created_at": "Created",
+      "updated_at": "Updated"
+    },
+    "form": {
+      "create_title": "Add department",
+      "edit_title": "Edit department",
+      "description": "The new department appears in filters and employee profiles. The name must be unique in its branch.",
+      "name_placeholder": "e.g. Customer care",
+      "no_branch": "No active branch yet. Create a branch first.",
+      "active_hint": "Off stops assigning the department; current employees keep it.",
+      "create_submit": "Create department"
+    },
+    "panel": {
+      "title": "Selected department",
+      "empty": "Click a department name to see its details.",
+      "delete_note": "A department with designations or employees cannot be deleted. Move them to another department first."
+    },
+    "action": {
+      "select_named": "Show department {{name}}",
+      "edit": "Edit department",
+      "delete": "Delete",
+      "edit_named": "Edit {{name}}",
+      "delete_named": "Delete {{name}}",
+      "toggle_named": "Turn {{name}} on or off"
+    },
+    "delete": {
+      "title": "Delete department {{name}}?",
+      "description": "This cannot be undone. It is refused while the department has designations or employees."
+    },
+    "toast": {
+      "created": "Department created",
+      "updated": "Department saved",
+      "deleted": "Department deleted",
+      "activated": "Department activated",
+      "deactivated": "Department deactivated"
     }
   }
 }

@@ -1,5 +1,6 @@
 import type { TFunction } from 'i18next'
 import {
+  Boxes,
   Building2,
   Coins,
   GitBranch,
@@ -45,7 +46,7 @@ import type { ICompanyInfo, ICompanyStatusCounts } from '~/shared/models/company
 import type { ICoupon, ICouponStatusCounts } from '~/shared/models/coupon.model'
 import type { IEmailTemplatePreview } from '~/shared/models/email-template.model'
 import type { IEmployeeBanking, IEmployeeDetail, IEmployeeStatusCounts } from '~/shared/models/employee.model'
-import type { IBranch } from '~/shared/models/org.model'
+import type { IBranch, IDepartment, IOrgStatusCounts } from '~/shared/models/org.model'
 import type { IPlan } from '~/shared/models/plan.model'
 import type { IPayoutStatusCounts, IReferralDashboard, IReferredSummary } from '~/shared/models/referral.model'
 import type { IAdminOrder, ICurrency, ISaasStatusCounts } from '~/shared/models/saas.model'
@@ -60,6 +61,7 @@ export const DATA = {
     { label: t('sidebar.dashboard'), route: ROUTES.DASHBOARD, icon: LayoutDashboard },
     { label: t('sidebar.employees'), route: ROUTES.EMPLOYEES, icon: Users, permission: 'EMPLOYEE_VIEW' },
     { label: t('sidebar.branches'), route: ROUTES.BRANCHES, icon: GitBranch, permission: 'ORG_VIEW' },
+    { label: t('sidebar.departments'), route: ROUTES.DEPARTMENTS, icon: Boxes, permission: 'ORG_VIEW' },
     { label: t('sidebar.companies'), route: ROUTES.COMPANIES, icon: Building2, superAdminOnly: true },
     { label: t('sidebar.plans'), route: ROUTES.PLANS, icon: Package, superAdminOnly: true },
     { label: t('sidebar.coupons'), route: ROUTES.COUPONS, icon: TicketPercent, superAdminOnly: true },
@@ -317,10 +319,20 @@ export const DATA = {
   ],
 
   // Spec: list filter status ACTIVE | INACTIVE (omitted = all); no status-counts endpoint for branches
-  GET_ORG_STATUS_TABS: (t: TFunction): ITabOption<EOrgStatus>[] => [
-    { label: t('employee.tab.all'), value: EOrgStatus.All },
-    { label: t('enum.ACTIVE'), value: EOrgStatus.Active },
-    { label: t('enum.INACTIVE'), value: EOrgStatus.Inactive }
+  // departments pass the counts of GET /org/departments/status-counts {all, active, inactive}
+  GET_ORG_STATUS_TABS: (t: TFunction, counts?: IOrgStatusCounts): ITabOption<EOrgStatus>[] => [
+    { label: t('employee.tab.all'), value: EOrgStatus.All, count: counts?.all },
+    { label: t('enum.ACTIVE'), value: EOrgStatus.Active, count: counts?.active },
+    { label: t('enum.INACTIVE'), value: EOrgStatus.Inactive, count: counts?.inactive }
+  ],
+
+  // Spec: DepartmentDto — the counts are filled only by GET /org/departments/{id}
+  GET_DEPARTMENT_DETAIL_ROWS: (t: TFunction, d: IDepartment | undefined): IInfoRow[] => [
+    { label: t('department.field.branch'), value: d?.branch?.name || '-' },
+    { label: t('department.field.designation_count'), value: commonHelper.formatNumber(d?.designationCount, 0) },
+    { label: t('department.field.employee_count'), value: commonHelper.formatNumber(d?.employeeCount, 0) },
+    { label: t('department.field.created_at'), value: dateHelper.formatDate(d?.createdDate) },
+    { label: t('department.field.updated_at'), value: dateHelper.formatDateTime(d?.updatedDate) }
   ],
 
   // Spec: BranchDto — the counts are filled only by GET /org/branches/{id}

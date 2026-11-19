@@ -6,10 +6,12 @@ import type {
   TSaasFilterSchema
 } from '~/helpers/schema.helper'
 import type { TEmployeeFilterSchema } from '~/helpers/schemas/employee.schema'
+import type { TDepartmentFilterSchema } from '~/helpers/schemas/org.schema'
 import { DEFAULT_PAGE, DEFAULT_SIZE } from '~/hooks/use-pagination'
 import { ECompanyStatus } from '~/shared/enums/company.enum'
 import { ECouponStatusTab } from '~/shared/enums/coupon.enum'
 import { EEmployeeStatus } from '~/shared/enums/employee.enum'
+import type { EOrgStatus } from '~/shared/enums/org.enum'
 import { EPayoutStatus } from '~/shared/enums/referral.enum'
 import { ESaasRequestStatus } from '~/shared/enums/saas.enum'
 
@@ -82,6 +84,20 @@ export const paramsHelper = {
     branchId: pick(searchParams, 'branchId', defaults.branchId),
     departmentId: pick(searchParams, 'departmentId', defaults.departmentId),
     designationId: pick(searchParams, 'designationId', defaults.designationId),
+    tab
+  }),
+
+  /** Departments page: company (super admin), keyword, branch, status tab */
+  departmentToSearchParams: (
+    searchParams: URLSearchParams,
+    defaults: TDepartmentFilterSchema,
+    tab: EOrgStatus,
+    companyId?: string
+  ) => ({
+    ...paramsHelper.paginationToSearchParams(searchParams),
+    companyId,
+    keyword: pick(searchParams, 'keyword', defaults.keyword),
+    branchId: pick(searchParams, 'branchId', defaults.branchId),
     tab
   }),
 
