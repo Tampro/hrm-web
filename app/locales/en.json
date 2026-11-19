@@ -997,7 +997,16 @@
       "members": "{{count}} members",
       "empty": "No employees in the chart yet.",
       "active": "Active",
-      "inactive": "Inactive"
+      "inactive": "Inactive",
+      "view_label": "View",
+      "view_list": "List",
+      "view_tree": "Visual hierarchy",
+      "tree_label": "Visual hierarchy of the organization",
+      "expand": "Show {{count}} reports of {{name}}",
+      "collapse": "Hide the reports of {{name}}",
+      "zoom_in": "Zoom in",
+      "zoom_out": "Zoom out",
+      "zoom_reset": "Reset to 100%"
     }
   },
   "branch": {

@@ -45,3 +45,9 @@ export enum EEmployeeDetailTab {
   Documents = 'DOCUMENTS',
   Letters = 'LETTERS'
 }
+
+/** Organization chart layout, kept in ?view= (LIST = indented outline, TREE = visual hierarchy) */
+export enum EOrgChartView {
+  List = 'LIST',
+  Tree = 'TREE'
+}

@@ -997,7 +997,16 @@
       "members": "{{count}} thành viên",
       "empty": "Chưa có nhân viên trong sơ đồ.",
       "active": "Đang làm việc",
-      "inactive": "Tạm nghỉ"
+      "inactive": "Tạm nghỉ",
+      "view_label": "Chế độ xem",
+      "view_list": "Danh sách",
+      "view_tree": "Sơ đồ phân cấp",
+      "tree_label": "Sơ đồ phân cấp tổ chức",
+      "expand": "Mở {{count}} người báo cáo cho {{name}}",
+      "collapse": "Thu gọn người báo cáo cho {{name}}",
+      "zoom_in": "Phóng to",
+      "zoom_out": "Thu nhỏ",
+      "zoom_reset": "Về 100%"
     }
   },
   "branch": {
