@@ -184,3 +184,56 @@ export enum ECookieSettingsFormKey {
   ContactDescription = 'contactDescription',
   ContactUrl = 'contactUrl'
 }
+
+export enum EEmployeeFilterFormKey {
+  Keyword = 'keyword',
+  BranchId = 'branchId',
+  DepartmentId = 'departmentId',
+  DesignationId = 'designationId'
+}
+
+export enum EEmployeeFormKey {
+  FullName = 'fullName',
+  DateOfBirth = 'dateOfBirth',
+  Gender = 'gender',
+  Phone = 'phone',
+  ProfileImage = 'profileImage',
+  AddressLine1 = 'addressLine1',
+  AddressLine2 = 'addressLine2',
+  City = 'city',
+  State = 'state',
+  Country = 'country',
+  PostalCode = 'postalCode',
+  EmergencyName = 'emergencyName',
+  EmergencyRelationship = 'emergencyRelationship',
+  EmergencyPhone = 'emergencyPhone',
+  EmployeeCode = 'employeeCode',
+  BranchId = 'branchId',
+  DepartmentId = 'departmentId',
+  DesignationId = 'designationId',
+  DateOfJoining = 'dateOfJoining',
+  EmploymentType = 'employmentType',
+  Status = 'status',
+  ReportsToId = 'reportsToId',
+  BankName = 'bankName',
+  AccountHolderName = 'accountHolderName',
+  AccountNumber = 'accountNumber',
+  BankIdentifierCode = 'bankIdentifierCode',
+  BankBranch = 'bankBranch',
+  TaxPayerId = 'taxPayerId',
+  BaseSalary = 'baseSalary',
+  Email = 'email',
+  Password = 'password',
+  Documents = 'documents'
+}
+
+export enum EEmployeeDocumentFormKey {
+  DocumentTypeId = 'documentTypeId',
+  File = 'file',
+  ExpiryDate = 'expiryDate'
+}
+
+export enum EEmployeePasswordFormKey {
+  NewPassword = 'newPassword',
+  ConfirmPassword = 'confirmPassword'
+}

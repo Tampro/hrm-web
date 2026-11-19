@@ -1,11 +1,19 @@
 import type { TFunction } from 'i18next'
-import { Building2, Coins, Gift, LayoutDashboard, Mail, Package, Settings, TicketPercent } from 'lucide-react'
+import { Building2, Coins, Gift, LayoutDashboard, Mail, Package, Settings, TicketPercent, Users } from 'lucide-react'
 
 import { commonHelper } from '~/helpers/common.helper'
 import { dateHelper } from '~/helpers/date.helper'
 import { ROUTES } from '~/shared/constants/routes.constant'
 import { EBillingCycle, ECompanyStatus } from '~/shared/enums/company.enum'
 import { ECouponCodeGeneration, ECouponStatusTab, ECouponType } from '~/shared/enums/coupon.enum'
+import {
+  EEmployeeDetailTab,
+  EEmployeeStatus,
+  EEmployeeStep,
+  EEmploymentType,
+  EGender,
+  ELetterType
+} from '~/shared/enums/employee.enum'
 import { EPayoutStatus } from '~/shared/enums/referral.enum'
 import { ESaasRequestStatus } from '~/shared/enums/saas.enum'
 import {
@@ -24,6 +32,7 @@ import type { IInfoRow, ISidebarItem, ITabItem, ITabOption } from '~/shared/mode
 import type { ICompanyInfo, ICompanyStatusCounts } from '~/shared/models/company.model'
 import type { ICoupon, ICouponStatusCounts } from '~/shared/models/coupon.model'
 import type { IEmailTemplatePreview } from '~/shared/models/email-template.model'
+import type { IEmployeeBanking, IEmployeeDetail, IEmployeeStatusCounts } from '~/shared/models/employee.model'
 import type { IPlan } from '~/shared/models/plan.model'
 import type { IPayoutStatusCounts, IReferralDashboard, IReferredSummary } from '~/shared/models/referral.model'
 import type { IAdminOrder, ICurrency, ISaasStatusCounts } from '~/shared/models/saas.model'
@@ -36,6 +45,7 @@ const unlimited = (t: TFunction, value: number | null | undefined, format: (v: n
 export const DATA = {
   GET_SIDEBAR_ITEMS: (t: TFunction): ISidebarItem[] => [
     { label: t('sidebar.dashboard'), route: ROUTES.DASHBOARD, icon: LayoutDashboard },
+    { label: t('sidebar.employees'), route: ROUTES.EMPLOYEES, icon: Users, permission: 'EMPLOYEE_VIEW' },
     { label: t('sidebar.companies'), route: ROUTES.COMPANIES, icon: Building2, superAdminOnly: true },
     { label: t('sidebar.plans'), route: ROUTES.PLANS, icon: Package, superAdminOnly: true },
     { label: t('sidebar.coupons'), route: ROUTES.COUPONS, icon: TicketPercent, superAdminOnly: true },
@@ -206,6 +216,92 @@ export const DATA = {
     value === null || value === undefined ? t('coupon.no_limit') : commonHelper.formatMoney(value, currency),
 
   // Manual 3.2.5 View: currency information. Spec: CurrencyDto
+  // Spec: StatusCounts {all, active, inactive, probation, terminated}; tabs of the Employees page (manual 6.1)
+  GET_EMPLOYEE_STATUS_TABS: (t: TFunction, counts?: IEmployeeStatusCounts): ITabOption<EEmployeeStatus>[] => [
+    { label: t('employee.tab.all'), value: EEmployeeStatus.All, count: counts?.all },
+    { label: t('enum.ACTIVE'), value: EEmployeeStatus.Active, count: counts?.active },
+    { label: t('enum.INACTIVE'), value: EEmployeeStatus.Inactive, count: counts?.inactive },
+    { label: t('enum.PROBATION'), value: EEmployeeStatus.Probation, count: counts?.probation },
+    { label: t('enum.TERMINATED'), value: EEmployeeStatus.Terminated, count: counts?.terminated }
+  ],
+
+  /** Status of one employee (no "All") */
+  GET_EMPLOYEE_STATUS_OPTIONS: (t: TFunction): ITabOption[] =>
+    Object.values(EEmployeeStatus)
+      .filter((v) => v !== EEmployeeStatus.All)
+      .map((v) => ({ label: t(`enum.${v}`), value: v })),
+
+  GET_EMPLOYMENT_TYPE_OPTIONS: (t: TFunction): ITabOption[] =>
+    Object.values(EEmploymentType).map((v) => ({ label: t(`enum.${v}`), value: v })),
+
+  GET_GENDER_OPTIONS: (t: TFunction): ITabOption[] =>
+    Object.values(EGender).map((v) => ({ label: t(`enum.${v}`), value: v })),
+
+  /** Steps of the Add employee wizard (design: 4 steps); Edit has no account step */
+  GET_EMPLOYEE_STEPS: (t: TFunction, isCreate: boolean): ITabOption<EEmployeeStep>[] => [
+    { label: t('employee.step.personal'), value: EEmployeeStep.Personal },
+    { label: t('employee.step.work'), value: EEmployeeStep.Work },
+    { label: t('employee.step.banking'), value: EEmployeeStep.Banking },
+    ...(isCreate ? [{ label: t('employee.step.account'), value: EEmployeeStep.Account }] : [])
+  ],
+
+  GET_EMPLOYEE_DETAIL_TABS: (t: TFunction, documentCount?: number): ITabOption<EEmployeeDetailTab>[] => [
+    { label: t('employee.detail_tab.overview'), value: EEmployeeDetailTab.Overview },
+    { label: t('employee.detail_tab.documents'), value: EEmployeeDetailTab.Documents, count: documentCount },
+    { label: t('employee.detail_tab.letters'), value: EEmployeeDetailTab.Letters }
+  ],
+
+  // Spec: ELetterType; PDF in vi (default) or en, ko is served in en
+  GET_LETTER_OPTIONS: (t: TFunction): ITabOption<ELetterType>[] =>
+    Object.values(ELetterType).map((v) => ({ label: t(`employee.letter.${v}`), value: v })),
+
+  GET_EMPLOYEE_PERSONAL_ROWS: (
+    t: TFunction,
+    e: IEmployeeDetail | undefined,
+    translateEnum: TTranslateEnum
+  ): IInfoRow[] => [
+    { label: t('employee.field.date_of_birth'), value: dateHelper.formatDate(e?.dateOfBirth) },
+    { label: t('employee.field.gender'), value: translateEnum(e?.gender) },
+    { label: t('employee.field.phone'), value: e?.phone || '-' },
+    { label: t('employee.field.email'), value: e?.email || '-' },
+    {
+      label: t('employee.field.address'),
+      value:
+        [e?.addressLine1, e?.addressLine2, e?.city, e?.state, e?.postalCode, e?.country].filter(Boolean).join(', ') ||
+        '-'
+    },
+    {
+      label: t('employee.field.emergency'),
+      value:
+        [e?.emergencyName, e?.emergencyRelationship && `(${e.emergencyRelationship})`, e?.emergencyPhone]
+          .filter(Boolean)
+          .join(' ') || '-'
+    }
+  ],
+
+  GET_EMPLOYEE_WORK_ROWS: (t: TFunction, e: IEmployeeDetail | undefined, translateEnum: TTranslateEnum): IInfoRow[] => [
+    { label: t('employee.field.employee_no'), value: e?.employeeNo || '-' },
+    { label: t('employee.field.employee_code'), value: e?.employeeCode || '-' },
+    { label: t('employee.field.branch'), value: e?.branch?.name || '-' },
+    { label: t('employee.field.department'), value: e?.department?.name || '-' },
+    { label: t('employee.field.designation'), value: e?.designation?.name || '-' },
+    { label: t('employee.field.reports_to'), value: e?.reportsTo?.name || '-' },
+    { label: t('employee.field.date_of_joining'), value: dateHelper.formatDate(e?.dateOfJoining) },
+    { label: t('employee.field.employment_type'), value: translateEnum(e?.employmentType) },
+    { label: t('employee.field.login'), value: t(e?.loginEnabled ? 'employee.login_on' : 'employee.login_off') }
+  ],
+
+  /** Spec: banking is null without EMPLOYEE_BANKING_VIEW — the card then shows a "no access" note instead */
+  GET_EMPLOYEE_BANKING_ROWS: (t: TFunction, b: IEmployeeBanking | null | undefined): IInfoRow[] => [
+    { label: t('employee.field.bank_name'), value: b?.bankName || '-' },
+    { label: t('employee.field.account_holder_name'), value: b?.accountHolderName || '-' },
+    { label: t('employee.field.account_number'), value: b?.accountNumber || '-' },
+    { label: t('employee.field.bank_identifier_code'), value: b?.bankIdentifierCode || '-' },
+    { label: t('employee.field.bank_branch'), value: b?.bankBranch || '-' },
+    { label: t('employee.field.tax_payer_id'), value: b?.taxPayerId || '-' },
+    { label: t('employee.field.base_salary'), value: commonHelper.formatMoney(b?.baseSalary) }
+  ],
+
   // Spec: Rendered {fromName, subject, html} of the email template preview
   GET_EMAIL_PREVIEW_ROWS: (t: TFunction, preview: IEmailTemplatePreview | undefined): IInfoRow[] => [
     { label: t('email_template.field.from_name'), value: preview?.fromName || '-' },

@@ -10,6 +10,17 @@ export default [
     layout('layouts/dashboard.layout.tsx', [
       route(BASE_ROUTES.DASHBOARD, 'routes/dashboard/index.tsx'),
       route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.COMPANIES}`, 'routes/dashboard/companies/index.tsx'),
+      route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.EMPLOYEES}`, 'routes/dashboard/employees/layout.tsx', [
+        index('routes/dashboard/employees/index.tsx'),
+        route(BASE_ROUTES.EMPLOYEE_CREATE, 'routes/dashboard/employees/employee-upsert/index.tsx', {
+          id: 'employee-create'
+        }),
+        route(BASE_ROUTES.EMPLOYEE_ORG_CHART, 'routes/dashboard/employees/org-chart/index.tsx'),
+        route(':id', 'routes/dashboard/employees/employee-detail/index.tsx'),
+        route(`:id/${BASE_ROUTES.EMPLOYEE_EDIT}`, 'routes/dashboard/employees/employee-upsert/index.tsx', {
+          id: 'employee-edit'
+        })
+      ]),
       route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.PLANS}`, 'routes/dashboard/plans/layout.tsx', [
         index('routes/dashboard/plans/index.tsx'),
         route(BASE_ROUTES.PLAN_REQUESTS, 'routes/dashboard/plans/requests/index.tsx'),

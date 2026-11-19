@@ -16,7 +16,8 @@
     "edit": "Edit",
     "delete": "Delete",
     "yes": "Yes",
-    "no": "No"
+    "no": "No",
+    "close": "Close"
   },
   "validation": {
     "required": "This field is required",
@@ -38,7 +39,9 @@
     "theme_color": "Pick a preset or a #RRGGBB colour",
     "separators_differ": "The thousands separator must differ from the decimal separator",
     "max_value": "Maximum is {{max}}",
-    "pick_one": "Pick at least one"
+    "pick_one": "Pick at least one",
+    "amount": "Enter a number ≥ 0 with at most 2 decimals",
+    "phone": "Digits and + - ( ) . only"
   },
   "auth": {
     "login": {
@@ -68,7 +71,8 @@
     "currencies": "Currencies",
     "referral": "Referral",
     "settings": "System settings",
-    "email_templates": "Email templates"
+    "email_templates": "Email templates",
+    "employees": "Employees"
   },
   "table": {
     "rows_per_page": "Rows per page",
@@ -115,7 +119,18 @@
     "DARK": "Dark",
     "SYSTEM": "System",
     "BEFORE": "Before the amount",
-    "AFTER": "After the amount"
+    "AFTER": "After the amount",
+    "INACTIVE": "Inactive",
+    "PROBATION": "Probation",
+    "TERMINATED": "Terminated",
+    "FULL_TIME": "Full-time",
+    "PART_TIME": "Part-time",
+    "CONTRACT": "Contract",
+    "INTERN": "Intern",
+    "TEMPORARY": "Temporary",
+    "MALE": "Male",
+    "FEMALE": "Female",
+    "OTHER": "Other"
   },
   "company": {
     "title": "Companies",
@@ -759,6 +774,226 @@
       "PLAN_REQUEST_REJECTED": "Plan request rejected",
       "PAYOUT_APPROVED": "Payout approved",
       "PAYOUT_REJECTED": "Payout rejected"
+    }
+  },
+  "upload": {
+    "choose": "Choose a file or drop it here",
+    "remove": "Remove {{name}}",
+    "too_large": "The file is larger than {{size}}"
+  },
+  "employee": {
+    "title": "Employees",
+    "subtitle": "Employees of the company, their login accounts and records.",
+    "add": "Add employee",
+    "edit": "Edit profile",
+    "empty": "No employees yet.",
+    "not_found": "The employee does not exist.",
+    "keyword_placeholder": "Name, employee ID, email…",
+    "back_to_list": "Back to employees",
+    "back_to_profile": "Back to the profile",
+    "none": "— None —",
+    "joined_on": "Joined {{date}}",
+    "login_on": "Can sign in",
+    "login_off": "Login off",
+    "login_off_hint": "No account, or the account is locked",
+    "banking_empty": "No banking details yet.",
+    "banking_no_access": "You do not have access to banking and salary details.",
+    "create_title": "Add a new employee",
+    "edit_title": "Edit profile · {{name}}",
+    "edit_form": "Edit profile",
+    "step_of": "Step {{current}} of {{total}}",
+    "employee_no_hint": "The employee ID is issued by the system on save",
+    "employee_code_hint": "Code used by the biometric device, unique in the company",
+    "email_hint": "Also the login name of the account",
+    "first_password_hint": "Leave empty to generate one. It is emailed and must be changed at the first login.",
+    "required_hint": "Fields marked * are required.",
+    "step_back": "Back",
+    "step_next": "Next",
+    "submit_create": "Create employee",
+    "submit_update": "Save changes",
+    "tab": {
+      "all": "All"
+    },
+    "filter": {
+      "all": "All"
+    },
+    "step": {
+      "personal": "Personal details",
+      "work": "Work & organization",
+      "banking": "Banking & salary",
+      "account": "Account & documents"
+    },
+    "section": {
+      "basic": "Basic information",
+      "photo": "Profile photo",
+      "address": "Address",
+      "emergency": "Emergency contact",
+      "organization": "Organization",
+      "employment": "Employment",
+      "banking": "Banking & salary",
+      "account": "Login account",
+      "documents": "Documents",
+      "personal": "Personal details",
+      "work": "Work details"
+    },
+    "field": {
+      "employee_no": "Employee ID",
+      "employee": "Employee",
+      "employee_code": "Employee code",
+      "full_name": "Full name",
+      "date_of_birth": "Date of birth",
+      "gender": "Gender",
+      "phone": "Phone",
+      "email": "Email",
+      "address": "Address",
+      "address_line1": "Address line 1",
+      "address_line2": "Address line 2",
+      "city": "City",
+      "state": "State / province",
+      "country": "Country",
+      "postal_code": "Postal code",
+      "emergency": "Emergency contact",
+      "emergency_name": "Contact name",
+      "emergency_relationship": "Relationship",
+      "emergency_phone": "Contact phone",
+      "branch": "Branch",
+      "department": "Department",
+      "designation": "Designation",
+      "reports_to": "Reports to",
+      "date_of_joining": "Date of joining",
+      "employment_type": "Employment type",
+      "status": "Status",
+      "login": "Login",
+      "bank_name": "Bank",
+      "account_holder_name": "Account holder",
+      "account_number": "Account number",
+      "bank_identifier_code": "BIC / SWIFT",
+      "bank_branch": "Bank branch",
+      "tax_payer_id": "Tax ID",
+      "base_salary": "Base salary",
+      "first_password": "First password",
+      "new_password": "New password",
+      "confirm_password": "Confirm password"
+    },
+    "validation": {
+      "file_required": "Choose a file",
+      "past_date": "Must be a date in the past",
+      "code": "Letters, digits and . _ - only",
+      "password_length": "The password must be 8 to 128 characters",
+      "password_mismatch": "The passwords do not match",
+      "branch_first": "Choose a branch before the department",
+      "department_first": "Choose a department before the designation"
+    },
+    "photo": {
+      "upload": "Upload a photo",
+      "replace": "Replace the photo",
+      "remove": "Remove",
+      "hint": "PNG, JPG, GIF, WEBP · up to 2 MB"
+    },
+    "company_picker": {
+      "label": "Company",
+      "placeholder": "Choose a company",
+      "hint": "Choose a company to see and manage its employees."
+    },
+    "detail_tab": {
+      "overview": "Overview",
+      "documents": "Documents",
+      "letters": "Letters & certificates"
+    },
+    "action": {
+      "menu": "More actions",
+      "change_status": "Change status",
+      "login_on": "Turn login on",
+      "login_off": "Turn login off",
+      "set_password": "Set a new password",
+      "delete": "Delete employee"
+    },
+    "status_dialog": {
+      "description": "Choose the new status of {{name}}."
+    },
+    "login_dialog": {
+      "on": "{{name}} will be able to sign in again.",
+      "off": "The account of {{name}} is locked and every session ends now."
+    },
+    "password_dialog": {
+      "description": "The new password of {{name}} applies at once (no change required)."
+    },
+    "delete": {
+      "title": "Delete the employee?",
+      "description": "{{name}} ({{employeeNo}}) loses the login and disappears from every list."
+    },
+    "toast": {
+      "created": "Employee created. The password was emailed.",
+      "updated": "Profile saved",
+      "status_changed": "Status changed",
+      "login_on": "Login turned on",
+      "login_off": "Login turned off",
+      "password_set": "New password set",
+      "deleted": "Employee deleted",
+      "document_added": "Document added",
+      "document_removed": "Document removed",
+      "document_verified": "Document verified",
+      "document_unverified": "Document marked unverified"
+    },
+    "document": {
+      "add": "Add document",
+      "add_description": "The file is stored in the company library, up to 5 MB.",
+      "type": "Document type",
+      "file": "File",
+      "size": "Size",
+      "expiry_date": "Expiry date",
+      "expired": "Expired",
+      "verified": "Verified",
+      "verified_yes": "Verified",
+      "verified_no": "Not verified",
+      "choose_file": "Choose the file",
+      "file_hint": "Image, PDF, Word, Excel, PowerPoint, TXT, CSV · up to 5 MB",
+      "none_yet": "No documents. They can also be added later on the profile.",
+      "empty": "No documents yet.",
+      "row": "Document {{index}}",
+      "remove_row": "Remove document {{index}}",
+      "view_named": "View {{name}}",
+      "download_named": "Download {{name}}",
+      "verify_named": "Verify {{name}}",
+      "unverify_named": "Mark {{name}} unverified",
+      "remove_named": "Remove {{name}}",
+      "remove_title": "Remove the document?",
+      "remove_description": "{{name}} is removed from the profile; the file stays in the library."
+    },
+    "letter": {
+      "JOINING_LETTER": "Joining letter",
+      "EXPERIENCE_CERTIFICATE": "Experience certificate",
+      "NOC": "No objection certificate (NOC)",
+      "description": "Download the employee letters as PDF.",
+      "language": "Language",
+      "download": "Download PDF",
+      "downloading": "Downloading..."
+    },
+    "import": {
+      "open": "Import from Excel",
+      "title": "Import employees from Excel",
+      "description": "Up to 200 rows. Each row creates an employee with an account; the password is emailed.",
+      "template": "Download the template",
+      "choose": "Choose an .xlsx file",
+      "hint": "Row 1 = headers of the template · up to 5 MB",
+      "submit": "Import",
+      "importing": "Importing...",
+      "result": "Created {{created}} of {{total}} employees.",
+      "errors": "Refused rows",
+      "row": "Row {{row}}:"
+    },
+    "export": {
+      "open": "Export",
+      "exporting": "Exporting..."
+    },
+    "org_chart": {
+      "open": "Organization chart",
+      "title": "Organization chart",
+      "subtitle": "Employees under the person they report to; terminated employees are left out.",
+      "members": "{{count}} members",
+      "empty": "No employees in the chart yet.",
+      "active": "Active",
+      "inactive": "Inactive"
     }
   }
 }

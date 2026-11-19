@@ -4,6 +4,15 @@
 
 const API_PREFIX = '/api/v1'
 
+/** @param {import('@playwright/test').Request} request */
+const parseBody = (request) => {
+  try {
+    return request.postDataJSON()
+  } catch {
+    return request.postData()
+  }
+}
+
 /** @param {unknown} data */
 export const ok = (data) => ({ result: true, code: 'SUCCESS', data, message: null, traceId: 'e2e-trace' })
 
@@ -81,7 +90,8 @@ export const mockApi = (page) => {
         const captured = {
           method: request.method(),
           query: new URL(request.url()).searchParams,
-          body: request.postDataJSON()
+          // multipart uploads are not JSON: keep the raw text so tests can still look for a file name
+          body: parseBody(request)
         }
         calls.push(captured)
         const payload = typeof body === 'function' ? body(captured) : body

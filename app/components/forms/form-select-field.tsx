@@ -12,6 +12,8 @@ interface IProps<T extends FieldValues> {
   options: ITabOption[]
   description?: ReactNode
   disabled?: boolean
+  /** called after the field value changes (e.g. clear a dependent field) */
+  onValueChange?: (value: string) => void
 }
 
 /** RHF select (Base UI): label, 38px trigger showing the option label, field error */
@@ -21,7 +23,8 @@ export function FormSelectField<T extends FieldValues>({
   label,
   options,
   description,
-  disabled
+  disabled,
+  onValueChange
 }: IProps<T>) {
   return (
     <Controller
@@ -33,7 +36,11 @@ export function FormSelectField<T extends FieldValues>({
           <Select
             items={options}
             value={field.value ?? null}
-            onValueChange={(value) => value !== null && field.onChange(value)}
+            onValueChange={(value) => {
+              if (value === null) return
+              field.onChange(value)
+              onValueChange?.(value)
+            }}
             disabled={disabled}
           >
             <SelectTrigger id={field.name} className='h-[38px] w-full' aria-invalid={fieldState.invalid}>
