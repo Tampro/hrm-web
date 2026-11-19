@@ -13,6 +13,7 @@ import {
   Package,
   Settings,
   TicketPercent,
+  Trophy,
   Users
 } from 'lucide-react'
 
@@ -72,6 +73,7 @@ export const DATA = {
     { label: t('sidebar.departments'), route: ROUTES.DEPARTMENTS, icon: Boxes, permission: 'ORG_VIEW' },
     { label: t('sidebar.designations'), route: ROUTES.DESIGNATIONS, icon: BadgeCheck, permission: 'ORG_VIEW' },
     { label: t('sidebar.holidays'), route: ROUTES.HOLIDAYS, icon: CalendarDays, permission: 'ORG_VIEW' },
+    { label: t('sidebar.award_types'), route: ROUTES.AWARD_TYPES, icon: Trophy, permission: 'ORG_VIEW' },
     {
       label: t('sidebar.announcements'),
       route: ROUTES.ANNOUNCEMENTS,
@@ -335,6 +337,13 @@ export const DATA = {
   ],
 
   // Spec: list filter status ACTIVE | INACTIVE (omitted = all); no status-counts endpoint for branches
+  /** Status filter of award types (manual: a single "All Statuses" dropdown) */
+  GET_ORG_STATUS_OPTIONS: (t: TFunction): ITabOption<EOrgStatus>[] => [
+    { label: t('award_type.all_statuses'), value: EOrgStatus.All },
+    { label: t('enum.ACTIVE'), value: EOrgStatus.Active },
+    { label: t('enum.INACTIVE'), value: EOrgStatus.Inactive }
+  ],
+
   // departments pass the counts of GET /org/departments/status-counts {all, active, inactive}
   GET_ORG_STATUS_TABS: (t: TFunction, counts?: IOrgStatusCounts): ITabOption<EOrgStatus>[] => [
     { label: t('employee.tab.all'), value: EOrgStatus.All, count: counts?.all },

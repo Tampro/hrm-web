@@ -2,7 +2,7 @@ import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { createDetailApiHook, createListApiHook } from '~/hooks/use-query-api'
 import { OrgService } from '~/services/employee.service'
-import { BranchService, DepartmentService, DesignationService } from '~/services/org.service'
+import { AwardTypeService, BranchService, DepartmentService, DesignationService } from '~/services/org.service'
 import { QUERY_KEY } from '~/shared/constants/query-key.constant'
 import type { IDepartmentListParams } from '~/shared/models/org.model'
 
@@ -96,3 +96,5 @@ export const useDepartmentChoicesApi = (companyId: string | undefined, enabled =
     value: d.id ?? ''
   }))
 }
+
+export const useGetListAwardTypeApi = createListApiHook(QUERY_KEY.ORG.GET_AWARD_TYPE_LIST, AwardTypeService.GetList)

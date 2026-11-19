@@ -319,3 +319,10 @@ export enum EColorCategoryFormKey {
   Name = 'name',
   Color = 'color'
 }
+
+export enum EAwardTypeFormKey {
+  Name = 'name',
+  Description = 'description',
+  Icon = 'icon',
+  Active = 'active'
+}

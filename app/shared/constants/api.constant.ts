@@ -107,7 +107,10 @@ export const API_ORG = {
   DESIGNATION_URL: (id: string) => '/org/designations/' + id,
   DESIGNATION_STATUS_URL: (id: string) => '/org/designations/' + id + '/status',
   DESIGNATION_OPTIONS_URL: '/org/designations/options',
-  DOCUMENT_TYPES_URL: '/org/document-types'
+  DOCUMENT_TYPES_URL: '/org/document-types',
+  AWARD_TYPES_URL: '/org/award-types',
+  AWARD_TYPE_URL: (id: string) => '/org/award-types/' + id,
+  AWARD_TYPE_STATUS_URL: (id: string) => '/org/award-types/' + id + '/status'
 } as const
 
 // Spec: employee-service HolidayController (ORG_VIEW to read, ORG_MANAGE to write; super admin passes companyId)
