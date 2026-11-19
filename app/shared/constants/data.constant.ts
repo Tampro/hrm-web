@@ -8,6 +8,7 @@ import {
   GitBranch,
   Gift,
   LayoutDashboard,
+  Megaphone,
   Mail,
   Package,
   Settings,
@@ -29,6 +30,7 @@ import {
   EGender,
   ELetterType
 } from '~/shared/enums/employee.enum'
+import { EAnnouncementTab } from '~/shared/enums/announcement.enum'
 import { ECalendarMode } from '~/shared/enums/holiday.enum'
 import { EOrgStatus } from '~/shared/enums/org.enum'
 import { EPayoutStatus } from '~/shared/enums/referral.enum'
@@ -50,6 +52,7 @@ import type { ICompanyInfo, ICompanyStatusCounts } from '~/shared/models/company
 import type { ICoupon, ICouponStatusCounts } from '~/shared/models/coupon.model'
 import type { IEmailTemplatePreview } from '~/shared/models/email-template.model'
 import type { IEmployeeBanking, IEmployeeDetail, IEmployeeStatusCounts } from '~/shared/models/employee.model'
+import type { IAnnouncement, IAnnouncementStats, IAnnouncementTabCounts } from '~/shared/models/announcement.model'
 import type { IHoliday } from '~/shared/models/holiday.model'
 import type { IBranch, IDepartment, IDesignation, IOrgStatusCounts } from '~/shared/models/org.model'
 import type { IPlan } from '~/shared/models/plan.model'
@@ -69,6 +72,12 @@ export const DATA = {
     { label: t('sidebar.departments'), route: ROUTES.DEPARTMENTS, icon: Boxes, permission: 'ORG_VIEW' },
     { label: t('sidebar.designations'), route: ROUTES.DESIGNATIONS, icon: BadgeCheck, permission: 'ORG_VIEW' },
     { label: t('sidebar.holidays'), route: ROUTES.HOLIDAYS, icon: CalendarDays, permission: 'ORG_VIEW' },
+    {
+      label: t('sidebar.announcements'),
+      route: ROUTES.ANNOUNCEMENTS,
+      icon: Megaphone,
+      permission: 'ANNOUNCEMENT_VIEW'
+    },
     { label: t('sidebar.companies'), route: ROUTES.COMPANIES, icon: Building2, superAdminOnly: true },
     { label: t('sidebar.plans'), route: ROUTES.PLANS, icon: Package, superAdminOnly: true },
     { label: t('sidebar.coupons'), route: ROUTES.COUPONS, icon: TicketPercent, superAdminOnly: true },
@@ -331,6 +340,39 @@ export const DATA = {
     { label: t('employee.tab.all'), value: EOrgStatus.All, count: counts?.all },
     { label: t('enum.ACTIVE'), value: EOrgStatus.Active, count: counts?.active },
     { label: t('enum.INACTIVE'), value: EOrgStatus.Inactive, count: counts?.inactive }
+  ],
+
+  // Spec: TabCounts {all, highPriority, featured, upcoming} — the dashboard tabs (manual 6.3.5)
+  GET_ANNOUNCEMENT_TABS: (t: TFunction, counts?: IAnnouncementTabCounts): ITabOption<EAnnouncementTab>[] => [
+    { label: t('announcement.tab.all'), value: EAnnouncementTab.All, count: counts?.all },
+    { label: t('announcement.tab.high_priority'), value: EAnnouncementTab.HighPriority, count: counts?.highPriority },
+    { label: t('announcement.tab.featured'), value: EAnnouncementTab.Featured, count: counts?.featured },
+    { label: t('announcement.tab.upcoming'), value: EAnnouncementTab.Upcoming, count: counts?.upcoming }
+  ],
+
+  // Statistics page cards (manual: Total Employees, Views, View Rate)
+  GET_ANNOUNCEMENT_STAT_CARDS: (t: TFunction, stats: IAnnouncementStats | null | undefined): IInfoRow[] => [
+    { label: t('announcement.stats.total_employees'), value: commonHelper.formatNumber(stats?.totalEmployees, 0) },
+    { label: t('announcement.stats.views'), value: commonHelper.formatNumber(stats?.views, 0) },
+    { label: t('announcement.stats.view_rate'), value: commonHelper.formatPercent(stats?.viewRate) }
+  ],
+
+  // Statistics page summary (manual: title, category, target branch / department, start / end date)
+  GET_ANNOUNCEMENT_SUMMARY_ROWS: (t: TFunction, a: IAnnouncement | undefined, categoryName: string): IInfoRow[] => [
+    { label: t('announcement.field.title'), value: a?.title || '-' },
+    { label: t('announcement.field.category'), value: categoryName },
+    {
+      label: t('announcement.field.branches'),
+      value: a?.companyWide ? t('announcement.company_wide') : (a?.branches ?? []).map((b) => b.name).join(', ') || '-'
+    },
+    {
+      label: t('announcement.field.departments'),
+      value: a?.companyWide
+        ? t('announcement.company_wide')
+        : (a?.departments ?? []).map((d) => d.name).join(', ') || '-'
+    },
+    { label: t('announcement.field.start_date'), value: dateHelper.formatDate(a?.startDate) },
+    { label: t('announcement.field.end_date'), value: dateHelper.formatDate(a?.endDate) }
   ],
 
   // Spec: HolidayDto — allBranches = every branch, also ones created later

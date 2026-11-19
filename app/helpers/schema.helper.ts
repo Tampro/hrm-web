@@ -16,7 +16,8 @@ import {
   EReferralSettingsFormKey,
   EResetPasswordFormKey,
   ESaasFilterFormKey,
-  EUpgradePlanFormKey
+  EUpgradePlanFormKey,
+  EColorCategoryFormKey
 } from '~/shared/enums/form.enum'
 
 export const required = (t?: TFunction) => t?.('validation.required')
@@ -260,3 +261,12 @@ export const getReferralSettingsSchema = (t?: TFunction) =>
     })
 
 export type TReferralSettingsSchema = z.infer<ReturnType<typeof getReferralSettingsSchema>>
+
+// Spec: CategoryForm of holidays and announcements — name ≤ 100 (unique, EMP_011), colour #RRGGBB
+export const getColorCategorySchema = (t?: TFunction) =>
+  z.object({
+    [EColorCategoryFormKey.Name]: requiredText(100, t),
+    [EColorCategoryFormKey.Color]: z.string().regex(/^#[0-9A-Fa-f]{6}$/, t?.('holiday.validation.color'))
+  })
+
+export type TColorCategorySchema = z.infer<ReturnType<typeof getColorCategorySchema>>

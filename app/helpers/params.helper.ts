@@ -6,6 +6,7 @@ import type {
   TSaasFilterSchema
 } from '~/helpers/schema.helper'
 import type { TEmployeeFilterSchema } from '~/helpers/schemas/employee.schema'
+import type { TAnnouncementFilterSchema } from '~/helpers/schemas/announcement.schema'
 import type { THolidayFilterSchema } from '~/helpers/schemas/holiday.schema'
 import type { TDepartmentFilterSchema, TDesignationFilterSchema } from '~/helpers/schemas/org.schema'
 import { DEFAULT_PAGE, DEFAULT_SIZE } from '~/hooks/use-pagination'
@@ -131,6 +132,26 @@ export const paramsHelper = {
     dateFrom: pick(searchParams, 'dateFrom', defaults.dateFrom),
     dateTo: pick(searchParams, 'dateTo', defaults.dateTo),
     view
+  }),
+
+  /** Announcements page: company (super admin), filters, list / dashboard view, dashboard tab */
+  announcementToSearchParams: (
+    searchParams: URLSearchParams,
+    defaults: TAnnouncementFilterSchema,
+    view: string,
+    tab: string,
+    companyId?: string
+  ) => ({
+    ...paramsHelper.paginationToSearchParams(searchParams),
+    companyId,
+    keyword: pick(searchParams, 'keyword', defaults.keyword),
+    categoryId: pick(searchParams, 'categoryId', defaults.categoryId),
+    branchId: pick(searchParams, 'branchId', defaults.branchId),
+    departmentId: pick(searchParams, 'departmentId', defaults.departmentId),
+    dateFrom: pick(searchParams, 'dateFrom', defaults.dateFrom),
+    dateTo: pick(searchParams, 'dateTo', defaults.dateTo),
+    view,
+    tab
   }),
 
   getEmployeeTab: (searchParams: URLSearchParams) =>

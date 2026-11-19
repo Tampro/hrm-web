@@ -291,7 +291,31 @@ export enum EHolidayFilterFormKey {
   DateTo = 'dateTo'
 }
 
-export enum EHolidayCategoryFormKey {
+export enum EAnnouncementFormKey {
+  Title = 'title',
+  CategoryId = 'categoryId',
+  ShortDescription = 'shortDescription',
+  Content = 'content',
+  StartDate = 'startDate',
+  EndDate = 'endDate',
+  Files = 'files',
+  Featured = 'featured',
+  HighPriority = 'highPriority',
+  CompanyWide = 'companyWide',
+  BranchIds = 'branchIds',
+  DepartmentIds = 'departmentIds'
+}
+
+export enum EAnnouncementFilterFormKey {
+  Keyword = 'keyword',
+  CategoryId = 'categoryId',
+  BranchId = 'branchId',
+  DepartmentId = 'departmentId',
+  DateFrom = 'dateFrom',
+  DateTo = 'dateTo'
+}
+
+export enum EColorCategoryFormKey {
   Name = 'name',
   Color = 'color'
 }

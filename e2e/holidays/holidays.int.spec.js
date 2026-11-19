@@ -69,7 +69,7 @@ test.describe('Ngày lễ · backend thật', () => {
     expect(categoryRes.ok(), await categoryRes.text()).toBe(true)
     categoryId = (await categoryRes.json()).data.id
     // the dialog ignores Escape while the save is still finishing (refetch after the POST)
-    await expect(holidaysPage.toast.filter({ hasText: 'Đã thêm loại ngày lễ' })).toBeVisible()
+    await expect(holidaysPage.toast.filter({ hasText: 'Đã thêm loại' })).toBeVisible()
     await page.keyboard.press('Escape')
     await expect(holidaysPage.dialog).toHaveCount(0)
 

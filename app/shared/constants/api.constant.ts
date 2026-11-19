@@ -121,6 +121,16 @@ export const API_HOLIDAY = {
   CATEGORY_URL: (id: string) => '/org/holiday-categories/' + id
 } as const
 
+// Spec: employee-service AnnouncementController (super admin passes companyId)
+export const API_ANNOUNCEMENT = {
+  LIST_URL: '/org/announcements',
+  TAB_COUNTS_URL: '/org/announcements/tab-counts',
+  DETAIL_URL: (id: string) => '/org/announcements/' + id,
+  STATISTICS_URL: (id: string) => '/org/announcements/' + id + '/statistics',
+  CATEGORIES_URL: '/org/announcement-categories',
+  CATEGORY_URL: (id: string) => '/org/announcement-categories/' + id
+} as const
+
 // Spec: media-service MediaController — upload (multipart `files`), returns the stored files
 export const API_MEDIA = {
   FILES_URL: '/media/files'

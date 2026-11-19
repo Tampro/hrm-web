@@ -2,7 +2,7 @@ import type { TFunction } from 'i18next'
 import { z } from 'zod'
 
 import { maxLength, required, requiredText } from '~/helpers/schema.helper'
-import { EHolidayCategoryFormKey, EHolidayFilterFormKey, EHolidayFormKey } from '~/shared/enums/form.enum'
+import { EHolidayFilterFormKey, EHolidayFormKey } from '~/shared/enums/form.enum'
 
 const text = (max: number, t?: TFunction) => z.string().trim().max(max, maxLength(max, t))
 
@@ -51,12 +51,3 @@ export const getHolidayFilterSchema = (t?: TFunction) =>
     })
 
 export type THolidayFilterSchema = z.infer<ReturnType<typeof getHolidayFilterSchema>>
-
-// Spec: CategoryForm — name ≤ 100 (unique, EMP_011), colour #RRGGBB
-export const getHolidayCategorySchema = (t?: TFunction) =>
-  z.object({
-    [EHolidayCategoryFormKey.Name]: requiredText(100, t),
-    [EHolidayCategoryFormKey.Color]: z.string().regex(/^#[0-9A-Fa-f]{6}$/, t?.('holiday.validation.color'))
-  })
-
-export type THolidayCategorySchema = z.infer<ReturnType<typeof getHolidayCategorySchema>>

@@ -76,7 +76,8 @@
     "branches": "Branches",
     "departments": "Departments",
     "designations": "Designations",
-    "holidays": "Holidays"
+    "holidays": "Holidays",
+    "announcements": "Announcements"
   },
   "table": {
     "rows_per_page": "Rows per page",
@@ -1244,24 +1245,145 @@
       "open": "Categories",
       "title": "Holiday categories",
       "description": "The 4 system categories are shared and read-only; the company can add its own, with a calendar colour.",
-      "system": "System",
-      "add": "Add category",
-      "edit": "Edit category",
-      "color": "Colour",
-      "name_placeholder": "e.g. Local festival",
-      "edit_named": "Edit category {{name}}",
-      "delete_named": "Delete category {{name}}",
-      "toast": {
-        "created": "Category added",
-        "updated": "Category saved",
-        "deleted": "Category deleted"
-      },
       "system_name": {
         "COMPANY_SPECIFIC": "Company specific",
         "NATIONAL": "National",
         "REGIONAL": "Regional",
         "RELIGIOUS": "Religious"
       }
+    }
+  },
+  "category_dialog": {
+    "system": "System",
+    "add": "Add category",
+    "edit": "Edit category",
+    "color": "Colour",
+    "name_placeholder": "e.g. Training",
+    "edit_named": "Edit category {{name}}",
+    "delete_named": "Delete category {{name}}",
+    "toast": {
+      "created": "Category added",
+      "updated": "Category saved",
+      "deleted": "Category deleted"
+    }
+  },
+  "announcement": {
+    "title": "Announcements",
+    "subtitle": "Internal announcements for the whole company or selected branches / departments.",
+    "add": "Add announcement",
+    "empty": "No announcements yet.",
+    "not_found": "The announcement does not exist.",
+    "keyword_placeholder": "Title or content",
+    "pick_company": "Choose a company to see and manage its announcements.",
+    "company_wide": "Company-wide",
+    "attachments_count": "{{count}} attachments",
+    "back": "Back",
+    "read_more": "Read more",
+    "read_more_named": "Read more: {{name}}",
+    "download": "Download",
+    "download_named": "Download {{name}}",
+    "no_file_access": "No access",
+    "view": {
+      "label": "View",
+      "list": "List",
+      "dashboard": "Dashboard"
+    },
+    "tab": {
+      "all": "All announcements",
+      "high_priority": "High priority",
+      "featured": "Featured",
+      "upcoming": "Upcoming"
+    },
+    "tag": {
+      "featured": "Featured",
+      "high_priority": "High priority"
+    },
+    "state": {
+      "UPCOMING": "Upcoming",
+      "ACTIVE": "Active",
+      "EXPIRED": "Expired"
+    },
+    "filter": {
+      "title": "Announcement filters",
+      "branch": "Branch",
+      "department": "Department"
+    },
+    "field": {
+      "title": "Title",
+      "category": "Category",
+      "short_description": "Short description",
+      "content": "Content",
+      "start_date": "Start date",
+      "end_date": "End date",
+      "date_range": "Date range",
+      "audience": "Audience",
+      "attachments": "Attachments",
+      "featured": "Featured announcement",
+      "high_priority": "High priority",
+      "company_wide": "Company-wide announcement",
+      "branches": "Target branches",
+      "departments": "Target departments"
+    },
+    "form": {
+      "create_title": "Add announcement",
+      "edit_title": "Edit announcement",
+      "description": "Employees see the announcement between the start and end dates.",
+      "content_mode": "Content mode",
+      "edit_html": "Edit HTML",
+      "preview": "Preview",
+      "content_hint": "HTML, e.g. <p>Party at <b>6 pm</b>.</p>. On save, scripts, javascript: links and style / class / id attributes are removed.",
+      "choose_files": "Choose attachments",
+      "files_hint": "Up to {{max}} files, {{size}} each",
+      "company_wide_hint": "On: every employee sees it. Off: choose target branches and / or departments.",
+      "targets_hint": "Employees of any selected branch or department receive it.",
+      "no_options": "Nothing active yet.",
+      "create_submit": "Create announcement"
+    },
+    "validation": {
+      "no_audience": "Choose at least one branch or department, or make it company-wide",
+      "too_many_files": "At most {{max}} attachments"
+    },
+    "detail": {
+      "header": "Announcement header",
+      "engagement": "Engagement",
+      "views_of": "{{views}} of {{total}} employees viewed"
+    },
+    "statistics": {
+      "open": "Statistics",
+      "title": "Announcement statistics",
+      "summary": "Announcement summary",
+      "view_detailed": "View detailed statistics"
+    },
+    "stats": {
+      "total_employees": "Total employees",
+      "views": "Views",
+      "view_rate": "View rate"
+    },
+    "category": {
+      "open": "Categories",
+      "title": "Announcement categories",
+      "description": "System categories are shared and read-only; the company can add its own with a tag colour.",
+      "system_name": {
+        "GENERAL": "General",
+        "POLICY": "Policy",
+        "EVENT": "Event",
+        "HR_UPDATE": "HR update"
+      }
+    },
+    "action": {
+      "view_named": "View {{name}}",
+      "edit_named": "Edit {{name}}",
+      "statistics_named": "Statistics of {{name}}",
+      "delete_named": "Delete {{name}}"
+    },
+    "delete": {
+      "title": "Delete announcement {{name}}?",
+      "description": "The announcement and its view statistics are removed. This cannot be undone."
+    },
+    "toast": {
+      "created": "Announcement created",
+      "updated": "Announcement saved",
+      "deleted": "Announcement deleted"
     }
   }
 }
