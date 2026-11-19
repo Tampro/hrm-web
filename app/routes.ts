@@ -23,6 +23,11 @@ export default [
           'routes/dashboard/coupons/coupon-detail/index.tsx'
         ),
         route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.CURRENCIES}`, 'routes/dashboard/currencies/index.tsx'),
+        route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.EMAIL_TEMPLATES}`, 'routes/dashboard/email-templates/index.tsx'),
+        route(
+          `${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.EMAIL_TEMPLATES}/:id`,
+          'routes/dashboard/email-templates/email-template-detail/index.tsx'
+        ),
         route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.REFERRAL}`, 'routes/dashboard/referral/layout.tsx', [
           index('routes/dashboard/referral/index.tsx'),
           route(BASE_ROUTES.REFERRAL_REFERRED, 'routes/dashboard/referral/referred/index.tsx'),

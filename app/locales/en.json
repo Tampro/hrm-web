@@ -67,7 +67,8 @@
     "coupons": "Coupons",
     "currencies": "Currencies",
     "referral": "Referral",
-    "settings": "System settings"
+    "settings": "System settings",
+    "email_templates": "Email templates"
   },
   "table": {
     "rows_per_page": "Rows per page",
@@ -716,6 +717,48 @@
       "contact": "Contact",
       "contact_description": "Contact text",
       "contact_url": "Contact URL"
+    }
+  },
+  "email_template": {
+    "title": "Email templates",
+    "subtitle": "Texts of the emails the system sends, per language.",
+    "keyword_placeholder": "Template name or From Name",
+    "empty": "No email templates yet.",
+    "back": "Back to email templates",
+    "not_found": "The email template does not exist.",
+    "toggleable": "Companies can turn it off",
+    "settings_title": "Settings",
+    "from_name_hint": "Variables allowed, e.g. {app_name}.",
+    "content_title": "Content",
+    "content_description": "Subject and HTML body per language. Switching tabs drops unsaved changes.",
+    "content_hint": "HTML, e.g. <p>Hello {user_name},</p>. Values put into variables are HTML-escaped when sent.",
+    "no_content": "This language has no text yet. Emails fall back to the English text.",
+    "variables_title": "Available variables",
+    "variables_hint": "Click to copy, then paste into the subject or body.",
+    "copy_variable": "Copy {{name}}",
+    "field": {
+      "name": "Template name",
+      "from_name": "From Name",
+      "created_date": "Created",
+      "subject": "Email subject",
+      "content": "Email content"
+    },
+    "preview": {
+      "open": "Preview",
+      "title": "Email preview",
+      "description": "Saved version, variables replaced by [variable_name].",
+      "body": "Email preview body",
+      "save_first": "Save your changes before previewing"
+    },
+    "name": {
+      "USER_CREATE": "User created",
+      "COMPANY_CREATE": "Company created",
+      "PLAN_ORDER_APPROVED": "Plan order approved",
+      "PLAN_ORDER_REJECTED": "Plan order rejected",
+      "PLAN_REQUEST_APPROVED": "Plan request approved",
+      "PLAN_REQUEST_REJECTED": "Plan request rejected",
+      "PAYOUT_APPROVED": "Payout approved",
+      "PAYOUT_REJECTED": "Payout rejected"
     }
   }
 }
