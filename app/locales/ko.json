@@ -73,7 +73,8 @@
     "settings": "시스템 설정",
     "email_templates": "이메일 템플릿",
     "employees": "직원",
-    "branches": "지점"
+    "branches": "지점",
+    "departments": "부서"
   },
   "table": {
     "rows_per_page": "페이지당 행 수",
@@ -1048,6 +1049,58 @@
       "deleted": "지점이 삭제되었습니다",
       "activated": "지점이 활성화되었습니다",
       "deactivated": "지점이 비활성화되었습니다"
+    }
+  },
+  "department": {
+    "title": "부서",
+    "subtitle": "지점별 부서입니다. 비활성 부서에는 새 직원이나 직책을 배정할 수 없습니다.",
+    "add": "부서 추가",
+    "empty": "부서가 없습니다.",
+    "keyword_placeholder": "부서명 또는 설명",
+    "pick_company": "부서를 보고 관리할 회사를 선택하세요.",
+    "field": {
+      "name": "부서명",
+      "branch": "지점",
+      "description": "설명",
+      "status": "상태",
+      "active": "활성",
+      "designation_count": "직책 수",
+      "employee_count": "직원 수",
+      "created_at": "생성일",
+      "updated_at": "수정일"
+    },
+    "form": {
+      "create_title": "부서 추가",
+      "edit_title": "부서 수정",
+      "description": "새 부서는 필터와 직원 프로필에 표시됩니다. 이름은 지점 내에서 중복될 수 없습니다.",
+      "name_placeholder": "예: 고객 지원",
+      "no_branch": "활성 지점이 없습니다. 먼저 지점을 만드세요.",
+      "active_hint": "끄면 더 이상 배정되지 않으며 기존 직원은 유지됩니다.",
+      "create_submit": "부서 생성"
+    },
+    "panel": {
+      "title": "선택한 부서",
+      "empty": "부서명을 클릭하면 상세 정보를 볼 수 있습니다.",
+      "delete_note": "직책이나 직원이 있는 부서는 삭제할 수 없습니다. 먼저 다른 부서로 옮기세요."
+    },
+    "action": {
+      "select_named": "{{name}} 부서 보기",
+      "edit": "부서 수정",
+      "delete": "삭제",
+      "edit_named": "{{name}} 수정",
+      "delete_named": "{{name}} 삭제",
+      "toggle_named": "{{name}} 활성/비활성"
+    },
+    "delete": {
+      "title": "{{name}} 부서를 삭제할까요?",
+      "description": "되돌릴 수 없습니다. 부서에 직책이나 직원이 있으면 거부됩니다."
+    },
+    "toast": {
+      "created": "부서가 생성되었습니다",
+      "updated": "부서가 저장되었습니다",
+      "deleted": "부서가 삭제되었습니다",
+      "activated": "부서가 활성화되었습니다",
+      "deactivated": "부서가 비활성화되었습니다"
     }
   }
 }

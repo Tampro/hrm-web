@@ -98,6 +98,10 @@ export const API_ORG = {
   BRANCH_URL: (id: string) => '/org/branches/' + id,
   BRANCH_STATUS_URL: (id: string) => '/org/branches/' + id + '/status',
   BRANCH_OPTIONS_URL: '/org/branches/options',
+  DEPARTMENTS_URL: '/org/departments',
+  DEPARTMENT_STATUS_COUNTS_URL: '/org/departments/status-counts',
+  DEPARTMENT_URL: (id: string) => '/org/departments/' + id,
+  DEPARTMENT_STATUS_URL: (id: string) => '/org/departments/' + id + '/status',
   DEPARTMENT_OPTIONS_URL: '/org/departments/options',
   DESIGNATION_OPTIONS_URL: '/org/designations/options',
   DOCUMENT_TYPES_URL: '/org/document-types'

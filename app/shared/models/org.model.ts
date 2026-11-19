@@ -40,3 +40,39 @@ export interface IBranchPayload {
   email?: string
   status?: EOrgStatus
 }
+
+// Spec: employee-service DepartmentDtos
+
+export interface IOrgStatusCounts {
+  all?: number
+  active?: number
+  inactive?: number
+}
+
+/** DepartmentDto — designationCount / employeeCount are filled only by GET /org/departments/{id} */
+export interface IDepartment {
+  id?: string
+  companyId?: string
+  name?: string
+  description?: string | null
+  branch?: { id?: string; name?: string | null } | null
+  status?: EOrgStatus
+  createdDate?: string
+  updatedDate?: string | null
+  designationCount?: number | null
+  employeeCount?: number | null
+}
+
+export interface IDepartmentListParams extends IBasePagination, IBaseFilterPanel {
+  companyId?: string
+  branchId?: string
+  status?: EOrgStatus
+}
+
+/** DepartmentForm — full replacement on update (omitted description = cleared, omitted status = unchanged) */
+export interface IDepartmentPayload {
+  name: string
+  branchId: number
+  description?: string
+  status?: EOrgStatus
+}

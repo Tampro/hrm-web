@@ -249,3 +249,15 @@ export enum EBranchFormKey {
   Email = 'email',
   Active = 'active'
 }
+
+export enum EDepartmentFormKey {
+  Name = 'name',
+  BranchId = 'branchId',
+  Description = 'description',
+  Active = 'active'
+}
+
+export enum EDepartmentFilterFormKey {
+  Keyword = 'keyword',
+  BranchId = 'branchId'
+}

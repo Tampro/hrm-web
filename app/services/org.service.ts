@@ -2,7 +2,15 @@ import { axiosClient } from '~/configs/axios.config'
 import { API_ORG } from '~/shared/constants/api.constant'
 import type { EOrgStatus } from '~/shared/enums/org.enum'
 import type { IApiPagination, IApiResponse } from '~/shared/models/common.model'
-import type { IBranch, IBranchListParams, IBranchPayload } from '~/shared/models/org.model'
+import type {
+  IBranch,
+  IBranchListParams,
+  IBranchPayload,
+  IDepartment,
+  IDepartmentListParams,
+  IDepartmentPayload,
+  IOrgStatusCounts
+} from '~/shared/models/org.model'
 
 // Spec: employee-service BranchController (ORG_VIEW to read, ORG_MANAGE to write; super admin passes companyId)
 export const BranchService = {
@@ -16,4 +24,21 @@ export const BranchService = {
   UpdateStatus: async (id: string, status: EOrgStatus): Promise<IApiResponse<IBranch>> =>
     await axiosClient.put(API_ORG.BRANCH_STATUS_URL(id), { status }),
   Delete: async (id: string): Promise<IApiResponse<void>> => await axiosClient.delete(API_ORG.BRANCH_URL(id))
+}
+
+// Spec: employee-service DepartmentController (ORG_VIEW to read, ORG_MANAGE to write; super admin passes companyId)
+export const DepartmentService = {
+  GetList: async (params?: IDepartmentListParams): Promise<IApiResponse<IApiPagination<IDepartment>>> =>
+    await axiosClient.get(API_ORG.DEPARTMENTS_URL, { params }),
+  GetStatusCounts: async (params?: IDepartmentListParams): Promise<IApiResponse<IOrgStatusCounts>> =>
+    await axiosClient.get(API_ORG.DEPARTMENT_STATUS_COUNTS_URL, { params }),
+  GetDetail: async (id: string): Promise<IApiResponse<IDepartment>> =>
+    await axiosClient.get(API_ORG.DEPARTMENT_URL(id)),
+  Create: async (companyId: string | undefined, payload: IDepartmentPayload): Promise<IApiResponse<IDepartment>> =>
+    await axiosClient.post(API_ORG.DEPARTMENTS_URL, payload, { params: { companyId } }),
+  Update: async (id: string, payload: IDepartmentPayload): Promise<IApiResponse<IDepartment>> =>
+    await axiosClient.put(API_ORG.DEPARTMENT_URL(id), payload),
+  UpdateStatus: async (id: string, status: EOrgStatus): Promise<IApiResponse<IDepartment>> =>
+    await axiosClient.put(API_ORG.DEPARTMENT_STATUS_URL(id), { status }),
+  Delete: async (id: string): Promise<IApiResponse<void>> => await axiosClient.delete(API_ORG.DEPARTMENT_URL(id))
 }
