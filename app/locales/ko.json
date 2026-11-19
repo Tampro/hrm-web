@@ -997,7 +997,16 @@
       "members": "구성원 {{count}}명",
       "empty": "조직도에 직원이 없습니다.",
       "active": "재직 중",
-      "inactive": "비활성"
+      "inactive": "비활성",
+      "view_label": "보기",
+      "view_list": "목록",
+      "view_tree": "계층도",
+      "tree_label": "조직 계층도",
+      "expand": "{{name}}의 하위 {{count}}명 펼치기",
+      "collapse": "{{name}}의 하위 접기",
+      "zoom_in": "확대",
+      "zoom_out": "축소",
+      "zoom_reset": "100%로"
     }
   },
   "branch": {

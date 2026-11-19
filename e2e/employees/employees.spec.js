@@ -540,3 +540,80 @@ test.describe('Nhân viên · super admin', () => {
     expect(posts[0].body.profile.profileImageId).toBe(91)
   })
 })
+
+test.describe('Sơ đồ tổ chức · 2 chế độ xem', () => {
+  const CHART = {
+    companyName: 'E2E Company',
+    members: 4,
+    children: [
+      {
+        id: '138',
+        fullName: 'Trần Quốc Hưng',
+        designation: 'Trưởng nhóm',
+        active: true,
+        children: [
+          { id: '142', fullName: 'Nguyễn Minh Thư', designation: 'Kỹ sư', active: false, children: [] },
+          { id: '156', fullName: 'Lê Anh Dũng', designation: 'QA', active: true, children: [] }
+        ]
+      },
+      { id: '119', fullName: 'Đỗ Quang Vinh', designation: 'Giám sát', active: true, children: [] }
+    ]
+  }
+
+  test.beforeEach(async ({ api, baseURL }) => {
+    await api.signIn(String(baseURL), HR)
+    await api.route('/employees/org-chart', { body: ok(CHART) })
+  })
+
+  test('EMP-018 @smoke chuyển Danh sách ↔ Sơ đồ phân cấp (giữ trong URL); thu gọn / mở cấp dưới; thẻ mở hồ sơ', async ({
+    page,
+    employeesPage
+  }) => {
+    await employeesPage.goto('/org-chart')
+    const views = page.getByRole('group', { name: 'Chế độ xem' })
+    await expect(views.getByRole('button', { name: 'Danh sách' })).toHaveAttribute('aria-pressed', 'true')
+
+    await views.getByRole('button', { name: 'Sơ đồ phân cấp' }).click()
+    await expect(page).toHaveURL(/view=TREE/)
+    await expect(views.getByRole('button', { name: 'Sơ đồ phân cấp' })).toHaveAttribute('aria-pressed', 'true')
+    const tree = page.getByRole('group', { name: 'Sơ đồ phân cấp tổ chức' })
+    await expect(tree).toContainText('E2E Company')
+    await expect(tree.getByRole('link', { name: /Nguyễn Minh Thư/ })).toBeVisible()
+
+    await tree.getByRole('button', { name: 'Thu gọn người báo cáo cho Trần Quốc Hưng' }).click()
+    await expect(tree.getByRole('link', { name: /Nguyễn Minh Thư/ })).toHaveCount(0)
+    const expand = tree.getByRole('button', { name: 'Mở 2 người báo cáo cho Trần Quốc Hưng' })
+    await expect(expand).toHaveText('2')
+    await expect(expand).toHaveAttribute('aria-expanded', 'false')
+    await expand.click()
+    await expect(tree.getByRole('link', { name: /Lê Anh Dũng/ })).toBeVisible()
+
+    // F5 keeps the chosen view
+    await page.reload()
+    await expect(page.getByRole('group', { name: 'Sơ đồ phân cấp tổ chức' })).toBeVisible()
+
+    await page
+      .getByRole('group', { name: 'Sơ đồ phân cấp tổ chức' })
+      .getByRole('link', { name: /Đỗ Quang Vinh/ })
+      .click()
+    await expect(page).toHaveURL(/\/dashboard\/employees\/119$/)
+  })
+
+  test('EMP-019 thu phóng sơ đồ: 50–150%, nút về 100%; chỉ có ở chế độ sơ đồ', async ({ page, employeesPage }) => {
+    await employeesPage.goto('/org-chart')
+    await expect(page.getByRole('button', { name: 'Phóng to' })).toHaveCount(0)
+
+    await employeesPage.goto('/org-chart?view=TREE')
+    const zoomIn = page.getByRole('button', { name: 'Phóng to' })
+    const zoomOut = page.getByRole('button', { name: 'Thu nhỏ' })
+    await expect(page.getByText('100%')).toBeVisible()
+    for (let i = 0; i < 5; i++) await zoomIn.click()
+    await expect(page.getByText('150%')).toBeVisible()
+    await expect(zoomIn).toBeDisabled()
+    await page.getByRole('button', { name: 'Về 100%' }).click()
+    for (let i = 0; i < 5; i++) await zoomOut.click()
+    await expect(page.getByText('50%')).toBeVisible()
+    await expect(zoomOut).toBeDisabled()
+    await expect(page.getByRole('group', { name: 'Sơ đồ phân cấp tổ chức' })).toHaveAttribute('style', /scale\(0\.5\)/)
+  })
+})
