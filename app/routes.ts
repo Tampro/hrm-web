@@ -14,6 +14,15 @@ export default [
       route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.DEPARTMENTS}`, 'routes/dashboard/departments/index.tsx'),
       route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.DESIGNATIONS}`, 'routes/dashboard/designations/index.tsx'),
       route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.HOLIDAYS}`, 'routes/dashboard/holidays/index.tsx'),
+      route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.ANNOUNCEMENTS}`, 'routes/dashboard/announcements/index.tsx'),
+      route(
+        `${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.ANNOUNCEMENTS}/:id`,
+        'routes/dashboard/announcements/announcement-detail/index.tsx'
+      ),
+      route(
+        `${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.ANNOUNCEMENTS}/:id/${BASE_ROUTES.ANNOUNCEMENT_STATISTICS}`,
+        'routes/dashboard/announcements/announcement-statistics/index.tsx'
+      ),
       route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.EMPLOYEES}`, 'routes/dashboard/employees/layout.tsx', [
         index('routes/dashboard/employees/index.tsx'),
         route(BASE_ROUTES.EMPLOYEE_CREATE, 'routes/dashboard/employees/employee-upsert/index.tsx', {

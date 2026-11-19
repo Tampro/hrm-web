@@ -76,7 +76,8 @@
     "branches": "Chi nhánh",
     "departments": "Phòng ban",
     "designations": "Chức danh",
-    "holidays": "Ngày lễ"
+    "holidays": "Ngày lễ",
+    "announcements": "Thông báo"
   },
   "table": {
     "rows_per_page": "Số dòng mỗi trang",
@@ -1244,24 +1245,145 @@
       "open": "Loại ngày lễ",
       "title": "Loại ngày lễ",
       "description": "4 loại hệ thống dùng chung và không sửa được; công ty có thể thêm loại riêng với màu trên lịch.",
-      "system": "Hệ thống",
-      "add": "Thêm loại",
-      "edit": "Sửa loại",
-      "color": "Màu",
-      "name_placeholder": "VD: Lễ hội địa phương",
-      "edit_named": "Sửa loại {{name}}",
-      "delete_named": "Xoá loại {{name}}",
-      "toast": {
-        "created": "Đã thêm loại ngày lễ",
-        "updated": "Đã lưu loại ngày lễ",
-        "deleted": "Đã xoá loại ngày lễ"
-      },
       "system_name": {
         "COMPANY_SPECIFIC": "Riêng công ty",
         "NATIONAL": "Quốc gia",
         "REGIONAL": "Khu vực",
         "RELIGIOUS": "Tôn giáo"
       }
+    }
+  },
+  "category_dialog": {
+    "system": "Hệ thống",
+    "add": "Thêm loại",
+    "edit": "Sửa loại",
+    "color": "Màu",
+    "name_placeholder": "VD: Đào tạo",
+    "edit_named": "Sửa loại {{name}}",
+    "delete_named": "Xoá loại {{name}}",
+    "toast": {
+      "created": "Đã thêm loại",
+      "updated": "Đã lưu loại",
+      "deleted": "Đã xoá loại"
+    }
+  },
+  "announcement": {
+    "title": "Thông báo",
+    "subtitle": "Thông báo nội bộ gửi tới toàn công ty hoặc chi nhánh / phòng ban.",
+    "add": "Thêm thông báo",
+    "empty": "Chưa có thông báo.",
+    "not_found": "Thông báo không tồn tại.",
+    "keyword_placeholder": "Tiêu đề hoặc nội dung",
+    "pick_company": "Chọn công ty để xem và quản lý thông báo.",
+    "company_wide": "Toàn công ty",
+    "attachments_count": "{{count}} tệp đính kèm",
+    "back": "Quay lại",
+    "read_more": "Đọc thêm",
+    "read_more_named": "Đọc thêm: {{name}}",
+    "download": "Tải về",
+    "download_named": "Tải {{name}}",
+    "no_file_access": "Không có quyền tải",
+    "view": {
+      "label": "Chế độ xem",
+      "list": "Danh sách",
+      "dashboard": "Bảng tin"
+    },
+    "tab": {
+      "all": "Tất cả",
+      "high_priority": "Ưu tiên cao",
+      "featured": "Nổi bật",
+      "upcoming": "Sắp diễn ra"
+    },
+    "tag": {
+      "featured": "Nổi bật",
+      "high_priority": "Ưu tiên cao"
+    },
+    "state": {
+      "UPCOMING": "Sắp diễn ra",
+      "ACTIVE": "Đang hiệu lực",
+      "EXPIRED": "Hết hạn"
+    },
+    "filter": {
+      "title": "Bộ lọc thông báo",
+      "branch": "Chi nhánh",
+      "department": "Phòng ban"
+    },
+    "field": {
+      "title": "Tiêu đề",
+      "category": "Loại",
+      "short_description": "Mô tả ngắn",
+      "content": "Nội dung",
+      "start_date": "Ngày bắt đầu",
+      "end_date": "Ngày kết thúc",
+      "date_range": "Thời gian",
+      "audience": "Đối tượng",
+      "attachments": "Tệp đính kèm",
+      "featured": "Thông báo nổi bật",
+      "high_priority": "Ưu tiên cao",
+      "company_wide": "Thông báo toàn công ty",
+      "branches": "Chi nhánh nhận",
+      "departments": "Phòng ban nhận"
+    },
+    "form": {
+      "create_title": "Thêm thông báo",
+      "edit_title": "Sửa thông báo",
+      "description": "Thông báo hiện với nhân viên trong khoảng ngày bắt đầu – kết thúc.",
+      "content_mode": "Chế độ soạn nội dung",
+      "edit_html": "Soạn HTML",
+      "preview": "Xem trước",
+      "content_hint": "HTML, VD: <p>Tiệc tất niên lúc <b>18:00</b>.</p>. Khi lưu, hệ thống bỏ script, link javascript: và các thuộc tính style / class / id.",
+      "choose_files": "Chọn tệp đính kèm",
+      "files_hint": "Tối đa {{max}} tệp, mỗi tệp tối đa {{size}}",
+      "company_wide_hint": "Bật: mọi nhân viên đều thấy. Tắt: chọn chi nhánh và / hoặc phòng ban nhận.",
+      "targets_hint": "Nhân viên thuộc bất kỳ chi nhánh hoặc phòng ban đã chọn đều nhận được.",
+      "no_options": "Chưa có mục nào đang hoạt động.",
+      "create_submit": "Tạo thông báo"
+    },
+    "validation": {
+      "no_audience": "Chọn ít nhất một chi nhánh hoặc phòng ban, hoặc bật toàn công ty",
+      "too_many_files": "Tối đa {{max}} tệp đính kèm"
+    },
+    "detail": {
+      "header": "Thông tin thông báo",
+      "engagement": "Mức độ tiếp cận",
+      "views_of": "{{views}} / {{total}} nhân viên đã xem"
+    },
+    "statistics": {
+      "open": "Thống kê",
+      "title": "Thống kê thông báo",
+      "summary": "Tóm tắt thông báo",
+      "view_detailed": "Xem thống kê chi tiết"
+    },
+    "stats": {
+      "total_employees": "Tổng nhân viên",
+      "views": "Lượt xem",
+      "view_rate": "Tỷ lệ xem"
+    },
+    "category": {
+      "open": "Loại thông báo",
+      "title": "Loại thông báo",
+      "description": "Các loại hệ thống dùng chung và không sửa được; công ty có thể thêm loại riêng với màu nhãn.",
+      "system_name": {
+        "GENERAL": "Chung",
+        "POLICY": "Chính sách",
+        "EVENT": "Sự kiện",
+        "HR_UPDATE": "Tin nhân sự"
+      }
+    },
+    "action": {
+      "view_named": "Xem {{name}}",
+      "edit_named": "Sửa {{name}}",
+      "statistics_named": "Thống kê {{name}}",
+      "delete_named": "Xoá {{name}}"
+    },
+    "delete": {
+      "title": "Xoá thông báo {{name}}?",
+      "description": "Thông báo và thống kê lượt xem sẽ bị xoá. Không thể hoàn tác."
+    },
+    "toast": {
+      "created": "Đã tạo thông báo",
+      "updated": "Đã lưu thông báo",
+      "deleted": "Đã xoá thông báo"
     }
   }
 }
