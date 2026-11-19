@@ -110,6 +110,17 @@ export const API_ORG = {
   DOCUMENT_TYPES_URL: '/org/document-types'
 } as const
 
+// Spec: employee-service HolidayController (ORG_VIEW to read, ORG_MANAGE to write; super admin passes companyId)
+export const API_HOLIDAY = {
+  LIST_URL: '/org/holidays',
+  CALENDAR_URL: '/org/holidays/calendar',
+  EXPORT_PDF_URL: '/org/holidays/export/pdf',
+  EXPORT_ICAL_URL: '/org/holidays/export/ical',
+  DETAIL_URL: (id: string) => '/org/holidays/' + id,
+  CATEGORIES_URL: '/org/holiday-categories',
+  CATEGORY_URL: (id: string) => '/org/holiday-categories/' + id
+} as const
+
 // Spec: media-service MediaController — upload (multipart `files`), returns the stored files
 export const API_MEDIA = {
   FILES_URL: '/media/files'

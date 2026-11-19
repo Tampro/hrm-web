@@ -3,6 +3,7 @@ import {
   BadgeCheck,
   Boxes,
   Building2,
+  CalendarDays,
   Coins,
   GitBranch,
   Gift,
@@ -14,6 +15,7 @@ import {
   Users
 } from 'lucide-react'
 
+import { getHolidayCategoryName } from '~/helpers/columns/holiday-mgt-column'
 import { commonHelper } from '~/helpers/common.helper'
 import { dateHelper } from '~/helpers/date.helper'
 import { ROUTES } from '~/shared/constants/routes.constant'
@@ -27,6 +29,7 @@ import {
   EGender,
   ELetterType
 } from '~/shared/enums/employee.enum'
+import { ECalendarMode } from '~/shared/enums/holiday.enum'
 import { EOrgStatus } from '~/shared/enums/org.enum'
 import { EPayoutStatus } from '~/shared/enums/referral.enum'
 import { ESaasRequestStatus } from '~/shared/enums/saas.enum'
@@ -47,6 +50,7 @@ import type { ICompanyInfo, ICompanyStatusCounts } from '~/shared/models/company
 import type { ICoupon, ICouponStatusCounts } from '~/shared/models/coupon.model'
 import type { IEmailTemplatePreview } from '~/shared/models/email-template.model'
 import type { IEmployeeBanking, IEmployeeDetail, IEmployeeStatusCounts } from '~/shared/models/employee.model'
+import type { IHoliday } from '~/shared/models/holiday.model'
 import type { IBranch, IDepartment, IDesignation, IOrgStatusCounts } from '~/shared/models/org.model'
 import type { IPlan } from '~/shared/models/plan.model'
 import type { IPayoutStatusCounts, IReferralDashboard, IReferredSummary } from '~/shared/models/referral.model'
@@ -64,6 +68,7 @@ export const DATA = {
     { label: t('sidebar.branches'), route: ROUTES.BRANCHES, icon: GitBranch, permission: 'ORG_VIEW' },
     { label: t('sidebar.departments'), route: ROUTES.DEPARTMENTS, icon: Boxes, permission: 'ORG_VIEW' },
     { label: t('sidebar.designations'), route: ROUTES.DESIGNATIONS, icon: BadgeCheck, permission: 'ORG_VIEW' },
+    { label: t('sidebar.holidays'), route: ROUTES.HOLIDAYS, icon: CalendarDays, permission: 'ORG_VIEW' },
     { label: t('sidebar.companies'), route: ROUTES.COMPANIES, icon: Building2, superAdminOnly: true },
     { label: t('sidebar.plans'), route: ROUTES.PLANS, icon: Package, superAdminOnly: true },
     { label: t('sidebar.coupons'), route: ROUTES.COUPONS, icon: TicketPercent, superAdminOnly: true },
@@ -326,6 +331,33 @@ export const DATA = {
     { label: t('employee.tab.all'), value: EOrgStatus.All, count: counts?.all },
     { label: t('enum.ACTIVE'), value: EOrgStatus.Active, count: counts?.active },
     { label: t('enum.INACTIVE'), value: EOrgStatus.Inactive, count: counts?.inactive }
+  ],
+
+  // Spec: HolidayDto — allBranches = every branch, also ones created later
+  GET_HOLIDAY_DETAIL_ROWS: (t: TFunction, h: IHoliday | undefined): IInfoRow[] => [
+    { label: t('holiday.field.name'), value: h?.name || '-' },
+    { label: t('holiday.field.category'), value: getHolidayCategoryName(t, h?.category) },
+    { label: t('holiday.field.date'), value: dateHelper.formatDateRange(h?.startDate, h?.endDate) },
+    { label: t('holiday.field.days'), value: commonHelper.formatNumber(h?.days, 0) },
+    {
+      label: t('holiday.field.branches'),
+      value: h?.allBranches ? t('holiday.all_branches') : (h?.branches ?? []).map((b) => b.name).join(', ') || '-'
+    },
+    { label: t('holiday.field.description'), value: h?.description || '-' },
+    { label: t('holiday.field.created_at'), value: dateHelper.formatDateTime(h?.createdDate) },
+    { label: t('holiday.field.updated_at'), value: dateHelper.formatDateTime(h?.updatedDate) }
+  ],
+
+  /** Year filter: the current year ± 2 (Spec: `year` filters by the start date) */
+  GET_HOLIDAY_YEAR_OPTIONS: (t: TFunction, now = new Date().getFullYear()): ITabOption[] => [
+    { label: t('employee.filter.all'), value: '' },
+    ...[now - 2, now - 1, now, now + 1, now + 2].map((y) => ({ label: String(y), value: String(y) }))
+  ],
+
+  GET_CALENDAR_MODE_TABS: (t: TFunction): ITabOption<ECalendarMode>[] => [
+    { label: t('holiday.calendar.month'), value: ECalendarMode.Month },
+    { label: t('holiday.calendar.week'), value: ECalendarMode.Week },
+    { label: t('holiday.calendar.day'), value: ECalendarMode.Day }
   ],
 
   // Spec: DesignationDto — employeeCount is filled only by GET /org/designations/{id}
