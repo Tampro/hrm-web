@@ -74,6 +74,37 @@ export const API_SETTINGS = {
   ADMIN_EMAIL_TEST_URL: '/settings/admin/email/test'
 } as const
 
+// Spec: employee-service EmployeeController + EmployeeFileController (super admin passes companyId)
+export const API_EMPLOYEE = {
+  LIST_URL: '/employees',
+  STATUS_COUNTS_URL: '/employees/status-counts',
+  ORG_CHART_URL: '/employees/org-chart',
+  EXPORT_URL: '/employees/export',
+  IMPORT_URL: '/employees/import',
+  IMPORT_TEMPLATE_URL: '/employees/import/template',
+  DETAIL_URL: (id: string) => '/employees/' + id,
+  STATUS_URL: (id: string) => '/employees/' + id + '/status',
+  LOGIN_URL: (id: string) => '/employees/' + id + '/login',
+  PASSWORD_URL: (id: string) => '/employees/' + id + '/password',
+  DOCUMENTS_URL: (id: string) => '/employees/' + id + '/documents',
+  DOCUMENT_URL: (id: string, documentId: string) => '/employees/' + id + '/documents/' + documentId,
+  DOCUMENT_VERIFY_URL: (id: string, documentId: string) => '/employees/' + id + '/documents/' + documentId + '/verify',
+  LETTER_URL: (id: string, type: string) => '/employees/' + id + '/letters/' + type
+} as const
+
+// Spec: employee-service org dropdowns (active items only) and document types
+export const API_ORG = {
+  BRANCH_OPTIONS_URL: '/org/branches/options',
+  DEPARTMENT_OPTIONS_URL: '/org/departments/options',
+  DESIGNATION_OPTIONS_URL: '/org/designations/options',
+  DOCUMENT_TYPES_URL: '/org/document-types'
+} as const
+
+// Spec: media-service MediaController — upload (multipart `files`), returns the stored files
+export const API_MEDIA = {
+  FILES_URL: '/media/files'
+} as const
+
 // Spec: EmailTemplateController (super admin) — list, detail, From Name, content per language, preview
 export const API_EMAIL_TEMPLATE = {
   LIST_URL: '/settings/admin/email-templates',

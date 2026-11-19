@@ -16,7 +16,8 @@
     "edit": "Sửa",
     "delete": "Xoá",
     "yes": "Có",
-    "no": "Không"
+    "no": "Không",
+    "close": "Đóng"
   },
   "validation": {
     "required": "Vui lòng nhập thông tin này",
@@ -38,7 +39,9 @@
     "theme_color": "Chọn màu có sẵn hoặc mã màu #RRGGBB",
     "separators_differ": "Dấu phân cách hàng nghìn phải khác dấu thập phân",
     "max_value": "Giá trị tối đa là {{max}}",
-    "pick_one": "Chọn ít nhất một mục"
+    "pick_one": "Chọn ít nhất một mục",
+    "amount": "Nhập số ≥ 0, tối đa 2 chữ số thập phân",
+    "phone": "Chỉ gồm số và + - ( ) ."
   },
   "auth": {
     "login": {
@@ -68,7 +71,8 @@
     "currencies": "Tiền tệ",
     "referral": "Giới thiệu",
     "settings": "Cài đặt hệ thống",
-    "email_templates": "Mẫu email"
+    "email_templates": "Mẫu email",
+    "employees": "Hồ sơ nhân viên"
   },
   "table": {
     "rows_per_page": "Số dòng mỗi trang",
@@ -115,7 +119,18 @@
     "DARK": "Tối",
     "SYSTEM": "Theo hệ điều hành",
     "BEFORE": "Trước số tiền",
-    "AFTER": "Sau số tiền"
+    "AFTER": "Sau số tiền",
+    "INACTIVE": "Tạm nghỉ",
+    "PROBATION": "Thử việc",
+    "TERMINATED": "Đã nghỉ việc",
+    "FULL_TIME": "Toàn thời gian",
+    "PART_TIME": "Bán thời gian",
+    "CONTRACT": "Hợp đồng",
+    "INTERN": "Thực tập",
+    "TEMPORARY": "Thời vụ",
+    "MALE": "Nam",
+    "FEMALE": "Nữ",
+    "OTHER": "Khác"
   },
   "company": {
     "title": "Quản lý công ty",
@@ -759,6 +774,226 @@
       "PLAN_REQUEST_REJECTED": "Yêu cầu gói bị từ chối",
       "PAYOUT_APPROVED": "Rút tiền được duyệt",
       "PAYOUT_REJECTED": "Rút tiền bị từ chối"
+    }
+  },
+  "upload": {
+    "choose": "Chọn tệp hoặc kéo thả vào đây",
+    "remove": "Bỏ tệp {{name}}",
+    "too_large": "Tệp vượt quá {{size}}"
+  },
+  "employee": {
+    "title": "Hồ sơ nhân viên",
+    "subtitle": "Danh sách nhân viên của công ty, tài khoản đăng nhập và hồ sơ.",
+    "add": "Thêm nhân viên",
+    "edit": "Chỉnh sửa hồ sơ",
+    "empty": "Chưa có nhân viên.",
+    "not_found": "Nhân viên không tồn tại.",
+    "keyword_placeholder": "Tên, mã nhân viên, email…",
+    "back_to_list": "Quay lại danh sách nhân viên",
+    "back_to_profile": "Quay lại hồ sơ",
+    "none": "— Không chọn —",
+    "joined_on": "Vào làm {{date}}",
+    "login_on": "Được đăng nhập",
+    "login_off": "Khoá đăng nhập",
+    "login_off_hint": "Không có tài khoản hoặc tài khoản đang bị khoá",
+    "banking_empty": "Chưa có thông tin ngân hàng.",
+    "banking_no_access": "Bạn không có quyền xem thông tin ngân hàng và lương.",
+    "create_title": "Thêm nhân viên mới",
+    "edit_title": "Chỉnh sửa hồ sơ · {{name}}",
+    "edit_form": "Chỉnh sửa hồ sơ",
+    "step_of": "Bước {{current}} / {{total}}",
+    "employee_no_hint": "Mã nhân viên do hệ thống cấp khi lưu",
+    "employee_code_hint": "Mã dùng cho máy chấm công, không trùng trong công ty",
+    "email_hint": "Cũng là tên đăng nhập của tài khoản",
+    "first_password_hint": "Để trống để hệ thống tự tạo. Mật khẩu được gửi qua email và phải đổi ở lần đăng nhập đầu.",
+    "required_hint": "Trường có dấu * là bắt buộc.",
+    "step_back": "Quay lại",
+    "step_next": "Tiếp tục",
+    "submit_create": "Tạo nhân viên",
+    "submit_update": "Lưu thay đổi",
+    "tab": {
+      "all": "Tất cả"
+    },
+    "filter": {
+      "all": "Tất cả"
+    },
+    "step": {
+      "personal": "Thông tin cá nhân",
+      "work": "Công việc & tổ chức",
+      "banking": "Ngân hàng & lương",
+      "account": "Tài khoản & tài liệu"
+    },
+    "section": {
+      "basic": "Thông tin cơ bản",
+      "photo": "Ảnh chân dung",
+      "address": "Địa chỉ",
+      "emergency": "Liên hệ khẩn cấp",
+      "organization": "Tổ chức",
+      "employment": "Thông tin công việc",
+      "banking": "Ngân hàng & lương",
+      "account": "Tài khoản đăng nhập",
+      "documents": "Tài liệu",
+      "personal": "Thông tin cá nhân",
+      "work": "Thông tin công việc"
+    },
+    "field": {
+      "employee_no": "Mã NV",
+      "employee": "Nhân viên",
+      "employee_code": "Mã chấm công",
+      "full_name": "Họ và tên",
+      "date_of_birth": "Ngày sinh",
+      "gender": "Giới tính",
+      "phone": "Điện thoại",
+      "email": "Email",
+      "address": "Địa chỉ",
+      "address_line1": "Địa chỉ dòng 1",
+      "address_line2": "Địa chỉ dòng 2",
+      "city": "Thành phố",
+      "state": "Tỉnh / bang",
+      "country": "Quốc gia",
+      "postal_code": "Mã bưu chính",
+      "emergency": "Liên hệ khẩn cấp",
+      "emergency_name": "Họ tên người liên hệ",
+      "emergency_relationship": "Quan hệ",
+      "emergency_phone": "Điện thoại người liên hệ",
+      "branch": "Chi nhánh",
+      "department": "Phòng ban",
+      "designation": "Chức danh",
+      "reports_to": "Quản lý trực tiếp",
+      "date_of_joining": "Ngày vào làm",
+      "employment_type": "Loại hình",
+      "status": "Trạng thái",
+      "login": "Đăng nhập",
+      "bank_name": "Ngân hàng",
+      "account_holder_name": "Chủ tài khoản",
+      "account_number": "Số tài khoản",
+      "bank_identifier_code": "Mã BIC / SWIFT",
+      "bank_branch": "Chi nhánh ngân hàng",
+      "tax_payer_id": "Mã số thuế",
+      "base_salary": "Lương cơ bản",
+      "first_password": "Mật khẩu ban đầu",
+      "new_password": "Mật khẩu mới",
+      "confirm_password": "Nhập lại mật khẩu"
+    },
+    "validation": {
+      "file_required": "Chọn tệp",
+      "past_date": "Phải là ngày trong quá khứ",
+      "code": "Chỉ gồm chữ, số và . _ -",
+      "password_length": "Mật khẩu từ 8 đến 128 ký tự",
+      "password_mismatch": "Mật khẩu nhập lại không khớp",
+      "branch_first": "Chọn chi nhánh trước phòng ban",
+      "department_first": "Chọn phòng ban trước chức danh"
+    },
+    "photo": {
+      "upload": "Tải ảnh lên",
+      "replace": "Chọn ảnh khác",
+      "remove": "Bỏ ảnh",
+      "hint": "PNG, JPG, GIF, WEBP · tối đa 2 MB"
+    },
+    "company_picker": {
+      "label": "Công ty",
+      "placeholder": "Chọn công ty",
+      "hint": "Chọn công ty để xem và quản lý nhân viên."
+    },
+    "detail_tab": {
+      "overview": "Tổng quan",
+      "documents": "Tài liệu",
+      "letters": "Giấy tờ & chứng nhận"
+    },
+    "action": {
+      "menu": "Thao tác khác",
+      "change_status": "Đổi trạng thái",
+      "login_on": "Mở đăng nhập",
+      "login_off": "Khoá đăng nhập",
+      "set_password": "Đặt mật khẩu mới",
+      "delete": "Xoá nhân viên"
+    },
+    "status_dialog": {
+      "description": "Chọn trạng thái mới cho {{name}}."
+    },
+    "login_dialog": {
+      "on": "{{name}} sẽ đăng nhập lại được.",
+      "off": "Tài khoản của {{name}} sẽ bị khoá và mọi phiên đăng nhập kết thúc ngay."
+    },
+    "password_dialog": {
+      "description": "Mật khẩu mới của {{name}} có hiệu lực ngay (không phải đổi lại)."
+    },
+    "delete": {
+      "title": "Xoá nhân viên?",
+      "description": "{{name}} ({{employeeNo}}) bị khoá đăng nhập và biến mất khỏi mọi danh sách."
+    },
+    "toast": {
+      "created": "Đã tạo nhân viên. Mật khẩu đã được gửi qua email.",
+      "updated": "Đã lưu hồ sơ",
+      "status_changed": "Đã đổi trạng thái",
+      "login_on": "Đã mở đăng nhập",
+      "login_off": "Đã khoá đăng nhập",
+      "password_set": "Đã đặt mật khẩu mới",
+      "deleted": "Đã xoá nhân viên",
+      "document_added": "Đã thêm tài liệu",
+      "document_removed": "Đã xoá tài liệu",
+      "document_verified": "Đã xác minh tài liệu",
+      "document_unverified": "Đã bỏ xác minh tài liệu"
+    },
+    "document": {
+      "add": "Thêm tài liệu",
+      "add_description": "Tệp được lưu vào thư viện của công ty, tối đa 5 MB.",
+      "type": "Loại tài liệu",
+      "file": "Tệp",
+      "size": "Dung lượng",
+      "expiry_date": "Ngày hết hạn",
+      "expired": "Đã hết hạn",
+      "verified": "Xác minh",
+      "verified_yes": "Đã xác minh",
+      "verified_no": "Chưa xác minh",
+      "choose_file": "Chọn tệp tài liệu",
+      "file_hint": "Ảnh, PDF, Word, Excel, PowerPoint, TXT, CSV · tối đa 5 MB",
+      "none_yet": "Chưa có tài liệu. Có thể thêm sau trong hồ sơ.",
+      "empty": "Chưa có tài liệu.",
+      "row": "Tài liệu {{index}}",
+      "remove_row": "Bỏ tài liệu {{index}}",
+      "view_named": "Xem {{name}}",
+      "download_named": "Tải {{name}}",
+      "verify_named": "Xác minh {{name}}",
+      "unverify_named": "Bỏ xác minh {{name}}",
+      "remove_named": "Xoá {{name}}",
+      "remove_title": "Xoá tài liệu?",
+      "remove_description": "{{name}} bị gỡ khỏi hồ sơ; tệp vẫn còn trong thư viện."
+    },
+    "letter": {
+      "JOINING_LETTER": "Thư mời nhận việc",
+      "EXPERIENCE_CERTIFICATE": "Giấy xác nhận kinh nghiệm",
+      "NOC": "Giấy không phản đối (NOC)",
+      "description": "Tải giấy tờ của nhân viên dưới dạng PDF.",
+      "language": "Ngôn ngữ",
+      "download": "Tải PDF",
+      "downloading": "Đang tải..."
+    },
+    "import": {
+      "open": "Nhập từ Excel",
+      "title": "Nhập nhân viên từ Excel",
+      "description": "Tối đa 200 dòng. Mỗi dòng tạo một nhân viên kèm tài khoản; mật khẩu được gửi qua email.",
+      "template": "Tải file mẫu",
+      "choose": "Chọn file .xlsx",
+      "hint": "Dòng 1 là tiêu đề của file mẫu · tối đa 5 MB",
+      "submit": "Nhập",
+      "importing": "Đang nhập...",
+      "result": "Đã tạo {{created}} / {{total}} nhân viên.",
+      "errors": "Các dòng bị từ chối",
+      "row": "Dòng {{row}}:"
+    },
+    "export": {
+      "open": "Xuất danh sách",
+      "exporting": "Đang xuất..."
+    },
+    "org_chart": {
+      "open": "Sơ đồ tổ chức",
+      "title": "Sơ đồ tổ chức",
+      "subtitle": "Nhân viên xếp dưới người quản lý trực tiếp; không gồm người đã nghỉ việc.",
+      "members": "{{count}} thành viên",
+      "empty": "Chưa có nhân viên trong sơ đồ.",
+      "active": "Đang làm việc",
+      "inactive": "Tạm nghỉ"
     }
   }
 }

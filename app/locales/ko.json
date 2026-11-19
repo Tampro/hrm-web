@@ -16,7 +16,8 @@
     "edit": "수정",
     "delete": "삭제",
     "yes": "예",
-    "no": "아니요"
+    "no": "아니요",
+    "close": "닫기"
   },
   "validation": {
     "required": "필수 입력 항목입니다",
@@ -38,7 +39,9 @@
     "theme_color": "기본 색상 또는 #RRGGBB 색상을 선택하세요",
     "separators_differ": "천 단위 구분 기호는 소수점 기호와 달라야 합니다",
     "max_value": "최댓값은 {{max}}입니다",
-    "pick_one": "하나 이상 선택하세요"
+    "pick_one": "하나 이상 선택하세요",
+    "amount": "0 이상, 소수점 2자리 이하 숫자를 입력하세요",
+    "phone": "숫자와 + - ( ) . 만 입력하세요"
   },
   "auth": {
     "login": {
@@ -68,7 +71,8 @@
     "currencies": "통화",
     "referral": "추천",
     "settings": "시스템 설정",
-    "email_templates": "이메일 템플릿"
+    "email_templates": "이메일 템플릿",
+    "employees": "직원"
   },
   "table": {
     "rows_per_page": "페이지당 행 수",
@@ -115,7 +119,18 @@
     "DARK": "다크",
     "SYSTEM": "시스템 설정",
     "BEFORE": "금액 앞",
-    "AFTER": "금액 뒤"
+    "AFTER": "금액 뒤",
+    "INACTIVE": "비활성",
+    "PROBATION": "수습",
+    "TERMINATED": "퇴사",
+    "FULL_TIME": "정규직",
+    "PART_TIME": "시간제",
+    "CONTRACT": "계약직",
+    "INTERN": "인턴",
+    "TEMPORARY": "임시직",
+    "MALE": "남성",
+    "FEMALE": "여성",
+    "OTHER": "기타"
   },
   "company": {
     "title": "회사 관리",
@@ -759,6 +774,226 @@
       "PLAN_REQUEST_REJECTED": "플랜 요청 거절",
       "PAYOUT_APPROVED": "출금 승인",
       "PAYOUT_REJECTED": "출금 거절"
+    }
+  },
+  "upload": {
+    "choose": "파일을 선택하거나 여기에 끌어다 놓으세요",
+    "remove": "{{name}} 제거",
+    "too_large": "파일이 {{size}}보다 큽니다"
+  },
+  "employee": {
+    "title": "직원",
+    "subtitle": "회사 직원, 로그인 계정 및 기록입니다.",
+    "add": "직원 추가",
+    "edit": "프로필 수정",
+    "empty": "직원이 없습니다.",
+    "not_found": "직원이 존재하지 않습니다.",
+    "keyword_placeholder": "이름, 직원 번호, 이메일…",
+    "back_to_list": "직원 목록으로",
+    "back_to_profile": "프로필로",
+    "none": "— 선택 안 함 —",
+    "joined_on": "{{date}} 입사",
+    "login_on": "로그인 가능",
+    "login_off": "로그인 차단",
+    "login_off_hint": "계정이 없거나 잠겨 있습니다",
+    "banking_empty": "은행 정보가 없습니다.",
+    "banking_no_access": "은행 및 급여 정보를 볼 권한이 없습니다.",
+    "create_title": "새 직원 추가",
+    "edit_title": "프로필 수정 · {{name}}",
+    "edit_form": "프로필 수정",
+    "step_of": "{{total}}단계 중 {{current}}단계",
+    "employee_no_hint": "직원 번호는 저장 시 시스템이 발급합니다",
+    "employee_code_hint": "근태 단말기용 코드, 회사 내 고유",
+    "email_hint": "계정의 로그인 이름으로도 사용됩니다",
+    "first_password_hint": "비워 두면 자동 생성됩니다. 이메일로 발송되며 첫 로그인 시 변경해야 합니다.",
+    "required_hint": "* 표시는 필수 항목입니다.",
+    "step_back": "이전",
+    "step_next": "다음",
+    "submit_create": "직원 생성",
+    "submit_update": "변경 사항 저장",
+    "tab": {
+      "all": "전체"
+    },
+    "filter": {
+      "all": "전체"
+    },
+    "step": {
+      "personal": "개인 정보",
+      "work": "업무 및 조직",
+      "banking": "은행 및 급여",
+      "account": "계정 및 문서"
+    },
+    "section": {
+      "basic": "기본 정보",
+      "photo": "프로필 사진",
+      "address": "주소",
+      "emergency": "비상 연락처",
+      "organization": "조직",
+      "employment": "고용 정보",
+      "banking": "은행 및 급여",
+      "account": "로그인 계정",
+      "documents": "문서",
+      "personal": "개인 정보",
+      "work": "업무 정보"
+    },
+    "field": {
+      "employee_no": "직원 번호",
+      "employee": "직원",
+      "employee_code": "근태 코드",
+      "full_name": "이름",
+      "date_of_birth": "생년월일",
+      "gender": "성별",
+      "phone": "전화",
+      "email": "이메일",
+      "address": "주소",
+      "address_line1": "주소 1",
+      "address_line2": "주소 2",
+      "city": "도시",
+      "state": "시/도",
+      "country": "국가",
+      "postal_code": "우편번호",
+      "emergency": "비상 연락처",
+      "emergency_name": "연락처 이름",
+      "emergency_relationship": "관계",
+      "emergency_phone": "연락처 전화",
+      "branch": "지점",
+      "department": "부서",
+      "designation": "직책",
+      "reports_to": "직속 상사",
+      "date_of_joining": "입사일",
+      "employment_type": "고용 형태",
+      "status": "상태",
+      "login": "로그인",
+      "bank_name": "은행",
+      "account_holder_name": "예금주",
+      "account_number": "계좌 번호",
+      "bank_identifier_code": "BIC / SWIFT",
+      "bank_branch": "은행 지점",
+      "tax_payer_id": "납세자 번호",
+      "base_salary": "기본급",
+      "first_password": "초기 비밀번호",
+      "new_password": "새 비밀번호",
+      "confirm_password": "비밀번호 확인"
+    },
+    "validation": {
+      "file_required": "파일을 선택하세요",
+      "past_date": "과거 날짜여야 합니다",
+      "code": "영문, 숫자, . _ - 만 사용",
+      "password_length": "비밀번호는 8~128자여야 합니다",
+      "password_mismatch": "비밀번호가 일치하지 않습니다",
+      "branch_first": "부서보다 지점을 먼저 선택하세요",
+      "department_first": "직책보다 부서를 먼저 선택하세요"
+    },
+    "photo": {
+      "upload": "사진 업로드",
+      "replace": "사진 변경",
+      "remove": "삭제",
+      "hint": "PNG, JPG, GIF, WEBP · 최대 2MB"
+    },
+    "company_picker": {
+      "label": "회사",
+      "placeholder": "회사 선택",
+      "hint": "직원을 보고 관리할 회사를 선택하세요."
+    },
+    "detail_tab": {
+      "overview": "개요",
+      "documents": "문서",
+      "letters": "증명서"
+    },
+    "action": {
+      "menu": "기타 작업",
+      "change_status": "상태 변경",
+      "login_on": "로그인 허용",
+      "login_off": "로그인 차단",
+      "set_password": "새 비밀번호 설정",
+      "delete": "직원 삭제"
+    },
+    "status_dialog": {
+      "description": "{{name}}의 새 상태를 선택하세요."
+    },
+    "login_dialog": {
+      "on": "{{name}}님이 다시 로그인할 수 있습니다.",
+      "off": "{{name}}님의 계정이 잠기고 모든 세션이 즉시 종료됩니다."
+    },
+    "password_dialog": {
+      "description": "{{name}}님의 새 비밀번호가 즉시 적용됩니다(변경 불필요)."
+    },
+    "delete": {
+      "title": "직원을 삭제할까요?",
+      "description": "{{name}} ({{employeeNo}})의 로그인이 차단되고 모든 목록에서 사라집니다."
+    },
+    "toast": {
+      "created": "직원이 생성되었습니다. 비밀번호가 이메일로 발송되었습니다.",
+      "updated": "프로필이 저장되었습니다",
+      "status_changed": "상태가 변경되었습니다",
+      "login_on": "로그인이 허용되었습니다",
+      "login_off": "로그인이 차단되었습니다",
+      "password_set": "새 비밀번호가 설정되었습니다",
+      "deleted": "직원이 삭제되었습니다",
+      "document_added": "문서가 추가되었습니다",
+      "document_removed": "문서가 삭제되었습니다",
+      "document_verified": "문서가 확인되었습니다",
+      "document_unverified": "문서 확인이 취소되었습니다"
+    },
+    "document": {
+      "add": "문서 추가",
+      "add_description": "파일은 회사 라이브러리에 저장됩니다(최대 5MB).",
+      "type": "문서 유형",
+      "file": "파일",
+      "size": "크기",
+      "expiry_date": "만료일",
+      "expired": "만료됨",
+      "verified": "확인",
+      "verified_yes": "확인됨",
+      "verified_no": "미확인",
+      "choose_file": "파일 선택",
+      "file_hint": "이미지, PDF, Word, Excel, PowerPoint, TXT, CSV · 최대 5MB",
+      "none_yet": "문서가 없습니다. 나중에 프로필에서 추가할 수 있습니다.",
+      "empty": "문서가 없습니다.",
+      "row": "문서 {{index}}",
+      "remove_row": "문서 {{index}} 제거",
+      "view_named": "{{name}} 보기",
+      "download_named": "{{name}} 다운로드",
+      "verify_named": "{{name}} 확인",
+      "unverify_named": "{{name}} 확인 취소",
+      "remove_named": "{{name}} 삭제",
+      "remove_title": "문서를 삭제할까요?",
+      "remove_description": "{{name}}이(가) 프로필에서 제거되며 파일은 라이브러리에 남습니다."
+    },
+    "letter": {
+      "JOINING_LETTER": "입사 확인서",
+      "EXPERIENCE_CERTIFICATE": "경력 증명서",
+      "NOC": "이의 없음 확인서(NOC)",
+      "description": "직원 증명서를 PDF로 다운로드합니다.",
+      "language": "언어",
+      "download": "PDF 다운로드",
+      "downloading": "다운로드 중..."
+    },
+    "import": {
+      "open": "Excel 가져오기",
+      "title": "Excel에서 직원 가져오기",
+      "description": "최대 200행. 각 행마다 계정이 있는 직원이 생성되며 비밀번호는 이메일로 발송됩니다.",
+      "template": "템플릿 다운로드",
+      "choose": ".xlsx 파일 선택",
+      "hint": "1행 = 템플릿 헤더 · 최대 5MB",
+      "submit": "가져오기",
+      "importing": "가져오는 중...",
+      "result": "{{total}}명 중 {{created}}명이 생성되었습니다.",
+      "errors": "거부된 행",
+      "row": "{{row}}행:"
+    },
+    "export": {
+      "open": "목록 내보내기",
+      "exporting": "내보내는 중..."
+    },
+    "org_chart": {
+      "open": "조직도",
+      "title": "조직도",
+      "subtitle": "직속 상사 아래에 직원이 표시되며 퇴사자는 제외됩니다.",
+      "members": "구성원 {{count}}명",
+      "empty": "조직도에 직원이 없습니다.",
+      "active": "재직 중",
+      "inactive": "비활성"
     }
   }
 }

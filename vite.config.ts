@@ -8,12 +8,18 @@ export default defineConfig(({ mode }) => {
   // Deployed builds are served by Nginx, which does its own proxying.
   // The Origin header is dropped: browser → proxy is same-origin, proxy → backend is server-to-server. Otherwise
   // the backend CORS list (HRM_CORS_ORIGINS, default only :5173) rejects `vite preview` on :4173 with 403.
+  const toBackend = (target: string): ProxyOptions => ({
+    target,
+    changeOrigin: true,
+    configure: (proxyServer) => proxyServer.on('proxyReq', (proxyReq) => proxyReq.removeHeader('origin'))
+  })
+  // Same split as the backend gateway (gateway-server application.yml). Specific prefixes first: the first match wins.
+  const employeeTarget = env.VITE_EMPLOYEE_PROXY_TARGET || 'http://localhost:8083'
   const proxy: Record<string, ProxyOptions> = {
-    '/api': {
-      target: env.VITE_PROXY_TARGET || 'http://localhost:8081',
-      changeOrigin: true,
-      configure: (proxyServer) => proxyServer.on('proxyReq', (proxyReq) => proxyReq.removeHeader('origin'))
-    }
+    '/api/v1/employees': toBackend(employeeTarget),
+    '/api/v1/org': toBackend(employeeTarget),
+    '/api/v1/media': toBackend(env.VITE_MEDIA_PROXY_TARGET || 'http://localhost:8082'),
+    '/api': toBackend(env.VITE_PROXY_TARGET || 'http://localhost:8081')
   }
   return {
     plugins: [tailwindcss(), reactRouter()],

@@ -5,9 +5,11 @@ import type {
   TKeywordFilterSchema,
   TSaasFilterSchema
 } from '~/helpers/schema.helper'
+import type { TEmployeeFilterSchema } from '~/helpers/schemas/employee.schema'
 import { DEFAULT_PAGE, DEFAULT_SIZE } from '~/hooks/use-pagination'
 import { ECompanyStatus } from '~/shared/enums/company.enum'
 import { ECouponStatusTab } from '~/shared/enums/coupon.enum'
+import { EEmployeeStatus } from '~/shared/enums/employee.enum'
 import { EPayoutStatus } from '~/shared/enums/referral.enum'
 import { ESaasRequestStatus } from '~/shared/enums/saas.enum'
 
@@ -66,6 +68,25 @@ export const paramsHelper = {
     keyword: pick(searchParams, 'keyword', ''),
     ...(tab && { tab })
   }),
+
+  /** Employees page: company (super admin), filters, status tab */
+  employeeToSearchParams: (
+    searchParams: URLSearchParams,
+    defaults: TEmployeeFilterSchema,
+    tab: EEmployeeStatus,
+    companyId?: string
+  ) => ({
+    ...paramsHelper.paginationToSearchParams(searchParams),
+    companyId,
+    keyword: pick(searchParams, 'keyword', defaults.keyword),
+    branchId: pick(searchParams, 'branchId', defaults.branchId),
+    departmentId: pick(searchParams, 'departmentId', defaults.departmentId),
+    designationId: pick(searchParams, 'designationId', defaults.designationId),
+    tab
+  }),
+
+  getEmployeeTab: (searchParams: URLSearchParams) =>
+    commonHelper.toEnumValue(searchParams.get('tab'), Object.values(EEmployeeStatus), EEmployeeStatus.All),
 
   /** Tab from ?tab=, falls back to All for unknown values */
   getCompanyTab: (searchParams: URLSearchParams) =>

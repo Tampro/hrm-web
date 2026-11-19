@@ -48,5 +48,30 @@ export const commonHelper = {
 
   /** Value from the URL when it is one of the enum values, otherwise the fallback */
   toEnumValue: <T extends string>(value: string | null | undefined, values: readonly T[], fallback: T): T =>
-    values.includes(value as T) ? (value as T) : fallback
+    values.includes(value as T) ? (value as T) : fallback,
+
+  /** Bytes → "1.5 MB" (locale-aware), '-' when missing */
+  formatFileSize: (bytes: number | null | undefined) => {
+    if (bytes === null || bytes === undefined || Number.isNaN(bytes)) return '-'
+    const units = ['B', 'KB', 'MB', 'GB']
+    let value = bytes
+    let unit = 0
+    while (value >= 1024 && unit < units.length - 1) {
+      value /= 1024
+      unit++
+    }
+    return `${commonHelper.formatNumber(value, unit === 0 ? 0 : 1)} ${units[unit]}`
+  },
+
+  /** Saves a downloaded file (Blob from a responseType 'blob' request) under the given name */
+  downloadBlob: (blob: Blob, fileName: string) => {
+    const url = URL.createObjectURL(blob)
+    const link = document.createElement('a')
+    link.href = url
+    link.download = fileName
+    document.body.appendChild(link)
+    link.click()
+    link.remove()
+    URL.revokeObjectURL(url)
+  }
 }
