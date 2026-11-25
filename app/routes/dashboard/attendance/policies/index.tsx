@@ -66,7 +66,11 @@ export default function AttendancePoliciesPage() {
   const [formPolicy, setFormPolicy] = useState<IAttendancePolicy | null | undefined>(undefined)
   const [deleting, setDeleting] = useState<IAttendancePolicy | undefined>()
 
-  const { mutate: toggle, variables: toggling } = useMutationApi({
+  const {
+    mutate: toggle,
+    variables: toggling,
+    isPending: isToggling
+  } = useMutationApi({
     mutationFn: ({ policy, active }: { policy: IAttendancePolicy; active: boolean }) =>
       AttendancePolicyService.UpdateStatus(policy.id ?? '', active ? EOrgStatus.Active : EOrgStatus.Inactive),
     onSuccess: async (_, { active }) => {
@@ -84,11 +88,11 @@ export default function AttendancePoliciesPage() {
           onAction: (action, policy) => (action === 'edit' ? setFormPolicy(policy) : setDeleting(policy)),
           onToggle: (policy, active) => toggle({ policy, active }),
           canManage,
-          togglingId: toggling?.policy.id
+          togglingId: isToggling ? toggling?.policy.id : undefined
         },
         currency
       ),
-    [t, getTranslateEnum, toggle, toggling, canManage, currency]
+    [t, getTranslateEnum, toggle, toggling, isToggling, canManage, currency]
   )
 
   // Form

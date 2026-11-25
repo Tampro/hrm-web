@@ -200,6 +200,8 @@ test.describe('Ca làm việc · quản lý công ty', () => {
 
     await shiftsPage.page.getByRole('switch', { name: 'Bật/tắt Ca đêm kho' }).click()
     await expect.poll(() => statuses[0]?.body).toEqual({ status: 'ACTIVE' })
+    // the switch is usable again once the request is done
+    await expect(shiftsPage.page.getByRole('switch', { name: 'Bật/tắt Ca đêm kho' })).toBeEnabled()
 
     await shiftsPage.page.getByRole('button', { name: 'Xóa Ca hành chính' }).click()
     await shiftsPage.alertDialog.getByRole('button', { name: 'Xoá' }).click()

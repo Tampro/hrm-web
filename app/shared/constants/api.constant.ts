@@ -155,7 +155,15 @@ export const API_ATTENDANCE = {
   RECORD_CALENDAR_URL: '/attendance/records/calendar',
   RECORD_EXPORT_URL: '/attendance/records/export',
   RECORD_IMPORT_URL: '/attendance/records/import',
-  RECORD_IMPORT_TEMPLATE_URL: '/attendance/records/import-template'
+  RECORD_IMPORT_TEMPLATE_URL: '/attendance/records/import-template',
+  TIMESHEET_WEEK_URL: '/attendance/timesheets/week',
+  TIMESHEET_ENTRIES_URL: '/attendance/timesheets/entries',
+  TIMESHEET_ENTRY_URL: (id: string) => '/attendance/timesheets/entries/' + id,
+  TIMESHEET_APPROVE_URL: (id: string) => '/attendance/timesheets/entries/' + id + '/approve',
+  TIMESHEET_REJECT_URL: (id: string) => '/attendance/timesheets/entries/' + id + '/reject',
+  TIMESHEET_EXPORT_URL: '/attendance/timesheets/export',
+  TIMESHEET_IMPORT_URL: '/attendance/timesheets/import',
+  TIMESHEET_IMPORT_TEMPLATE_URL: '/attendance/timesheets/import-template'
 } as const
 
 // Spec: media-service MediaController — upload (multipart `files`), returns the stored files

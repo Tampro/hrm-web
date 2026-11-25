@@ -82,7 +82,8 @@
     "document_types": "Loại tài liệu",
     "shifts": "Ca làm việc",
     "attendance_policies": "Chính sách chấm công",
-    "attendance_records": "Chấm công"
+    "attendance_records": "Chấm công",
+    "timesheets": "Bảng giờ công"
   },
   "table": {
     "rows_per_page": "Số dòng mỗi trang",
@@ -1656,7 +1657,69 @@
       "done": "Đã nhập file chấm công.",
       "result": "Kết quả nhập",
       "summary": "{{total}} dòng: thêm {{created}}, cập nhật {{updated}}, lỗi {{failed}}.",
-      "row_error": "Dòng {{row}}: {{message}}"
+      "row_error": "Dòng {{row}}: {{message}}",
+      "summary_created": "{{total}} dòng: thêm {{created}}, lỗi {{failed}}."
+    }
+  },
+  "timesheet": {
+    "title": "Bảng giờ công",
+    "subtitle": "Xem và duyệt số giờ nhân viên ghi nhận theo dự án.",
+    "add": "Thêm giờ công",
+    "keyword_placeholder": "Tìm theo tên hoặc mã nhân viên",
+    "no_project": "Không có dự án",
+    "hours_short": "{{value}}h",
+    "entries": "Xem {{count}} mục",
+    "view_day": "Xem giờ công của {{name}} ngày {{date}}",
+    "week": {
+      "previous": "Tuần trước",
+      "next": "Tuần sau",
+      "current": "Tuần này"
+    },
+    "field": {
+      "employee": "Nhân viên",
+      "date": "Ngày",
+      "hours": "Số giờ",
+      "project": "Dự án",
+      "description": "Mô tả công việc",
+      "manager_comments": "Nhận xét của quản lý"
+    },
+    "form": {
+      "create_title": "Thêm giờ công",
+      "edit_title": "Sửa giờ công",
+      "view_title": "Chi tiết giờ công",
+      "description": "Tổng giờ của một nhân viên trong một ngày không quá 24 giờ.",
+      "hours_hint": "Từ 0,25 đến 24, tối đa 2 chữ số thập phân."
+    },
+    "validation": {
+      "future_date": "Không thể ghi giờ cho ngày trong tương lai.",
+      "hours_range": "Số giờ từ 0,25 đến 24, tối đa 2 chữ số thập phân."
+    },
+    "day": {
+      "title": "{{name}} · {{date}}",
+      "summary": "{{count}} mục, tổng {{hours}} giờ",
+      "empty": "Không có mục nào."
+    },
+    "action": {
+      "view": "Xem {{name}}",
+      "edit": "Sửa {{name}}",
+      "approve": "Duyệt {{name}}",
+      "reject": "Từ chối {{name}}",
+      "delete": "Xóa {{name}}"
+    },
+    "toast": {
+      "created": "Đã thêm giờ công.",
+      "updated": "Đã cập nhật giờ công.",
+      "deleted": "Đã xóa giờ công.",
+      "approved": "Đã duyệt giờ công.",
+      "rejected": "Đã từ chối giờ công."
+    },
+    "delete": {
+      "title": "Xóa mục giờ công này?",
+      "description": "Thao tác này không thể hoàn tác."
+    },
+    "import": {
+      "title": "Nhập giờ công",
+      "description": "Tên nhân viên trong file phải khớp chính xác với hệ thống; dòng lỗi được bỏ qua."
     }
   }
 }

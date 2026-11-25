@@ -15,6 +15,7 @@ import {
   Plane,
   TimerReset,
   CalendarDays,
+  ClipboardClock,
   Clock,
   ClipboardCheck,
   Coins,
@@ -67,8 +68,8 @@ import type { ICompanyInfo, ICompanyStatusCounts } from '~/shared/models/company
 import type { ICoupon, ICouponStatusCounts } from '~/shared/models/coupon.model'
 import type { IEmailTemplatePreview } from '~/shared/models/email-template.model'
 import type { IEmployeeBanking, IEmployeeDetail, IEmployeeStatusCounts } from '~/shared/models/employee.model'
-import { EDayStatus } from '~/shared/enums/attendance.enum'
-import type { IAttendancePolicySummary, IShiftSummary } from '~/shared/models/attendance.model'
+import { EApprovalStatus, EDayStatus } from '~/shared/enums/attendance.enum'
+import type { IAttendancePolicySummary, IShiftSummary, ITimesheetStatusCounts } from '~/shared/models/attendance.model'
 import type { IAnnouncement, IAnnouncementStats, IAnnouncementTabCounts } from '~/shared/models/announcement.model'
 import type { IHoliday } from '~/shared/models/holiday.model'
 import type { IBranch, IDepartment, IDesignation, IOrgStatusCounts } from '~/shared/models/org.model'
@@ -80,6 +81,14 @@ type TTranslateEnum = (value?: string | null) => string
 
 const unlimited = (t: TFunction, value: number | null | undefined, format: (v: number) => string) =>
   value === null || value === undefined ? t('plan.unlimited') : format(value)
+
+/** Badge colours of an approval status (timesheet entries, regularizations) */
+export const APPROVAL_STATUS_BADGE: Record<EApprovalStatus, string> = {
+  [EApprovalStatus.All]: '',
+  [EApprovalStatus.Pending]: 'border-amber-200 bg-amber-50 text-amber-700',
+  [EApprovalStatus.Approved]: 'border-emerald-200 bg-emerald-50 text-emerald-700',
+  [EApprovalStatus.Rejected]: 'border-red-200 bg-red-50 text-red-700'
+}
 
 /** Icon + colour of each attendance calendar cell */
 export const ATTENDANCE_DAY_STYLE: Record<EDayStatus, Pick<IAttendanceLegendItem, 'icon' | 'className'>> = {
@@ -109,6 +118,7 @@ export const DATA = {
       icon: CalendarCheck,
       permission: 'ATTENDANCE_VIEW'
     },
+    { label: t('sidebar.timesheets'), route: ROUTES.TIMESHEETS, icon: ClipboardClock, permission: 'ATTENDANCE_VIEW' },
     { label: t('sidebar.shifts'), route: ROUTES.SHIFTS, icon: Clock, permission: 'ATTENDANCE_VIEW' },
     {
       label: t('sidebar.attendance_policies'),
@@ -410,6 +420,14 @@ export const DATA = {
     { key: 'late', label: t('attendance_record.flag.late'), icon: Clock, className: 'text-amber-600' },
     { key: 'early', label: t('attendance_record.flag.early'), icon: LogOut, className: 'text-orange-600' },
     { key: 'overtime', label: t('attendance_record.flag.overtime'), icon: TimerReset, className: 'text-violet-600' }
+  ],
+
+  // Spec: TimesheetDtos.StatusCounts of the visible week
+  GET_APPROVAL_STATUS_TABS: (t: TFunction, c?: ITimesheetStatusCounts): ITabOption<EApprovalStatus>[] => [
+    { label: t('employee.filter.all'), value: EApprovalStatus.All, count: c?.all },
+    { label: t('enum.PENDING'), value: EApprovalStatus.Pending, count: c?.pending },
+    { label: t('enum.APPROVED'), value: EApprovalStatus.Approved, count: c?.approved },
+    { label: t('enum.REJECTED'), value: EApprovalStatus.Rejected, count: c?.rejected }
   ],
 
   /** Attendance calendar: months 1–12 */

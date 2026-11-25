@@ -363,3 +363,11 @@ export enum EAttendanceRecordFormKey {
   ClockOut = 'clockOut',
   Notes = 'notes'
 }
+
+export enum ETimesheetEntryFormKey {
+  EmployeeId = 'employeeId',
+  Date = 'date',
+  Hours = 'hours',
+  Project = 'project',
+  Description = 'description'
+}

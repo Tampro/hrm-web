@@ -82,7 +82,8 @@
     "document_types": "문서 유형",
     "shifts": "근무 교대",
     "attendance_policies": "근태 정책",
-    "attendance_records": "근태 기록"
+    "attendance_records": "근태 기록",
+    "timesheets": "타임시트"
   },
   "table": {
     "rows_per_page": "페이지당 행 수",
@@ -1656,7 +1657,69 @@
       "done": "근태 파일을 가져왔습니다.",
       "result": "가져오기 결과",
       "summary": "{{total}}행: 추가 {{created}}, 갱신 {{updated}}, 실패 {{failed}}.",
-      "row_error": "{{row}}행: {{message}}"
+      "row_error": "{{row}}행: {{message}}",
+      "summary_created": "{{total}}행: 추가 {{created}}, 실패 {{failed}}."
+    }
+  },
+  "timesheet": {
+    "title": "타임시트",
+    "subtitle": "직원이 프로젝트별로 기록한 시간을 검토·승인합니다.",
+    "add": "타임시트 추가",
+    "keyword_placeholder": "직원 이름 또는 코드로 검색",
+    "no_project": "프로젝트 없음",
+    "hours_short": "{{value}}h",
+    "entries": "{{count}}건 보기",
+    "view_day": "{{date}} {{name}} 기록 보기",
+    "week": {
+      "previous": "이전 주",
+      "next": "다음 주",
+      "current": "이번 주"
+    },
+    "field": {
+      "employee": "직원",
+      "date": "날짜",
+      "hours": "시간",
+      "project": "프로젝트",
+      "description": "업무 설명",
+      "manager_comments": "관리자 의견"
+    },
+    "form": {
+      "create_title": "타임시트 추가",
+      "edit_title": "타임시트 수정",
+      "view_title": "타임시트 상세",
+      "description": "하루 기록은 24시간을 넘을 수 없습니다.",
+      "hours_hint": "0.25~24, 소수점 2자리까지."
+    },
+    "validation": {
+      "future_date": "미래 날짜에는 기록할 수 없습니다.",
+      "hours_range": "시간은 0.25~24, 소수점 2자리까지입니다."
+    },
+    "day": {
+      "title": "{{name}} · {{date}}",
+      "summary": "{{count}}건, 합계 {{hours}}시간",
+      "empty": "기록이 없습니다."
+    },
+    "action": {
+      "view": "{{name}} 보기",
+      "edit": "{{name}} 수정",
+      "approve": "{{name}} 승인",
+      "reject": "{{name}} 반려",
+      "delete": "{{name}} 삭제"
+    },
+    "toast": {
+      "created": "타임시트를 추가했습니다.",
+      "updated": "타임시트를 수정했습니다.",
+      "deleted": "타임시트를 삭제했습니다.",
+      "approved": "타임시트를 승인했습니다.",
+      "rejected": "타임시트를 반려했습니다."
+    },
+    "delete": {
+      "title": "이 타임시트를 삭제할까요?",
+      "description": "이 작업은 되돌릴 수 없습니다."
+    },
+    "import": {
+      "title": "타임시트 가져오기",
+      "description": "파일의 직원 이름은 시스템과 정확히 일치해야 하며, 오류 행은 건너뜁니다."
     }
   }
 }

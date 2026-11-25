@@ -1,4 +1,4 @@
-import type { EDayStatus } from '~/shared/enums/attendance.enum'
+import type { EApprovalStatus, EDayStatus } from '~/shared/enums/attendance.enum'
 import type { EOrgStatus } from '~/shared/enums/org.enum'
 
 import type { IBaseFilterPanel, IBasePagination } from './common.model'
@@ -174,4 +174,80 @@ export interface IAttendanceImportResult {
   created?: number
   updated?: number
   errors?: { row?: number; code?: string; message?: string }[]
+}
+
+// Spec: attendance-service TimesheetDtos
+
+export interface ITimesheetEntry {
+  id?: string
+  employeeId?: string
+  date?: string
+  hours?: number | null
+  project?: string | null
+  description?: string | null
+  status?: EApprovalStatus
+  managerComments?: string | null
+  decidedAt?: string | null
+  createdDate?: string
+  updatedDate?: string | null
+}
+
+export interface ITimesheetEntryPayload {
+  employeeId: number
+  date: string
+  hours: number
+  project?: string
+  description: string
+}
+
+/** DayCell — status of the day: PENDING if any entry waits, else REJECTED if any, else APPROVED; null = no entry */
+export interface ITimesheetDayCell {
+  date?: string
+  hours?: number | null
+  entries?: number | null
+  status?: EApprovalStatus | null
+}
+
+export interface ITimesheetWeekRow {
+  employeeId?: string
+  fullName?: string | null
+  designation?: string | null
+  profileImageUrl?: string | null
+  days?: ITimesheetDayCell[] | null
+  total?: number | null
+}
+
+export interface ITimesheetStatusCounts {
+  all?: number
+  pending?: number
+  approved?: number
+  rejected?: number
+}
+
+export interface ITimesheetWeek {
+  weekStart?: string
+  weekEnd?: string
+  rows?: ITimesheetWeekRow[]
+  counts?: ITimesheetStatusCounts
+  page?: number
+  size?: number
+  totalElements?: number
+}
+
+export interface ITimesheetWeekParams {
+  companyId?: string
+  date: string
+  employeeId?: string
+  keyword?: string
+  status?: EApprovalStatus
+  page?: number
+  size?: number
+}
+
+export interface ITimesheetExportParams {
+  companyId?: string
+  from: string
+  to: string
+  employeeId?: string
+  status?: EApprovalStatus
 }

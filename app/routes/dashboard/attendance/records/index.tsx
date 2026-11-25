@@ -23,9 +23,9 @@ import { AttendanceRecordService } from '~/services/attendance.service'
 import { DATA } from '~/shared/constants/data.constant'
 import type { IAttendanceCalendarParams } from '~/shared/models/attendance.model'
 
+import { ImportDialog } from '../components/import-dialog'
 import { AttendanceCalendar } from './components/attendance-calendar'
 import { RecordFormDialog, type IRecordTarget } from './components/record-form-dialog'
-import { RecordImportDialog } from './components/record-import-dialog'
 
 type TFilter = { employeeId: string; month: string; year: string }
 
@@ -261,7 +261,16 @@ export default function AttendanceRecordsPage() {
         canManage={canManage}
         onClose={() => setTarget(undefined)}
       />
-      <RecordImportDialog open={importing} companyId={companyId} onClose={() => setImporting(false)} />
+      <ImportDialog
+        open={importing}
+        companyId={companyId}
+        title={t('attendance_record.import.title')}
+        description={t('attendance_record.import.description')}
+        templateName='attendance-import-template.xlsx'
+        getTemplate={AttendanceRecordService.GetImportTemplate}
+        importFile={AttendanceRecordService.Import}
+        onClose={() => setImporting(false)}
+      />
     </PageLayout>
   )
 }
