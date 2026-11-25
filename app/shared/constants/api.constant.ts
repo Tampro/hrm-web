@@ -149,7 +149,13 @@ export const API_ATTENDANCE = {
   POLICY_STATUS_COUNTS_URL: '/attendance/policies/status-counts',
   POLICY_SUMMARY_URL: '/attendance/policies/summary',
   POLICY_URL: (id: string) => '/attendance/policies/' + id,
-  POLICY_STATUS_URL: (id: string) => '/attendance/policies/' + id + '/status'
+  POLICY_STATUS_URL: (id: string) => '/attendance/policies/' + id + '/status',
+  RECORDS_URL: '/attendance/records',
+  RECORD_URL: (id: string) => '/attendance/records/' + id,
+  RECORD_CALENDAR_URL: '/attendance/records/calendar',
+  RECORD_EXPORT_URL: '/attendance/records/export',
+  RECORD_IMPORT_URL: '/attendance/records/import',
+  RECORD_IMPORT_TEMPLATE_URL: '/attendance/records/import-template'
 } as const
 
 // Spec: media-service MediaController — upload (multipart `files`), returns the stored files

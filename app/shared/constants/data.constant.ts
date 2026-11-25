@@ -3,6 +3,17 @@ import {
   BadgeCheck,
   Boxes,
   Building2,
+  CalendarCheck,
+  CircleCheck,
+  CircleDashed,
+  CircleDot,
+  CircleMinus,
+  CircleX,
+  Coffee,
+  LogOut,
+  PartyPopper,
+  Plane,
+  TimerReset,
   CalendarDays,
   Clock,
   ClipboardCheck,
@@ -51,11 +62,12 @@ import {
   EThemeMode,
   EWeekDay
 } from '~/shared/enums/settings.enum'
-import type { IInfoRow, ISidebarItem, ITabItem, ITabOption } from '~/shared/models/common.model'
+import type { IAttendanceLegendItem, IInfoRow, ISidebarItem, ITabItem, ITabOption } from '~/shared/models/common.model'
 import type { ICompanyInfo, ICompanyStatusCounts } from '~/shared/models/company.model'
 import type { ICoupon, ICouponStatusCounts } from '~/shared/models/coupon.model'
 import type { IEmailTemplatePreview } from '~/shared/models/email-template.model'
 import type { IEmployeeBanking, IEmployeeDetail, IEmployeeStatusCounts } from '~/shared/models/employee.model'
+import { EDayStatus } from '~/shared/enums/attendance.enum'
 import type { IAttendancePolicySummary, IShiftSummary } from '~/shared/models/attendance.model'
 import type { IAnnouncement, IAnnouncementStats, IAnnouncementTabCounts } from '~/shared/models/announcement.model'
 import type { IHoliday } from '~/shared/models/holiday.model'
@@ -69,6 +81,18 @@ type TTranslateEnum = (value?: string | null) => string
 const unlimited = (t: TFunction, value: number | null | undefined, format: (v: number) => string) =>
   value === null || value === undefined ? t('plan.unlimited') : format(value)
 
+/** Icon + colour of each attendance calendar cell */
+export const ATTENDANCE_DAY_STYLE: Record<EDayStatus, Pick<IAttendanceLegendItem, 'icon' | 'className'>> = {
+  [EDayStatus.Present]: { icon: CircleCheck, className: 'text-emerald-600' },
+  [EDayStatus.Absent]: { icon: CircleX, className: 'text-red-600' },
+  [EDayStatus.HalfDay]: { icon: CircleDashed, className: 'text-sky-600' },
+  [EDayStatus.OnLeave]: { icon: Plane, className: 'text-indigo-600' },
+  [EDayStatus.Holiday]: { icon: PartyPopper, className: 'text-pink-600' },
+  [EDayStatus.DayOff]: { icon: Coffee, className: 'text-slate-500' },
+  [EDayStatus.Future]: { icon: CircleDot, className: 'text-slate-300' },
+  [EDayStatus.NotAdded]: { icon: CircleMinus, className: 'text-slate-400' }
+}
+
 export const DATA = {
   GET_SIDEBAR_ITEMS: (t: TFunction): ISidebarItem[] => [
     { label: t('sidebar.dashboard'), route: ROUTES.DASHBOARD, icon: LayoutDashboard },
@@ -79,6 +103,12 @@ export const DATA = {
     { label: t('sidebar.holidays'), route: ROUTES.HOLIDAYS, icon: CalendarDays, permission: 'ORG_VIEW' },
     { label: t('sidebar.award_types'), route: ROUTES.AWARD_TYPES, icon: Trophy, permission: 'ORG_VIEW' },
     { label: t('sidebar.document_types'), route: ROUTES.DOCUMENT_TYPES, icon: FileText, permission: 'ORG_VIEW' },
+    {
+      label: t('sidebar.attendance_records'),
+      route: ROUTES.ATTENDANCE_RECORDS,
+      icon: CalendarCheck,
+      permission: 'ATTENDANCE_VIEW'
+    },
     { label: t('sidebar.shifts'), route: ROUTES.SHIFTS, icon: Clock, permission: 'ATTENDANCE_VIEW' },
     {
       label: t('sidebar.attendance_policies'),
@@ -369,6 +399,26 @@ export const DATA = {
     { label: t('shift.day'), value: 'false' },
     { label: t('shift.night'), value: 'true' }
   ],
+
+  /** Attendance calendar legend (manual 6.4.1): the day statuses, then the flags on a present day */
+  GET_ATTENDANCE_LEGEND: (t: TFunction): IAttendanceLegendItem[] => [
+    ...Object.values(EDayStatus).map((status) => ({
+      key: status,
+      label: t(`enum.${status}`),
+      ...ATTENDANCE_DAY_STYLE[status]
+    })),
+    { key: 'late', label: t('attendance_record.flag.late'), icon: Clock, className: 'text-amber-600' },
+    { key: 'early', label: t('attendance_record.flag.early'), icon: LogOut, className: 'text-orange-600' },
+    { key: 'overtime', label: t('attendance_record.flag.overtime'), icon: TimerReset, className: 'text-violet-600' }
+  ],
+
+  /** Attendance calendar: months 1–12 */
+  GET_MONTH_OPTIONS: (t: TFunction): ITabOption[] =>
+    Array.from({ length: 12 }, (_, i) => ({ label: t('attendance.month_n', { n: i + 1 }), value: String(i + 1) })),
+
+  /** Attendance calendar: the current year − 3 … + 1 (Spec: year 2000–2100) */
+  GET_ATTENDANCE_YEAR_OPTIONS: (now = new Date().getFullYear()): ITabOption[] =>
+    [now - 3, now - 2, now - 1, now, now + 1].map((y) => ({ label: String(y), value: String(y) })),
 
   // Spec: ShiftDtos.Summary {total, active, night, day}
   GET_SHIFT_SUMMARY_CARDS: (t: TFunction, s?: IShiftSummary): IInfoRow[] => [

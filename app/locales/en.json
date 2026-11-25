@@ -81,7 +81,8 @@
     "award_types": "Award types",
     "document_types": "Document types",
     "shifts": "Shifts",
-    "attendance_policies": "Attendance policies"
+    "attendance_policies": "Attendance policies",
+    "attendance_records": "Attendance records"
   },
   "table": {
     "rows_per_page": "Rows per page",
@@ -139,7 +140,15 @@
     "TEMPORARY": "Temporary",
     "MALE": "Male",
     "FEMALE": "Female",
-    "OTHER": "Other"
+    "OTHER": "Other",
+    "PRESENT": "Present",
+    "ABSENT": "Absent",
+    "HALF_DAY": "Half day",
+    "ON_LEAVE": "On leave",
+    "HOLIDAY": "Holiday",
+    "DAY_OFF": "Day off",
+    "FUTURE": "Future",
+    "NOT_ADDED": "Not added"
   },
   "company": {
     "title": "Companies",
@@ -1475,7 +1484,8 @@
     "pick_company": "Pick a company to see its attendance setup.",
     "toggle_named": "Toggle {{name}}",
     "edit_named": "Edit {{name}}",
-    "delete_named": "Delete {{name}}"
+    "delete_named": "Delete {{name}}",
+    "month_n": "Month {{n}}"
   },
   "shift": {
     "title": "Shifts",
@@ -1583,6 +1593,70 @@
     "delete": {
       "title": "Delete policy \"{{name}}\"?",
       "description": "This cannot be undone."
+    }
+  },
+  "attendance_record": {
+    "title": "Attendance records",
+    "subtitle": "Track employee attendance in a monthly calendar.",
+    "add": "Add record",
+    "export": "Export",
+    "legend": "Legend",
+    "empty": "No employees.",
+    "showing": "Showing {{count}} / {{total}} employees",
+    "clock_range": "In {{in}} · Out {{out}}",
+    "flag": {
+      "late": "Late",
+      "early": "Early departure",
+      "overtime": "Overtime"
+    },
+    "filter": {
+      "month": "Month",
+      "year": "Year"
+    },
+    "field": {
+      "employee": "Employee",
+      "total": "Total",
+      "date": "Date",
+      "clock_in": "Clock in",
+      "clock_out": "Clock out",
+      "notes": "Notes"
+    },
+    "form": {
+      "create_title": "Add attendance record",
+      "edit_title": "Edit attendance record",
+      "description": "Late, early departure and overtime are computed from the employee’s shift and policy.",
+      "clock_in_hint": "Empty = absent.",
+      "clock_out_hint": "Before clock-in = next day.",
+      "create_submit": "Add record"
+    },
+    "validation": {
+      "clock_out_without_in": "A clock-out needs a clock-in.",
+      "future_date": "Clock times cannot be on a future date."
+    },
+    "toast": {
+      "created": "Attendance record added.",
+      "updated": "Attendance record updated.",
+      "deleted": "Attendance record deleted."
+    },
+    "delete": {
+      "title": "Delete this attendance record?",
+      "description": "The day shows Not added again."
+    },
+    "import": {
+      "button": "Import",
+      "title": "Import attendance",
+      "description": "A row for an existing employee and date updates that record; rows with errors are skipped.",
+      "template": "Download template",
+      "drop": "Choose or drop an .xlsx file",
+      "limits": "Up to 5 MB, 2000 rows.",
+      "file": "Attendance file",
+      "too_large": "The file is larger than 5 MB.",
+      "submit": "Import",
+      "uploading": "Importing…",
+      "done": "Attendance file imported.",
+      "result": "Import result",
+      "summary": "{{total}} rows: {{created}} added, {{updated}} updated, {{failed}} failed.",
+      "row_error": "Row {{row}}: {{message}}"
     }
   }
 }

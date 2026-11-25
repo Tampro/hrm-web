@@ -2,7 +2,7 @@ import type { TFunction } from 'i18next'
 import { z } from 'zod'
 
 import { maxLength, numberText, required, requiredText } from '~/helpers/schema.helper'
-import { EAttendancePolicyFormKey, EShiftFormKey } from '~/shared/enums/form.enum'
+import { EAttendancePolicyFormKey, EAttendanceRecordFormKey, EShiftFormKey } from '~/shared/enums/form.enum'
 
 const text = (max: number, t?: TFunction) => z.string().trim().max(max, maxLength(max, t))
 
@@ -60,3 +60,25 @@ export const getShiftFilterSchema = (t?: TFunction) =>
   z.object({ keyword: z.string().trim().max(255, maxLength(255, t)), nightShift: z.string() })
 
 export type TShiftFilterSchema = z.infer<ReturnType<typeof getShiftFilterSchema>>
+
+// Spec: RecordForm — employee and date required, notes ≤ 500; clock-out needs a clock-in (ATT_010); no clock times on a
+// future date (ATT_011). A clock-out before the clock-in means the next day (night shift), so no order check here.
+export const getAttendanceRecordSchema = (t?: TFunction, today = new Date().toLocaleDateString('sv-SE')) =>
+  z
+    .object({
+      [EAttendanceRecordFormKey.EmployeeId]: z.string().min(1, required(t)),
+      [EAttendanceRecordFormKey.Date]: z.string().min(1, required(t)),
+      [EAttendanceRecordFormKey.ClockIn]: z.string(),
+      [EAttendanceRecordFormKey.ClockOut]: z.string(),
+      [EAttendanceRecordFormKey.Notes]: text(500, t)
+    })
+    .refine((v) => !v.clockOut || !!v.clockIn, {
+      path: [EAttendanceRecordFormKey.ClockIn],
+      message: t?.('attendance_record.validation.clock_out_without_in')
+    })
+    .refine((v) => !(v.clockIn || v.clockOut) || !v.date || v.date <= today, {
+      path: [EAttendanceRecordFormKey.Date],
+      message: t?.('attendance_record.validation.future_date')
+    })
+
+export type TAttendanceRecordSchema = z.infer<ReturnType<typeof getAttendanceRecordSchema>>
