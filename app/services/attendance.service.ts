@@ -14,7 +14,12 @@ import type {
   IShift,
   IShiftListParams,
   IShiftPayload,
-  IShiftSummary
+  IShiftSummary,
+  ITimesheetEntry,
+  ITimesheetEntryPayload,
+  ITimesheetExportParams,
+  ITimesheetWeek,
+  ITimesheetWeekParams
 } from '~/shared/models/attendance.model'
 import type { IApiPagination, IApiResponse } from '~/shared/models/common.model'
 import type { IOrgStatusCounts } from '~/shared/models/org.model'
@@ -78,5 +83,32 @@ export const AttendanceRecordService = {
     const body = new FormData()
     body.append('file', file)
     return await axiosClient.post(API_ATTENDANCE.RECORD_IMPORT_URL, body, { params: { companyId } })
+  }
+}
+
+// Spec: attendance-service TimesheetController
+export const TimesheetService = {
+  GetWeek: async (params: ITimesheetWeekParams): Promise<IApiResponse<ITimesheetWeek>> =>
+    await axiosClient.get(API_ATTENDANCE.TIMESHEET_WEEK_URL, { params }),
+  GetDay: async (params: { employeeId: string; date: string }): Promise<IApiResponse<ITimesheetEntry[]>> =>
+    await axiosClient.get(API_ATTENDANCE.TIMESHEET_ENTRIES_URL, { params }),
+  Create: async (payload: ITimesheetEntryPayload): Promise<IApiResponse<ITimesheetEntry>> =>
+    await axiosClient.post(API_ATTENDANCE.TIMESHEET_ENTRIES_URL, payload),
+  Update: async (id: string, payload: ITimesheetEntryPayload): Promise<IApiResponse<ITimesheetEntry>> =>
+    await axiosClient.put(API_ATTENDANCE.TIMESHEET_ENTRY_URL(id), payload),
+  Approve: async (id: string): Promise<IApiResponse<ITimesheetEntry>> =>
+    await axiosClient.put(API_ATTENDANCE.TIMESHEET_APPROVE_URL(id), {}),
+  Reject: async (id: string): Promise<IApiResponse<ITimesheetEntry>> =>
+    await axiosClient.put(API_ATTENDANCE.TIMESHEET_REJECT_URL(id), {}),
+  Delete: async (id: string): Promise<IApiResponse<void>> =>
+    await axiosClient.delete(API_ATTENDANCE.TIMESHEET_ENTRY_URL(id)),
+  Export: async (params: ITimesheetExportParams): Promise<Blob> =>
+    await axiosClient.get(API_ATTENDANCE.TIMESHEET_EXPORT_URL, { params, responseType: 'blob' }),
+  GetImportTemplate: async (): Promise<Blob> =>
+    await axiosClient.get(API_ATTENDANCE.TIMESHEET_IMPORT_TEMPLATE_URL, { responseType: 'blob' }),
+  Import: async (companyId: string | undefined, file: File): Promise<IApiResponse<IAttendanceImportResult>> => {
+    const body = new FormData()
+    body.append('file', file)
+    return await axiosClient.post(API_ATTENDANCE.TIMESHEET_IMPORT_URL, body, { params: { companyId } })
   }
 }

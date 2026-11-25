@@ -10,3 +10,12 @@ export enum EDayStatus {
   Future = 'FUTURE',
   NotAdded = 'NOT_ADDED'
 }
+
+// Spec: attendance-service ERegularizationStatus (timesheet entries, regularizations). All = filter tab only:
+// `status` is a Java enum param, so ALL is mapped to undefined before sending.
+export enum EApprovalStatus {
+  All = 'ALL',
+  Pending = 'PENDING',
+  Approved = 'APPROVED',
+  Rejected = 'REJECTED'
+}

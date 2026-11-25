@@ -21,6 +21,10 @@ export default [
         'routes/dashboard/attendance/records/index.tsx'
       ),
       route(
+        `${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.ATTENDANCE}/${BASE_ROUTES.TIMESHEETS}`,
+        'routes/dashboard/attendance/timesheets/index.tsx'
+      ),
+      route(
         `${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.ATTENDANCE}/${BASE_ROUTES.SHIFTS}`,
         'routes/dashboard/attendance/shifts/index.tsx'
       ),

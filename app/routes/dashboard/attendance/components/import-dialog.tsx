@@ -16,7 +16,7 @@ import { UploadFile } from '~/components/uploads/upload-file'
 import { commonHelper } from '~/helpers/common.helper'
 import { useInvalidateAttendance } from '~/hooks/apis/use-attendance-api'
 import { useMutationApi } from '~/hooks/use-mutation-api'
-import { AttendanceRecordService } from '~/services/attendance.service'
+import type { IApiResponse } from '~/shared/models/common.model'
 import type { IAttendanceImportResult } from '~/shared/models/attendance.model'
 
 // Spec: import — .xlsx, at most 5 MB and 2000 rows; rows with errors are skipped and reported
@@ -26,11 +26,26 @@ const XLSX = '.xlsx,application/vnd.openxmlformats-officedocument.spreadsheetml.
 interface IProps {
   open: boolean
   companyId?: string
+  title: string
+  description: string
+  /** file name of the downloaded template */
+  templateName: string
+  getTemplate: () => Promise<Blob>
+  importFile: (companyId: string | undefined, file: File) => Promise<IApiResponse<IAttendanceImportResult>>
   onClose: () => void
 }
 
-// Manual 6.4.1 Import. Spec: GET /attendance/records/import-template, POST /attendance/records/import (multipart)
-export function RecordImportDialog({ open, companyId, onClose }: IProps) {
+// Manual 6.4.1 / 6.4.2 Import: template download, one .xlsx upload, the result with per-row errors
+export function ImportDialog({
+  open,
+  companyId,
+  title,
+  description,
+  templateName,
+  getTemplate,
+  importFile,
+  onClose
+}: IProps) {
   const { t } = useTranslation()
   const invalidate = useInvalidateAttendance()
   const [files, setFiles] = useState<File[]>([])
@@ -43,12 +58,12 @@ export function RecordImportDialog({ open, companyId, onClose }: IProps) {
   }
 
   const { mutate: downloadTemplate, isPending: isDownloading } = useMutationApi({
-    mutationFn: AttendanceRecordService.GetImportTemplate,
-    onSuccess: (blob) => commonHelper.downloadBlob(blob, 'attendance-import-template.xlsx')
+    mutationFn: getTemplate,
+    onSuccess: (blob) => commonHelper.downloadBlob(blob, templateName)
   })
 
   const { mutate: upload, isPending } = useMutationApi({
-    mutationFn: (file: File) => AttendanceRecordService.Import(companyId, file),
+    mutationFn: (file: File) => importFile(companyId, file),
     onSuccess: async (res) => {
       setResult(res?.data)
       setFiles([])
@@ -61,8 +76,8 @@ export function RecordImportDialog({ open, companyId, onClose }: IProps) {
     <Dialog open={open} onOpenChange={(next) => !next && !isPending && close()}>
       <DialogContent className='sm:max-w-lg'>
         <DialogHeader>
-          <DialogTitle>{t('attendance_record.import.title')}</DialogTitle>
-          <DialogDescription>{t('attendance_record.import.description')}</DialogDescription>
+          <DialogTitle>{title}</DialogTitle>
+          <DialogDescription>{description}</DialogDescription>
         </DialogHeader>
         <Button
           variant='outline'
@@ -90,12 +105,17 @@ export function RecordImportDialog({ open, companyId, onClose }: IProps) {
             className='bg-muted/40 flex flex-col gap-2 rounded-lg border p-3 text-sm'
           >
             <p>
-              {t('attendance_record.import.summary', {
-                total: result.total ?? 0,
-                created: result.created ?? 0,
-                updated: result.updated ?? 0,
-                failed: result.errors?.length ?? 0
-              })}
+              {t(
+                result.updated === undefined
+                  ? 'attendance_record.import.summary_created'
+                  : 'attendance_record.import.summary',
+                {
+                  total: result.total ?? 0,
+                  created: result.created ?? 0,
+                  updated: result.updated ?? 0,
+                  failed: result.errors?.length ?? 0
+                }
+              )}
             </p>
             {!!result.errors?.length && (
               <ul className='text-destructive max-h-40 list-disc overflow-y-auto pl-5'>

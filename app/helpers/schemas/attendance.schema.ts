@@ -2,7 +2,12 @@ import type { TFunction } from 'i18next'
 import { z } from 'zod'
 
 import { maxLength, numberText, required, requiredText } from '~/helpers/schema.helper'
-import { EAttendancePolicyFormKey, EAttendanceRecordFormKey, EShiftFormKey } from '~/shared/enums/form.enum'
+import {
+  EAttendancePolicyFormKey,
+  EAttendanceRecordFormKey,
+  EShiftFormKey,
+  ETimesheetEntryFormKey
+} from '~/shared/enums/form.enum'
 
 const text = (max: number, t?: TFunction) => z.string().trim().max(max, maxLength(max, t))
 
@@ -82,3 +87,23 @@ export const getAttendanceRecordSchema = (t?: TFunction, today = new Date().toLo
     })
 
 export type TAttendanceRecordSchema = z.infer<ReturnType<typeof getAttendanceRecordSchema>>
+
+// Spec: EntryForm — employee, date, hours 0.25–24 (2 decimals), description ≤ 1000 required, project ≤ 150;
+// no future date (ATT_032). The 24 h per day limit (ATT_031) needs the other entries: the backend checks it.
+export const getTimesheetEntrySchema = (t?: TFunction, today = new Date().toLocaleDateString('sv-SE')) =>
+  z.object({
+    [ETimesheetEntryFormKey.EmployeeId]: z.string().min(1, required(t)),
+    [ETimesheetEntryFormKey.Date]: z
+      .string()
+      .min(1, required(t))
+      .refine((v) => v <= today, { message: t?.('timesheet.validation.future_date') }),
+    [ETimesheetEntryFormKey.Hours]: numberText(t, { required: true }).refine(
+      (v) =>
+        v === '' || Number.isNaN(Number(v)) || (Number(v) >= 0.25 && Number(v) <= 24 && /^\d+(\.\d{1,2})?$/.test(v)),
+      { message: t?.('timesheet.validation.hours_range') }
+    ),
+    [ETimesheetEntryFormKey.Project]: text(150, t),
+    [ETimesheetEntryFormKey.Description]: requiredText(1000, t)
+  })
+
+export type TTimesheetEntrySchema = z.infer<ReturnType<typeof getTimesheetEntrySchema>>

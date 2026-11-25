@@ -65,7 +65,11 @@ export default function ShiftsPage() {
   const [formShift, setFormShift] = useState<IShift | null | undefined>(undefined)
   const [deleting, setDeleting] = useState<IShift | undefined>()
 
-  const { mutate: toggle, variables: toggling } = useMutationApi({
+  const {
+    mutate: toggle,
+    variables: toggling,
+    isPending: isToggling
+  } = useMutationApi({
     mutationFn: ({ shift, active }: { shift: IShift; active: boolean }) =>
       ShiftService.UpdateStatus(shift.id ?? '', active ? EOrgStatus.Active : EOrgStatus.Inactive),
     onSuccess: async (_, { active }) => {
@@ -80,9 +84,9 @@ export default function ShiftsPage() {
         onAction: (action, shift) => (action === 'edit' ? setFormShift(shift) : setDeleting(shift)),
         onToggle: (shift, active) => toggle({ shift, active }),
         canManage,
-        togglingId: toggling?.shift.id
+        togglingId: isToggling ? toggling?.shift.id : undefined
       }),
-    [t, getTranslateEnum, toggle, toggling, canManage]
+    [t, getTranslateEnum, toggle, toggling, isToggling, canManage]
   )
 
   // Form

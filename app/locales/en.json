@@ -82,7 +82,8 @@
     "document_types": "Document types",
     "shifts": "Shifts",
     "attendance_policies": "Attendance policies",
-    "attendance_records": "Attendance records"
+    "attendance_records": "Attendance records",
+    "timesheets": "Timesheet"
   },
   "table": {
     "rows_per_page": "Rows per page",
@@ -1656,7 +1657,69 @@
       "done": "Attendance file imported.",
       "result": "Import result",
       "summary": "{{total}} rows: {{created}} added, {{updated}} updated, {{failed}} failed.",
-      "row_error": "Row {{row}}: {{message}}"
+      "row_error": "Row {{row}}: {{message}}",
+      "summary_created": "{{total}} rows: {{created}} added, {{failed}} failed."
+    }
+  },
+  "timesheet": {
+    "title": "Timesheet",
+    "subtitle": "Review and approve the hours employees log against projects.",
+    "add": "Add timesheet",
+    "keyword_placeholder": "Search by employee name or code",
+    "no_project": "No project",
+    "hours_short": "{{value}}h",
+    "entries": "View {{count}} entries",
+    "view_day": "View entries of {{name}} on {{date}}",
+    "week": {
+      "previous": "Previous week",
+      "next": "Next week",
+      "current": "This week"
+    },
+    "field": {
+      "employee": "Employee",
+      "date": "Date",
+      "hours": "Hours",
+      "project": "Project",
+      "description": "Description",
+      "manager_comments": "Manager comments"
+    },
+    "form": {
+      "create_title": "Add timesheet",
+      "edit_title": "Edit timesheet entry",
+      "view_title": "Timesheet entry",
+      "description": "An employee cannot log more than 24 hours in one day.",
+      "hours_hint": "From 0.25 to 24, up to 2 decimals."
+    },
+    "validation": {
+      "future_date": "Hours cannot be logged on a future date.",
+      "hours_range": "Hours must be 0.25 to 24 with up to 2 decimals."
+    },
+    "day": {
+      "title": "{{name}} · {{date}}",
+      "summary": "{{count}} entries, {{hours}} h in total",
+      "empty": "No entries."
+    },
+    "action": {
+      "view": "View {{name}}",
+      "edit": "Edit {{name}}",
+      "approve": "Approve {{name}}",
+      "reject": "Reject {{name}}",
+      "delete": "Delete {{name}}"
+    },
+    "toast": {
+      "created": "Timesheet entry added.",
+      "updated": "Timesheet entry updated.",
+      "deleted": "Timesheet entry deleted.",
+      "approved": "Timesheet entry approved.",
+      "rejected": "Timesheet entry rejected."
+    },
+    "delete": {
+      "title": "Delete this timesheet entry?",
+      "description": "This cannot be undone."
+    },
+    "import": {
+      "title": "Import timesheet",
+      "description": "Employee names in the file must match the system exactly; rows with errors are skipped."
     }
   }
 }
