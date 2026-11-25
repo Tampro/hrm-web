@@ -59,3 +59,11 @@ export interface ISidebarItem {
   /** Shown only when the user holds this permission (Spec: MeDto.permissions, MODULE_ACTION) */
   permission?: string
 }
+
+/** One entry of the attendance calendar legend */
+export interface IAttendanceLegendItem {
+  key: string
+  label: string
+  icon: LucideIcon
+  className: string
+}

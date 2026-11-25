@@ -17,6 +17,10 @@ export default [
       route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.AWARD_TYPES}`, 'routes/dashboard/award-types/index.tsx'),
       route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.DOCUMENT_TYPES}`, 'routes/dashboard/document-types/index.tsx'),
       route(
+        `${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.ATTENDANCE}/${BASE_ROUTES.ATTENDANCE_RECORDS}`,
+        'routes/dashboard/attendance/records/index.tsx'
+      ),
+      route(
         `${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.ATTENDANCE}/${BASE_ROUTES.SHIFTS}`,
         'routes/dashboard/attendance/shifts/index.tsx'
       ),

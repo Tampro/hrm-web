@@ -81,7 +81,8 @@
     "award_types": "Loại khen thưởng",
     "document_types": "Loại tài liệu",
     "shifts": "Ca làm việc",
-    "attendance_policies": "Chính sách chấm công"
+    "attendance_policies": "Chính sách chấm công",
+    "attendance_records": "Chấm công"
   },
   "table": {
     "rows_per_page": "Số dòng mỗi trang",
@@ -139,7 +140,15 @@
     "TEMPORARY": "Thời vụ",
     "MALE": "Nam",
     "FEMALE": "Nữ",
-    "OTHER": "Khác"
+    "OTHER": "Khác",
+    "PRESENT": "Có mặt",
+    "ABSENT": "Vắng mặt",
+    "HALF_DAY": "Nửa ngày",
+    "ON_LEAVE": "Nghỉ phép",
+    "HOLIDAY": "Ngày lễ",
+    "DAY_OFF": "Ngày nghỉ",
+    "FUTURE": "Chưa đến",
+    "NOT_ADDED": "Chưa chấm công"
   },
   "company": {
     "title": "Quản lý công ty",
@@ -1475,7 +1484,8 @@
     "pick_company": "Chọn công ty để xem dữ liệu chấm công.",
     "toggle_named": "Bật/tắt {{name}}",
     "edit_named": "Sửa {{name}}",
-    "delete_named": "Xóa {{name}}"
+    "delete_named": "Xóa {{name}}",
+    "month_n": "Tháng {{n}}"
   },
   "shift": {
     "title": "Ca làm việc",
@@ -1583,6 +1593,70 @@
     "delete": {
       "title": "Xóa chính sách \"{{name}}\"?",
       "description": "Thao tác này không thể hoàn tác."
+    }
+  },
+  "attendance_record": {
+    "title": "Chấm công",
+    "subtitle": "Theo dõi chấm công của nhân viên theo lịch tháng.",
+    "add": "Thêm bản ghi",
+    "export": "Xuất Excel",
+    "legend": "Chú thích",
+    "empty": "Không có nhân viên nào.",
+    "showing": "Hiển thị {{count}} / {{total}} nhân viên",
+    "clock_range": "Vào {{in}} · Ra {{out}}",
+    "flag": {
+      "late": "Đi muộn",
+      "early": "Về sớm",
+      "overtime": "Tăng ca"
+    },
+    "filter": {
+      "month": "Tháng",
+      "year": "Năm"
+    },
+    "field": {
+      "employee": "Nhân viên",
+      "total": "Tổng",
+      "date": "Ngày",
+      "clock_in": "Giờ vào",
+      "clock_out": "Giờ ra",
+      "notes": "Ghi chú"
+    },
+    "form": {
+      "create_title": "Thêm bản ghi chấm công",
+      "edit_title": "Sửa bản ghi chấm công",
+      "description": "Đi muộn, về sớm, tăng ca được tính theo ca và chính sách của nhân viên.",
+      "clock_in_hint": "Để trống = vắng mặt.",
+      "clock_out_hint": "Trước giờ vào = sáng hôm sau.",
+      "create_submit": "Thêm bản ghi"
+    },
+    "validation": {
+      "clock_out_without_in": "Có giờ ra thì phải có giờ vào.",
+      "future_date": "Không thể nhập giờ cho ngày trong tương lai."
+    },
+    "toast": {
+      "created": "Đã thêm bản ghi chấm công.",
+      "updated": "Đã cập nhật bản ghi chấm công.",
+      "deleted": "Đã xóa bản ghi chấm công."
+    },
+    "delete": {
+      "title": "Xóa bản ghi chấm công?",
+      "description": "Ngày này sẽ hiển thị lại là Chưa chấm công."
+    },
+    "import": {
+      "button": "Nhập Excel",
+      "title": "Nhập chấm công",
+      "description": "Dòng trùng nhân viên và ngày sẽ cập nhật bản ghi cũ; dòng lỗi được bỏ qua.",
+      "template": "Tải file mẫu",
+      "drop": "Chọn hoặc kéo thả file .xlsx",
+      "limits": "Tối đa 5 MB, 2000 dòng.",
+      "file": "File chấm công",
+      "too_large": "File vượt quá 5 MB.",
+      "submit": "Nhập",
+      "uploading": "Đang nhập…",
+      "done": "Đã nhập file chấm công.",
+      "result": "Kết quả nhập",
+      "summary": "{{total}} dòng: thêm {{created}}, cập nhật {{updated}}, lỗi {{failed}}.",
+      "row_error": "Dòng {{row}}: {{message}}"
     }
   }
 }

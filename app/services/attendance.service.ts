@@ -2,10 +2,15 @@ import { axiosClient } from '~/configs/axios.config'
 import { API_ATTENDANCE } from '~/shared/constants/api.constant'
 import type { EOrgStatus } from '~/shared/enums/org.enum'
 import type {
+  IAttendanceCalendar,
+  IAttendanceCalendarParams,
+  IAttendanceImportResult,
   IAttendancePolicy,
   IAttendancePolicyListParams,
   IAttendancePolicyPayload,
   IAttendancePolicySummary,
+  IAttendanceRecord,
+  IAttendanceRecordPayload,
   IShift,
   IShiftListParams,
   IShiftPayload,
@@ -51,4 +56,27 @@ export const AttendancePolicyService = {
   UpdateStatus: async (id: string, status: EOrgStatus): Promise<IApiResponse<IAttendancePolicy>> =>
     await axiosClient.put(API_ATTENDANCE.POLICY_STATUS_URL(id), { status }),
   Delete: async (id: string): Promise<IApiResponse<void>> => await axiosClient.delete(API_ATTENDANCE.POLICY_URL(id))
+}
+
+// Spec: attendance-service AttendanceRecordController (calendar also needs EMPLOYEE_VIEW and ORG_VIEW)
+export const AttendanceRecordService = {
+  GetCalendar: async (params: IAttendanceCalendarParams): Promise<IApiResponse<IAttendanceCalendar>> =>
+    await axiosClient.get(API_ATTENDANCE.RECORD_CALENDAR_URL, { params }),
+  GetDetail: async (id: string): Promise<IApiResponse<IAttendanceRecord>> =>
+    await axiosClient.get(API_ATTENDANCE.RECORD_URL(id)),
+  Create: async (payload: IAttendanceRecordPayload): Promise<IApiResponse<IAttendanceRecord>> =>
+    await axiosClient.post(API_ATTENDANCE.RECORDS_URL, payload),
+  Update: async (id: string, payload: IAttendanceRecordPayload): Promise<IApiResponse<IAttendanceRecord>> =>
+    await axiosClient.put(API_ATTENDANCE.RECORD_URL(id), payload),
+  Delete: async (id: string): Promise<IApiResponse<void>> => await axiosClient.delete(API_ATTENDANCE.RECORD_URL(id)),
+  /** Files come back as raw bytes: axiosClient unwraps response.data, which is the Blob */
+  Export: async (params: Omit<IAttendanceCalendarParams, 'page' | 'size'>): Promise<Blob> =>
+    await axiosClient.get(API_ATTENDANCE.RECORD_EXPORT_URL, { params, responseType: 'blob' }),
+  GetImportTemplate: async (): Promise<Blob> =>
+    await axiosClient.get(API_ATTENDANCE.RECORD_IMPORT_TEMPLATE_URL, { responseType: 'blob' }),
+  Import: async (companyId: string | undefined, file: File): Promise<IApiResponse<IAttendanceImportResult>> => {
+    const body = new FormData()
+    body.append('file', file)
+    return await axiosClient.post(API_ATTENDANCE.RECORD_IMPORT_URL, body, { params: { companyId } })
+  }
 }

@@ -355,3 +355,11 @@ export enum EAttendancePolicyFormKey {
   OvertimeRatePerHour = 'overtimeRatePerHour',
   Active = 'active'
 }
+
+export enum EAttendanceRecordFormKey {
+  EmployeeId = 'employeeId',
+  Date = 'date',
+  ClockIn = 'clockIn',
+  ClockOut = 'clockOut',
+  Notes = 'notes'
+}

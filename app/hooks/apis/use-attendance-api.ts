@@ -1,9 +1,13 @@
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { createListApiHook } from '~/hooks/use-query-api'
-import { AttendancePolicyService, ShiftService } from '~/services/attendance.service'
+import { AttendancePolicyService, AttendanceRecordService, ShiftService } from '~/services/attendance.service'
 import { QUERY_KEY } from '~/shared/constants/query-key.constant'
-import type { IAttendancePolicyListParams, IShiftListParams } from '~/shared/models/attendance.model'
+import type {
+  IAttendanceCalendarParams,
+  IAttendancePolicyListParams,
+  IShiftListParams
+} from '~/shared/models/attendance.model'
 
 export const useGetListShiftApi = createListApiHook(QUERY_KEY.ATTENDANCE.GET_SHIFT_LIST, ShiftService.GetList)
 
@@ -50,3 +54,12 @@ export const useInvalidateAttendance = () => {
   return () =>
     Promise.all(Object.values(QUERY_KEY.ATTENDANCE).map((key) => queryClient.invalidateQueries({ queryKey: [key] })))
 }
+
+export const useAttendanceCalendarApi = (params: IAttendanceCalendarParams, enabled = true) =>
+  useQuery({
+    queryKey: [QUERY_KEY.ATTENDANCE.GET_CALENDAR, params],
+    queryFn: () => AttendanceRecordService.GetCalendar(params),
+    select: (res) => res?.data,
+    placeholderData: (prev) => prev,
+    enabled
+  })

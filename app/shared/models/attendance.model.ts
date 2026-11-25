@@ -1,3 +1,4 @@
+import type { EDayStatus } from '~/shared/enums/attendance.enum'
 import type { EOrgStatus } from '~/shared/enums/org.enum'
 
 import type { IBaseFilterPanel, IBasePagination } from './common.model'
@@ -86,4 +87,91 @@ export interface IAttendancePolicyPayload {
   halfDayThresholdHours: number
   overtimeRatePerHour: number
   status?: EOrgStatus
+}
+
+// Spec: attendance-service RecordDtos
+
+/** RecordDto — clock times HH:mm[:ss]; hours are decimals */
+export interface IAttendanceRecord {
+  id?: string
+  employeeId?: string
+  date?: string
+  clockIn?: string | null
+  clockOut?: string | null
+  status?: string
+  late?: boolean
+  earlyDeparture?: boolean
+  holiday?: boolean
+  weekend?: boolean
+  totalHours?: number | null
+  breakHours?: number | null
+  overtimeHours?: number | null
+  overtimeAmount?: number | null
+  shiftId?: string | null
+  attendancePolicyId?: string | null
+  notes?: string | null
+  createdDate?: string
+  updatedDate?: string | null
+}
+
+/** RecordForm — full replacement on update: omitted clock times / notes are cleared */
+export interface IAttendanceRecordPayload {
+  employeeId: number
+  date: string
+  clockIn?: string
+  clockOut?: string
+  notes?: string
+}
+
+/** DayCell — recordId null when no record exists */
+export interface IAttendanceDayCell {
+  date?: string
+  status?: EDayStatus
+  weekend?: boolean
+  late?: boolean
+  earlyDeparture?: boolean
+  overtime?: boolean
+  clockIn?: string | null
+  clockOut?: string | null
+  notes?: string | null
+  recordId?: string | null
+}
+
+/** EmployeeRow — attended = present days + half of the half days */
+export interface IAttendanceEmployeeRow {
+  employeeId?: string
+  fullName?: string | null
+  employeeCode?: string | null
+  designation?: string | null
+  profileImageUrl?: string | null
+  days?: IAttendanceDayCell[]
+  attended?: number | null
+  workingDays?: number | null
+}
+
+export interface IAttendanceCalendar {
+  year?: number
+  month?: number
+  today?: string
+  weeklyOffDays?: string[]
+  rows?: IAttendanceEmployeeRow[]
+  page?: number
+  size?: number
+  totalElements?: number
+}
+
+export interface IAttendanceCalendarParams {
+  companyId?: string
+  year: number
+  month: number
+  employeeId?: string
+  page?: number
+  size?: number
+}
+
+export interface IAttendanceImportResult {
+  total?: number
+  created?: number
+  updated?: number
+  errors?: { row?: number; code?: string; message?: string }[]
 }
