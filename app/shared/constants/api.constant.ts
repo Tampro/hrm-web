@@ -138,6 +138,20 @@ export const API_ANNOUNCEMENT = {
   CATEGORY_URL: (id: string) => '/org/announcement-categories/' + id
 } as const
 
+// Spec: attendance-service ShiftController / AttendancePolicyController (super admin passes companyId)
+export const API_ATTENDANCE = {
+  SHIFTS_URL: '/attendance/shifts',
+  SHIFT_STATUS_COUNTS_URL: '/attendance/shifts/status-counts',
+  SHIFT_SUMMARY_URL: '/attendance/shifts/summary',
+  SHIFT_URL: (id: string) => '/attendance/shifts/' + id,
+  SHIFT_STATUS_URL: (id: string) => '/attendance/shifts/' + id + '/status',
+  POLICIES_URL: '/attendance/policies',
+  POLICY_STATUS_COUNTS_URL: '/attendance/policies/status-counts',
+  POLICY_SUMMARY_URL: '/attendance/policies/summary',
+  POLICY_URL: (id: string) => '/attendance/policies/' + id,
+  POLICY_STATUS_URL: (id: string) => '/attendance/policies/' + id + '/status'
+} as const
+
 // Spec: media-service MediaController — upload (multipart `files`), returns the stored files
 export const API_MEDIA = {
   FILES_URL: '/media/files'

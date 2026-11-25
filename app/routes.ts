@@ -16,6 +16,14 @@ export default [
       route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.HOLIDAYS}`, 'routes/dashboard/holidays/index.tsx'),
       route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.AWARD_TYPES}`, 'routes/dashboard/award-types/index.tsx'),
       route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.DOCUMENT_TYPES}`, 'routes/dashboard/document-types/index.tsx'),
+      route(
+        `${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.ATTENDANCE}/${BASE_ROUTES.SHIFTS}`,
+        'routes/dashboard/attendance/shifts/index.tsx'
+      ),
+      route(
+        `${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.ATTENDANCE}/${BASE_ROUTES.ATTENDANCE_POLICIES}`,
+        'routes/dashboard/attendance/policies/index.tsx'
+      ),
       route(`${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.ANNOUNCEMENTS}`, 'routes/dashboard/announcements/index.tsx'),
       route(
         `${BASE_ROUTES.DASHBOARD}/${BASE_ROUTES.ANNOUNCEMENTS}/:id`,

@@ -15,10 +15,24 @@ export default defineConfig(({ mode }) => {
   })
   // Same split as the backend gateway (gateway-server application.yml). Specific prefixes first: the first match wins.
   const employeeTarget = env.VITE_EMPLOYEE_PROXY_TARGET || 'http://localhost:8083'
+  /** host of one backend service: VITE_<NAME>_PROXY_TARGET or localhost:<port> */
+  const service = (name: string, port: number) =>
+    toBackend(env[`VITE_${name}_PROXY_TARGET`] || `http://localhost:${port}`)
   const proxy: Record<string, ProxyOptions> = {
     '/api/v1/employees': toBackend(employeeTarget),
     '/api/v1/org': toBackend(employeeTarget),
-    '/api/v1/media': toBackend(env.VITE_MEDIA_PROXY_TARGET || 'http://localhost:8082'),
+    '/api/v1/lifecycle': toBackend(employeeTarget),
+    '/api/v1/performance': toBackend(employeeTarget),
+    '/api/v1/training': toBackend(employeeTarget),
+    '/api/v1/media': service('MEDIA', 8082),
+    '/api/v1/attendance': service('ATTENDANCE', 8084),
+    '/api/v1/recruitment': service('RECRUITMENT', 8085),
+    '/api/v1/public/career': service('RECRUITMENT', 8085),
+    '/api/v1/payroll': service('PAYROLL', 8086),
+    '/api/v1/asset': service('ASSET', 8087),
+    '/api/v1/meeting': service('MEETING', 8088),
+    '/api/v1/document': service('DOCUMENT', 8089),
+    '/api/v1/reports': service('REPORT', 8090),
     '/api': toBackend(env.VITE_PROXY_TARGET || 'http://localhost:8081')
   }
   return {
