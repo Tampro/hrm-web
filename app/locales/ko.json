@@ -79,7 +79,9 @@
     "holidays": "공휴일",
     "announcements": "공지사항",
     "award_types": "포상 유형",
-    "document_types": "문서 유형"
+    "document_types": "문서 유형",
+    "shifts": "근무 교대",
+    "attendance_policies": "근태 정책"
   },
   "table": {
     "rows_per_page": "페이지당 행 수",
@@ -1464,6 +1466,123 @@
       "created": "문서 유형이 추가되었습니다",
       "updated": "문서 유형이 저장되었습니다",
       "deleted": "문서 유형이 삭제되었습니다"
+    }
+  },
+  "attendance": {
+    "minutes": "{{value}}분",
+    "hours": "{{value}}시간",
+    "active": "활성",
+    "pick_company": "근태 설정을 보려면 회사를 선택하세요.",
+    "toggle_named": "{{name}} 활성/비활성",
+    "edit_named": "{{name}} 수정",
+    "delete_named": "{{name}} 삭제"
+  },
+  "shift": {
+    "title": "근무 교대",
+    "subtitle": "교대별 근무 시간, 휴게 시간, 유예 시간을 정의합니다.",
+    "add": "교대 추가",
+    "empty": "등록된 교대가 없습니다.",
+    "keyword_placeholder": "교대 이름으로 검색",
+    "day": "주간",
+    "night": "야간",
+    "filter": {
+      "type": "교대 유형",
+      "all_types": "전체"
+    },
+    "field": {
+      "name": "교대 이름",
+      "description": "설명",
+      "time": "시간",
+      "break": "휴게",
+      "grace": "유예 시간",
+      "working_hours": "근무 시간",
+      "status": "상태",
+      "start_time": "시작 시간",
+      "end_time": "종료 시간",
+      "night_shift": "야간 교대",
+      "break_minutes": "휴게 시간(분)",
+      "break_start": "휴게 시작",
+      "break_end": "휴게 종료",
+      "grace_minutes": "유예 시간(분)"
+    },
+    "form": {
+      "create_title": "교대 추가",
+      "edit_title": "교대 수정",
+      "description": "시간은 24시간 형식입니다.",
+      "name_placeholder": "예: 일반 근무",
+      "night_hint": "야간 교대는 다음 날 종료될 수 있습니다.",
+      "grace_hint": "정시로 인정되는 지각 허용 시간(분).",
+      "create_submit": "교대 생성"
+    },
+    "validation": {
+      "end_after_start": "종료 시간은 시작 시간 이후여야 합니다(야간 교대 제외).",
+      "break_pair": "휴게 시작/종료를 모두 입력하거나 모두 비워 두세요."
+    },
+    "summary": {
+      "title": "교대 요약",
+      "total": "전체 교대",
+      "active": "활성",
+      "day": "주간 교대",
+      "night": "야간 교대"
+    },
+    "toast": {
+      "created": "교대를 생성했습니다.",
+      "updated": "교대를 수정했습니다.",
+      "deleted": "교대를 삭제했습니다.",
+      "activated": "교대를 활성화했습니다.",
+      "deactivated": "교대를 비활성화했습니다."
+    },
+    "delete": {
+      "title": "\"{{name}}\" 교대를 삭제할까요?",
+      "description": "삭제된 교대는 더 이상 배정할 수 없습니다."
+    }
+  },
+  "attendance_policy": {
+    "title": "근태 정책",
+    "subtitle": "지각, 조퇴, 반일 근무 및 초과근무 단가 규칙.",
+    "add": "정책 추가",
+    "empty": "등록된 근태 정책이 없습니다.",
+    "keyword_placeholder": "정책 이름으로 검색",
+    "minutes": "{{value}}분",
+    "per_hour": "{{value}}/시간",
+    "field": {
+      "name": "정책 이름",
+      "description": "설명",
+      "late_grace": "지각 유예",
+      "early_grace": "조퇴 유예",
+      "half_day": "반일 기준",
+      "overtime_rate": "초과근무 단가",
+      "status": "상태",
+      "late_grace_minutes": "지각 유예(분)",
+      "early_grace_minutes": "조퇴 유예(분)",
+      "half_day_hours": "반일 기준(시간)",
+      "overtime_rate_with_currency": "시간당 초과근무 단가({{currency}})"
+    },
+    "form": {
+      "create_title": "근태 정책 추가",
+      "edit_title": "근태 정책 수정",
+      "description": "근태 기록 평가 시 적용됩니다.",
+      "name_placeholder": "예: 표준 정책",
+      "half_day_hint": "이 시간 미만 근무는 반일로 계산됩니다.",
+      "create_submit": "정책 생성"
+    },
+    "summary": {
+      "title": "정책 요약",
+      "total": "전체 정책",
+      "active": "활성",
+      "avg_late_grace": "평균 지각 유예",
+      "avg_overtime_rate": "평균 초과근무 단가"
+    },
+    "toast": {
+      "created": "정책을 생성했습니다.",
+      "updated": "정책을 수정했습니다.",
+      "deleted": "정책을 삭제했습니다.",
+      "activated": "정책을 활성화했습니다.",
+      "deactivated": "정책을 비활성화했습니다."
+    },
+    "delete": {
+      "title": "\"{{name}}\" 정책을 삭제할까요?",
+      "description": "이 작업은 되돌릴 수 없습니다."
     }
   }
 }

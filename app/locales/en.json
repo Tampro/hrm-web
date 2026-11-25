@@ -79,7 +79,9 @@
     "holidays": "Holidays",
     "announcements": "Announcements",
     "award_types": "Award types",
-    "document_types": "Document types"
+    "document_types": "Document types",
+    "shifts": "Shifts",
+    "attendance_policies": "Attendance policies"
   },
   "table": {
     "rows_per_page": "Rows per page",
@@ -1464,6 +1466,123 @@
       "created": "Document type added",
       "updated": "Document type saved",
       "deleted": "Document type deleted"
+    }
+  },
+  "attendance": {
+    "minutes": "{{value}} min",
+    "hours": "{{value}} h",
+    "active": "Active",
+    "pick_company": "Pick a company to see its attendance setup.",
+    "toggle_named": "Toggle {{name}}",
+    "edit_named": "Edit {{name}}",
+    "delete_named": "Delete {{name}}"
+  },
+  "shift": {
+    "title": "Shifts",
+    "subtitle": "Define working hours, breaks and grace periods per shift.",
+    "add": "Add shift",
+    "empty": "No shifts yet.",
+    "keyword_placeholder": "Search by shift name",
+    "day": "Day",
+    "night": "Night",
+    "filter": {
+      "type": "Shift type",
+      "all_types": "All"
+    },
+    "field": {
+      "name": "Shift name",
+      "description": "Description",
+      "time": "Time",
+      "break": "Break",
+      "grace": "Grace period",
+      "working_hours": "Working hours",
+      "status": "Status",
+      "start_time": "Start time",
+      "end_time": "End time",
+      "night_shift": "Night shift",
+      "break_minutes": "Break (minutes)",
+      "break_start": "Break start",
+      "break_end": "Break end",
+      "grace_minutes": "Grace period (minutes)"
+    },
+    "form": {
+      "create_title": "Add shift",
+      "edit_title": "Edit shift",
+      "description": "Times use the 24-hour clock.",
+      "name_placeholder": "e.g. Office hours",
+      "night_hint": "A night shift may end on the next day.",
+      "grace_hint": "Minutes late still counted as on time.",
+      "create_submit": "Create shift"
+    },
+    "validation": {
+      "end_after_start": "End time must be after start time (unless it is a night shift).",
+      "break_pair": "Enter both break times or leave both empty."
+    },
+    "summary": {
+      "title": "Shift summary",
+      "total": "Total shifts",
+      "active": "Active",
+      "day": "Day shifts",
+      "night": "Night shifts"
+    },
+    "toast": {
+      "created": "Shift created.",
+      "updated": "Shift updated.",
+      "deleted": "Shift deleted.",
+      "activated": "Shift activated.",
+      "deactivated": "Shift deactivated."
+    },
+    "delete": {
+      "title": "Delete shift \"{{name}}\"?",
+      "description": "A deleted shift can no longer be assigned."
+    }
+  },
+  "attendance_policy": {
+    "title": "Attendance policies",
+    "subtitle": "Rules for late arrival, early departure, half days and overtime rate.",
+    "add": "Add policy",
+    "empty": "No attendance policies yet.",
+    "keyword_placeholder": "Search by policy name",
+    "minutes": "{{value}} min",
+    "per_hour": "{{value}}/h",
+    "field": {
+      "name": "Policy name",
+      "description": "Description",
+      "late_grace": "Late arrival grace",
+      "early_grace": "Early departure grace",
+      "half_day": "Half-day threshold",
+      "overtime_rate": "Overtime rate",
+      "status": "Status",
+      "late_grace_minutes": "Late arrival grace (minutes)",
+      "early_grace_minutes": "Early departure grace (minutes)",
+      "half_day_hours": "Half-day threshold (hours)",
+      "overtime_rate_with_currency": "Overtime rate per hour ({{currency}})"
+    },
+    "form": {
+      "create_title": "Add attendance policy",
+      "edit_title": "Edit attendance policy",
+      "description": "Applied when attendance records are evaluated.",
+      "name_placeholder": "e.g. Standard policy",
+      "half_day_hint": "Fewer hours than this count as a half day.",
+      "create_submit": "Create policy"
+    },
+    "summary": {
+      "title": "Policy summary",
+      "total": "Total policies",
+      "active": "Active",
+      "avg_late_grace": "Avg. late grace",
+      "avg_overtime_rate": "Avg. overtime rate"
+    },
+    "toast": {
+      "created": "Policy created.",
+      "updated": "Policy updated.",
+      "deleted": "Policy deleted.",
+      "activated": "Policy activated.",
+      "deactivated": "Policy deactivated."
+    },
+    "delete": {
+      "title": "Delete policy \"{{name}}\"?",
+      "description": "This cannot be undone."
     }
   }
 }

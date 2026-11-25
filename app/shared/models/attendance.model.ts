@@ -1,0 +1,89 @@
+import type { EOrgStatus } from '~/shared/enums/org.enum'
+
+import type { IBaseFilterPanel, IBasePagination } from './common.model'
+
+// Spec: attendance-service ShiftDtos / AttendancePolicyDtos. Every field optional: the backend may return null.
+
+/** ShiftDto — times are HH:mm[:ss]; workingMinutes = span (over midnight for a night shift) minus the break */
+export interface IShift {
+  id?: string
+  companyId?: string
+  name?: string
+  description?: string | null
+  startTime?: string
+  endTime?: string
+  breakDurationMinutes?: number
+  breakStartTime?: string | null
+  breakEndTime?: string | null
+  gracePeriodMinutes?: number
+  nightShift?: boolean
+  workingMinutes?: number
+  status?: EOrgStatus
+  createdDate?: string
+  updatedDate?: string | null
+}
+
+export interface IShiftSummary {
+  total?: number
+  active?: number
+  night?: number
+  day?: number
+}
+
+export interface IShiftListParams extends IBasePagination, IBaseFilterPanel {
+  companyId?: string
+  nightShift?: boolean
+  status?: EOrgStatus
+}
+
+/** ShiftForm — full replacement on update (omitted description / break times cleared, omitted status unchanged) */
+export interface IShiftPayload {
+  name: string
+  description?: string
+  startTime: string
+  endTime: string
+  breakDurationMinutes: number
+  breakStartTime?: string
+  breakEndTime?: string
+  gracePeriodMinutes: number
+  nightShift: boolean
+  status?: EOrgStatus
+}
+
+/** PolicyDto — overtimeRatePerHour in the company's currency */
+export interface IAttendancePolicy {
+  id?: string
+  companyId?: string
+  name?: string
+  description?: string | null
+  lateArrivalGraceMinutes?: number
+  earlyDepartureGraceMinutes?: number
+  halfDayThresholdHours?: number
+  overtimeRatePerHour?: number
+  status?: EOrgStatus
+  createdDate?: string
+  updatedDate?: string | null
+}
+
+export interface IAttendancePolicySummary {
+  total?: number
+  active?: number
+  avgLateArrivalGraceMinutes?: number
+  avgOvertimeRatePerHour?: number
+}
+
+export interface IAttendancePolicyListParams extends IBasePagination, IBaseFilterPanel {
+  companyId?: string
+  status?: EOrgStatus
+}
+
+/** PolicyForm — omitted grace minutes = 15, omitted half-day threshold = 4.00 */
+export interface IAttendancePolicyPayload {
+  name: string
+  description?: string
+  lateArrivalGraceMinutes: number
+  earlyDepartureGraceMinutes: number
+  halfDayThresholdHours: number
+  overtimeRatePerHour: number
+  status?: EOrgStatus
+}

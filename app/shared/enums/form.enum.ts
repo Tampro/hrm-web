@@ -332,3 +332,26 @@ export enum EDocumentTypeFormKey {
   Description = 'description',
   Required = 'required'
 }
+
+export enum EShiftFormKey {
+  Name = 'name',
+  Description = 'description',
+  StartTime = 'startTime',
+  EndTime = 'endTime',
+  BreakDurationMinutes = 'breakDurationMinutes',
+  BreakStartTime = 'breakStartTime',
+  BreakEndTime = 'breakEndTime',
+  GracePeriodMinutes = 'gracePeriodMinutes',
+  NightShift = 'nightShift',
+  Active = 'active'
+}
+
+export enum EAttendancePolicyFormKey {
+  Name = 'name',
+  Description = 'description',
+  LateArrivalGraceMinutes = 'lateArrivalGraceMinutes',
+  EarlyDepartureGraceMinutes = 'earlyDepartureGraceMinutes',
+  HalfDayThresholdHours = 'halfDayThresholdHours',
+  OvertimeRatePerHour = 'overtimeRatePerHour',
+  Active = 'active'
+}

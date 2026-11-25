@@ -79,7 +79,9 @@
     "holidays": "Ngày lễ",
     "announcements": "Thông báo",
     "award_types": "Loại khen thưởng",
-    "document_types": "Loại tài liệu"
+    "document_types": "Loại tài liệu",
+    "shifts": "Ca làm việc",
+    "attendance_policies": "Chính sách chấm công"
   },
   "table": {
     "rows_per_page": "Số dòng mỗi trang",
@@ -1464,6 +1466,123 @@
       "created": "Đã thêm loại tài liệu",
       "updated": "Đã lưu loại tài liệu",
       "deleted": "Đã xoá loại tài liệu"
+    }
+  },
+  "attendance": {
+    "minutes": "{{value}} phút",
+    "hours": "{{value}} giờ",
+    "active": "Đang hoạt động",
+    "pick_company": "Chọn công ty để xem dữ liệu chấm công.",
+    "toggle_named": "Bật/tắt {{name}}",
+    "edit_named": "Sửa {{name}}",
+    "delete_named": "Xóa {{name}}"
+  },
+  "shift": {
+    "title": "Ca làm việc",
+    "subtitle": "Định nghĩa giờ làm, giờ nghỉ và thời gian ân hạn của từng ca.",
+    "add": "Thêm ca",
+    "empty": "Chưa có ca làm việc nào.",
+    "keyword_placeholder": "Tìm theo tên ca",
+    "day": "Ca ngày",
+    "night": "Ca đêm",
+    "filter": {
+      "type": "Loại ca",
+      "all_types": "Tất cả"
+    },
+    "field": {
+      "name": "Tên ca",
+      "description": "Mô tả",
+      "time": "Thời gian",
+      "break": "Nghỉ giữa ca",
+      "grace": "Ân hạn",
+      "working_hours": "Giờ làm",
+      "status": "Trạng thái",
+      "start_time": "Giờ bắt đầu",
+      "end_time": "Giờ kết thúc",
+      "night_shift": "Ca đêm",
+      "break_minutes": "Thời gian nghỉ (phút)",
+      "break_start": "Bắt đầu nghỉ",
+      "break_end": "Kết thúc nghỉ",
+      "grace_minutes": "Thời gian ân hạn (phút)"
+    },
+    "form": {
+      "create_title": "Thêm ca làm việc",
+      "edit_title": "Sửa ca làm việc",
+      "description": "Giờ được lưu theo định dạng 24 giờ.",
+      "name_placeholder": "VD: Ca hành chính",
+      "night_hint": "Ca đêm có thể kết thúc vào ngày hôm sau.",
+      "grace_hint": "Số phút đi muộn vẫn được tính đúng giờ.",
+      "create_submit": "Tạo ca"
+    },
+    "validation": {
+      "end_after_start": "Giờ kết thúc phải sau giờ bắt đầu (trừ ca đêm).",
+      "break_pair": "Nhập cả giờ bắt đầu và kết thúc nghỉ, hoặc để trống cả hai."
+    },
+    "summary": {
+      "title": "Tổng quan ca làm việc",
+      "total": "Tổng số ca",
+      "active": "Đang hoạt động",
+      "day": "Ca ngày",
+      "night": "Ca đêm"
+    },
+    "toast": {
+      "created": "Đã tạo ca làm việc.",
+      "updated": "Đã cập nhật ca làm việc.",
+      "deleted": "Đã xóa ca làm việc.",
+      "activated": "Đã kích hoạt ca.",
+      "deactivated": "Đã ngừng ca."
+    },
+    "delete": {
+      "title": "Xóa ca \"{{name}}\"?",
+      "description": "Ca đã xóa sẽ không thể gán cho nhân viên nữa."
+    }
+  },
+  "attendance_policy": {
+    "title": "Chính sách chấm công",
+    "subtitle": "Quy định đi muộn, về sớm, nửa ngày công và đơn giá tăng ca.",
+    "add": "Thêm chính sách",
+    "empty": "Chưa có chính sách chấm công nào.",
+    "keyword_placeholder": "Tìm theo tên chính sách",
+    "minutes": "{{value}} phút",
+    "per_hour": "{{value}}/giờ",
+    "field": {
+      "name": "Tên chính sách",
+      "description": "Mô tả",
+      "late_grace": "Ân hạn đi muộn",
+      "early_grace": "Ân hạn về sớm",
+      "half_day": "Ngưỡng nửa ngày",
+      "overtime_rate": "Đơn giá tăng ca",
+      "status": "Trạng thái",
+      "late_grace_minutes": "Ân hạn đi muộn (phút)",
+      "early_grace_minutes": "Ân hạn về sớm (phút)",
+      "half_day_hours": "Ngưỡng nửa ngày (giờ)",
+      "overtime_rate_with_currency": "Đơn giá tăng ca / giờ ({{currency}})"
+    },
+    "form": {
+      "create_title": "Thêm chính sách chấm công",
+      "edit_title": "Sửa chính sách chấm công",
+      "description": "Áp dụng khi tính công từ bản ghi chấm công.",
+      "name_placeholder": "VD: Chính sách tiêu chuẩn",
+      "half_day_hint": "Làm ít hơn số giờ này được tính nửa ngày.",
+      "create_submit": "Tạo chính sách"
+    },
+    "summary": {
+      "title": "Tổng quan chính sách",
+      "total": "Tổng số chính sách",
+      "active": "Đang hoạt động",
+      "avg_late_grace": "Ân hạn đi muộn TB",
+      "avg_overtime_rate": "Đơn giá tăng ca TB"
+    },
+    "toast": {
+      "created": "Đã tạo chính sách.",
+      "updated": "Đã cập nhật chính sách.",
+      "deleted": "Đã xóa chính sách.",
+      "activated": "Đã kích hoạt chính sách.",
+      "deactivated": "Đã ngừng chính sách."
+    },
+    "delete": {
+      "title": "Xóa chính sách \"{{name}}\"?",
+      "description": "Thao tác này không thể hoàn tác."
     }
   }
 }

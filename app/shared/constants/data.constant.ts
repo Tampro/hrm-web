@@ -4,6 +4,8 @@ import {
   Boxes,
   Building2,
   CalendarDays,
+  Clock,
+  ClipboardCheck,
   Coins,
   FileText,
   GitBranch,
@@ -54,6 +56,7 @@ import type { ICompanyInfo, ICompanyStatusCounts } from '~/shared/models/company
 import type { ICoupon, ICouponStatusCounts } from '~/shared/models/coupon.model'
 import type { IEmailTemplatePreview } from '~/shared/models/email-template.model'
 import type { IEmployeeBanking, IEmployeeDetail, IEmployeeStatusCounts } from '~/shared/models/employee.model'
+import type { IAttendancePolicySummary, IShiftSummary } from '~/shared/models/attendance.model'
 import type { IAnnouncement, IAnnouncementStats, IAnnouncementTabCounts } from '~/shared/models/announcement.model'
 import type { IHoliday } from '~/shared/models/holiday.model'
 import type { IBranch, IDepartment, IDesignation, IOrgStatusCounts } from '~/shared/models/org.model'
@@ -76,6 +79,13 @@ export const DATA = {
     { label: t('sidebar.holidays'), route: ROUTES.HOLIDAYS, icon: CalendarDays, permission: 'ORG_VIEW' },
     { label: t('sidebar.award_types'), route: ROUTES.AWARD_TYPES, icon: Trophy, permission: 'ORG_VIEW' },
     { label: t('sidebar.document_types'), route: ROUTES.DOCUMENT_TYPES, icon: FileText, permission: 'ORG_VIEW' },
+    { label: t('sidebar.shifts'), route: ROUTES.SHIFTS, icon: Clock, permission: 'ATTENDANCE_VIEW' },
+    {
+      label: t('sidebar.attendance_policies'),
+      route: ROUTES.ATTENDANCE_POLICIES,
+      icon: ClipboardCheck,
+      permission: 'ATTENDANCE_VIEW'
+    },
     {
       label: t('sidebar.announcements'),
       route: ROUTES.ANNOUNCEMENTS,
@@ -351,6 +361,39 @@ export const DATA = {
     { label: t('document_type.filter.all'), value: '' },
     { label: t('document_type.required'), value: 'true' },
     { label: t('document_type.optional'), value: 'false' }
+  ],
+
+  /** Shift type filter: '' = all, 'false' = day shifts, 'true' = night shifts (Spec: nightShift Boolean param) */
+  GET_SHIFT_TYPE_OPTIONS: (t: TFunction): ITabOption[] => [
+    { label: t('shift.filter.all_types'), value: '' },
+    { label: t('shift.day'), value: 'false' },
+    { label: t('shift.night'), value: 'true' }
+  ],
+
+  // Spec: ShiftDtos.Summary {total, active, night, day}
+  GET_SHIFT_SUMMARY_CARDS: (t: TFunction, s?: IShiftSummary): IInfoRow[] => [
+    { label: t('shift.summary.total'), value: commonHelper.formatNumber(s?.total, 0) },
+    { label: t('shift.summary.active'), value: commonHelper.formatNumber(s?.active, 0) },
+    { label: t('shift.summary.day'), value: commonHelper.formatNumber(s?.day, 0) },
+    { label: t('shift.summary.night'), value: commonHelper.formatNumber(s?.night, 0) }
+  ],
+
+  // Spec: AttendancePolicyDtos.Summary — averages over every policy of the company
+  GET_ATTENDANCE_POLICY_SUMMARY_CARDS: (
+    t: TFunction,
+    s: IAttendancePolicySummary | undefined,
+    currency?: { code?: string; symbol?: string | null } | null
+  ): IInfoRow[] => [
+    { label: t('attendance_policy.summary.total'), value: commonHelper.formatNumber(s?.total, 0) },
+    { label: t('attendance_policy.summary.active'), value: commonHelper.formatNumber(s?.active, 0) },
+    {
+      label: t('attendance_policy.summary.avg_late_grace'),
+      value: t('attendance_policy.minutes', { value: commonHelper.formatNumber(s?.avgLateArrivalGraceMinutes) })
+    },
+    {
+      label: t('attendance_policy.summary.avg_overtime_rate'),
+      value: commonHelper.formatMoney(s?.avgOvertimeRatePerHour, currency)
+    }
   ],
 
   // departments pass the counts of GET /org/departments/status-counts {all, active, inactive}
