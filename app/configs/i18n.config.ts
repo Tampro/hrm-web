@@ -11,9 +11,9 @@ const LANGUAGE_KEY = 'language'
 const getInitialLanguage = () => {
   try {
     const saved = localStorage.getItem(LANGUAGE_KEY)
-    return saved && (LANGUAGES as readonly string[]).includes(saved) ? saved : 'vi'
+    return saved && (LANGUAGES as readonly string[]).includes(saved) ? saved : 'ko'
   } catch {
-    return 'vi'
+    return 'ko'
   }
 }
 
@@ -34,5 +34,8 @@ i18next.on('languageChanged', (lng) => {
     // storage unavailable: language just isn't remembered
   }
 })
+
+// init() does not emit languageChanged for the starting language: sync <html lang> (root.tsx renders the default)
+if (typeof document !== 'undefined') document.documentElement.lang = i18next.language
 
 export default i18next

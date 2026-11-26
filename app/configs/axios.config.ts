@@ -16,7 +16,7 @@ const baseURL = import.meta.env.VITE_BASE_URL_API || '/api/v1'
 const NO_REFRESH_URLS: string[] = [API_AUTH.LOGIN_URL, API_AUTH.REFRESH_TOKEN_URL, API_AUTH.LOGOUT_URL]
 
 const withLanguage = (config: InternalAxiosRequestConfig) => {
-  config.headers['Accept-Language'] = i18next.language || 'vi'
+  config.headers['Accept-Language'] = i18next.language || 'ko'
   return config
 }
 
@@ -53,7 +53,7 @@ const refreshAccessToken = async () => {
     .post(
       `${baseURL}${API_AUTH.REFRESH_TOKEN_URL}`,
       { refreshToken },
-      { headers: { 'Accept-Language': i18next.language || 'vi' } }
+      { headers: { 'Accept-Language': i18next.language || 'ko' } }
     )
     .then(unwrap)
   cookieHelper.setTokens(res?.data)

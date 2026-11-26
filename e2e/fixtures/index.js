@@ -47,6 +47,14 @@ import { mockApi } from '../utils/mock-api.js'
 
 /** @type {import('@playwright/test').TestType<import('@playwright/test').PlaywrightTestArgs & import('@playwright/test').PlaywrightTestOptions & HrmFixtures, import('@playwright/test').PlaywrightWorkerArgs & import('@playwright/test').PlaywrightWorkerOptions>} */
 export const test = base.extend({
+  // The app defaults to Korean; the specs assert the Vietnamese labels (vi.json), so every page starts in vi.
+  // A spec that tests the default language can clear it with page.addInitScript(() => localStorage.clear()).
+  page: async ({ page }, use) => {
+    await page.addInitScript(() => {
+      if (!localStorage.getItem('language')) localStorage.setItem('language', 'vi')
+    })
+    await use(page)
+  },
   loginPage: async ({ page }, use) => {
     await use(new LoginPage(page))
   },
